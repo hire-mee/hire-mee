@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS hiremee;
 CREATE DATABASE hiremee;
 
 -- User
-CREATE TABLE userInfo(
+CREATE TABLE userinfo(
   -- LOGIN
   id SERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE userInfo(
 -- APPLICATION PAGE
 CREATE TABLE applications(
   id SERIAL PRIMARY KEY,
-  userId INTEGER REFERENCES userInfo (id),
+  userId INTEGER REFERENCES userinfo (id),
   category VARCHAR(255), -- Applied/On Site/ Rejected, Offered
   color VARCHAR(255),
   companyName VARCHAR(255),
@@ -38,5 +38,5 @@ CREATE TABLE applications(
 -- FRIENDS LIST
 CREATE TABLE friends(
   id SERIAL PRIMARY KEY,
-  userId INTEGER REFERENCES userInfo (id)
+  userId INTEGER REFERENCES userinfo (id)
 );
