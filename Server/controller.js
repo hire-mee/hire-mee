@@ -8,31 +8,31 @@ module.exports = {
     })
   },
   postInfo: (req, res) => {
-    helper.postInfo(data, (err, result) => {
+    helper.postInfo(req.body, (err, result) => {
       if (err) { res.status(400).send(err) }
       res.status(200).json("posted data");
     })
   },
   updateInfo: (req, res) => {
-    helper.updateInfo(id, data, (err, result) => {
+    helper.updateInfo(req.body, req.params.id, (err, result) => {
       if (err) { res.status(400).send(err) }
       res.status(200).json("updated data", result);
     })
   },
   deleteInfo: (req, res) => {
-    helper.deleteInfo(id, (err, result) => {
+    helper.deleteInfo(req.params.id, (err, result) => {
       if (err) { res.status(400).send(err) }
       res.status(200).json("Deleted User");
     })
   },
   getApplications: (req, res) => {
-    helper.getApplications((err, result) => {
+    helper.getApplications(req.params.id, (err, result) => {
       if (err) { res.status(400).json(err) }
       res.status(200).json(result);
     })
   },
-  postApplication: (req, res) => {
-    helper.postApplication(req.body, req.params.id, (err, result) => {
+  postApplications: (req, res) => {
+    helper.postApplications(req.body, req.params.id, (err, result) => {
       if (err) { res.status(400).send(err) }
       res.status(200).json("Posted application data");
     })

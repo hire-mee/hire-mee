@@ -3,7 +3,7 @@ const db = require('./index.js')
 module.exports = {
   // userInfo table
   getInfo(callback) {
-    const queryStr = `SELECT * FROM userInfo;`;
+    const queryStr = `SELECT * FROM userinfo;`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -14,7 +14,7 @@ module.exports = {
   },
   postInfo(input, callback) {
     const { email , firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied } = input
-    const queryStr = `INSERT INTO userInfo(email, firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied) VALUES ("${email}", "${firstName}", "${lastName}", "${pass}", ${appliedToday}, "${loc}", "${jobTitle}", ${salary}, ${streak}, ${totalApplied});`;
+    const queryStr = `INSERT INTO userinfo(email, firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied) VALUES ("${email}", "${firstName}", "${lastName}", "${pass}", ${appliedToday}, "${loc}", "${jobTitle}", ${salary}, ${streak}, ${totalApplied});`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -25,7 +25,7 @@ module.exports = {
   },
   updateInfo(input, id, callback) {
     const { appliedToday, loc, jobTitle, salary, streak, totalApplied } = input
-    const queryStr = `UPDATE userInfo SET appliedToday=${appliedToday}, loc="${loc}", jobTitle="${jobTitle}", salary=${salary}, streak=${streak}, totalApplied=${totalApplied} WHERE id=${id};`;
+    const queryStr = `UPDATE userinfo SET appliedToday=${appliedToday}, loc="${loc}", jobTitle="${jobTitle}", salary=${salary}, streak=${streak}, totalApplied=${totalApplied} WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -35,7 +35,7 @@ module.exports = {
     })
   },
   deleteInfo(id, callback) {
-    const queryStr = `DELETE FROM userInfo WHERE id=${id};`;
+    const queryStr = `DELETE FROM userinfo WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -78,7 +78,7 @@ module.exports = {
     })
   },
   deleteApplications(id, callback) {
-    const queryStr = `DELETE FROM id WHERE userId=${id}`;
+    const queryStr = `DELETE FROM applications WHERE userId=${id}`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
