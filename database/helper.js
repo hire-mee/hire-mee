@@ -8,7 +8,7 @@ module.exports = {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
@@ -19,7 +19,7 @@ module.exports = {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
@@ -30,7 +30,7 @@ module.exports = {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
@@ -40,29 +40,29 @@ module.exports = {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
   // application table
   getApplications(id, callback) {
-    const queryStr = `SELECT * FROM applications WHERE userId=${id};`;
+    const queryStr = `SELECT * FROM applications WHERE userId = ${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
-  postApplications(input, id, callback) {
-    const { category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
-    const queryStr = `INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES (${id}, '${category}', '${color}', '${companyName}', '${descr}', '${loc}', '${positionTitle}', ${salary}, '${submitDate}', '${deadline}', '${urlLink}') WHERE userId=${id};`;
+  postApplications(input, callback) {
+    const { userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
+    const queryStr = `INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES (${userId}, '${category}', '${color}', '${companyName}', '${descr}', '${loc}', '${positionTitle}', ${salary}, '${submitDate}', '${deadline}', '${urlLink}');`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
@@ -73,7 +73,7 @@ module.exports = {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
@@ -83,7 +83,7 @@ module.exports = {
       if (err) {
         console.log(`ERROR: `, err);
       } else {
-        callback(null, results.row);
+        callback(null, results.rows);
       }
     })
   },
