@@ -12,8 +12,11 @@ router
 .delete(controller.deleteInfo);
 
 router
-.route('/applications')
+.route('/applications/:id')
 .get(controller.getApplications)
+
+router
+.route('/applications/')
 .post(controller.postApplications);
 
 router
