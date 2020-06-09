@@ -4,8 +4,11 @@ import Button from 'react-bootstrap/Button';
 
 let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
   let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
+  //let subtract = desiredSalary - jobSalary;
 
-  return  Math.round(difference);
+  return  Math.floor(difference);
+  //return desiredSalary/subtract;
+
 };
 
 let plusOrMinus = (desiredSalary,jobSalary) =>{
@@ -26,7 +29,8 @@ let DetailedView = ({jobInfo, desired}) => {
     color:"rgb(82, 89, 112)",
     textDecoration:"none",
     lineHeight: "1.4",
-    fontFamily: "YACkoM60Ufo 0, _fb_, auto"
+    fontFamily: "YACkoM60Ufo 0, _fb_, auto",
+    fontWeight: "bold"
   };
 
   style.company = {
@@ -42,13 +46,67 @@ let DetailedView = ({jobInfo, desired}) => {
   style.desired = {
     fontWeight: "700",
     fontStyle: "normal",
-    color: desired < jobInfo.salary ? "rgb(32, 187, 136)" : "rgb(220,20,60)"
+    color: desired < jobInfo.salary ? "rgb(32, 187, 136)" : "rgb(220,20,60)",
+    paddingBottom: "15px"
+  }
+
+  style.salary = {
+    fontWeight: "400",
+    fontStyle: "normal",
+    color: "rgb(0, 0, 0)",
+    lineHeight: "1.4",
+    fontSize: "21.3333px"
+  };
+
+  style.submitted = {
+    fontWeight: "400",
+    fontStyle: "normal",
+    color: "rgb(0, 0, 0)",
+    textDecoration: "none",
+    lineHeight: "1.4",
+    fontFamily: "YACkoA9eHeY 0, _fb_, auto",
+    fontSize: "21.3333px"
+  };
+
+  style.submittedDate = {
+    fontWeight: "400",
+    fontStyle: "normal",
+    color: "rgb(84, 84, 84)",
+    textDecoration: "none",
+    lineHeight: "1.4",
+    fontFamily: "YACkoA9eHeY 0, _fb_, auto",
+    fontSize: "19.8757px",
+    textTransform: "none",
+    fontWeight: "300"
+  };
+
+  style.Url = {
+    fontWeight: "400",
+    fontStyle: "normal",
+    color: "rgb(0, 0, 0)",
+    textDecoration: "none",
+    lineHeight: "1.4",
+    fontFamily: "YACkoA9eHeY 0, _fb_, auto",
+    fontSize: "21.3333px",
+    textTransform: "none"
+  };
+
+  style.link = {
+    fontWeight: "400",
+    fontStyle: "normal",
+    color: "rgb(56, 182, 255)",
+    textDecoration: "none",
+    lineHeight: "1.4",
+    fontFamily: "YACkoA9eHeY 0, _fb_, auto",
+    fontSize: "21.2201px",
+    textTransform: "none",
+    cursor: "pointer"
   }
 
   return (
     <div >
       <Button variant="primary" onClick={() => setShow(true)}>
-        Custom Width Modal
+        Job!
       </Button>
 
       <Modal
@@ -56,29 +114,72 @@ let DetailedView = ({jobInfo, desired}) => {
         onHide={() => setShow(false)}
         dialogClassName="detailed-view"
         aria-labelledby="example-custom-modal-styling-title"
+
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title" style={{paddingLeft:"50px"}}>
             <h1 style={style.jobTitle} >{jobInfo.positionTitle}</h1>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <div className="popupholder" style={{paddingLeft: "60px",paddingBottom:"100px"}}>
-            <div className = "popupholder-left">
-              <h1 style={style.company}>{jobInfo.companyName}</h1><br />
-              Salary: <br />
-              ${jobInfo.salary} <br />
-              <div style={style.desired}>
-                Desired {plusOrMinus(desired,jobInfo.salary) + calculateSalaryDifference(desired,jobInfo.salary) + ' %'} <br/>
+        <Modal.Body style={{borderRadius: "50px"}}>
+          <div className="popupholder" style={{paddingLeft: "60px",paddingBottom:"100px",letterSpacing: "0.1em",display: "flex",flexDirection:"row"}}>
+            <div className = "popupholder-left" >
+              <h2 style={style.company}>{jobInfo.companyName}</h2><br />
+
+              <div style={style.salary}>
+                Salary: <br />
+                ${jobInfo.salary} <br />
               </div>
-              Submitted: <br />
-              {jobInfo.submitDate} <br />
-              Deadline: <br />
-              {jobInfo.deadLine} <br />
-              Location: <br />
-              {jobInfo.loc}
+
+              <div style={style.desired}>
+                Desired {plusOrMinus(desired,jobInfo.salary) + calculateSalaryDifference(desired,jobInfo.salary) + ' ~%'} <br/>
+              </div>
+
+              <div className="submitted-holder" style={{paddingBottom:"15px"}}>
+                <div style={style.submitted}>
+                  Submitted: <br />
+                </div>
+                <div style={style.submittedDate}>
+                  {jobInfo.submitDate} <br />
+                </div>
+              </div>
+
+              <div className="deadline-holder" style={{paddingBottom:"15px"}}>
+                <div style={style.submitted}>
+                  Deadline: <br />
+                </div>
+
+                <div style={style.submittedDate}>
+                  {jobInfo.deadLine} <br />
+                </div>
+              </div>
+
+              <div className="location-holder" style={{paddingBottom:"15px"}}>
+                <div style={style.submitted}>
+                  Location: <br />
+                </div>
+
+                <div style={style.submittedDate}>
+                  {jobInfo.loc}
+                </div>
+              </div>
+
             </div>
-            <div className = "popupholder-right">
+
+            <div className = "popupholder-right" style={{paddingTop:"2em",paddingLeft:"10em"}}>
+              <div className="url-holder">
+                <div stle={style.Url}>
+                  URL: <p style={style.link}>{jobInfo.urlLink}</p>
+                </div>
+              </div>
+              <div>
+                <div style={style.submitted}>
+                  Description: <br/>
+                </div>
+                <div style={style.submittedDate}>
+                  {jobInfo.descr}
+                </div>
+              </div>
 
             </div>
           </div>
