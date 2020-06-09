@@ -1,30 +1,42 @@
 DROP DATABASE IF EXISTS hiremee;
 CREATE DATABASE hiremee;
 
+-- User
 CREATE TABLE userInfo(
+  -- LOGIN
   id SERIAL PRIMARY KEY,
-  email VARCHAR(255),
-  firstName VARCHAR(255),
-  lastName VARCHAR(255),
+  email VARCHAR(255) NOT NULL,
+  firstName VARCHAR(255) NOT NULL,
+  lastName VARCHAR(255) NOT NULL,
+  pass VARCHAR(255) NOT NULL,
+  --
+  appliedToday INTEGER,
+  -- darkMode BOOLEAN,   EXTRA CREDIT FOR SETTINGS
+  loc VARCHAR(255),
   jobTitle VARCHAR(255),
   salary INTEGER,
-  location VARCHAR(255),
-  streak INTEGER
+  streak INTEGER,
+  totalApplied INTEGER
 );
 
+-- APPLICATION PAGE
 CREATE TABLE applications(
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES userInfo (id),
+  userId INTEGER REFERENCES userInfo (id),
+  category VARCHAR(255), -- Applied/On Site/ Rejected, Offered
+  color VARCHAR(255),
   companyName VARCHAR(255),
+  descr VARCHAR(255),
+  loc VARCHAR(255),
   positionTitle VARCHAR(255),
-  url VARCHAR(255),
-  description VARCHAR(255),
   salary INTEGER,
-  location VARCHAR(255),
-  submittedDate DATE,
+  submitDate DATE,
+  deadline DATE,
+  urlLink VARCHAR(255)
 );
 
+-- FRIENDS LIST
 CREATE TABLE friends(
   id SERIAL PRIMARY KEY,
-  userID INTEGER REFERENCES userInfo (id)
+  userId INTEGER REFERENCES userInfo (id)
 );
