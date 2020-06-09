@@ -3,7 +3,7 @@ const db = require('./index.js')
 module.exports = {
   // userInfo table
   getInfo(callback) {
-    let queryStr = `SELECT * FROM userInfo`;
+    const queryStr = `SELECT * FROM userInfo;`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -13,7 +13,8 @@ module.exports = {
     })
   },
   postInfo(input, callback) {
-    let queryStr = `INSERT INTO `;
+    const { email , firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied } = input
+    const queryStr = `INSERT INTO userInfo(email, firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied) VALUES ("${email}", "${firstName}", "${lastName}", "${pass}", ${appliedToday}, "${loc}", "${jobTitle}", ${salary}, ${streak}, ${totalApplied});`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -22,18 +23,9 @@ module.exports = {
       }
     })
   },
-  signUp(input, callback) {
-    let queryStr = `INSERT INTO `;
-    db.query(queryStr, (err, results) => {
-      if (err) {
-        console.log(`ERROR: `, err);
-      } else {
-        callback(null, results.row);
-      }
-    })
-  },
-  updateInfo(id, callback) {
-    let queryStr = `UPDATE `;
+  updateInfo(input, id, callback) {
+    const { appliedToday, loc, jobTitle, salary, streak, totalApplied } = input
+    const queryStr = `UPDATE userInfo SET appliedToday=${appliedToday}, loc="${loc}", jobTitle="${jobTitle}", salary=${salary}, streak=${streak}, totalApplied=${totalApplied} WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -43,7 +35,7 @@ module.exports = {
     })
   },
   deleteInfo(id, callback) {
-    let queryStr = `DELETE `;
+    const queryStr = `DELETE FROM userInfo WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -54,7 +46,7 @@ module.exports = {
   },
   // application table
   getApplications(id, callback) {
-    let queryStr = `SELECT * FROM `;
+    const queryStr = `SELECT * FROM applications WHERE userId=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -63,8 +55,9 @@ module.exports = {
       }
     })
   },
-  postApplications(callback) {
-    let queryStr = `INSERT INTO `;
+  postApplications(input, id, callback) {
+    const { category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
+    const queryStr = `INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES (${id}, "${category}", "${color}", "${companyName}", "${descr}", "${loc}", "${positionTitle}", ${salary}, "${submitDate}", "${deadline}", "${urlLink}") WHERE userId=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -73,8 +66,9 @@ module.exports = {
       }
     })
   },
-  updateApplications(id, callback) {
-    let queryStr = `UPDATE `;
+  updateApplications(input, id, callback) {
+    const { category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
+    const queryStr = `UPDATE applications SET category="${category}", color="${color}", companyName="${companyName}", descr="${descr}", loc="${loc}", positionTitle="${positionTitle}", salary=${salary}, submitDate="${submitDate}", deadline="${deadline}", urlLink="${urlLink}" WHERE userId=${id}`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -84,7 +78,7 @@ module.exports = {
     })
   },
   deleteApplications(id, callback) {
-    let queryStr = `DELETE `;
+    const queryStr = `DELETE FROM id WHERE userId=${id}`;
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);

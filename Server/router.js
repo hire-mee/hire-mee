@@ -3,22 +3,23 @@ const controller = require('./controller.js');
 
 router
 .route('/users')
-.get(controller.getData);
-.post(controller.postData);
+.get(controller.getInfo);
+.post(controller.postInfo);
+.post(controller.signUp);
 
 router
 .route('/users/:id')
-.put(controller.updateData);
-.delete(controller.deleteData);
+.put(controller.updateInfo);
+.delete(controller.deleteInfo);
 
 router
 .route('/applications')
-.get(controller.getDetails);
-.post(controller.postDetails);
+.get(controller.getApplications);
+.post(controller.postApplications);
 
 router
 .route('/applications/:id')
-.put(controller.updateDetails);
-.delete(controller.deleteDetails);
+.put(controller.updateApplications);
+.delete(controller.deleteApplications);
 
 module.exports = router;
