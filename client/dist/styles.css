@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
+body {
+  font-family: 'Poppins', 'Times', 'Arial', 'sans-serif';
+}
+
+.stat_color {
+  color: rgb(63, 165, 63);
+}
+
+.stats-pie {
+  position: relative;
+  height:30vh;
+  width:18vw;
+}
