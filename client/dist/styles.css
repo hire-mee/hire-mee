@@ -5,11 +5,30 @@ body {
 }
 
 .stat_color {
-  color: rgb(63, 165, 63);
+  color:#34a853;
 }
 
-.stats-pie {
+.stat_header {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 39px;
+  color: #535970;
+}
+
+.stat_info {
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #535970;
+}
+
+.stat_pie {
   position: relative;
   height:30vh;
   width:18vw;
+  color: #535970;
+}
+
+.stat_pieInfo {
+  font-size: 16px;
 }

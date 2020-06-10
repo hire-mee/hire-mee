@@ -12,6 +12,9 @@ CREATE TABLE userinfo(
   --
   appliedToday INTEGER,
   appliedMonth INTEGER,
+  appOnSite INTEGER,
+  appRejected INTEGER,
+  appNoResponse INTEGER,
   -- darkMode BOOLEAN,   EXTRA CREDIT FOR SETTINGS
   loc VARCHAR(255),
   jobTitle VARCHAR(255),
