@@ -14,10 +14,11 @@ module.exports = {
   },
   postInfo(input, callback) {
     const { email , firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied } = input
-    const queryStr = `INSERT INTO userinfo(email, firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied) VALUES ('${email}', '${firstName}', '${lastName}', '${pass}', ${appliedToday}, '${loc}', '${jobTitle}', ${salary}, ${streak}, ${totalApplied});`;
+    const queryStr = `INSERT INTO userinfo (email, firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied) VALUES ('${email}', '${firstName}', '${lastName}', '${pass}', ${appliedToday}, '${loc}', '${jobTitle}', ${salary}, ${streak}, ${totalApplied});`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        console.log(`ERROR: `, err);
+        console.log(err)
+        callback(err);
       } else {
         callback(null, results.rows);
       }
