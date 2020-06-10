@@ -7,3 +7,4 @@ firebase-service-account-sample.json
 Auth
 auth-middleware.js
 firebase-auth-Controller.js
+client/src/components/SignUp
