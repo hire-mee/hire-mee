@@ -12,6 +12,17 @@ module.exports = {
       }
     })
   },
+  signUpPostInfo(input, callback) {
+    const { email , firstName, lastName, pass } = input
+    const queryStr = `INSERT INTO userinfo(email, firstName, lastName, pass) VALUES ('${email}', '${firstName}', '${lastName}', '${pass}');`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        console.log(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
   postInfo(input, callback) {
     const { email , firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied } = input
     const queryStr = `INSERT INTO userinfo(email, firstName, lastName, pass, appliedToday, loc, jobTitle, salary, streak, totalApplied) VALUES ('${email}', '${firstName}', '${lastName}', '${pass}', ${appliedToday}, '${loc}', '${jobTitle}', ${salary}, ${streak}, ${totalApplied});`;
