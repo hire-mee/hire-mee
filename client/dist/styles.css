@@ -4,6 +4,16 @@ body {
   font-family: 'Poppins', 'Times', 'Arial', 'sans-serif';
 }
 
+<<<<<<< HEAD
+=======
+.detailed-view{
+  height: 70vw;
+  max-height: 70vw;
+  width: 70vw;
+  max-width: 70vw;
+}
+
+>>>>>>> master
 .stat_color {
   color:#34a853;
 }

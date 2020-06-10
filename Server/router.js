@@ -6,6 +6,10 @@ router
 .get(controller.getInfo)
 .post(controller.postInfo);
 
+// router
+// .route('/signUp')
+// .post(controller.signUpPostInfo)
+
 router
 .route('/users/:id')
 .put(controller.updateInfo)
