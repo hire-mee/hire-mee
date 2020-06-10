@@ -113,11 +113,11 @@ let DetailedView = ({jobInfo, desired}) => {
         show={show}
         onHide={() => setShow(false)}
         dialogClassName="detailed-view"
-        aria-labelledby="example-custom-modal-styling-title"
+        aria-labelledby="modal-styling-title"
 
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title" style={{paddingLeft:"50px"}}>
+          <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
             <h1 style={style.jobTitle} >{jobInfo.positionTitle}</h1>
           </Modal.Title>
         </Modal.Header>
