@@ -11,11 +11,11 @@ class Statistics extends React.Component {
 
   render() {
     const pieData = {
-      labels: ['Rejected', 'On Site', 'No Response'],
+      labels: ['On Site', 'Rejected', 'No Response'],
       datasets: [{
         data: [12.5, 12.5, 75],
-        backgroundColor: ['#cf4a4a', '#78c975', '#bababa'],
-        hoverBackgroundColor: ['#cf4a4a', '#78c975', '#bababa']
+        backgroundColor: ['#78c975', '#cf4a4a', '#bababa'],
+        hoverBackgroundColor: ['#78c975', '#cf4a4a', '#bababa']
       }]
     };
 
