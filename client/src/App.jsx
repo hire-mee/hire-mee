@@ -1,6 +1,9 @@
 import React from 'react';
-import MapContainer from './components/Map/Map.jsx';
+import axios from 'axios';
+
+// import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
+import Statistics from './components/Statistics/Statistics.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,15 +11,37 @@ class App extends React.Component {
 
     this.state = {
       signUp: false,
-      map: true
+      page: 'Statistics',
+      users: '',
+      currentUser: ''
     };
     this.componentHandler = this.componentHandler.bind(this);
+    this.getData = this.getData.bind(this);
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   componentHandler() {
-    if (this.state.map === true) {
-      return <MapContainer />;
+    // if (this.state.page === 'Map') {
+    //   return <MapContainer />;
+    // }
+    if (this.state.page === 'Statistics') {
+      return <Statistics user={this.state.currentUser}/>
     }
+  }
+
+  getData() {
+    axios
+    .get('/api/users')
+    .then(data => {
+      this.setState({
+        users: data.data,
+        currentUser: data.data[0]
+      })
+    })
+    .catch(err => console.error(err))
   }
 
   render() {
