@@ -249,7 +249,29 @@ body {
   border-bottom: 1px solid #535970;
 }
 
+.signup_redirect_text{
+  margin-top: 5%;
+  text-align: center;
+  font-size: 1.5em;
+}
 
+#signup_redirect_login{
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #38b6ff;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content;
+  border-bottom: 1px solid #e8ecef;
+  margin-top: 2%;
+}
+
+#signup_redirect_login:hover{
+  font-weight: 600;
+  color: #535970;
+  cursor: pointer;
+}
 
 .detailed-view{
   height: 70vw;

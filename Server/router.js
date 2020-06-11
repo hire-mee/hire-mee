@@ -5,15 +5,14 @@ const controller = require('./controller.js');
 // .route('/login')
 // .post(passport.authenticate('local'), controller.login)
 
+router
+.route('/signup')
+.post(controller.signUpPostInfo)
 
 router
 .route('/users')
 .get(controller.getInfo)
 .post(controller.postInfo);
-
-router
-.route('/signup')
-.post(controller.signUpPostInfo)
 
 router
 .route('/users/:id')

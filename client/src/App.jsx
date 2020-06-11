@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData();
+    // this.getData();
   }
 
   componentHandler() {
@@ -50,7 +50,7 @@ class App extends React.Component {
     if (this.state.page === 'Sign-up')  {
       return (
         <div>
-        <SignUp/>
+          <SignUp/>
         </div>
       )
     } else {

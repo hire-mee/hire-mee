@@ -21,7 +21,7 @@ module.exports = {
   signUpPostInfo: (req, res) => {
     helper.signUpPostInfo(req.body, (err, result) => {
       if (err) { res.status(400).send(err) }
-      res.status(200).send("Posted sign-up data");
+      res.status(200).send(result);
     })
   },
   // signUpPostInfo: (req, res) => {
