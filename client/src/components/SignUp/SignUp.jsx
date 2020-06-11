@@ -100,7 +100,7 @@ export default class SignUp extends Component {
                     ></input>
                   </div>
                   <div className="signup_button_container">
-                    <button id="signup_signup_button">Sign up</button>
+                    <button id="signup_signup_button" onClick={() => window.alert("functionality coming soon ;-)")}>Sign up</button>
                   </div>
                 </form>
               </div>
