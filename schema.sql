@@ -4,13 +4,17 @@ CREATE DATABASE hiremee;
 -- User
 CREATE TABLE userinfo(
   -- LOGIN
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
+  id BIGSERIAL PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
   pass VARCHAR(255) NOT NULL,
   --
   appliedToday INTEGER,
+  appliedMonth INTEGER,
+  appOnSite INTEGER,
+  appRejected INTEGER,
+  appNoResponse INTEGER,
   -- darkMode BOOLEAN,   EXTRA CREDIT FOR SETTINGS
   loc VARCHAR(255),
   jobTitle VARCHAR(255),

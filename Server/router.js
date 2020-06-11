@@ -6,9 +6,9 @@ router
 .get(controller.getInfo)
 .post(controller.postInfo);
 
-// router
-// .route('/signUp')
-// .post(controller.signUpPostInfo)
+router
+.route('/user/:id')
+.get(controller.getUserData)
 
 router
 .route('/users/:id')

@@ -13,25 +13,13 @@ module.exports = {
       res.status(200).send(result);
     });
   },
-  // signUpPostInfo: (req, res) => {
-  //   console.log('data', req.body);
-  //   firebase
-  //     .auth()
-  //     .createUserWithEmailAndPassword(req.body.email, req.body.pass)
-  //     .catch(function (err) {
-  //       var errorCode = err.code;
-  //       var errorMessage = err.message;
-  //     });
-
-  //   helper.postInfo(userData, (err, result) => {
-  //     if (err) {
-  //       res.status(400).send(err);
-  //     }
-  //     res.status(200).send('User Created');
-  //   });
-  // },
+  getUserData: (req, res) => {
+    helper.getUserData(req.params.id, (err, result) => {
+      if (err) { res.status(400).send(err)}
+      res.status(200).send(result)
+    })
+  },
   postInfo: (req, res) => {
-    console.log('data', req.body);
     helper.postInfo(req.body, (err, result) => {
       if (err) {
         res.status(400).send(err);

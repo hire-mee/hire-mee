@@ -36,6 +36,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-geocode": "^0.2.1",
+    "react-promise": "^3.0.2",
     "style-loader": "^1.2.1"
   },
   "devDependencies": {

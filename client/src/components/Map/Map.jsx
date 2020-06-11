@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Async from 'react-promise'
 import Geocode from 'react-geocode';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import '../../../dist/mapStyles.css';
@@ -14,13 +15,12 @@ const mapStyles = {
   left: '5%'
 };
 
-
-
 class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userData: [],
+      applications: [],
       showingInfoWindow: false, //Hides or the shows the infoWindow
       activeMarker: {}, //Shows the active marker upon click
       selectedPlace: {}, //Shows the infoWindow to the selected place upon a marker
@@ -28,14 +28,26 @@ class MapContainer extends Component {
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onClose = this.onClose.bind(this);
+    this.geocodeGen = this.geocodeGen.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/users').then((data) => {
-      this.setState({
-        userData: data.data
+    axios
+      .get('/api/user/2')
+      .then((data) => {
+        this.setState({
+          userData: data.data[0]
+        });
+      })
+      .then(() => {
+        axios
+          .get(`/api/applications/${this.state.userData.id}`)
+          .then((data) => {
+            this.setState({
+              applications: data.data
+            });
+          });
       });
-    });
   }
 
   onMarkerClick(props, marker, e) {
@@ -55,18 +67,36 @@ class MapContainer extends Component {
     }
   }
 
+  geocodeGen() {
+    let { applications } = this.state;
+    let geoLocations = [];
+    let applicationCities = applications.map((cities) => {
+      return cities.loc;
+    });
+    return applicationCities
+  }
+
   render() {
-    //Geocode
-    Geocode.fromAddress("los angeles").then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
-      },
-      error => {
-        console.error(error);
-      }
-    );
-    console.log('data', this.state);
+    console.log('filter', this.geocodeGen());
+    let applicationCities = this.geocodeGen();
+
+    const lngLatConversion = applicationCities.map((data, i) => {
+     var geoLocs = Geocode.fromAddress(data)
+      // .then((response) => {
+        return (
+          
+          <Async promise={geoLocs} key={i} then={(val) => <Marker position={val.results[0].geometry.location} />} />
+        )
+      // })
+      // .catch((error) => {
+      //   console.error(error);
+      //   return (
+      //     <div>Loading...</div>
+      //   )
+      // });
+    })
+
+    console.log('conversion', lngLatConversion)
     return (
       <div className="mainMapContainer">
         <div className="mapTopContainer">
@@ -93,9 +123,15 @@ class MapContainer extends Component {
             position={{ lat: 33.97575, lng: -118.39114 }}
             name={'Hack Reactor'}
           />
+          {/* {lngLatConversion} */}
           <Marker
             onClick={this.onMarkerClick}
-            position={{ lat: 33.97575, lng: -118.39114 }}
+            position={{ lat: 33.7700504, lng: -118.1937395 }}
+            name={'Hack Reactor'}
+          />
+          <Marker
+            onClick={this.onMarkerClick}
+            position={{ lat: 33.6845673, lng: -117.8265049 }}
             name={'Hack Reactor'}
           />
           <InfoWindow
