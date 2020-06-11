@@ -10,24 +10,28 @@ class Jobs extends React.Component{
     super(props);
   }
 
+  addJobApplication(){
+
+  }
+
   render(){
 
 
     return (
       <div className="jobs" style={{paddingRight:"5%"}}>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={2} style={{height:"100%"}}>
           <Applied applied={this.props.applied} desired={this.props.desired}/>
 
-          <div style={{paddingLeft:"1%",width:"24%"}}>
+          <div style={{paddingLeft:"1%",width:"24%"}} className="rejected-container">
             <Rejected rejected={this.props.rejected} desired={this.props.desired}/>
           </div >
 
-          <div style={{paddingLeft:"1%",width:"24%"}}>
+          <div style={{paddingLeft:"1%",width:"24%"}} className="interviews-container">
             <Interviews interviews={this.props.interviews} desired={this.props.desired}/>
           </div>
 
-          <div style={{paddingLeft:"1%",width:"24%"}}>
+          <div style={{paddingLeft:"1%",width:"24%"}} className="offers-container">
             <Offers offers={this.props.offered} desired={this.props.desired}/>
           </div>
 
