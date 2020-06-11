@@ -33,7 +33,7 @@ class App extends React.Component {
       return <Statistics user={this.state.currentUser} />
     } else if (this.state.page === 'Sign-up') {
       return <SignUp/>
-    } else if (this.state.page === 'map') {
+    } else if (this.state.page === 'Map') {
       return <MapContainer />
     }
   }
