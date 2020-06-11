@@ -84,7 +84,7 @@ class MapContainer extends Component {
      var geoLocs = Geocode.fromAddress(data)
       // .then((response) => {
         return (
-          
+
           <Async promise={geoLocs} key={i} then={(val) => <Marker position={val.results[0].geometry.location} />} />
         )
       // })
