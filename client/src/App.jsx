@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
+import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
+
 // import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
-import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
+import Jobs from './components/jobs/Jobs.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -64,7 +66,7 @@ class App extends React.Component {
   componentHandler() {
     if (this.state.loggedIn === true) {
       if (this.state.page === 'Jobs') {
-
+        return <Jobs user={this.state.currentUser} />
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
