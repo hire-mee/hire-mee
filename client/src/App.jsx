@@ -2,14 +2,25 @@ import React from 'react';
 import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 
+import Jobs from './components/jobs/Jobs.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       signUp: false,
-      map: true
-    };
+      map: true,
+      appliedJobs:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"www.fake",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"www.fake",descr:"not real" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"www.fake",descr:"not real" }],
+
+      onSite: [{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" },{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" },{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" }],
+
+      rejected: [{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" },{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" },{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" }],
+
+      offered: [{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" },{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" },{positionTitle: "Full Stack WebDeveloper",companyName: "google", salary: 100000, submittedDate: "06/05/2020",deadLine: "06/2020",loc:"Mountain View, Ca", link:"www.fake",descr:"not real" }],
+
+      desired: 120000
+    }
     this.componentHandler = this.componentHandler.bind(this);
   }
 
@@ -20,9 +31,22 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
-        <div className="navbar">
+
+          <Jobs applied={this.state.appliedJobs} desired={this.state.desired} onSite={this.state.onSite} rejected={this.state.rejected}/>
+
+      </div>
+    );
+
+  }
+
+}
+
+export default App;
+
+/*   <div className="navbar">
           <div className="title">Hire-Mee</div>
           <div className="dashboard">
             <div className="applications">Applications</div>
@@ -38,10 +62,6 @@ class App extends React.Component {
             <div className="logout">Logout</div>
           </div>
         </div>
-        <div>{this.componentHandler()}</div>
-      </div>
-    );
-  }
-}
 
-export default App;
+           <div>{this.componentHandler()}</div>
+ */

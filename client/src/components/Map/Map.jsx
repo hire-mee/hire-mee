@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import '../../../dist/mapStyles.css'
-import MAP_API_KEY from '../../../../maps-api-key'
+import MAP_API_KEY from '../../../../maps-api-key-sample.js'
 
 const mapStyles = {
   width: '60%',

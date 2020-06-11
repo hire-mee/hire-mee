@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
+
 let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
   let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
-  //let subtract = desiredSalary - jobSalary;
 
   return  Math.floor(difference);
-  //return desiredSalary/subtract;
 
 };
 
@@ -19,8 +18,9 @@ let plusOrMinus = (desiredSalary,jobSalary) =>{
   }
 };
 
-let DetailedView = ({jobInfo, desired}) => {
-  const [show, setShow] = useState(false);
+let DetailedView = ({jobInfo, desired,show}) => {
+
+
   const style = {};
 
   style.jobTitle = {
@@ -103,15 +103,13 @@ let DetailedView = ({jobInfo, desired}) => {
     cursor: "pointer"
   }
 
+
   return (
     <div >
-      <Button variant="primary" onClick={() => setShow(true)}>
-        Job!
-      </Button>
 
       <Modal
         show={show}
-        onHide={() => setShow(false)}
+        onHide={() => console.log('Hide')}
         dialogClassName="detailed-view"
         aria-labelledby="modal-styling-title"
 
