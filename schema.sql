@@ -4,8 +4,8 @@ CREATE DATABASE hiremee;
 -- User
 CREATE TABLE userinfo(
   -- LOGIN
-  id BIGSERIAL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL UNIQUE,
+  id BIGSERIAL PRIMARY KEY, -- passport may require 'bigserial' as part of property
+  email VARCHAR(255) NOT NULL UNIQUE, -- added unique property to email
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
   pass VARCHAR(255) NOT NULL,

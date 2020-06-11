@@ -1,10 +1,11 @@
 const helper = require('../database/helper.js');
-// var firebase = require('firebase/app');
-// require('firebase/auth');
-// const firebaseConfig = require('../hire-mee-firebase-adminsdk-dl9qo-9291f8dd0e.json');
-// firebase.initializeApp(firebaseConfig);
 
 module.exports = {
+  login: (req, res) => {
+    let { email } = req;
+    if (err) { res.status(400).send(err) }
+    res.status(200).send(email);
+  },
   getInfo: (req, res) => {
     helper.getInfo((err, result) => {
       if (err) {
@@ -17,6 +18,12 @@ module.exports = {
     helper.getUserData(req.params.id, (err, result) => {
       if (err) { res.status(400).send(err)}
       res.status(200).send(result)
+    })
+  },
+  signUpPostInfo: (req, res) => {
+    helper.signUpPostInfo(req.body, (err, result) => {
+      if (err) { res.status(400).send(err) }
+      res.status(200).send("Posted sign-up data");
     })
   },
   postInfo: (req, res) => {
