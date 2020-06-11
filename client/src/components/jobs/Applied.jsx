@@ -9,7 +9,8 @@ style.applied = {
   fontWeight: "700",
   fontStyle: "normal",
   color: "rgb(84, 84, 84)",
-  textDecoration: "none"
+  textDecoration: "none",
+  fontSize:"2vw"
 };
 
 style.jobs = {
@@ -17,14 +18,15 @@ style.jobs = {
   fontWeight: "400",
   fontStyle: "normal",
   color: "rgb(84, 84, 84)",
-  textDecoration: "none"
+  textDecoration: "none",
+  fontSize:"1vw"
 };
 //top, right, bottom, and left
 const Applied = (props) =>{
 
 
   return (
-    <div className = "applied" style={{width:"25%"}}>
+    <div className = "applied" style={{width:"24%"}}>
        <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)"}}>
          <div className="applied-holder" style={{padding:"1em"}}>
           <p style={style.applied}>Applied</p>

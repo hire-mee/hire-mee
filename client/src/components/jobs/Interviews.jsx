@@ -8,7 +8,8 @@ style.offers = {
   fontWeight: "700",
   fontStyle: "normal",
   color: "rgb(84, 84, 84)",
-  textDecoration: "none"
+  textDecoration: "none",
+  fontSize:"2vw"
 };
 
 style.jobs = {
@@ -16,7 +17,8 @@ style.jobs = {
   fontWeight: "400",
   fontStyle: "normal",
   color: "rgb(84, 84, 84)",
-  textDecoration: "none"
+  textDecoration: "none",
+  fontSize:"1vw"
 };
 
 const Interviews = (props) =>{

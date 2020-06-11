@@ -4,17 +4,25 @@ import Button from 'react-bootstrap/Button';
 
 
 let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
-  let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
+  //let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
 
-  return  Math.floor(difference);
+  if(desiredSalary < jobSalary){
+    return (jobSalary - desiredSalary);
+  } else if(desiredSalary === jobSalary){
+    return ("Salary is exactly what you are looking for")
+  } else {
+    return (desiredSalary - jobSalary);
+  }
 
 };
 
 let plusOrMinus = (desiredSalary,jobSalary) =>{
   if(desiredSalary < jobSalary){
     return '+'
+  } else if(desiredSalary === jobSalary){
+    return '';
   } else {
-    return '-'
+    return '-';
   }
 };
 
@@ -130,7 +138,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
               </div>
 
               <div style={style.desired}>
-                Desired {plusOrMinus(desired,jobInfo.salary) + calculateSalaryDifference(desired,jobInfo.salary) + ' ~%'} <br/>
+              {plusOrMinus(desired,jobInfo.salary) + calculateSalaryDifference(desired,jobInfo.salary)} <br/>
               </div>
 
               <div className="submitted-holder" style={{paddingBottom:"15px"}}>
