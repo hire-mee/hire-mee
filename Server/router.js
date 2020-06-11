@@ -1,19 +1,19 @@
 const router = require('express').Router();
 const controller = require('./controller.js');
-const passport = require('passport')
 
 // router
 // .route('/login')
 // .post(passport.authenticate('local'), controller.login)
 
-// router
-// .route('/signup')
-// .post(controller.signUp);
 
 router
 .route('/users')
 .get(controller.getInfo)
 .post(controller.postInfo);
+
+router
+.route('/signup')
+.post(controller.signUpPostInfo)
 
 router
 .route('/users/:id')

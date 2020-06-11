@@ -71,10 +71,7 @@ app.use(passport.session()) // passport session
 app.use('/api', router);
 
 app.post('/signup', (req, res, callback) => {
-
-    // validate our password to have these critieria 
-
-    var validateCriteria = new passwordValidator();
+    var validateCriteria = new passwordValidator(); // validate our password to have these critieria 
     validateCriteria
         .is().min(6)
         .is().max(100)
@@ -82,30 +79,29 @@ app.post('/signup', (req, res, callback) => {
         .has().lowercase()
         .has().digits()
         .has().not().spaces()   
-    
     let passwordvalidation = validateCriteria.validate(req.body.password);
     
     if (passwordvalidation) {
-    bcrypt.hash(req.body.password, 10, (err, hashed) => {
-        if(err) {
-            return callback(err);
-        } else {
-            let searchQuery = `SELECT email FROM userinfo WHERE email = ${req.body.email}`
-            db.query(searchQuery, (err, result)=> {
-                if (null, result.rows) {
-                    res.status(400).send("User already exists!", err)
-                } else {
-                    let queryStr = `INSERT INTO userinfo (email, firstName, lastName, pass) VALUES ('${email}', '${firstName}', '${lastName}', '${hashed}');`;
-                    db.query(queryStr, (err, data) => {
-                        if(err) {console.log(err)};
-                        let redirect = { redirect: '/' }
-                        res.json(redirect)
-                    });
-                }
-            })
-        }
-    })
-
+        bcrypt.hash(req.body.password, 10, (err, hashed) => {
+            if(err) {
+                callback(err);
+            } else {
+                let searchQuery = `SELECT email FROM userinfo WHERE email = ${req.body.email}`
+                db.query(searchQuery, (err, result)=> {
+                    if (null, result.rows) {
+                        // res.status(400).send("User already exists!", err)
+                        callback("User already exists!", err)
+                    } else {
+                        let queryStr = `INSERT INTO userinfo (email, firstName, lastName, pass) VALUES ('${email}', '${firstName}', '${lastName}', '${hashed}');`;
+                        db.query(queryStr, (err, data) => {
+                            if(err) {console.log(err)};
+                            let redirect = { redirect: '/' }
+                            res.json(redirect)
+                        });
+                    }
+                })
+            }
+        })
     } else { // else block from passwordValidation condition
         let password_error = {password_error: 'Your password must have an uppercase letter, lowercase letter, and number' };
         res.json(password_error);
