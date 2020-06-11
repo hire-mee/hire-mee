@@ -167,7 +167,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
             <div className = "popupholder-right" style={{paddingTop:"2em",paddingLeft:"10em"}}>
               <div className="url-holder">
                 <div stle={style.Url}>
-                  URL: <p style={style.link}>{jobInfo.urlLink}</p>
+                  URL: <a style={style.link} target="_blank" rel="noopener noreferrer" href={`${jobInfo.urlLink}`}>{jobInfo.urlLink}</a>
                 </div>
               </div>
               <div>
