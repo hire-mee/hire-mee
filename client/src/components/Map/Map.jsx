@@ -84,7 +84,7 @@ class MapContainer extends Component {
     const lngLatConversion = applicationCities.map((data, i) => {
      var geoLocs = Geocode.fromAddress(data)
         return (
-          
+
           <Async promise={geoLocs} key={i} then={(val) => <Marker position={val.results[0].geometry.location} />} />
         )
     })
