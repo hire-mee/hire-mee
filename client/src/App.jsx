@@ -9,10 +9,9 @@ import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, Ar
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       signUp: false,
-      page: 'Statistics',
+      page: 'Sign-up',
       users: '',
       currentUser: ''
     };
@@ -30,6 +29,8 @@ class App extends React.Component {
     // }
     if (this.state.page === 'Statistics') {
       return <Statistics user={this.state.currentUser}/>
+    } else if (this.state.page === 'Sign-up') {
+      return <SignUp/>
     }
   }
 
@@ -46,35 +47,36 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <div className="grid-container">
-          <div className="Nav">
-            <div className="company_name">Hire-Mee</div>
-            <div className="Dashboard">
-              <div className="category_title">Dashboard</div>
-              <div className="category"><Briefcase color="white" /> Jobs</div>
-              <div className="category"><GraphUp color="white" /> Statistics</div>
-              <div className="category"><Trophy color="white" /> Leaderboard</div>
-              <div className="category"><GeoAlt color="white" /> Map</div>
-              <div className="category"><PersonFill color="white" /> Friends</div>
-            </div>
-            <div className="Account">
-              <div className="category_title">Account</div>
-              <div className="category"><GearFill color="white" /> Settings</div>
-              <div className="category"><PauseFill color="white" /> Pause</div>
-              <div className="category"><ArrowClockwise color="white" /> Reset Week</div>
-              <div className="category"><BoxArrowRight color="white" /> Logout</div>
-            </div>
-          </div>
-          <div className="Header">
-            <div className="Header-title">TITLE</div>
-            <div className="Profile-area">PROFILE AREA</div>
-          </div>
-          <div className="Display">{this.componentHandler()}</div>
+    if (this.state.page === 'Sign-up')  {
+      return (
+        <div>
+        <SignUp/>
         </div>
-      </div>
-    );
+      )
+    } else {
+      return (
+        <div>
+          <div className="navbar">
+            <div className="title">Hire-Mee</div>
+            <div className="dashboard">
+              <div className="applications">Applications</div>
+              <div className="statistics">Statistics</div>
+              <div className="leaderboard">Leaderboard</div>
+              <div className="map">Map</div>
+              <div className="friends">Friends</div>
+            </div>
+            <div className="account">
+              <div className="settings">Settings</div>
+              <div className="pause">Pause</div>
+              <div className="resetWeek">Reset Week</div>
+              <div className="logout">Logout</div>
+            </div>
+          </div>
+  
+          <div>{this.componentHandler()}</div>
+        </div>
+      );
+    }
   }
 }
 

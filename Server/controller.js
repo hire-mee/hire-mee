@@ -5,6 +5,11 @@ const helper = require('../database/helper.js');
 // firebase.initializeApp(firebaseConfig);
 
 module.exports = {
+  login: (req, res) => {
+    let { email } = req;
+    if (err) { res.status(400).send(err) }
+    res.status(200).send(email);
+  },
   getInfo: (req, res) => {
     helper.getInfo((err, result) => {
       if (err) {
@@ -12,6 +17,12 @@ module.exports = {
       }
       res.status(200).send(result);
     });
+  },
+  signUpPostInfo: (req, res) => {
+    helper.signUpPostInfo(req.body, (err, result) => {
+      if (err) { res.status(400).send(err) }
+      res.status(200).send("Posted sign-up data");
+    })
   },
   // signUpPostInfo: (req, res) => {
   //   console.log('data', req.body);

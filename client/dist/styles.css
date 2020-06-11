@@ -83,6 +83,174 @@ body {
   margin-bottom: 2vh;
 }
 
+/*
+====================================================================
+=======================SIGNUP PAGE==================================
+====================================================================
+*/
+
+.signup_main_container {
+  text-align: center;
+  margin-top: 10%;
+}
+
+#signup_main_title{
+  font-size: 5.5em;
+  color: #535970;
+  font-weight: 600;
+}
+
+#signup_gist{
+  color: #a6a6a6;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
+#signup_start_here{
+  color: #a6a6a6;
+  font-weight: 300;
+  margin-top: 2%;
+  font-size: 1.2em;
+  margin: 2% 0 1% 0;
+}
+
+.sign_up_create_new_account_text{
+  color: #535970;
+  font-size: 1.4em;
+}
+
+.sign_up_input_container{
+  text-align: center;
+  width: fit-content;
+  padding: 2% 5%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: #e8ecef;
+}
+
+.signup_google_container{
+  text-align: center;
+  display: flex;
+  background: white;
+  padding: 3% 6%;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6%;
+  cursor: pointer;
+}
+
+#signup_google_icon{
+  max-height: 20px;
+  margin-left: 5%;
+}
+
+#signup_google_text{
+  font-weight: 300;
+  margin-left: 5%;
+}
+
+.signup_or_separator_container{
+  display: flex;
+  padding-top: 5%;
+}
+
+.signup_or_hr_tag {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid #343a40;
+  width: 85px;
+  margin-top: 5%;
+}
+
+
+.signup_input_form_container{
+  text-align: center;
+}
+
+.signup_input_icon_div {
+  display: flex;
+  background: white;
+  margin: 5% 0;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.signup_bootstrap_icon {
+  color: #d9d9d9;
+  z-index: 2;
+}
+
+.signup_input_form_container input {
+  border: none;
+  padding: 1% 11%;
+  font-weight: 300;
+  color: #a6a6a6;
+  font-size: 0.9em;
+  margin-left: -8%;
+  border-radius: 3px;
+}
+
+.signup_input_form_container input::placeholder {
+  padding-left: 10%;
+  margin-top: 4%;
+}
+
+.signup_input_form_container input:active {
+  border: none;
+}
+
+.signup_button_container {
+  margin-top: 10%;
+}
+
+#signup_signup_button {
+  border: none;
+  color: white;
+  background-color: #38b6ff;
+  padding: 2% 30%;
+  font-weight: 300;
+  border-radius: 4px;
+}
+
+#signup_signup_button:hover{
+  background-color: #535970;
+  font-weight:500;
+}
+
+.signup_already_signedup_container{
+  text-align: center;
+}
+
+#signup_already_signedup_text{
+  font-weight: 300;
+  color: #828282;
+  margin-top: 7%;
+  font-size: 0.9em;
+}
+
+#signup_already_signedup_button{
+  font-weight: 500;
+  color: #38b6ff;
+  font-size: 0.9em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content;
+  border-bottom: 1px solid #e8ecef;
+  margin-top: 2%;
+}
+
+#signup_already_signedup_button:hover{
+  font-weight: 600;
+  color: #535970;
+  cursor: pointer;
+  border-bottom: 1px solid #535970;
+}
+
+
+
 .detailed-view{
   height: 70vw;
   max-height: 70vw;
