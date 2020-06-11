@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       signUp: false,
       pageTitle: 'Applications',
-      page: 'Statistics',
+      page: 'Sign-up',
       users: '',
       currentUser: ''
     };

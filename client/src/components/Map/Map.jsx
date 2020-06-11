@@ -6,6 +6,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import '../../../dist/mapStyles.css';
 import MAP_API_KEY from '../../../../maps-api-key';
 Geocode.setApiKey(MAP_API_KEY);
+
 const mapStyles = {
   width: '50%',
   height: '70%',
@@ -69,7 +70,6 @@ class MapContainer extends Component {
 
   geocodeGen() {
     let { applications } = this.state;
-    let geoLocations = [];
     let applicationCities = applications.map((cities) => {
       return cities.loc;
     });
@@ -77,38 +77,21 @@ class MapContainer extends Component {
   }
 
   render() {
+    console.log("STATE", this.state)
     console.log('filter', this.geocodeGen());
     let applicationCities = this.geocodeGen();
 
     const lngLatConversion = applicationCities.map((data, i) => {
      var geoLocs = Geocode.fromAddress(data)
-      // .then((response) => {
         return (
           
           <Async promise={geoLocs} key={i} then={(val) => <Marker position={val.results[0].geometry.location} />} />
         )
-      // })
-      // .catch((error) => {
-      //   console.error(error);
-      //   return (
-      //     <div>Loading...</div>
-      //   )
-      // });
     })
 
     console.log('conversion', lngLatConversion)
     return (
       <div className="mainMapContainer">
-        {/* <div className="mapTopContainer">
-          <div className="mapPageTitle">
-            <h1>Map</h1>
-          </div>
-          <div className="mapSearchBarContainer">
-            <input className="mapSearchBar" placeholder="Search"></input>
-          </div>
-        </div> */}
-        {/* <hr className="pageBodyLine"></hr> */}
-
         <Map
           google={this.props.google}
           zoom={8}
