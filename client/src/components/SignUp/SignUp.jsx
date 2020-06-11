@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios"
+import { PersonFill } from 'react-bootstrap-icons';
+import { Envelope } from 'react-bootstrap-icons';
+import { Lock } from 'react-bootstrap-icons';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ export default class SignUp extends Component {
       <div id="signup_gist">Better than your own Excel Sheet.</div>
       <div id="signup_start_here"> Start Here.</div>
         <div className="sign_up_input_container">
-            <div className="sign_up_create_new_account_text">Create a new account</div>
+            <div className="sign_up_create_new_account_text">Create a free account</div>
             <div className="sign_up_create_new_account_text">to start organizing.</div>
             <div className="signup_google_container">
               <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
@@ -56,7 +59,8 @@ export default class SignUp extends Component {
 
               <div className="signup_input_form_container">
                 <form onSubmit={this.submitHandler}>
-                  <div>
+                  <div className="signup_input_icon_div">
+                    <PersonFill className="signup_bootstrap_icon"/>
                     <input
                       onChange={this.inputChangeHandler}
                       type="text"
@@ -65,7 +69,8 @@ export default class SignUp extends Component {
                       required
                     ></input>
                   </div>
-                  <div>
+                  <div className="signup_input_icon_div">
+                  <PersonFill className="signup_bootstrap_icon"/>
                     <input
                       onChange={this.inputChangeHandler}
                       type="text"
@@ -74,7 +79,8 @@ export default class SignUp extends Component {
                       required
                     ></input>
                   </div>
-                  <div>
+                  <div className="signup_input_icon_div">
+                    <Envelope className="signup_bootstrap_icon"/>
                     <input
                       onChange={this.inputChangeHandler}
                       type="text"
@@ -83,7 +89,8 @@ export default class SignUp extends Component {
                       required
                     ></input>
                   </div>
-                  <div>
+                  <div className="signup_input_icon_div">
+                  <Lock className="signup_bootstrap_icon"/>
                     <input
                       onChange={this.inputChangeHandler}
                       type="password"

@@ -48,7 +48,8 @@
     "password-validator": "5.0.3",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "react-bootstrap-icons": "1.0.3-alpha4"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",
