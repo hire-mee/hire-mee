@@ -1,6 +1,7 @@
 import React from 'react';
 import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
+import '../dist/mapStyles.css'
 
 class App extends React.Component {
   constructor(props) {
@@ -8,20 +9,21 @@ class App extends React.Component {
 
     this.state = {
       signUp: false,
-      map: true
+      map: true,
+      pageTitle: 'Applications'
     };
     this.componentHandler = this.componentHandler.bind(this);
   }
 
   componentHandler() {
     if (this.state.map === true) {
-      return <MapContainer />;
+      return <MapContainer />
     }
   }
 
   render() {
     return (
-      <div>
+      <div className="mainWindow">
         <div className="navbar">
           <div className="title">Hire-Mee</div>
           <div className="dashboard">
@@ -38,7 +40,7 @@ class App extends React.Component {
             <div className="logout">Logout</div>
           </div>
         </div>
-        <div>{this.componentHandler()}</div>
+        <div className="dashBoardDisplay">{this.componentHandler()}</div>
       </div>
     );
   }
