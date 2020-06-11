@@ -47,6 +47,8 @@ body {
   border-radius: 2%;
   background-color: rgb(232, 236, 239);
   border: none;
+  font-family: "Poppins", sans-serif;
+  text-indent: 10px;
 }
 
 .mapSearchBar:focus{

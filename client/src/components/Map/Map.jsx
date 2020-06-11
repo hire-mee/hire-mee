@@ -4,7 +4,7 @@ import Geocode from 'react-geocode';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import '../../../dist/mapStyles.css';
 import MAP_API_KEY from '../../../../maps-api-key';
-
+Geocode.setApiKey(MAP_API_KEY);
 const mapStyles = {
   width: '50%',
   height: '70%',
@@ -13,6 +13,8 @@ const mapStyles = {
   top: '3%',
   left: '5%'
 };
+
+
 
 class MapContainer extends Component {
   constructor(props) {
@@ -54,6 +56,16 @@ class MapContainer extends Component {
   }
 
   render() {
+    //Geocode
+    Geocode.fromAddress("los angeles").then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+      },
+      error => {
+        console.error(error);
+      }
+    );
     console.log('data', this.state);
     return (
       <div className="mainMapContainer">
@@ -76,6 +88,11 @@ class MapContainer extends Component {
             lng: -118.39114
           }}
         >
+          <Marker
+            onClick={this.onMarkerClick}
+            position={{ lat: 33.97575, lng: -118.39114 }}
+            name={'Hack Reactor'}
+          />
           <Marker
             onClick={this.onMarkerClick}
             position={{ lat: 33.97575, lng: -118.39114 }}
