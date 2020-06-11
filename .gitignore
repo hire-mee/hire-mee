@@ -2,8 +2,9 @@ node_modules
 package-lock.json
 adminsdk.js
 hire-mee-firebase-adminsdk-dl9qo-9291f8dd0e.json
-maps-api-key.js
 firebase-service-account-sample.json
 Auth
 auth-middleware.js
 firebase-auth-Controller.js
+/client/src/components/SignUp/
+maps-api-key.js
