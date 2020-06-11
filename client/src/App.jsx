@@ -18,6 +18,7 @@ class App extends React.Component {
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.getData = this.getData.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,12 @@ class App extends React.Component {
     .catch(err => console.error(err))
   }
 
+  changePage(e) {
+    this.setState({
+      page: e.target.dataset.letter
+    })
+  }
+
   render() {
     return (
       <div>
@@ -53,22 +60,22 @@ class App extends React.Component {
             <div className="company_name">Hire-Mee</div>
             <div className="Dashboard">
               <div className="category_title">Dashboard</div>
-              <div className="category"><Briefcase color="white" /> Jobs</div>
-              <div className="category"><GraphUp color="white" /> Statistics</div>
-              <div className="category"><Trophy color="white" /> Leaderboard</div>
-              <div className="category"><GeoAlt color="white" /> Map</div>
-              <div className="category"><PersonFill color="white" /> Friends</div>
+              <div className="category" data-letter="Jobs" onClick={this.changePage}><Briefcase color="white" /> Jobs</div>
+              <div className="category" data-letter="Statistics" onClick={this.changePage}><GraphUp color="white" /> Statistics</div>
+              <div className="category" data-letter="Leaderboard" onClick={this.changePage}><Trophy color="white" /> Leaderboard</div>
+              <div className="category" data-letter="Map" onClick={this.changePage}><GeoAlt color="white" /> Map</div>
+              <div className="category" data-letter="Friends" onClick={this.changePage}><PersonFill color="white" /> Friends</div>
             </div>
             <div className="Account">
               <div className="category_title">Account</div>
-              <div className="category"><GearFill color="white" /> Settings</div>
-              <div className="category"><PauseFill color="white" /> Pause</div>
-              <div className="category"><ArrowClockwise color="white" /> Reset Week</div>
-              <div className="category"><BoxArrowRight color="white" /> Logout</div>
+              <div className="category" data-letter="Settings" onClick={this.changePage}><GearFill color="white" /> Settings</div>
+              <div className="category" data-letter="Pause" onClick={this.changePage}><PauseFill color="white" /> Pause</div>
+              <div className="category" data-letter="Reset" onClick={this.changePage}><ArrowClockwise color="white" /> Reset Week</div>
+              <div className="category" data-letter="Logout" onClick={this.changePage}><BoxArrowRight color="white" /> Logout</div>
             </div>
           </div>
           <div className="Header">
-            <div className="Header-title">TITLE</div>
+            <div className="Header-title">{this.state.page}</div>
             <div className="Profile-area">PROFILE AREA</div>
           </div>
           <div className="Display">{this.componentHandler()}</div>

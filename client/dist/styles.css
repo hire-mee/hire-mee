@@ -44,7 +44,7 @@ body {
 
 .Header-title {
   grid-area: Header-title;
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: 500;
   margin-left: 2.5vw;
 }
@@ -56,31 +56,33 @@ body {
 
 .Display {
   grid-area: Display;
-  margin-left: 2vw;
+  margin-left: 5vw;
 }
 
 /* GRID CONTAINER */
 
 .category_title {
   color: #535970;
-  font-size: 1.3vw;
+  font-size: 1.5vw;
   font-weight: 300;
   margin-left: 2.5vw;
 }
 
 .category {
   color: #535970;
-  font-size: .75vw;
+  font-size: 1.1vw;
   font-weight: 300;
   margin-left: 2.7vw;
+  margin-top: 0.25vh;
+  margin-bottom: 0.25vh;
 }
 
 .company_name {
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: 500;
   margin-left: 2.5vw;
   margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 10vh;
 }
 
 .detailed-view{
@@ -95,26 +97,32 @@ body {
 }
 
 .stat_header {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 39px;
+  font-size: 2.5vw;
+  font-weight: 500;
+  /* line-height: 39px; */
   color: #535970;
+  margin-top: 2vh;
+  margin-bottom: 1.5vh;
 }
 
 .stat_info {
-  font-size: 21px;
-  font-weight: 400;
+  font-size: 1.6vw;
+  font-weight: 300;
   line-height: 30px;
   color: #535970;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .stat_pie {
+  margin-top: 5vh;
   position: relative;
-  height:30vh;
-  width:18vw;
+  height:35vh;
+  width:21vw;
   color: #535970;
 }
 
 .stat_pieInfo {
-  font-size: 16px;
+  font-size: 1.6vw;
+  font-weight: 300;
 }
