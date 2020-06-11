@@ -1,20 +1,28 @@
 const router = require('express').Router();
 const controller = require('./controller.js');
 
+// router
+// .route('/login')
+// .post(passport.authenticate('local'), controller.login)
+
+
 router
 .route('/users')
 .get(controller.getInfo)
 .post(controller.postInfo);
 
-// router
-// .route('/signUp')
-// .post(controller.signUpPostInfo)
+router
+.route('/signup')
+.post(controller.signUpPostInfo)
 
 router
 .route('/users/:id')
 .put(controller.updateInfo)
 .delete(controller.deleteInfo);
 
+router
+.route('/user/:id')
+.get(controller.getUserData)
 router
 .route('/applications/:id')
 .get(controller.getApplications)
