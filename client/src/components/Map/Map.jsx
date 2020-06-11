@@ -99,19 +99,19 @@ class MapContainer extends Component {
     console.log('conversion', lngLatConversion)
     return (
       <div className="mainMapContainer">
-        <div className="mapTopContainer">
+        {/* <div className="mapTopContainer">
           <div className="mapPageTitle">
             <h1>Map</h1>
           </div>
           <div className="mapSearchBarContainer">
             <input className="mapSearchBar" placeholder="Search"></input>
           </div>
-        </div>
-        <hr className="pageBodyLine"></hr>
+        </div> */}
+        {/* <hr className="pageBodyLine"></hr> */}
 
         <Map
           google={this.props.google}
-          zoom={14}
+          zoom={8}
           style={mapStyles}
           initialCenter={{
             lat: 33.97575,
