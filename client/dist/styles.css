@@ -2,6 +2,85 @@
 
 body {
   font-family: 'Poppins', 'Times', 'Arial', 'sans-serif';
+  overflow-x: hidden !important;
+}
+
+/* GRID CONTAINER */
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.3fr 1.7fr;
+  grid-template-rows: 0.2fr 1.6fr;
+  grid-template-areas: "Nav Header" "Nav Display";
+  color: #535970;
+
+}
+
+.Nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.3fr 1.0fr 1.5fr;
+  grid-template-areas: "." "Dashboard" "Account";
+  grid-area: Nav;
+  background-color: #e8ecef;
+  height: 100vh;
+}
+
+.Dashboard {
+  grid-area: Dashboard;
+}
+
+.Account { grid-area: Account; }
+
+.Header {
+  display: grid;
+  grid-template-columns: 1.7fr 0.3fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "Header-title Profile-area";
+  grid-area: Header;
+  border-bottom: 2px solid #e8ecef;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.Header-title {
+  grid-area: Header-title;
+  font-size: 2vw;
+  font-weight: 500;
+  margin-left: 2.5vw;
+}
+
+.Profile-area {
+  grid-area: Profile-area;
+  margin-left: 2.5vw;
+}
+
+.Display {
+  grid-area: Display;
+  margin-left: 2vw;
+}
+
+/* GRID CONTAINER */
+
+.category_title {
+  color: #535970;
+  font-size: 1.3vw;
+  font-weight: 300;
+  margin-left: 2.5vw;
+}
+
+.category {
+  color: #535970;
+  font-size: .75vw;
+  font-weight: 300;
+  margin-left: 2.7vw;
+}
+
+.company_name {
+  font-size: 2vw;
+  font-weight: 500;
+  margin-left: 2.5vw;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 /*
@@ -54,7 +133,7 @@ body {
   text-align: center;
   display: flex;
   background: white;
-  padding: 2% 6%;
+  padding: 3% 6%;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;

@@ -4,6 +4,7 @@ import axios from 'axios';
 // import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
+import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight} from 'react-bootstrap-icons';
 
 class App extends React.Component {
   constructor(props) {
