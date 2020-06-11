@@ -33,7 +33,7 @@ class Statistics extends React.Component {
           <Pie
             data={pieData}
             options={{ maintainAspectRatio:false,
-              responsive:true, legend: {align: "start", display: true, position: 'right'}}}
+              responsive:true, legend: {align: "start", display: true, position: 'right'} }}
           />
           <p className='stat_pieInfo'>Status on <span className='stat_color'>{this.props.user.totalapplied}</span> applications.</p>
         </div>
