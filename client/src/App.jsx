@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-// import MapContainer from './components/Map/Map.jsx';
+import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
@@ -10,14 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      signUp: false,
-      pageTitle: 'Applications',
-      page: 'Sign-up',
-=======
       loggedIn: false,
       page: 'Statistics',
->>>>>>> master
       users: '',
       currentUser: ''
     };
@@ -76,7 +70,7 @@ class App extends React.Component {
       } else if (this.state.page === 'Leaderboard') {
 
       } else if (this.state.page === 'Map') {
-        // return <MapContainer />
+        return <MapContainer />
       } else if (this.state.page === 'Settings') {
 
       } else if (this.state.page === 'Logout') {
