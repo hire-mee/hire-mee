@@ -10,7 +10,7 @@
     "create-schema": "psql -U root -d hiremee < schema.sql",
     "start-database": "psql -U postgres",
     "docker-build": "npm run build-prod && docker build . -t hiremee",
-    "docker-run": "docker run -p 3000:3000 hireMee",
+    "docker-run": "docker run -p 3000:3000 hiremee",
     "jobs": "git add client/src/components/jobs/."
   },
   "repository": {
