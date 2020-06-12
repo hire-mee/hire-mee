@@ -8,8 +8,8 @@ export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
+      firstname: '',
+      lastname: '',
       email: '',
       pass: '',
       redirect: false
@@ -21,14 +21,14 @@ export default class SignUp extends Component {
   inputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    });
+    }, ()=> console.log(this.state));
   }
 
   submitHandler(e) {
-    let { firstName, lastName, email, pass } = this.state;
+    let { firstname, lastname, email, pass } = this.state;
     e.preventDefault();
     
-    axios.post('/signup', {firstName, lastName, email, pass}) // TO BE RE-CONFIGURED WITH passport.js
+    axios.post('/api/signup', {firstname, lastname, email, pass}) // TO BE RE-CONFIGURED WITH passport.js
     .then(() => {
       this.setState({
         redirect: true
@@ -71,7 +71,7 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         type="text"
-                        name="firstName"
+                        name="firstname"
                         placeholder="First Name"
                         required
                       ></input>
@@ -81,7 +81,7 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         type="text"
-                        name="lastName"
+                        name="lastname"
                         placeholder="Last Name"
                         required
                       ></input>

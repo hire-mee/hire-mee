@@ -1,22 +1,31 @@
 const router = require('express').Router();
+const passport = require('passport');
 const controller = require('./controller.js');
 
-// router
-// .route('/login')
-// .post(passport.authenticate('local'), controller.login)
+router // proper route: express POST on api/login
+.route('/login-success')
+.get(controller.loginSuccess)
 
-// router
-// .route('/signup')
-// .post(controller.signUpPostInfo)
+router // proper route: express POST on api/login
+.route('/login-failure')
+.get(controller.loginFailure)
+
+router
+.route('/login')
+.post(passport.authenticate('local', { failureRedirect: 'login-failure', successRedirect: 'login-success'}))
+
+router
+.route('/signup')
+.post(controller.signUpPostInfo)
 
 router
 .route('/users')
 .get(controller.getInfo)
-.post(controller.postInfo);
+// .post(controller.postInfo);
 
 router
 .route('/users/:id')
-.put(controller.updateInfo)
+// .put(controller.updateInfo)
 .delete(controller.deleteInfo);
 
 router

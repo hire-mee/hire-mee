@@ -17,7 +17,7 @@ export default class Login extends Component {
 
   handleLogin(e){
       e.preventDefault();
-    axios.post('/login', { // TODO FIX LOGIN WITH /api/login wait until passport.js is done
+    axios.post('/api/login', { // TODO FIX LOGIN WITH /api/login wait until passport.js is done
         email: this.state.email,
         pass: this.state.pass,
     })

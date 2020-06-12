@@ -13,6 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       signUp: false,
+      logIn: true,
       page: 'Log-in',
       users: '',
       currentUser: '',
@@ -37,6 +38,8 @@ class App extends React.Component {
   componentStartUp() {
     if (this.state.loggedIn === false) {
       return <SignUp />
+    } else if (this.state.logIn === true) {
+      return <Login />
     } else {
       return (
         <div>
