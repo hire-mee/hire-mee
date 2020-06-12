@@ -2,7 +2,7 @@ import React from 'react';
 import Rejected from './Rejected.jsx';
 import Applied from './Applied.jsx';
 import Offers from './Offers.jsx';
-import Interviews from './Interviews.jsx'
+// import Interviews from './Interviews.jsx'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -124,9 +124,9 @@ class Jobs extends React.Component{
             <Rejected rejected={this.props.rejected} desired={this.props.desired}/>
           </div >
 
-          <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
+          {/* <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
             <Interviews interviews={this.props.interviews} desired={this.props.desired}/>
-          </div>
+          </div> */}
 
           <div style={{paddingLeft:"1%",width:"25%"}} className="offers-container">
             <Offers offers={this.props.offered} desired={this.props.desired}/>
