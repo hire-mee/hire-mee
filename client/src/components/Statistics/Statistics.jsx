@@ -14,7 +14,7 @@ class Statistics extends React.Component {
     const pieData = {
       labels: ['On Site', 'Rejected', 'No Response'],
       datasets: [{
-        data: [12.5, 12.5, 75],
+        data: [this.props.user.appOnSite, this.props.user.appRejected, this.props.user.appNoResponse],
         backgroundColor: ['#78c975', '#cf4a4a', '#bababa'],
         hoverBackgroundColor: ['#78c975', '#cf4a4a', '#bababa']
       }]
