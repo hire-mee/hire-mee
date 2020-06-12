@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
 
 
+
 //INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES
 class Jobs extends React.Component{
   constructor(props){
@@ -17,13 +18,11 @@ class Jobs extends React.Component{
     this.state = {
       jobInfo: [],
       show: false,
-      id: 0,
-      category: "Applied",
       companyName:"",
       descr:"",
       loc:"",
       positionTitle:"",
-      salary:0,
+      salary: "",
       submitDate:"",
       deadline:"",
       urlLink:"",
@@ -31,6 +30,7 @@ class Jobs extends React.Component{
     }
     this.openOrClosePopup = this.openOrClosePopup.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
   }
 
   openOrClosePopup(){
@@ -58,6 +58,37 @@ class Jobs extends React.Component{
     this.setState({
       [e.target.name]: e.target.value
     },()=>console.log(this.state))
+  }
+
+  submitHandler(){
+    let newApp = {
+      id: 0 ,
+      category: "Applied",
+      companyName: this.state.companyName,
+      descr: this.state.descr,
+      loc: this.state.loc,
+      positionTitle:this.state.positionTitle,
+      salary: this.state.salary,
+      submitDate: this.state.submitDate,
+      deadline: this.state.deadline,
+      urlLink: this.state.urlLink,
+    }
+
+    console.log('Submitting...');
+
+    for(let key in newApp){
+      if(newApp[key] === ""){
+        alert('Please Fill In All Text Boxes');
+        return;
+      }
+    }
+
+    if(typeof this.state.salary !== "number"){
+      alert('Please Type a Number for Salary');
+      return;
+    }
+
+
   }
 
 
@@ -104,20 +135,64 @@ class Jobs extends React.Component{
         </Grid>
 
       <Slide direction="down" in={this.state.show} mountOnEnter unmountOnExit>
+
         <div className="new-application-popup" style={style.popup}>
-          <h1 style={{color:"rgb(84, 84, 84)",width:"20%",height:"auto"}}>New Job Application?</h1> <br/>
+          <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
           <p style={style.x} onClick={this.openOrClosePopup}>X</p>
 
-          <div className="first-input-row" style={{flexDirection:"row",paddingTop:"10%"}}>
-            <TextField required  name="companyName" onChange={this.changeHandler} value={this.state.companyName}variant="filled"/>
-            <TextField required  name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
-            <TextField required  name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle} variant="filled"/>
-          </div>
+          <Grid container direction={"column"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-1">
+
+            <Grid item>
+              <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle} variant="filled"/>
+            </Grid>
+
+          </Grid>
+
+          <Grid container direction={"column"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
+
+            <Grid item>
+              <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
+            </Grid>
+
+          </Grid>
+
+          <Grid container direction={"column"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
+            <Grid item>
+              <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline} variant="filled"/>
+            </Grid>
+
+          </Grid>
+
+          <Button variant="contained" color="secondary" onClick={this.submitHandler}> Submit </Button>
+
+
 
 
 
         </div>
+
       </Slide>
+
 
 
       </div>
@@ -131,10 +206,35 @@ export default Jobs;
 
 
 
+
 /*
- <div className="second-input-row" style={{flexDirection:"row"}}>
-            <TextField required  name="descr"  onChange={this.changeHandler} variant="filled"/>
-            <TextField required  name="loc"    onChange={this.changeHandler}  variant="filled"/>
-            <TextField required  name="salary" onChange={this.changeHandler} variant="filled"/>
-          </div>
+
+          <Grid container direction={"row"} spacing={2} style={{paddingTop:"30%",paddingLeft:"10%"}} className="new-app-row-3">
+            <Grid item>
+              <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Application Deadline" name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
+            </Grid>
+
+
+          <Grid container direction={"row"} spacing={2} style={{paddingTop:"20%",paddingLeft:"10%"}} className="new-app-row-2">
+            <Grid item>
+              <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Job Description" name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
+            </Grid>
+
+            <Grid item>
+              <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink} variant="filled"/>
+            </Grid>
+          </Grid>
+
+          </Grid>
+
+
+
 */

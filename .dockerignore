@@ -7,5 +7,4 @@ docker-compose*
 README.md
 LICENSE
 .vscode
-client/src
 webpack.config.js

@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /client/dist/
+WORKDIR /client/dist
 COPY package.json .
 RUN npm install
 EXPOSE 3000
