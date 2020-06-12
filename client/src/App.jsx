@@ -7,6 +7,7 @@ import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, Ar
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import Jobs from './components/jobs/Jobs.jsx';
+import Logout from './components/Logout/Logout.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,12 +16,15 @@ class App extends React.Component {
       loggedIn: false,
       page: 'Statistics',
       users: '',
-      currentUser: ''
+      currentUser: '',
+      logoutBox: false
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
     this.getData = this.getData.bind(this);
     this.changePage = this.changePage.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.componentSignOut = this.componentSignOut.bind(this);
   }
 
   componentDidMount() {
@@ -47,9 +51,7 @@ class App extends React.Component {
               <div className="Account">
                 <div className="category_title">Account</div>
                 <div className="category" data-letter="Settings" onClick={this.changePage}><GearFill color="white" /> Settings</div>
-                <div className="category" data-letter="Pause" onClick={this.changePage}><PauseFill color="white" /> Pause</div>
-                <div className="category" data-letter="Reset" onClick={this.changePage}><ArrowClockwise color="white" /> Reset Week</div>
-                <div className="category" data-letter="Logout" onClick={this.changePage}><BoxArrowRight color="white" /> Logout</div>
+                <div className="category" data-letter="Logout" onClick={this.handleModal}><BoxArrowRight color="white" /> Logout</div>
               </div>
             </div>
             <div className="Header">
@@ -75,9 +77,15 @@ class App extends React.Component {
         // return <MapContainer />
       } else if (this.state.page === 'Settings') {
 
-      } else if (this.state.page === 'Logout') {
-        return this.dummyFunction()
       }
+    } else {
+      return <SignUp />
+    }
+  }
+
+  componentSignOut() {
+    if (this.state.logoutBox === true) {
+      return <Logout user={this.state.currentUser} show={this.state.logoutBox} handleModal={this.handleModal} logFunction={this.logFunction.bind(this)} />
     }
   }
 
@@ -99,19 +107,23 @@ class App extends React.Component {
     })
   }
 
-  dummyFunction() {
+  logFunction() {
     this.setState({
       loggedIn: !this.state.loggedIn
     })
   }
 
+  handleModal() {
+    this.setState({logoutBox: !this.state.logoutBox})
+  }
+
   render() {
-    console.log(`Current Page: `, this.state.page)
     return (
       <div>
         <div className="StartUp">
           {this.componentStartUp()}
-          <button onClick={this.dummyFunction.bind(this)}>LOGGED IN</button>
+          {this.componentSignOut()}
+          <button onClick={this.logFunction.bind(this)}>LOGGED IN</button>
         </div>
       </div>
     );
