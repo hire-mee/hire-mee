@@ -13,7 +13,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
+      loggedIn: true,
+=======
       loggedIn: false,
+>>>>>>> e89ab353365884560acf80ee03e3503fd8e625ba
       page: 'Jobs',
       users: '',
       currentUser: '',
@@ -23,6 +27,8 @@ class App extends React.Component {
       rejected: [{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
 
       offered: [{positionTitle: "Full Stack Web Developer",companyName: "Amazon", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/19/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }],
+
+      interviews: [{positionTitle: "Full Stack Web Developer",companyName: "Amazon", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/19/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }],
 
       desired: 120000
     };
@@ -39,9 +45,7 @@ class App extends React.Component {
   }
 
   componentStartUp() {
-    if (this.state.loggedIn === false) {
-      return <SignUp />
-    } else {
+
       return (
         <div>
           <div className="grid-container">
@@ -69,13 +73,13 @@ class App extends React.Component {
           </div>
         </div>
       )
-    }
+
   }
 
   componentHandler() {
     if (this.state.loggedIn === true) {
       if (this.state.page === 'Jobs') {
-        return <Jobs applied={this.state.appliedJobs} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected}/>
+        return <Jobs userId={0} applied={this.state.appliedJobs} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected} interviews={this.state.interviews}/>
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {

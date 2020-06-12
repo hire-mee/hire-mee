@@ -1,22 +1,59 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 
 let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
-  let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
+  //let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
 
-  return  Math.floor(difference);
+  if(desiredSalary < jobSalary){
+    return (jobSalary - desiredSalary);
+  } else if(desiredSalary === jobSalary){
+    return (
+
+      "Salary is exactly what you are looking for"
+      )
+  } else {
+    return (desiredSalary - jobSalary);
+  }
 
 };
 
 let plusOrMinus = (desiredSalary,jobSalary) =>{
   if(desiredSalary < jobSalary){
     return '+'
+  } else if(desiredSalary === jobSalary){
+    return '';
   } else {
-    return '-'
+    return '-';
   }
 };
+
+let moneyTemp = (desiredSalary,jobSalary) =>{
+
+  if(desiredSalary < jobSalary){
+    return (
+      <div style={style.desired}>
+        Desired: {plusOrMinus(desired,jobInfo.salary)+ calculateSalaryDifference(desired,jobInfo.salary)}
+      </div>
+      );
+  } else if(desiredSalary === jobSalary){
+    return (
+      <div style={{color:"rgb(32, 187, 136)",fontWeight: "700",fontStyle: "normal"}}>
+        <MonetizationOnIcon style={{ color: green[500] }}/> Salary is exactly what you are looking for !!!
+      </div>
+
+
+      )
+  } else {
+    return (
+      <div style={style.desired}>
+        Desired: {plusOrMinus(desired,jobInfo.salary)+ calculateSalaryDifference(desired,jobInfo.salary)}
+      </div>
+    );
+  }
+}
 
 let DetailedView = ({jobInfo, desired,show}) => {
 
@@ -103,6 +140,31 @@ let DetailedView = ({jobInfo, desired,show}) => {
     cursor: "pointer"
   }
 
+  let moneyTemp = (desiredSalary,jobSalary) =>{
+
+    if(desiredSalary < jobSalary){
+      return (
+        <div style={style.desired}>
+          Desired: {plusOrMinus(desired,jobInfo.salary)+ calculateSalaryDifference(desired,jobInfo.salary)}
+        </div>
+        );
+    } else if(desiredSalary === jobSalary){
+      return (
+        <div style={{color:"rgb(32, 187, 136)",fontWeight: "700",fontStyle: "normal"}}>
+          <MonetizationOnIcon style={{ color: "green[500]" }} fontSize="large"/> Salary is exactly what you are looking for !!!
+        </div>
+
+
+        )
+    } else {
+      return (
+        <div style={style.desired}>
+          Desired: {plusOrMinus(desired,jobInfo.salary)+ calculateSalaryDifference(desired,jobInfo.salary)}
+        </div>
+      );
+    }
+  }
+
 
   return (
     <div >
@@ -130,7 +192,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
               </div>
 
               <div style={style.desired}>
-                Desired {plusOrMinus(desired,jobInfo.salary) + calculateSalaryDifference(desired,jobInfo.salary) + ' ~%'} <br/>
+              {moneyTemp(desired,jobInfo.salary)} <br/>
               </div>
 
               <div className="submitted-holder" style={{paddingBottom:"15px"}}>
