@@ -21,21 +21,22 @@ style.jobs = {
   fontSize:"1vw"
 };
 
-const Offers = (props) =>{
+const Interviews = (props) =>{
+
   return(
-    <div className="offers" style={{backgroundColor:"rgb(232, 236, 239)"}}>
+    <div className="interviews" style={{backgroundColor:"rgb(232, 236, 239)"}}>
        <Grid item xs={12} >
-         <div className="offer-holder" style={{padding:"1em"}}>
-          <p style={style.offers}>Offers</p>
-          <p style={style.jobs}>{props.offers.length} Job(s)</p>
+         <div className="interviews-holder" style={{padding:"1em"}}>
+          <p style={style.offers}>Interviews</p>
+          <p style={style.jobs}>{props.interviews.length}</p>
          </div>
          <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
             <h3 style={{textAlign:"center",cursor:"pointer"}}>+</h3>
          </div>
 
 
-        <div className="job-offers">
-          {props.offers.map((jobInfo,i)=>{
+        <div className="job-interviews">
+          {props.interviews.map((jobInfo,i)=>{
             return(
               <Box jobInfo={jobInfo} desired={props.desired} key={i}/>
             )
@@ -47,4 +48,4 @@ const Offers = (props) =>{
   )
 };
 
-export default Offers;
+export default Interviews;

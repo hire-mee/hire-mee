@@ -14,7 +14,7 @@ class Statistics extends React.Component {
     const pieData = {
       labels: ['On Site', 'Rejected', 'No Response'],
       datasets: [{
-        data: [this.props.user.appOnSite, this.props.user.appRejected, this.props.user.appNoResponse],
+        data: [this.props.user.apponsite, this.props.user.apprejected, this.props.user.appnoresponse],
         backgroundColor: ['#78c975', '#cf4a4a', '#bababa'],
         hoverBackgroundColor: ['#78c975', '#cf4a4a', '#bababa']
       }]
@@ -47,7 +47,7 @@ class Statistics extends React.Component {
                 },
                 pieceLabel: {
                   // precision for percentage, default is 0
-                  precision: 1,
+                  precision: 0,
 
                   // font size, default is defaultFontSize
                   fontSize: 16,

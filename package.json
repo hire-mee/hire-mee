@@ -7,10 +7,11 @@
     "start": "nodemon server/index.js",
     "build": "webpack --w --mode development",
     "build-prod": "webpack --mode production",
-    "create-schema": "psql -U hiremee < schema.sql",
+    "create-schema": "psql -U root -d hiremee < schema.sql",
     "start-database": "psql -U postgres",
-    "docker-build": "npm run build-prod && docker build . -t hireMee",
-    "docker-run": "docker run -p 3000:3000 hireMee"
+    "docker-build": "npm run build-prod && docker build . -t hiremee",
+    "docker-run": "docker run -p 3000:3000 hiremee",
+    "jobs": "git add client/src/components/jobs/."
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
   },
   "homepage": "https://github.com/hire-mee/hire-mee#readme",
   "dependencies": {
-    "@material-ui/core": "^4.10.1",
+    "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
     "bcrypt": "5.0.0",
