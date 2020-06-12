@@ -12,6 +12,16 @@ module.exports = {
       }
     })
   },
+  getUserData(id, callback){
+    const queryStr = `SELECT * FROM userinfo where id = ${id}`
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        console.log(`ERROR: `, err);
+      } else {
+        callback(null, results.rows)
+      }
+    })
+  },
   signUpPostInfo(input, callback) {
     const { email , firstName, lastName, pass } = input
     const queryStr = `INSERT INTO userinfo(email, firstName, lastName, pass) VALUES ('${email}', '${firstName}', '${lastName}', '${pass}');`;

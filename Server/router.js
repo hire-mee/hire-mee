@@ -20,6 +20,9 @@ router
 .delete(controller.deleteInfo);
 
 router
+.route('/user/:id')
+.get(controller.getUserData)
+router
 .route('/applications/:id')
 .get(controller.getApplications)
 

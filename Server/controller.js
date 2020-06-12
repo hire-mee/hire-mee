@@ -1,8 +1,4 @@
 const helper = require('../database/helper.js');
-// var firebase = require('firebase/app');
-// require('firebase/auth');
-// const firebaseConfig = require('../hire-mee-firebase-adminsdk-dl9qo-9291f8dd0e.json');
-// firebase.initializeApp(firebaseConfig);
 
 module.exports = {
   login: (req, res) => {
@@ -18,31 +14,19 @@ module.exports = {
       res.status(200).send(result);
     });
   },
+  getUserData: (req, res) => {
+    helper.getUserData(req.params.id, (err, result) => {
+      if (err) { res.status(400).send(err)}
+      res.status(200).send(result)
+    })
+  },
   signUpPostInfo: (req, res) => {
     helper.signUpPostInfo(req.body, (err, result) => {
       if (err) { res.status(400).send(err) }
       res.status(200).send(result);
     })
   },
-  // signUpPostInfo: (req, res) => {
-  //   console.log('data', req.body);
-  //   firebase
-  //     .auth()
-  //     .createUserWithEmailAndPassword(req.body.email, req.body.pass)
-  //     .catch(function (err) {
-  //       var errorCode = err.code;
-  //       var errorMessage = err.message;
-  //     });
-
-  //   helper.postInfo(userData, (err, result) => {
-  //     if (err) {
-  //       res.status(400).send(err);
-  //     }
-  //     res.status(200).send('User Created');
-  //   });
-  // },
   postInfo: (req, res) => {
-    console.log('data', req.body);
     helper.postInfo(req.body, (err, result) => {
       if (err) {
         res.status(400).send(err);
