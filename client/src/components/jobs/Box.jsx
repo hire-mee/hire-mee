@@ -29,7 +29,6 @@ class Box extends React.Component{
       fontFamily: "YACkoA9eHeY 0, _fb_, auto",
       fontSize: "31.244px",
       textTransform: "none",
-      cursor: "pointer",
       fontSize:"2vw"
     };
 
@@ -46,7 +45,7 @@ class Box extends React.Component{
   }
 
   return (
-    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()} style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
+    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()} style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto",cursor: "pointer",}}>
       <p style={style.companyTitle}>{this.props.jobInfo.companyName}</p>
       <p style={style.jobTitle}>{this.props.jobInfo.positionTitle}</p>
 

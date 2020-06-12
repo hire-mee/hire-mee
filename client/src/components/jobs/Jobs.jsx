@@ -30,9 +30,13 @@ class Jobs extends React.Component{
       xClicked: false
     }
     this.openOrClosePopup = this.openOrClosePopup.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
   }
 
   openOrClosePopup(){
+
+    this.blink();
+
     this.setState({
       show: !this.state.show
     })
@@ -40,19 +44,20 @@ class Jobs extends React.Component{
   }
 
   blink(){
-    return new Promise((reject,resolve)=>{
+    console.log('Blink')
       this.setState({
         xClicked: !this.state.xClicked
       })
-    })
+
   }
 
   changeHandler(e){
     e.preventDefault()
+    console.log([e.target.name])
 
     this.setState({
       [e.target.name]: e.target.value
-    })
+    },()=>console.log(this.state))
   }
 
 
@@ -69,13 +74,13 @@ class Jobs extends React.Component{
       top: "10%",
       left: "18%"
     }
-    style.blink ={
+    style.x ={
       color: this.state.xClicked ? "black" : "grey",
-      fontSize: this.state.xClicked ? "2vw" : "1vw",
+      fontWeight: this.state.xClicked ? "800" : "600",
       cursor:"pointer",
-      right: "90%",
-      positon:"fixed"
-
+      position:"absolute",
+      right:"0",
+      top:"0"
     }
 
     return (
@@ -100,14 +105,16 @@ class Jobs extends React.Component{
 
       <Slide direction="down" in={this.state.show} mountOnEnter unmountOnExit>
         <div className="new-application-popup" style={style.popup}>
-          <h1 style={{color:"rgb(84, 84, 84)"}}>New Job Application?</h1> <br/>
-          <p style={style.blink} onClick={this.openOrClosePopup}>X</p>
+          <h1 style={{color:"rgb(84, 84, 84)",width:"20%",height:"auto"}}>New Job Application?</h1> <br/>
+          <p style={style.x} onClick={this.openOrClosePopup}>X</p>
 
-          <div className="first-input-row" style={{flexDirection:"row"}}>
-            <TextField required placeholder="Company Name" variant="filled"/>
-            <TextField required label="Required" defaultValue="Hello World" variant="filled"/>
-            <TextField required label="Required" defaultValue="Hello World" variant="filled"/>
+          <div className="first-input-row" style={{flexDirection:"row",paddingTop:"10%"}}>
+            <TextField required  name="companyName" onChange={this.changeHandler} value={this.state.companyName}variant="filled"/>
+            <TextField required  name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
+            <TextField required  name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle} variant="filled"/>
           </div>
+
+
 
         </div>
       </Slide>
@@ -121,3 +128,13 @@ class Jobs extends React.Component{
 //INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES
 
 export default Jobs;
+
+
+
+/*
+ <div className="second-input-row" style={{flexDirection:"row"}}>
+            <TextField required  name="descr"  onChange={this.changeHandler} variant="filled"/>
+            <TextField required  name="loc"    onChange={this.changeHandler}  variant="filled"/>
+            <TextField required  name="salary" onChange={this.changeHandler} variant="filled"/>
+          </div>
+*/
