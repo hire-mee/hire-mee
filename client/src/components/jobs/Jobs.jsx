@@ -83,12 +83,12 @@ class Jobs extends React.Component{
       }
     }
 
-    if(typeof this.state.salary !== "number"){
+    if(typeof parseInt(this.state.salary) !== "number"){
       alert('Please Type a Number for Salary');
       return;
     }
 
-
+    console.log('Submitted !!!');
   }
 
 
