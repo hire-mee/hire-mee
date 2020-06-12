@@ -1,18 +1,11 @@
 const express = require('express');
-const passport = require('passport'); // declare variable for passport
-const bcrypt = require('bcrypt'); // password encryption/hashing
-const session = require('express-session'); // require express's session
-const LocalStrategy = require('passport-local').Strategy; // localization of passport auth
-const passwordValidator = require('password-validator');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const router = require('./router.js')
-
 const app = express();
 const port = 3000;
-const db = require('../database/index.js'); // database connection
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: true} ));
@@ -20,10 +13,22 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
+app.use('/api', router);
+
+app.listen(port, () => console.log(`app listening at http://localhost:${port}`));
+
+
+/*
+const passport = require('passport'); // declare variable for passport
+const bcrypt = require('bcrypt'); // password encryption/hashing
+const session = require('express-session'); // require express's session
+const LocalStrategy = require('passport-local').Strategy; // localization of passport auth
+const passwordValidator = require('password-validator');
+const db = require('../database/index.js'); // database connection
 
 passport.use(
-    new LocalStrategy((email, password, callback) => {
-    db.query('SELECT id, email, password FROM userinfo WHERE email=$1', [email], (err, result) => {
+    new LocalStrategy((email, pass, callback) => {
+    db.query(`SELECT * FROM userinfo WHERE email = '${email}'`, (err, result) => {
       if(err) {
         console.log('Error when selecting user on login: ', err) // changed from winston.error('Err...)
         return callback(err)
@@ -31,11 +36,12 @@ passport.use(
   
       if(result.rows.length > 0) {
         const first = result.rows[0]
-        bcrypt.compare(password, first.password, function(err, res) {
-          if(res) {
-            callback(null, { id: first.id, email: first.email })
+        console.log("Inside Local Strategy before bcrypt comparison@@@@@@@@@@@@@@@@@@")
+        bcrypt.compare(pass, first.pass, function(err, valid) {
+          if(valid) {
+            return callback(null, { id: first.id, email: first.email })
            } else {
-            callback(null, false, {msg: 'Incorrect Password'})
+            return callback(null, false, {msg: 'Incorrect Password'})
            }
          })
        } else {
@@ -49,8 +55,8 @@ passport.serializeUser((user, done) => {
     done(null, user.id)
 })
 
-passport.deserializeUser((id, callback) => {
-    db.query('SELECT id, email FROM userinfo WHERE id = $1', [parseInt(id, 10)], (err, results) => {
+passport.deserializeUser((email, callback) => {
+    db.query('SELECT id, email FROM userinfo WHERE email = $1', [email], (err, results) => {
       if(err) {
         console.log('Error when selecting user on session deserialize', err)
         return callback(err)
@@ -60,39 +66,27 @@ passport.deserializeUser((id, callback) => {
     })
   })
 
-app.use(session({ secret: "bubba-gump", resave: false, saveUninitialized: true, cookie: {maxAge: 3600000} }));
-app.use((req, res, callback) => {
-    console.log(req.session);
-    return callback();
-})
-app.use(passport.initialize()) // passport initialization
-app.use(passport.session()) // passport session
-
-app.use('/api', router);
-
 app.post('/signup', (req, res, callback) => {
     var validateCriteria = new passwordValidator(); // validate our password to have these critieria 
-    validateCriteria
-        .is().min(6)
-        .is().max(100)
-        .has().uppercase()
-        .has().lowercase()
-        .has().digits()
-        .has().not().spaces()   
-    let passwordvalidation = validateCriteria.validate(req.body.password);
-    
+    validateCriteria.is().min(6);
+        // .is().max(100)
+        // .has().uppercase()
+        // .has().lowercase()
+        // .has().digits()
+        // .has().not().spaces()   
+    let passwordvalidation = validateCriteria.validate(req.body.pass);
     if (passwordvalidation) {
-        bcrypt.hash(req.body.password, 10, (err, hashed) => {
+        bcrypt.hash(req.body.pass, 10, (err, hashed) => {
             if(err) {
                 callback(err);
             } else {
                 let searchQuery = `SELECT email FROM userinfo WHERE email = ${req.body.email}`
                 db.query(searchQuery, (err, result)=> {
-                    if (null, result.rows) {
+                    if (result) {
                         // res.status(400).send("User already exists!", err)
                         callback("User already exists!", err)
                     } else {
-                        let queryStr = `INSERT INTO userinfo (email, firstName, lastName, pass) VALUES ('${email}', '${firstName}', '${lastName}', '${hashed}');`;
+                        let queryStr = `INSERT INTO userinfo (email, firstName, lastName, pass) VALUES ('${req.body.email}', '${req.body.firstName}', '${req.body.lastName}', '${hashed}');`;
                         db.query(queryStr, (err, data) => {
                             if(err) {console.log(err)};
                             let redirect = { redirect: '/' }
@@ -108,19 +102,28 @@ app.post('/signup', (req, res, callback) => {
     }
 })
 
-app.post('/login', passport.authenticate('local'), (req, res, callback) => {
-    req.login(req.user, (err) => {
-        console.log(req.user, req.session);
-        if(err) {
-            return callback(err);
-        } else {
-            var userInfo = {
-            email: req.user.email,
-            redirect: '/'
-            }
-            res.json(req.user); // res.json sends back user information to front-end during axios
-        }
-    });
+app.post('/login', passport.authenticate('local', { failureRedirect : '/login-failure', successRedirect : '/login-success'}), (req, res, callback) => {
+      // call req.login for callback is needed in order to call serialize and deserialize functions
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+      req.session.user = req.user;
+      console.log("hello i am from post login", req.user)
+      res.json(req.user);
 })
 
-app.listen(port, () => console.log(`app listening at http://localhost:${port}`));
+app.get('/login-success', (req, res) => {
+  res.send('<h1> successfully logged in and authenticated!</h1>')
+})
+
+app.get('/login-failure', (req, res) => {
+  res.send('<h1> FAILED logging-in!</h1>')
+})
+
+app.use(session({ secret: "bubba-gump", resave: false, saveUninitialized: true, cookie: {maxAge: 3600000} }));
+app.use((req, res, callback) => {
+    console.log("this is session being passed back", req.session);
+    return callback();
+})
+
+app.use(passport.initialize()) // passport initialization
+app.use(passport.session()) // passport session
+*/

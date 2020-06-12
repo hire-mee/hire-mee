@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
+import Login from './components/LogIn/Login.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight} from 'react-bootstrap-icons';
 
@@ -11,17 +12,25 @@ class App extends React.Component {
     super(props);
     this.state = {
       signUp: false,
-      page: 'Sign-up',
+      page: 'Log-in',
       users: '',
       currentUser: ''
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.getData = this.getData.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
 
   componentDidMount() {
-    // this.getData();
+    this.getData();
   }
+
+  changeView(view) {
+    this.setState({
+      page: view
+    })
+  }
+
 
   componentHandler() {
     // if (this.state.page === 'Map') {
@@ -30,7 +39,9 @@ class App extends React.Component {
     if (this.state.page === 'Statistics') {
       return <Statistics user={this.state.currentUser}/>
     } else if (this.state.page === 'Sign-up') {
-      return <SignUp/>
+      return <SignUp changeView={this.changeView}/>
+    } else if (this.state.page === 'Log-in') {
+      return <Login/>
     }
   }
 
@@ -51,6 +62,12 @@ class App extends React.Component {
       return (
         <div>
           <SignUp/>
+        </div>
+      )
+    } else if (this.state.page === 'Log-in') {
+      return (
+        <div>
+          <Login/>
         </div>
       )
     } else {

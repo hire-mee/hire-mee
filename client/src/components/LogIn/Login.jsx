@@ -4,36 +4,31 @@ import { PersonFill } from 'react-bootstrap-icons';
 import { Envelope } from 'react-bootstrap-icons';
 import { Lock } from 'react-bootstrap-icons';
 
-export default class SignUp extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      pass: '',
-      redirect: false
+        email: '',
+        pass: '',
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
+    this.handleLogin = this.handleLogin.bind(this)
+  }
+
+  handleLogin(e){
+      e.preventDefault();
+    axios.post('/login', { // TODO FIX LOGIN WITH /api/login wait until passport.js is done
+        email: this.state.email,
+        pass: this.state.pass,
+    })
+    .then(result => console.log(result.data))
+    .catch(err => console.error("error with handling login" + err))
   }
 
   inputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    });
-  }
-
-  submitHandler(e) {
-    let { firstName, lastName, email, pass } = this.state;
-    e.preventDefault();
-    
-    axios.post('/signup', {firstName, lastName, email, pass}) // TO BE RE-CONFIGURED WITH passport.js
-    .then(() => {
-      this.setState({
-        redirect: true
-      })
-    })
+    }, ()=>console.log(this.state));
   }
 
   render() {
@@ -51,8 +46,7 @@ export default class SignUp extends Component {
         <div id="signup_gist">Better than your own Excel Sheet.</div>
         <div id="signup_start_here"> Start Here.</div>
           <div className="sign_up_input_container">
-              <div className="sign_up_create_new_account_text">Create a free account</div>
-              <div className="sign_up_create_new_account_text">to start organizing.</div>
+              <div className="sign_up_create_new_account_text">Log in to continue</div>
               <div className="signup_google_container">
                 <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
                 <div id="signup_google_text">Continue with Google</div>
@@ -66,26 +60,6 @@ export default class SignUp extends Component {
   
                 <div className="signup_input_form_container">
                   <form onSubmit={this.submitHandler}>
-                    <div className="signup_input_icon_div">
-                      <PersonFill className="signup_bootstrap_icon"/>
-                      <input
-                        onChange={this.inputChangeHandler}
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        required
-                      ></input>
-                    </div>
-                    <div className="signup_input_icon_div">
-                    <PersonFill className="signup_bootstrap_icon"/>
-                      <input
-                        onChange={this.inputChangeHandler}
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        required
-                      ></input>
-                    </div>
                     <div className="signup_input_icon_div">
                       <Envelope className="signup_bootstrap_icon"/>
                       <input
@@ -106,16 +80,13 @@ export default class SignUp extends Component {
                         required
                       ></input>
                     </div>
+
                     <div className="signup_button_container">
-                      <button id="signup_signup_button" onClick={(e) => this.submitHandler(e)}>Sign up</button>
-                    </div>
+                    <button id="signup_signup_button" onClick={this.handleLogin}>Login</button>
+                  </div>
                   </form>
                 </div>
-  
-                <div className="signup_already_signedup_container">
-                  <div id="signup_already_signedup_text">Already have an account?</div>
-                  <div id="signup_already_signedup_button" onClick={() => this.props.changeView('Log-in')}>Login</div>
-                </div>
+
           </div>
         </div>
       );
