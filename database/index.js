@@ -10,7 +10,6 @@ const pool = new Pool({
 
 pool.query('select now()', () => {
   console.log('Connected to psql!');
-  // pool.end();
 });
 
 

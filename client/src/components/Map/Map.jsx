@@ -104,18 +104,23 @@ class MapContainer extends Component {
           <Marker
             onClick={this.onMarkerClick}
             position={{ lat: 33.97575, lng: -118.39114 }}
-            name={'Hack Reactor'}
+            name={'App 1'}
           />
           {/* {lngLatConversion} */}
           <Marker
             onClick={this.onMarkerClick}
             position={{ lat: 33.7700504, lng: -118.1937395 }}
-            name={'Hack Reactor'}
+            name={'App 2'}
           />
           <Marker
             onClick={this.onMarkerClick}
             position={{ lat: 33.6845673, lng: -117.8265049 }}
-            name={'Hack Reactor'}
+            name={'App 3'}
+          />
+          <Marker
+            onClick={this.onMarkerClick}
+            position={{ lat: 34.0194543, lng: -118.4911912 }}
+            name={'App 4'}
           />
           <InfoWindow
             marker={this.state.activeMarker}
