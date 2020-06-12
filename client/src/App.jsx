@@ -6,6 +6,7 @@ import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
 import Jobs from './components/jobs/Jobs.jsx'
+import Profile from './components/Profile/Profile.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class App extends React.Component {
             </div>
             <div className="Header">
               <div className="Header-title">{this.state.page}</div>
-              <div className="Profile-area">PROFILE AREA</div>
+              <div className="Profile-area"><Profile userData={this.state.currentUser}/></div>
             </div>
             <div className="Display">{this.componentHandler()}</div>
           </div>
