@@ -11,7 +11,7 @@ module.exports = {
       if (err) {
         res.status(400).send(err);
       }
-      res.status(200).send(result);
+      //res.status(200).send(result);
     });
   },
   getUserData: (req, res) => {
