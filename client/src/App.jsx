@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
+import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
+
 import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
-import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-import Profile from './components/Profile/Profile.jsx'
 import Jobs from './components/jobs/Jobs.jsx';
 import Logout from './components/Logout/Logout.jsx';
-
+import Profile from './components/Profile/Profile.jsx'
 class App extends React.Component {
   constructor(props) {
     super(props);
