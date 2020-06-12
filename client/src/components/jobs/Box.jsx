@@ -52,9 +52,9 @@ class Box extends React.Component{
 
       <DetailedView jobInfo={this.props.jobInfo} desired={this.props.desired} show={this.state.show} />
     </div>
-  );
+    );
   }
 }
-//
+
 
 export default Box;

@@ -23,8 +23,8 @@ style.jobs = {
 
 const Offers = (props) =>{
   return(
-    <div className="offers" >
-       <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)"}}>
+    <div className="offers" style={{backgroundColor:"rgb(232, 236, 239)"}}>
+       <Grid item xs={12} >
          <div className="offer-holder" style={{padding:"1em"}}>
           <p style={style.offers}>Offers</p>
           <p style={style.jobs}>{props.offers.length} Job(s)</p>

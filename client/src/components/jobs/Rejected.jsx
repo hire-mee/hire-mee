@@ -23,8 +23,8 @@ style.jobs = {
 
 const Rejected = (props) =>{
   return(
-    <div className="rejected" >
-       <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)"}}>
+    <div className="rejected" style={{backgroundColor:"rgb(232, 236, 239)"}} >
+       <Grid item xs={12} >
          <div className="rejected-holder" style={{padding:"1em"}}>
           <p style={style.rejected}>Rejected</p>
           <p style={style.jobs}>{props.rejected.length} Job(s)</p>
