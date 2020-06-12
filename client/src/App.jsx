@@ -126,7 +126,6 @@ class App extends React.Component {
     })
   }
 
-
   handleModal() {
     this.setState({logoutBox: !this.state.logoutBox})
   }
