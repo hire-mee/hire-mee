@@ -74,8 +74,8 @@ body {
   font-size: 1.1vw;
   font-weight: 300;
   margin-left: 2.7vw;
-  margin-top: 0.25vh;
-  margin-bottom: 0.25vh;
+  margin-top: 0.4vh;
+  margin-bottom: 0.5vh;
 }
 
 .company_name {
@@ -293,7 +293,8 @@ body {
 }
 
 .stat_pieInfo {
-  font-size: 16px;
+  font-size: 1.6vw;
+  font-weight: 300;
 }
 
 

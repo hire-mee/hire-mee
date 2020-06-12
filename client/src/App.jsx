@@ -1,20 +1,27 @@
 import React from 'react';
 import axios from 'axios';
 
+import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
+
 // import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
-import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-import Jobs from './components/jobs/Jobs.jsx'
+import Jobs from './components/jobs/Jobs.jsx';
+import Logout from './components/Logout/Logout.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       loggedIn: true,
+=======
+      loggedIn: false,
+>>>>>>> e89ab353365884560acf80ee03e3503fd8e625ba
       page: 'Jobs',
       users: '',
       currentUser: '',
+      logoutBox: false,
       appliedJobs:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
 
       rejected: [{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
@@ -29,6 +36,8 @@ class App extends React.Component {
     this.componentStartUp = this.componentStartUp.bind(this);
     this.getData = this.getData.bind(this);
     this.changePage = this.changePage.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.componentSignOut = this.componentSignOut.bind(this);
   }
 
   componentDidMount() {
@@ -53,9 +62,7 @@ class App extends React.Component {
               <div className="Account">
                 <div className="category_title">Account</div>
                 <div className="category" data-letter="Settings" onClick={this.changePage}><GearFill color="white" /> Settings</div>
-                <div className="category" data-letter="Pause" onClick={this.changePage}><PauseFill color="white" /> Pause</div>
-                <div className="category" data-letter="Reset" onClick={this.changePage}><ArrowClockwise color="white" /> Reset Week</div>
-                <div className="category" data-letter="Logout" onClick={this.changePage}><BoxArrowRight color="white" /> Logout</div>
+                <div className="category" data-letter="Logout" onClick={this.handleModal}><BoxArrowRight color="white" /> Logout</div>
               </div>
             </div>
             <div className="Header">
@@ -81,9 +88,15 @@ class App extends React.Component {
         // return <MapContainer />
       } else if (this.state.page === 'Settings') {
 
-      } else if (this.state.page === 'Logout') {
-        return this.dummyFunction()
       }
+    } else {
+      return <SignUp />
+    }
+  }
+
+  componentSignOut() {
+    if (this.state.logoutBox === true) {
+      return <Logout user={this.state.currentUser} show={this.state.logoutBox} handleModal={this.handleModal} logFunction={this.logFunction.bind(this)} defaultPage={this.defaultPage.bind(this)} />
     }
   }
 
@@ -105,19 +118,30 @@ class App extends React.Component {
     })
   }
 
-  dummyFunction() {
+  defaultPage() {
+    this.setState({
+      page: 'Jobs'
+    })
+  }
+
+  logFunction() {
     this.setState({
       loggedIn: !this.state.loggedIn
     })
   }
 
+
+  handleModal() {
+    this.setState({logoutBox: !this.state.logoutBox})
+  }
+
   render() {
-    console.log(`Current Page: `, this.state.page)
     return (
       <div>
         <div className="StartUp">
           {this.componentStartUp()}
-          <button onClick={this.dummyFunction.bind(this)}>LOGGED IN</button>
+          {this.componentSignOut()}
+          <button onClick={this.logFunction.bind(this)}>LOGGED IN</button>
         </div>
       </div>
     );
