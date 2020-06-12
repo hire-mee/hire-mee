@@ -22,7 +22,7 @@ class Logout extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.handleModal} >Close</Button>
-            <Button onClick={() => { this.props.logFunction(); this.props.handleModal(); }}> Log Out</Button>
+            <Button onClick={() => { this.props.logFunction(); this.props.handleModal(); this.props.defaultPage(); }}> Log Out</Button>
           </Modal.Footer>
         </Modal>
       </div>
