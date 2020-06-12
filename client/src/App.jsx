@@ -1,23 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-<<<<<<< HEAD
 import MapContainer from './components/Map/Map.jsx';
-=======
-import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-
-// import MapContainer from './components/Map/Map.jsx';
->>>>>>> 63ac3b1053bfa9055b320e4c7562d4229d921fa8
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
-<<<<<<< HEAD
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-import Jobs from './components/jobs/Jobs.jsx'
 import Profile from './components/Profile/Profile.jsx'
-=======
 import Jobs from './components/jobs/Jobs.jsx';
 import Logout from './components/Logout/Logout.jsx';
->>>>>>> master
 
 class App extends React.Component {
   constructor(props) {
