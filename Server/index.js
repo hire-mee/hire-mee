@@ -71,10 +71,13 @@ app.use(passport.session()) // passport session
 
 app.use('/api', router);
 
+/////////////Applications Post///////////////////////////
 app.post('/applications/:userId',(req)=>{
   console.log(req.params.userId);
   helper.postApplications(req.params.userId);
-})
+});
+
+/////////////Applications Post///////////////////////////
 
 app.post('/signup', (req, res, callback) => {
     var validateCriteria = new passwordValidator(); // validate our password to have these critieria
