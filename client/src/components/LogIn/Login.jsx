@@ -45,16 +45,6 @@ export default class Login extends Component {
         <div id="signup_start_here"> Start Here.</div>
           <div className="sign_up_input_container">
               <div className="sign_up_create_new_account_text">Log in to continue</div>
-              <div className="signup_google_container">
-                <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
-                <div id="signup_google_text">Continue with Google</div>
-              </div>
-  
-              <div className="signup_or_separator_container">
-                <hr className="signup_or_hr_tag"/>
-                <div>or</div>
-                <hr className="signup_or_hr_tag"/>
-              </div>
   
                 <div className="signup_input_form_container">
                   <form onSubmit={this.submitHandler}>
@@ -90,3 +80,15 @@ export default class Login extends Component {
       );
   }
 }
+// commented out for when Google auth is correctly implemented
+// 
+// <div className="signup_google_container">
+//                 <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
+//                 <div id="signup_google_text">Continue with Google</div>
+//               </div>
+  
+//               <div className="signup_or_separator_container">
+//                 <hr className="signup_or_hr_tag"/>
+//                 <div>or</div>
+//                 <hr className="signup_or_hr_tag"/>
+//               </div>
