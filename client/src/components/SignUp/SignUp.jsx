@@ -114,7 +114,7 @@ export default class SignUp extends Component {
   
                 <div className="signup_already_signedup_container">
                   <div id="signup_already_signedup_text">Already have an account?</div>
-                  <div id="signup_already_signedup_button" onClick={() => this.props.dummyFunction('Login')}>Login</div>
+                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('Login')}>Login</div>
                 </div>
           </div>
         </div>

@@ -22,7 +22,8 @@ export default class Login extends Component {
         pass: this.state.pass
     })
     .then(result => this.props.retrieveUserId(result.data))
-    .catch(err => console.error("error with handling login" + err))
+    .then(() => this.props.changePage('Jobs'))
+    .catch(err => window.alert("error with handling login"))
   }
 
   inputChangeHandler(e) {

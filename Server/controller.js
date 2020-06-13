@@ -5,7 +5,7 @@ module.exports = {
     res.status(200).send('9'); // hardcoded for the time being
   },
   loginFailure: (req, res) => {
-    res.status(200).send(`<h1> Failed to log</h1>`);
+    res.status(200).redirect('localhost:3000');
   },
   getInfo: (req, res) => {
     helper.getInfo((err, result) => {
