@@ -81,11 +81,7 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-<<<<<<< HEAD
         return <Jobs desired={this.state.desired} jobsInfo = {this.state.jobInfo}/>
-=======
-        return <Jobs applied={this.state.appliedJobs} userId={this.state.userId} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected}/>
->>>>>>> ee91103fe4b7f6e895f9bf6f5716c9a09be6a385
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
