@@ -27,8 +27,7 @@ const Applied = (props) =>{
 
   return (
 
-       <Grid item xs={12} >
-         {console.log(props)}
+       <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
          <div className="applied-holder" style={{padding:"1em"}}>
           <p style={style.applied}>Applied</p>
           <p style={style.jobs}>{props.applied.length} Job(s)</p>

@@ -154,6 +154,7 @@ class Jobs extends React.Component{
     })
     .catch((err)=>console.error(err))
 
+
   }
 
 
@@ -178,9 +179,7 @@ class Jobs extends React.Component{
 
     if(!this.state.sortedJobInfo){
       return (
-        <div>
-          {console.log(this.state.sortedJobInfo)}
-
+        <div style={{textAlign:"center",paddingTop:"25%"}}>
           <CircularProgress /> Loading...
         </div>
       )
@@ -189,19 +188,19 @@ class Jobs extends React.Component{
         <div className="jobs" style={{paddingRight:"5%"}} >
 
           <Grid container spacing={2} >
-            <div className="column" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)",paddingRight:"1%"}}>
+            <div className="column" style={{width:"25%",paddingRight:"1%"}}>
               <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
             </div>
 
-            <div className="column" style={{paddingLeft:"1%",width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
+            <div className="column" style={{paddingLeft:"1%",width:"25%",}}>
               <Rejected  rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired}/>
             </div >
 
-             <div style={{paddingLeft:"1%",width:"25%",backgroundColor:"rgb(232, 236, 239)"}} className="interviews-container">
+             <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
               <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired}/>
             </div>
 
-            <div className="column" style={{paddingLeft:"1%",width:"25%",backgroundColor:"rgb(232, 236, 239)"}} >
+            <div className="column" style={{paddingLeft:"1%",width:"25%"}} >
               <Offers offers={this.state.sortedJobInfo.offers}desired={this.props.desired}/>
             </div>
 
