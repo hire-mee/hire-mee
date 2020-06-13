@@ -36,7 +36,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    // this.getData();
+    this.getData();
   }
 
   componentStartUp() {
@@ -112,7 +112,8 @@ class App extends React.Component {
 
   getData() {
     axios
-      .get(`/api/user/${this.state.userId}`)
+      // .get(`/api/user/${this.state.userId}`) //commented out for data testing
+      .get(`/api/users`)
       .then(data => {
         this.setState({
           users: data.data,
