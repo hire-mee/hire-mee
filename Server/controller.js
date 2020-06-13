@@ -2,7 +2,7 @@ const helper = require('../database/helper.js');
 
 module.exports = {
   loginSuccess: (req, res) => {
-    res.status(200).send('9'); // hardcoded for the time being
+    res.status(200).send('1'); // hardcoded for the time being
   },
   loginFailure: (req, res) => {
     res.status(200).redirect('localhost:3000');
