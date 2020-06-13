@@ -17,7 +17,9 @@ class Profile extends React.Component {
     this.nameChangeSubmit = this.nameChangeSubmit.bind(this);
     this.closeClickHandler = this.closeClickHandler.bind(this);
     this.incompleteFormHandler = this.incompleteFormHandler.bind(this);
-    this.nameChangeSubmitConfimation = this.nameChangeSubmitConfimation.bind(this);
+    this.nameChangeSubmitConfimation = this.nameChangeSubmitConfimation.bind(
+      this
+    );
   }
 
   onClickHandler() {
@@ -43,14 +45,14 @@ class Profile extends React.Component {
     }
   }
 
-  closeClickHandler(){
+  closeClickHandler() {
     this.setState({
       changeName: false,
       nameChangeSubmitted: false,
       incomplete: false,
-      firstName: "",
-      lastName: ""
-    })
+      firstName: '',
+      lastName: ''
+    });
   }
 
   incompleteFormHandler() {
@@ -69,10 +71,10 @@ class Profile extends React.Component {
         incomplete: true
       });
     } else {
-      if(this.state.incomplete === true){
+      if (this.state.incomplete === true) {
         this.setState({
           incomplete: false
-        })
+        });
       }
       this.setState({
         nameChangeSubmitted: !this.state.nameChangeSubmitted
@@ -93,7 +95,7 @@ class Profile extends React.Component {
           });
         })
         .then(() => {
-          this.props.getUpdatedData(this.props.userData.id)
+          this.props.getUpdatedData(this.props.userData.id);
         })
         .catch((err) => {
           console.log(err);
@@ -103,6 +105,7 @@ class Profile extends React.Component {
 
   render() {
     console.log('profile area props', this.props);
+    // console.log('profile area', this.props);
     return (
       <div>
         <div className="userProfileContainer">
@@ -159,26 +162,5 @@ class Profile extends React.Component {
     );
   }
 }
-
-// const NameChangeModal = (props) => {
-//   console.log('props', props)
-//   return (
-//     <div>
-//       <Modal fade={false} isOpen={props.modal} style={{width: "200px", display: "block"}}>
-//         {/* <Modal.Header>Modal Head Part</Modal.Header> */}
-//         <Modal.Body>
-//           <br/>
-//           Hello {props.userData.firstname}, are you sure you want to log out?
-//           <br/>
-//           <br/>
-//         </Modal.Body>
-//         <Modal.Footer>
-//           <Button >Close</Button>
-//           <Button >Submit</Button>
-//         </Modal.Footer>
-//       </Modal>
-//     </div>
-//   )
-// }
 
 export default Profile;
