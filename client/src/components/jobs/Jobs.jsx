@@ -59,7 +59,7 @@ class Jobs extends React.Component{
           sortedJobInfo.interview.push(job)
         } else if(job.category === 'offers'){
           sortedJobInfo.offers.push(job)
-        } else if(job.category === null || job[category] === undefined || job[category] === ''){
+        } else if(job.category === null || job.category === undefined || job.category === ''){
           reject(new Error('Error Sorting Job Info...'), null);
         }
       })
@@ -183,100 +183,101 @@ class Jobs extends React.Component{
       return (
         <div>
           {console.log(this.state.sortedJobInfo)}
-          Loading Please Wait...
+
+          <CircularProgress /> Loading...
         </div>
       )
     } else {
       return (
         <div className="jobs" style={{paddingRight:"5%"}} >
 
-        <Grid container spacing={2} >
-          <div className="column" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
-            <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
-          </div>
-
-          <div className="column" style={{paddingLeft:"1%",width:"25%"}}>
-            <Rejected  rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired}/>
-          </div >
-
-           <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
-            <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired}/>
-          </div>
-
-          <div className="column" style={{paddingLeft:"1%",width:"25%"}} >
-            <Offers offers={this.state.sortedJobInfo.offers}desired={this.props.desired}/>
-          </div>
-
-        </Grid>
-
-
-        <Modal
-           show={this.state.showNew}
-           onHide={() => this.openOrCloseNewApp()}
-           dialogClassName="detailed-view"
-           aria-labelledby="modal-styling-title"
-
-        >
-          <Modal.Header closeButton>
-                <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
-                  <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
-                </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <div>
-                <Grid container direction={"row"} spacing={2}  className="new-app-row-1">
-
-                  <Grid item>
-                    <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}   variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle}     variant="filled"/>
-                  </Grid>
-
-                  </Grid>
-
-                  <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
-
-                  <Grid item>
-                    <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink}     variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
-                  </Grid>
-
-                  </Grid>
-
-                  <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
-                  <Grid item>
-                    <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate}     variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline}    variant="filled"/>
-                  </Grid>
-
-                </Grid>
-
-                <div className="button-holder" style={{paddingLeft:"75%"}}>
-                  <Button variant="contained" style={{textAlign:"center"}}color="secondary" onClick={this.submitHandler}> Submit </Button>
-                </div>
-
+          <Grid container spacing={2} >
+            <div className="column" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
+              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
             </div>
-          </Modal.Body>
 
-        </Modal>
+            <div className="column" style={{paddingLeft:"1%",width:"25%"}}>
+              <Rejected  rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired}/>
+            </div >
 
-        </div>
+             <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
+              <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired}/>
+            </div>
+
+            <div className="column" style={{paddingLeft:"1%",width:"25%"}} >
+              <Offers offers={this.state.sortedJobInfo.offers}desired={this.props.desired}/>
+            </div>
+
+          </Grid>
+
+
+          <Modal
+             show={this.state.showNew}
+             onHide={() => this.openOrCloseNewApp()}
+             dialogClassName="detailed-view"
+             aria-labelledby="modal-styling-title"
+
+          >
+            <Modal.Header closeButton>
+                  <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
+                    <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
+                  </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div>
+                  <Grid container direction={"row"} spacing={2}  className="new-app-row-1">
+
+                    <Grid item>
+                      <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}     variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state. positionTitle}     variant="filled"/>
+                    </Grid>
+
+                    </Grid>
+
+                    <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
+
+                    <Grid item>
+                      <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink}       variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr}  variant="filled"/>
+                    </Grid>
+
+                    </Grid>
+
+                    <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
+                    <Grid item>
+                      <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate}       variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline}      variant="filled"/>
+                    </Grid>
+
+                  </Grid>
+
+                  <div className="button-holder" style={{paddingLeft:"75%"}}>
+                    <Button variant="contained" style={{textAlign:"center"}}color="secondary" onClick={this.submitHandler}> Submit </Button>
+                  </div>
+
+              </div>
+            </Modal.Body>
+
+          </Modal>
+
+          </div>
       )
     }
 
