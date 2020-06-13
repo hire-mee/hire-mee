@@ -188,7 +188,7 @@ class Jobs extends React.Component{
         <div className="jobs" style={{paddingRight:"5%"}} >
 
           <Grid container spacing={2} >
-            <div className="column" style={{width:"25%",paddingRight:"1%"}}>
+            <div className="column" style={{width:"25%"}}>
               <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
             </div>
 
