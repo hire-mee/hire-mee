@@ -27,9 +27,8 @@ class Box extends React.Component{
       textDecoration: "none",
       lineHeight: "1.4",
       fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-      fontSize: "31.244px",
       textTransform: "none",
-      fontSize:"2vw"
+      fontSize:"1.5vw"
     };
 
   style.jobTitle = {
@@ -39,7 +38,6 @@ class Box extends React.Component{
     textDecoration: "none",
     lineHeight: "1.4",
     fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-    fontSize: "18.3468px",
     textTransform: "none",
     fontSize:"1vw"
   }
