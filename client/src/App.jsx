@@ -8,6 +8,7 @@ import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import Jobs from './components/jobs/Jobs.jsx';
 import Logout from './components/Logout/Logout.jsx';
+import Profile from './components/Profile/Profile.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -24,8 +25,6 @@ class App extends React.Component {
 
       offered: [{positionTitle: "Full Stack Web Developer",companyName: "Amazon", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/19/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }],
 
-      interviews: [{positionTitle: "Full Stack Web Developer",companyName: "Amazon", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/19/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }],
-
       desired: 120000
     };
     this.componentHandler = this.componentHandler.bind(this);
@@ -41,7 +40,9 @@ class App extends React.Component {
   }
 
   componentStartUp() {
-
+    if (this.state.loggedIn === false) {
+      return <SignUp />
+    } else {
       return (
         <div>
           <div className="grid-container">
@@ -63,19 +64,19 @@ class App extends React.Component {
             </div>
             <div className="Header">
               <div className="Header-title">{this.state.page}</div>
-              <div className="Profile-area">PROFILE AREA</div>
+              <div className="Profile-area"><Profile userData={this.state.currentUser}/></div>
             </div>
             <div className="Display">{this.componentHandler()}</div>
           </div>
         </div>
       )
-
+    }
   }
 
   componentHandler() {
     if (this.state.loggedIn === true) {
       if (this.state.page === 'Jobs') {
-        return <Jobs userId={0} applied={this.state.appliedJobs} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected} interviews={this.state.interviews}/>
+        return <Jobs applied={this.state.appliedJobs} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected}/>
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
@@ -126,7 +127,6 @@ class App extends React.Component {
     })
   }
 
-
   handleModal() {
     this.setState({logoutBox: !this.state.logoutBox})
   }
@@ -145,3 +145,4 @@ class App extends React.Component {
 }
 
 export default App;
+
