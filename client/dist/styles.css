@@ -366,3 +366,20 @@ body {
   font-size: 12px;
   padding-right: 10px;
 }
+
+.updateNameContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.updateNameInput {
+  padding: 5px;
+  margin: 5px;
+}
+
+.nameChangeConfirmation {
+  text-align: center;
+  margin-top: 3px;
+}

@@ -56,6 +56,17 @@ module.exports = {
       }
     })
   },
+  updateName(input, id, callback) {
+    const { firstName, lastName } = input
+    const queryStr = `UPDATE userinfo SET firstName='${firstName}', lastName='${lastName}' WHERE id=${id};`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
   deleteInfo(id, callback) {
     const queryStr = `DELETE FROM userinfo WHERE id=${id};`;
     db.query(queryStr, (err, results) => {

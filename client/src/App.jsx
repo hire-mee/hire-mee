@@ -32,6 +32,7 @@ class App extends React.Component {
     this.changePage = this.changePage.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.componentSignOut = this.componentSignOut.bind(this);
+    this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
   }
 
   componentDidMount() {
@@ -63,7 +64,7 @@ class App extends React.Component {
             </div>
             <div className="Header">
               <div className="Header-title">{this.state.page}</div>
-              <div className="Profile-area"><Profile userData={this.state.currentUser}/></div>
+              <div className="Profile-area"><Profile userData={this.state.currentUser} getUpdatedData={this.getUpdatedUserData}/></div>
             </div>
             <div className="Display">{this.componentHandler()}</div>
           </div>
@@ -106,6 +107,16 @@ class App extends React.Component {
         })
       })
       .catch(err => console.error(err))
+  }
+
+  getUpdatedUserData(id){
+    axios.get(`/api/user/${id}`)
+    .then(data => {
+      this.setState({
+        currentUser: data.data[0]
+      })
+    })
+    .catch(err => console.error(err))
   }
 
   changePage(e) {
