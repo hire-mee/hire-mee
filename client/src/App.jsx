@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-
 import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Login from './components/LogIn/Login.jsx';
