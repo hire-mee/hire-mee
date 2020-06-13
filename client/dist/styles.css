@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Poppins', 'Times', 'Arial', 'sans-serif';
-  overflow-x: hidden !important;
+  overflow: hidden !important;
 }
 
 
@@ -94,11 +94,11 @@ body {
 
 .signup_main_container {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 60px;
 }
 
 #signup_main_title{
-  font-size: 5.5em;
+  font-size: 3.5em;
   color: #535970;
   font-weight: 600;
 }
@@ -106,20 +106,18 @@ body {
 #signup_gist{
   color: #a6a6a6;
   font-weight: 300;
-  font-size: 1.3em;
 }
 
 #signup_start_here{
   color: #a6a6a6;
   font-weight: 300;
   margin-top: 2%;
-  font-size: 1.2em;
   margin: 2% 0 1% 0;
 }
 
 .sign_up_create_new_account_text{
   color: #535970;
-  font-size: 1.4em;
+  font-size: 1.1em;
 }
 
 .sign_up_input_container{
@@ -150,6 +148,7 @@ body {
 }
 
 #signup_google_text{
+  font-size: 0.8em;
   font-weight: 300;
   margin-left: 5%;
 }
