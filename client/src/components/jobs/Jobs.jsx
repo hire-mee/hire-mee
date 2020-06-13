@@ -39,7 +39,6 @@ class Jobs extends React.Component{
   sortJobInfo(){
     //promise ;)
     let jobs = this.props.jobsInfo;
-
     let sortedJobInfo = {};
 
     sortedJobInfo.applied = [];
