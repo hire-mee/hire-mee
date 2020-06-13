@@ -26,7 +26,7 @@ const Applied = (props) =>{
 
 
   return (
-    <div className = "applied" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
+    <div className = "applied" >
        <Grid item xs={12} >
          <div className="applied-holder" style={{padding:"1em"}}>
           <p style={style.applied}>Applied</p>

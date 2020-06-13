@@ -7,7 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
-
+import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 
 
 //INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES
@@ -18,6 +19,7 @@ class Jobs extends React.Component{
     this.state = {
       jobInfo: [],
       show: false,
+      showNew: false,
       companyName:"",
       descr:"",
       loc:"",
@@ -31,7 +33,9 @@ class Jobs extends React.Component{
     this.openOrClosePopup = this.openOrClosePopup.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.openOrCloseNewApp = this.openOrCloseNewApp.bind(this);
   }
+
 
   openOrClosePopup(){
 
@@ -41,6 +45,12 @@ class Jobs extends React.Component{
       show: !this.state.show
     })
 
+  }
+
+  openOrCloseNewApp(){
+    this.setState({
+      showNew: !this.state.showNew
+    })
   }
 
   blink(){
@@ -64,6 +74,7 @@ class Jobs extends React.Component{
     let newApp = {
       id: 0 ,
       category: "Applied",
+      userId: this.props.userId,
       companyName: this.state.companyName,
       descr: this.state.descr,
       loc: this.state.loc,
@@ -88,6 +99,15 @@ class Jobs extends React.Component{
       return;
     }
 
+    console.log(newApp);
+    axios.post(`/applications/${newApp.userId}`,{params: {userId: newApp.userId}})
+    .then(()=>{
+      console.log('Posted New Job Application');
+    })
+    .catch((err)=>{
+      console.error("Error Posting:",err);
+    })
+
     console.log('Submitted !!!');
   }
 
@@ -109,8 +129,6 @@ class Jobs extends React.Component{
       color: this.state.xClicked ? "black" : "grey",
       fontWeight: this.state.xClicked ? "800" : "600",
       cursor:"pointer",
-      position:"absolute",
-      right:"0",
       top:"0"
     }
 
@@ -118,9 +136,11 @@ class Jobs extends React.Component{
       <div className="jobs" style={{paddingRight:"5%"}} >
 
         <Grid container spacing={2} >
-          <Applied applied={this.props.applied} desired={this.props.desired} openPopup={this.openOrClosePopup}/>
+          <div className="column" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
+            <Applied applied={this.props.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
+          </div>
 
-          <div style={{paddingLeft:"1%",width:"25%"}} className="rejected-container">
+          <div className="column" style={{paddingLeft:"1%",width:"25%"}}>
             <Rejected rejected={this.props.rejected} desired={this.props.desired}/>
           </div >
 
@@ -128,113 +148,85 @@ class Jobs extends React.Component{
             <Interviews interviews={this.props.interviews} desired={this.props.desired}/>
           </div> */}
 
-          <div style={{paddingLeft:"1%",width:"25%"}} className="offers-container">
+          <div className="column" style={{paddingLeft:"1%",width:"25%"}} >
             <Offers offers={this.props.offered} desired={this.props.desired}/>
           </div>
 
         </Grid>
 
-      <Slide direction="down" in={this.state.show} mountOnEnter unmountOnExit>
 
-        <div className="new-application-popup" style={style.popup}>
-          <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
-          <p style={style.x} onClick={this.openOrClosePopup}>X</p>
+        <Modal
+           show={this.state.showNew}
+           onHide={() => this.openOrCloseNewApp()}
+           dialogClassName="detailed-view"
+           aria-labelledby="modal-styling-title"
 
-          <Grid container direction={"column"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-1">
+        >
+          <Modal.Header closeButton>
+                <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
+                  <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
+                </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <div>
+                <Grid container direction={"row"} spacing={2}  className="new-app-row-1">
 
-            <Grid item>
-              <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}   variant="filled"/>
+                  </Grid>
 
-            <Grid item>
-              <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
+                  </Grid>
 
-            <Grid item>
-              <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle} variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle}     variant="filled"/>
+                  </Grid>
 
-          </Grid>
+                  </Grid>
 
-          <Grid container direction={"column"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
+                  <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
 
-            <Grid item>
-              <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
+                  </Grid>
 
-            <Grid item>
-              <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink} variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink}     variant="filled"/>
+                  </Grid>
 
-            <Grid item>
-              <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
+                  </Grid>
 
-          </Grid>
+                  </Grid>
 
-          <Grid container direction={"column"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
-            <Grid item>
-              <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate} variant="filled"/>
-            </Grid>
+                  <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
+                  <Grid item>
+                    <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate}     variant="filled"/>
+                  </Grid>
 
-            <Grid item>
-              <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline} variant="filled"/>
-            </Grid>
+                  <Grid item>
+                    <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline}    variant="filled"/>
+                  </Grid>
 
-          </Grid>
+                </Grid>
 
-          <Button variant="contained" color="secondary" onClick={this.submitHandler}> Submit </Button>
+                <div className="button-holder" style={{paddingLeft:"75%"}}>
+                  <Button variant="contained" style={{textAlign:"center"}}color="secondary" onClick={this.submitHandler}> Submit </Button>
+                </div>
 
+            </div>
+          </Modal.Body>
 
-
-
-
-        </div>
-
-      </Slide>
-
-
+        </Modal>
 
       </div>
     )
   }
 }
 
-//INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES
-
 export default Jobs;
 
 
 
-
-/*
-
-          <Grid container direction={"row"} spacing={2} style={{paddingTop:"30%",paddingLeft:"10%"}} className="new-app-row-3">
-            <Grid item>
-              <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate} variant="filled"/>
-            </Grid>
-
-            <Grid item>
-              <TextField required  label="Application Deadline" name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
-            </Grid>
-
-
-          <Grid container direction={"row"} spacing={2} style={{paddingTop:"20%",paddingLeft:"10%"}} className="new-app-row-2">
-            <Grid item>
-              <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
-            </Grid>
-
-            <Grid item>
-              <TextField required  label="Job Description" name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
-            </Grid>
-
-            <Grid item>
-              <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink} variant="filled"/>
-            </Grid>
-          </Grid>
-
-          </Grid>
-
-
-
-*/

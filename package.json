@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Main repo",
   "main": "index.js",
-  "scripts": {
+   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack --w --mode development",
     "build-prod": "webpack --mode production",
