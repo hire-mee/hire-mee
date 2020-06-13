@@ -13,11 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      loggedIn: true,
-=======
       loggedIn: false,
->>>>>>> e89ab353365884560acf80ee03e3503fd8e625ba
       page: 'Jobs',
       users: '',
       currentUser: '',
