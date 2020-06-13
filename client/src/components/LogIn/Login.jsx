@@ -42,9 +42,9 @@ export default class Login extends Component {
         <div className="signup_main_container">
         <div className="login_main_title" onClick={() => this.props.changePage('Signup')}>Hire-Mee</div>
         <div id="signup_gist">Better than your own Excel Sheet.</div>
-        <div id="signup_start_here"> Start Here.</div>
+        <div id="signup_start_here"> Welcome back!</div>
           <div className="sign_up_input_container">
-              <div className="sign_up_create_new_account_text">Log in to continue</div>
+              <div className="sign_up_create_new_account_text">Log in to continue.</div>
   
                 <div className="signup_input_form_container">
                   <form onSubmit={this.submitHandler}>
@@ -72,6 +72,11 @@ export default class Login extends Component {
                     <div className="signup_button_container">
                     <button id="signup_signup_button" onClick={this.handleLogin}>Login</button>
                   </div>
+
+                  <div className="signup_already_signedup_container">
+                  <div id="signup_already_signedup_text">Click here to sign up.</div>
+                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('Signup')}>Sign Up</div>
+                </div>
                   </form>
                 </div>
 
