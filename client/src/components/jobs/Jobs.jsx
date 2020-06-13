@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
 import Modal from 'react-bootstrap/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import axios from 'axios';
 //applied  rejected interview
 class Jobs extends React.Component{
   constructor(props){
@@ -34,6 +34,7 @@ class Jobs extends React.Component{
     this.submitHandler = this.submitHandler.bind(this);
     this.openOrCloseNewApp = this.openOrCloseNewApp.bind(this);
     this.sortJobInfo = this.sortJobInfo.bind(this);
+    this.formChecker = this.formChecker.bind(this);
   }
 
   sortJobInfo(){
@@ -100,48 +101,65 @@ class Jobs extends React.Component{
 
     this.setState({
       [e.target.name]: e.target.value
-    },()=>console.log(this.state))
+    })
+  }
+
+  formChecker(newApp){
+    return new Promise((resolve,reject)=>{
+      for(let key in newApp){
+        if(newApp[key] === ""){
+          reject(new Error('Please Fill In All Text Boxes'), null);
+        }
+      }
+    resolve('Forms are Gucci!');
+    })
+}
+
+  salaryChecker(newAppSal){
+    return new Promise((resolve,reject)=>{
+      console.log(newAppSal)
+      if(Number.isNaN(newAppSal)){
+        reject(new Error('Please Type A number for salary'), null);
+        return
+      } else {
+        resolve('Salary Is Gucci!');
+      }
+    })
   }
 
   submitHandler(){
     let newApp = {
-      id: 0 ,
-      category: "Applied",
+      id: this.props.userId,
+      category: "applied",
       userId: this.props.userId,
       companyName: this.state.companyName,
       descr: this.state.descr,
       loc: this.state.loc,
       positionTitle:this.state.positionTitle,
-      salary: this.state.salary,
+      salary: parseInt(this.state.salary),
       submitDate: this.state.submitDate,
       deadline: this.state.deadline,
       urlLink: this.state.urlLink,
     }
 
-    console.log('Submitting...');
-
-    for(let key in newApp){
-      if(newApp[key] === ""){
-        alert('Please Fill In All Text Boxes');
-        return;
-      }
-    }
-
-    if(typeof parseInt(this.state.salary) !== "number"){
-      alert('Please Type a Number for Salary');
-      return;
-    }
-
-    console.log(newApp);
-    axios.post(`/applications/${newApp.userId}`,{params: {userId: newApp.userId}})
-    .then(()=>{
-      console.log('Posted New Job Application');
+    this.formChecker(newApp)
+    .then((res)=>{
+      console.log(res)
+      this.salaryChecker(newApp.salary)
+      .then((res)=>console.log(res))
+      .catch((err)=>{
+        console.error(err);
+        alert(err);
+      })
     })
     .catch((err)=>{
-      console.error("Error Posting:",err);
+      console.log('Error Posting')
+      alert(err);
     })
 
-    console.log('Submitted !!!');
+
+
+
   }
 
   componentDidMount(){
