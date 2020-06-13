@@ -2,7 +2,7 @@
 FROM node
 
 # Set the working directory.
-WORKDIR /client/dist/
+WORKDIR /client/dist
 
 # Copy the file from your host to your current location.
 COPY package.json .
