@@ -10,11 +10,7 @@ import Statistics from './components/Statistics/Statistics.jsx';
 import Jobs from './components/jobs/Jobs.jsx';
 import Logout from './components/Logout/Logout.jsx';
 import Profile from './components/Profile/Profile.jsx';
-<<<<<<< HEAD
-
-=======
 import Settings from './components/Settings/Settings.jsx';
->>>>>>> ee91103fe4b7f6e895f9bf6f5716c9a09be6a385
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +24,7 @@ class App extends React.Component {
       jobInfo:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Software Engineer",companyName: "IBM", salary: 125000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"San Diego, Ca", urlLink:"https://www.google.com/",descr:"not real",category:'rejected' }, {positionTitle: "React Developer",companyName: "GO Daddy", salary: 90000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"not real",category:'rejected'}, {positionTitle: "Software Engineer 1",companyName: "Weedmaps", salary: 200000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"interview" }, {positionTitle: "Software Engineer 3",companyName: "Apple", salary: 200000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Remote", urlLink:"https://www.google.com/",descr:"not real",category:"offers" } ],
 
       desired: 120000,
- 
+
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
@@ -39,6 +35,7 @@ class App extends React.Component {
     this.componentSignOut = this.componentSignOut.bind(this);
   }
 
+
   componentDidMount() {
     // this.getData();
   }
@@ -47,7 +44,7 @@ class App extends React.Component {
     if (this.state.page === 'Signup') {
       return <SignUp changePage={this.changePage}/>
     } else if (this.state.page === 'Login') {
-      return <Login 
+      return <Login
       changePage={this.changePage}
       storeUserData={this.storeUserData}/>
     } else {
@@ -102,7 +99,7 @@ class App extends React.Component {
         return <Settings user={this.state.currentUser} />
       } else if (this.state.page === 'Signup'){
         return <SignUp/>
-      } 
+      }
   }
 
   componentSignOut() {
