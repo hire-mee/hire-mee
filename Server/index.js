@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
-const router = require('./router.js')
+const router = require('./router.js');
+const helper = require('../database/helper.js');
 
 const app = express();
 const port = 3000;
@@ -28,7 +29,7 @@ passport.use(
         console.log('Error when selecting user on login: ', err) // changed from winston.error('Err...)
         return callback(err)
       }
-  
+
       if(result.rows.length > 0) {
         const first = result.rows[0]
         bcrypt.compare(password, first.password, function(err, res) {
@@ -55,7 +56,7 @@ passport.deserializeUser((id, callback) => {
         console.log('Error when selecting user on session deserialize', err)
         return callback(err)
       }
-  
+
       callback(null, results.rows[0])
     })
   })
@@ -70,17 +71,22 @@ app.use(passport.session()) // passport session
 
 app.use('/api', router);
 
+app.post('/applications/:userId',(req)=>{
+  console.log(req.params.userId);
+  helper.postApplications(req.params.userId);
+})
+
 app.post('/signup', (req, res, callback) => {
-    var validateCriteria = new passwordValidator(); // validate our password to have these critieria 
+    var validateCriteria = new passwordValidator(); // validate our password to have these critieria
     validateCriteria
         .is().min(6)
         .is().max(100)
         .has().uppercase()
         .has().lowercase()
         .has().digits()
-        .has().not().spaces()   
+        .has().not().spaces()
     let passwordvalidation = validateCriteria.validate(req.body.password);
-    
+
     if (passwordvalidation) {
         bcrypt.hash(req.body.password, 10, (err, hashed) => {
             if(err) {
