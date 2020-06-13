@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-// import MapContainer from './components/Map/Map.jsx';
+import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
+
+import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Login from './components/LogIn/Login.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
-import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-import Jobs from './components/jobs/Jobs.jsx'
+import Jobs from './components/jobs/Jobs.jsx';
+import Logout from './components/Logout/Logout.jsx';
+import Profile from './components/Profile/Profile.jsx';
+import Settings from './components/Settings/Settings.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +20,7 @@ class App extends React.Component {
       userId: '',
       users: '',
       currentUser: '',
+      logoutBox: false,
       appliedJobs:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
 
       rejected: [{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
@@ -30,6 +35,8 @@ class App extends React.Component {
     this.getData = this.getData.bind(this);
     this.changePage = this.changePage.bind(this);
     this.storeUserData = this.storeUserData.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.componentSignOut = this.componentSignOut.bind(this);
   }
 
   componentDidMount() {
@@ -62,12 +69,12 @@ class App extends React.Component {
                 <div className="category" data-letter="Settings" onClick={() => this.changePage('Settings')}><GearFill color="white" /> Settings</div>
                 <div className="category" data-letter="Pause" onClick={() => this.changePage('Pause')}><PauseFill color="white" /> Pause</div>
                 <div className="category" data-letter="Reset" onClick={() => this.changePage('Reset')}><ArrowClockwise color="white" /> Reset Week</div>
-                <div className="category" data-letter="Signup" onClick={() => this.changePage('Signup')}><BoxArrowRight color="white" /> Logout</div>
+                <div className="category" data-letter="Logout" onClick={this.handleModal}><BoxArrowRight color="white" /> Logout</div>
               </div>
             </div>
             <div className="Header">
               <div className="Header-title">{this.state.page}</div>
-              <div className="Profile-area">PROFILE AREA</div>
+              <div className="Profile-area"><Profile userData={this.state.currentUser}/></div>
             </div>
             <div className="Display">{this.componentHandler()}</div>
           </div>
@@ -78,16 +85,26 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs applied={this.state.appliedJobs} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected}/>
+        return <Jobs applied={this.state.appliedJobs} userId={this.state.userId} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected}/>
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
-
+        return (<div id='Leaderboard'></div>)
       } else if (this.state.page === 'Map') {
-        // return <MapContainer />
+        return <MapContainer />
+      } else if (this.state.page === 'Friends') {
+        return (<div id='Friends'></div>)
       } else if (this.state.page === 'Settings') {
+        return <Settings user={this.state.currentUser} />
+      } else if (this.state.page === 'Signup'){
+        return <SignUp/>
+      } 
+  }
 
-      }
+  componentSignOut() {
+    if (this.state.logoutBox === true) {
+      return <Logout user={this.state.currentUser} show={this.state.logoutBox} handleModal={this.handleModal} changePage={this.changePage} />
+    }
   }
 
   storeUserData(data) {
@@ -104,7 +121,7 @@ class App extends React.Component {
         this.setState({
           users: data.data,
           currentUser: data.data[0],
-        }, () => console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', this.state.currentUser))
+        }, () => console.log(this.state.currentUser))
       })
       .catch(err => console.error(err))
   }
@@ -115,8 +132,11 @@ class App extends React.Component {
     })
   }
 
+  handleModal() {
+    this.setState({logoutBox: !this.state.logoutBox})
+  }
+
   render() {
-    console.log(`Current Page: `, this.state.page)
     return (
       <div>
         <div className="StartUp">
@@ -129,3 +149,4 @@ class App extends React.Component {
 }
 
 export default App;
+

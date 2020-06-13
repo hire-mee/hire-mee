@@ -35,8 +35,7 @@ router
 .route('/applications/:id')
 .get(controller.getApplications)
 
-router
-.route('/applications/')
+router.route('/applications/:userId')
 .post(controller.postApplications);
 
 router

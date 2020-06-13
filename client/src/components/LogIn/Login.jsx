@@ -27,7 +27,8 @@ export default class Login extends Component {
       .catch(innerErr => console.error(innerErr))
     })
     .then(() => this.props.changePage('Jobs'))
-    .catch(err => window.alert("error with handling login"))
+    .catch(() => (location.reload()))
+    // .catch(err => window.alert("error with handling login"))
   }
 
   inputChangeHandler(e) {

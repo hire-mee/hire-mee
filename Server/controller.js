@@ -49,13 +49,9 @@ module.exports = {
       res.status(200).send(result);
     });
   },
-  postApplications: (req, res) => {
-    helper.postApplications(req.body, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      }
-      res.status(200).send('Posted application data');
-    });
+  postApplications: (req,res) => {
+    console.log(req)
+    helper.postApplications(req.params.userId);
   },
   updateApplications: (req, res) => {
     helper.updateApplications(req.body, req.params.id, (err, result) => {
