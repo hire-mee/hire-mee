@@ -8,7 +8,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log('profile area', this.props);
+    // console.log('profile area', this.props);
     return (
       <div>
         <div className="userProfileContainer">
