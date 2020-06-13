@@ -158,7 +158,6 @@ class Jobs extends React.Component{
 
 
   render(){
-
     let style={}
     style.popup = {
       display: "flex",
