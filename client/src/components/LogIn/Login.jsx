@@ -26,7 +26,7 @@ export default class Login extends Component {
       .then(innerResults => this.props.storeUserData(innerResults.data[0]))
       .catch(innerErr => console.error(innerErr))
     })
-    .then(() => this.props.changePage('Jobs'))
+    .then(() => this.props.changePage('page', 'Jobs'))
     .catch(() => (location.reload()))
     // .catch(err => window.alert("error with handling login"))
   }
@@ -40,7 +40,7 @@ export default class Login extends Component {
   render() {
       return (
         <div className="signup_main_container">
-        <div className="login_main_title" onClick={() => this.props.changePage('Signup')}>Hire-Mee</div>
+        <div className="login_main_title" onClick={() => this.props.changePage('page', 'Signup')}>Hire-Mee</div>
         <div id="signup_gist">Better than your own Excel Sheet.</div>
         <div id="signup_start_here"> Welcome back!</div>
           <div className="sign_up_input_container">
@@ -75,7 +75,7 @@ export default class Login extends Component {
 
                   <div className="signup_already_signedup_container">
                   <div id="signup_already_signedup_text">Click here to sign up.</div>
-                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('Signup')}>Sign Up</div>
+                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('page', 'Signup')}>Sign Up</div>
                 </div>
                   </form>
                 </div>
