@@ -10,8 +10,6 @@ class Jobs extends React.Component{
   }
 
   render(){
-
-
     return (
       <div style={{paddingLeft:"12%",paddingTop:"7%"}}>
         <Grid container spacing={2}>

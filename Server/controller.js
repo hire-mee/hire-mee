@@ -2,15 +2,9 @@ const helper = require('../database/helper.js');
 
 module.exports = {
   loginSuccess: (req, res) => {
-    let { email } = req;
-    // if (err) { res.status(400).send(err) }
-    console.log("SUCCESSSSSSS")
-    res.status(200).send(`<h1> sucessfully logged in</h1>`);
+    res.status(200).send('9'); // hardcoded for the time being
   },
   loginFailure: (req, res) => {
-    let { email } = req;
-    // if (err) { res.status(400).send(err) }
-    console.log("LOGIN FAILED")
     res.status(200).send(`<h1> Failed to log</h1>`);
   },
   getInfo: (req, res) => {
@@ -20,6 +14,12 @@ module.exports = {
       }
       res.status(200).send(result);
     });
+  },
+  updateInfo : (req, res) => {
+    helper.updateInfo(req.body, req.params.id, (err, result) => {
+      if (err) { res.status(400).send(err)}
+      res.status(200).send(result)
+    })
   },
   getUserData: (req, res) => {
     helper.getUserData(req.params.id, (err, result) => {

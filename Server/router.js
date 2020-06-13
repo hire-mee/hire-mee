@@ -2,11 +2,11 @@ const router = require('express').Router();
 const passport = require('passport');
 const controller = require('./controller.js');
 
-router // proper route: express POST on api/login
+router
 .route('/login-success')
 .get(controller.loginSuccess)
 
-router // proper route: express POST on api/login
+router
 .route('/login-failure')
 .get(controller.loginFailure)
 
@@ -21,11 +21,10 @@ router
 router
 .route('/users')
 .get(controller.getInfo)
-// .post(controller.postInfo);
 
 router
 .route('/users/:id')
-// .put(controller.updateInfo)
+.put(controller.updateInfo)
 .delete(controller.deleteInfo);
 
 router

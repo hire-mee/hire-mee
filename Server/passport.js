@@ -18,7 +18,7 @@ let verifyCallback = (email, pass, done) => {
       if (!user) {
         return done(null, false);
       }
-    //   console.log("HELLO FROM ERROR BLOCK OF VERIFYCALLBACK@@@@@@@@@@@@@@: ", user)
+
       const isValid = validatePassword(pass, user.rows[0].pass, user.rows[0].salt); // verifies input attempt with hash in DB
 
       if (isValid) {
@@ -36,7 +36,6 @@ passport.use(strategy);
 // serialization of sessions
 
 passport.serializeUser((user, done) => {
-    // console.log("HELLO FROM ERROR BLOCK OF SERIALUSER@@@@@@@@@@@@@@: ", user)
     console.log('SerializeUser function called.');
     
     done(null, user.rows[0].email)

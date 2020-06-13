@@ -42,7 +42,3 @@ CREATE TABLE friends(
   id SERIAL PRIMARY KEY,
   userId INTEGER REFERENCES userinfo (id)
 );
-
-CREATE TABLE session(
-  session VARCHAR(255)
-);

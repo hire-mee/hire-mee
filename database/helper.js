@@ -40,24 +40,12 @@ module.exports = {
       }
     })
   },
-  postInfo(input, callback) {
-    const { email , firstname, lastname, pass, appliedtoday, appliedmonth, apponsite, apprejected, appnoresponse, loc, jobtitle, salary, streak, totalapplied } = input
-    const queryStr = `INSERT INTO userinfo(email, firstname, lastname, pass, appliedtoday, appliedmonth, apponsite, apprejected, appnoresponse, loc, jobtitle, salary, streak, totalapplied) VALUES ('${email}', '${firstname}', '${lastname}', '${pass}', ${appliedtoday}, ${appliedmonth}, ${apponsite}, ${apprejected}, ${appnoresponse}, '${loc}', '${jobtitle}', ${salary}, ${streak}, ${totalapplied});`;
-    db.query(queryStr, (err, results) => {
-      if (err) {
-        console.log(err)
-        callback(err);
-      } else {
-        callback(null, results.rows);
-      }
-    })
-  },
   updateInfo(input, id, callback) {
     const { appliedtoday, appliedmonth, apponsite, apprejected, appnoresponse, loc, jobtitle, salary, streak, totalapplied } = input
     const queryStr = `UPDATE userinfo SET appliedtoday=${appliedtoday}, appliedmonth=${appliedmonth}, apponsite=${apponsite}, apprejected=${apprejected}, appnoresponse=${appnoresponse}, loc='${loc}', jobtitle='${jobtitle}', salary=${salary}, streak=${streak}, totalapplied=${totalapplied} WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        callback(`ERROR: `, err);
+       callback(err);
       } else {
         callback(null, results.rows);
       }

@@ -16,12 +16,12 @@ export default class Login extends Component {
   }
 
   handleLogin(e){
-      e.preventDefault();
-    axios.post('/api/login', { // TODO FIX LOGIN WITH /api/login wait until passport.js is done
+    e.preventDefault();
+    axios.post('/api/login', {
         email: this.state.email,
-        pass: this.state.pass,
+        pass: this.state.pass
     })
-    .then(result => console.log(result.data))
+    .then(result => this.props.retrieveUserId(result.data))
     .catch(err => console.error("error with handling login" + err))
   }
 
@@ -32,14 +32,6 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.state.redirect) {
-      return (
-        <div>
-          <div className="signup_redirect_text">Account successfully created!</div>
-          <div id="signup_redirect_login">Login Here</div>
-        </div>
-      )
-    } else {
       return (
         <div className="signup_main_container">
         <div id="signup_main_title">Hire-Mee</div>
@@ -90,6 +82,5 @@ export default class Login extends Component {
           </div>
         </div>
       );
-    }
   }
 }
