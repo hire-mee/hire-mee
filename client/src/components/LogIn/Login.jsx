@@ -40,7 +40,7 @@ export default class Login extends Component {
   render() {
       return (
         <div className="signup_main_container">
-        <div id="signup_main_title">Hire-Mee</div>
+        <div className="login_main_title" onClick={() => this.props.changePage('Signup')}>Hire-Mee</div>
         <div id="signup_gist">Better than your own Excel Sheet.</div>
         <div id="signup_start_here"> Start Here.</div>
           <div className="sign_up_input_container">
