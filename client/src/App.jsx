@@ -3,12 +3,13 @@ import axios from 'axios';
 
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
 
-// import MapContainer from './components/Map/Map.jsx';
+import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import Jobs from './components/jobs/Jobs.jsx';
 import Logout from './components/Logout/Logout.jsx';
-import Profile from './components/Profile/Profile.jsx'
+import Profile from './components/Profile/Profile.jsx';
+import Settings from './components/Settings/Settings.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -80,11 +81,13 @@ class App extends React.Component {
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
-
+        return (<div id='Leaderboard'></div>)
       } else if (this.state.page === 'Map') {
-        // return <MapContainer />
+        return <MapContainer />
+      } else if (this.state.page === 'Friends') {
+        return (<div id='Friends'></div>)
       } else if (this.state.page === 'Settings') {
-
+        return <Settings user={this.state.currentUser} />
       }
     } else {
       return <SignUp />
