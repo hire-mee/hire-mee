@@ -21,7 +21,11 @@ export default class Login extends Component {
         email: this.state.email,
         pass: this.state.pass
     })
-    .then(result => this.props.retrieveUserId(result.data))
+    .then(result => {
+      axios.get(`api/user/${result.data}`)
+      .then(innerResults => this.props.storeUserData(innerResults.data[0]))
+      .catch(innerErr => console.error(innerErr))
+    })
     .then(() => this.props.changePage('Jobs'))
     .catch(err => window.alert("error with handling login"))
   }

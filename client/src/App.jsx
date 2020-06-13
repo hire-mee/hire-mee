@@ -29,11 +29,11 @@ class App extends React.Component {
     this.componentStartUp = this.componentStartUp.bind(this);
     this.getData = this.getData.bind(this);
     this.changePage = this.changePage.bind(this);
-    this.retrieveUserId = this.retrieveUserId.bind(this);
+    this.storeUserData = this.storeUserData.bind(this);
   }
 
   componentDidMount() {
-    this.getData();
+    // this.getData();
   }
 
   componentStartUp() {
@@ -42,7 +42,7 @@ class App extends React.Component {
     } else if (this.state.page === 'Login') {
       return <Login 
       changePage={this.changePage}
-      retrieveUserId={this.retrieveUserId}/>
+      storeUserData={this.storeUserData}/>
     } else {
       return (
         <div>
@@ -90,22 +90,21 @@ class App extends React.Component {
       }
   }
 
-  retrieveUserId(id) {
+  storeUserData(data) {
     this.setState({
-      userId: id
-    }, () => console.log("logging in with user: " + this.state.userId))
+      currentUser: data
+    }, () => console.log(this.state.currentUser))
   }
 
 
   getData() {
-    // .get(`/api/users/:${this.state.userId}`)
     axios
       .get(`/api/user/${this.state.userId}`)
       .then(data => {
         this.setState({
           users: data.data,
           currentUser: data.data[0],
-        }, () => console.log(this.state))
+        }, () => console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', this.state.currentUser))
       })
       .catch(err => console.error(err))
   }
@@ -122,7 +121,7 @@ class App extends React.Component {
       <div>
         <div className="StartUp">
           {this.componentStartUp()}
-          <button onClick={() => this.changePage('Login')}>LOGGED IN</button>
+          <button onClick={() => this.changePage('Jobs')}>LOGGED IN</button>
         </div>
       </div>
     );
