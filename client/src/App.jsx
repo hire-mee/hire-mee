@@ -15,6 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: false,
       page: 'Signup',
       userId: '',
       users: '',
@@ -55,17 +56,17 @@ class App extends React.Component {
               <div className="company_name">Hire-Mee</div>
               <div className="Dashboard">
                 <div className="category_title">Dashboard</div>
-                <div className="category" data-letter="Jobs" onClick={() => this.changePage('Jobs')}><Briefcase color="white" /> Jobs</div>
-                <div className="category" data-letter="Statistics" onClick={() => this.changePage('Statistics')}><GraphUp color="white" /> Statistics</div>
-                <div className="category" data-letter="Leaderboard" onClick={() => this.changePage('Leaderboard')}><Trophy color="white" /> Leaderboard</div>
-                <div className="category" data-letter="Map" onClick={() => this.changePage('Map')}><GeoAlt color="white" /> Map</div>
-                <div className="category" data-letter="Friends" onClick={() => this.changePage('Friends')}><PersonFill color="white" /> Friends</div>
+                <div className="category" data-letter="Jobs" onClick={() => this.changePage('page', 'Jobs')}><Briefcase color="white" /> Jobs</div>
+                <div className="category" data-letter="Statistics" onClick={() => this.changePage('page', 'Statistics')}><GraphUp color="white" /> Statistics</div>
+                <div className="category" data-letter="Leaderboard" onClick={() => this.changePage('page', 'Leaderboard')}><Trophy color="white" /> Leaderboard</div>
+                <div className="category" data-letter="Map" onClick={() => this.changePage('page', 'Map')}><GeoAlt color="white" /> Map</div>
+                <div className="category" data-letter="Friends" onClick={() => this.changePage('page', 'Friends')}><PersonFill color="white" /> Friends</div>
               </div>
               <div className="Account">
                 <div className="category_title">Account</div>
-                <div className="category" data-letter="Settings" onClick={() => this.changePage('Settings')}><GearFill color="white" /> Settings</div>
-                <div className="category" data-letter="Pause" onClick={() => this.changePage('Pause')}><PauseFill color="white" /> Pause</div>
-                <div className="category" data-letter="Reset" onClick={() => this.changePage('Reset')}><ArrowClockwise color="white" /> Reset Week</div>
+                <div className="category" data-letter="Settings" onClick={() => this.changePage('page', 'Settings')}><GearFill color="white" /> Settings</div>
+                <div className="category" data-letter="Pause" onClick={() => this.changePage('page', 'Pause')}><PauseFill color="white" /> Pause</div>
+                <div className="category" data-letter="Reset" onClick={() => this.changePage('page', 'Reset')}><ArrowClockwise color="white" /> Reset Week</div>
                 <div className="category" data-letter="Logout" onClick={this.handleModal}><BoxArrowRight color="white" /> Logout</div>
               </div>
             </div>
@@ -99,8 +100,8 @@ class App extends React.Component {
   }
 
   componentSignOut() {
-    if (this.state.logoutBox === true) {
-      return <Logout user={this.state.currentUser} show={this.state.logoutBox} handleModal={this.handleModal} changePage={this.changePage} />
+    if (this.state.logoutBox) {
+      return (<Logout user={this.state.currentUser} show={this.state.logoutBox} handleModal={this.handleModal} changePage={this.changePage} />)
     }
   }
 
@@ -134,17 +135,11 @@ class App extends React.Component {
     .catch(err => console.error(err))
   }
 
-  changePage(e) {
+  changePage(key, value) {
     this.setState({
-      page: e.target.dataset.letter
+      [key]: value
     })
-  }
-
-  changePage(page) {
-    this.setState({
-      page: page
-    })
-  }
+  } 
 
   handleModal() {
     this.setState({logoutBox: !this.state.logoutBox})
@@ -155,7 +150,8 @@ class App extends React.Component {
       <div>
         <div className="StartUp">
           {this.componentStartUp()}
-          <button onClick={() => this.changePage('Jobs')}>LOGGED IN</button>
+          {this.componentSignOut()}
+          <button onClick={() => this.changePage('page', 'Jobs')}>LOGGED IN</button>
         </div>
       </div>
     );

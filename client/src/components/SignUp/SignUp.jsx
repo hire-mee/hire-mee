@@ -41,7 +41,7 @@ export default class SignUp extends Component {
       return (
         <div>
           <div className="signup_redirect_text">Account successfully created!</div>
-          <div id="signup_redirect_login">Login Here</div>
+          <div id="signup_redirect_login" onClick={() => this.props.changePage('page', 'Login')}>Login Here</div>
         </div>
       )
     } else {
@@ -53,16 +53,6 @@ export default class SignUp extends Component {
           <div className="sign_up_input_container">
               <div className="sign_up_create_new_account_text">Create a free account</div>
               <div className="sign_up_create_new_account_text">to start organizing.</div>
-              <div className="signup_google_container">
-                <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
-                <div id="signup_google_text">Continue with Google</div>
-              </div>
-  
-              <div className="signup_or_separator_container">
-                <hr className="signup_or_hr_tag"/>
-                <div>or</div>
-                <hr className="signup_or_hr_tag"/>
-              </div>
   
                 <div className="signup_input_form_container">
                   <form onSubmit={this.submitHandler}>
@@ -70,6 +60,7 @@ export default class SignUp extends Component {
                       <PersonFill className="signup_bootstrap_icon"/>
                       <input
                         onChange={this.inputChangeHandler}
+                        className="signup_input_field"
                         type="text"
                         name="firstname"
                         placeholder="First Name"
@@ -80,6 +71,7 @@ export default class SignUp extends Component {
                     <PersonFill className="signup_bootstrap_icon"/>
                       <input
                         onChange={this.inputChangeHandler}
+                        className="signup_input_field"
                         type="text"
                         name="lastname"
                         placeholder="Last Name"
@@ -90,6 +82,7 @@ export default class SignUp extends Component {
                       <Envelope className="signup_bootstrap_icon"/>
                       <input
                         onChange={this.inputChangeHandler}
+                        className="signup_input_field"
                         type="text"
                         name="email"
                         placeholder="Email"
@@ -100,6 +93,7 @@ export default class SignUp extends Component {
                     <Lock className="signup_bootstrap_icon"/>
                       <input
                         onChange={this.inputChangeHandler}
+                        className="signup_input_field"
                         type="password"
                         name="pass"
                         placeholder="Password"
@@ -114,7 +108,7 @@ export default class SignUp extends Component {
   
                 <div className="signup_already_signedup_container">
                   <div id="signup_already_signedup_text">Already have an account?</div>
-                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('Login')}>Login</div>
+                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('page', 'Login')}>Login</div>
                 </div>
           </div>
         </div>
@@ -122,3 +116,15 @@ export default class SignUp extends Component {
     }
   }
 }
+
+// commented out for when Google auth is correctly implemented
+// <div className="signup_google_container">
+// <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
+// <div id="signup_google_text">Continue with Google</div>
+// </div>
+
+// <div className="signup_or_separator_container">
+// <hr className="signup_or_hr_tag"/>
+// <div>or</div>
+// <hr className="signup_or_hr_tag"/>
+// </div>
