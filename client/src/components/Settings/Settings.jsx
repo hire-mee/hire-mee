@@ -39,7 +39,7 @@ class Settings extends React.Component {
 
   resetJobs(id) {
     axios
-    .put(`/api/user/${id}`, {
+    .put(`/api/userApp/${id}`, {
       appliedToday: 0,
       appliedMonth: 0
     })
@@ -50,7 +50,6 @@ class Settings extends React.Component {
   }
 
   render() {
-    console.log(`SHOWRESET: `, this.state.showReset);
     return (
       <div>
         <div className='stat_header'>Account Settings:</div>
@@ -77,7 +76,7 @@ class Settings extends React.Component {
             <Modal.Footer>
               <Button onClick={this.changeDelete} >Close</Button>
               {/* <Button onClick={() => { this.deleteAcc(this.props.user.id); this.props.logFunction(); }}> DELETE</Button> */}
-              <Button onClick={() => { this.props.logFunction(); }}> DELETE</Button>
+              <Button onClick={() => { this.props.changePage('loggedIn', !this.props.loggedIn); this.changeDelete(); this.props.changePage('page', 'Login'); }}> DELETE</Button>
             </Modal.Footer>
           </Modal>
         </div>

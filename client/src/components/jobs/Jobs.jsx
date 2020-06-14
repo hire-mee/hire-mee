@@ -2,22 +2,21 @@ import React from 'react';
 import Rejected from './Rejected.jsx';
 import Applied from './Applied.jsx';
 import Offers from './Offers.jsx';
-// import Interviews from './Interviews.jsx'
+import Interviews from './Interviews.jsx'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-
-//INSERT INTO applications(userId, category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES
+//applied  rejected interview
 class Jobs extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      jobInfo: [],
+      sortedJobInfo: false,
       show: false,
       showNew: false,
       companyName:"",
@@ -34,6 +33,41 @@ class Jobs extends React.Component{
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.openOrCloseNewApp = this.openOrCloseNewApp.bind(this);
+    this.sortJobInfo = this.sortJobInfo.bind(this);
+  }
+
+  sortJobInfo(){
+    //promise ;)
+    let jobs = this.props.jobsInfo;
+    let sortedJobInfo = {};
+
+    sortedJobInfo.applied = [];
+    sortedJobInfo.rejected = [];
+    sortedJobInfo.interview = [];
+    sortedJobInfo.offers = [];
+
+    console.log('Sorting...');
+    return new Promise((resolve, reject)=>{
+
+      jobs.map((job)=>{
+        if(job.category === 'applied'){
+          sortedJobInfo.applied.push(job)
+        } else if(job.category === 'rejected'){
+          sortedJobInfo.rejected.push(job)
+        } else if (job.category === 'interview'){
+          sortedJobInfo.interview.push(job)
+        } else if(job.category === 'offers'){
+          sortedJobInfo.offers.push(job)
+        } else if(job.category === null || job.category === undefined || job.category === ''){
+          reject(new Error('Error Sorting Job Info...'), null);
+        }
+      })
+
+      console.log('Sorted  😎');
+      resolve(sortedJobInfo);
+
+    })
+
   }
 
 
@@ -62,8 +96,7 @@ class Jobs extends React.Component{
   }
 
   changeHandler(e){
-    e.preventDefault()
-    console.log([e.target.name])
+    e.preventDefault();
 
     this.setState({
       [e.target.name]: e.target.value
@@ -111,9 +144,20 @@ class Jobs extends React.Component{
     console.log('Submitted !!!');
   }
 
+  componentDidMount(){
+
+    this.sortJobInfo()
+    .then((sortedJobs)=>{
+      this.setState({
+        sortedJobInfo: sortedJobs
+      },()=>console.log(this.state.sortedJobInfo))
+    })
+    .catch((err)=>console.error(err))
+
+  }
+
 
   render(){
-
     let style={}
     style.popup = {
       display: "flex",
@@ -132,101 +176,111 @@ class Jobs extends React.Component{
       top:"0"
     }
 
-    return (
-      <div className="jobs" style={{paddingRight:"5%"}} >
+    if(!this.state.sortedJobInfo){
+      return (
+        <div>
+          {console.log(this.state.sortedJobInfo)}
 
-        <Grid container spacing={2} >
-          <div className="column" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
-            <Applied applied={this.props.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
-          </div>
+          <CircularProgress /> Loading...
+        </div>
+      )
+    } else {
+      return (
+        <div className="jobs" style={{paddingRight:"5%"}} >
 
-          <div className="column" style={{paddingLeft:"1%",width:"25%"}}>
-            <Rejected rejected={this.props.rejected} desired={this.props.desired}/>
-          </div >
-
-          {/* <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
-            <Interviews interviews={this.props.interviews} desired={this.props.desired}/>
-          </div> */}
-
-          <div className="column" style={{paddingLeft:"1%",width:"25%"}} >
-            <Offers offers={this.props.offered} desired={this.props.desired}/>
-          </div>
-
-        </Grid>
-
-
-        <Modal
-           show={this.state.showNew}
-           onHide={() => this.openOrCloseNewApp()}
-           dialogClassName="detailed-view"
-           aria-labelledby="modal-styling-title"
-
-        >
-          <Modal.Header closeButton>
-                <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
-                  <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
-                </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <div>
-                <Grid container direction={"row"} spacing={2}  className="new-app-row-1">
-
-                  <Grid item>
-                    <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}   variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state.positionTitle}     variant="filled"/>
-                  </Grid>
-
-                  </Grid>
-
-                  <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
-
-                  <Grid item>
-                    <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink}     variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr} variant="filled"/>
-                  </Grid>
-
-                  </Grid>
-
-                  <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
-                  <Grid item>
-                    <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate}     variant="filled"/>
-                  </Grid>
-
-                  <Grid item>
-                    <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline}    variant="filled"/>
-                  </Grid>
-
-                </Grid>
-
-                <div className="button-holder" style={{paddingLeft:"75%"}}>
-                  <Button variant="contained" style={{textAlign:"center"}}color="secondary" onClick={this.submitHandler}> Submit </Button>
-                </div>
-
+          <Grid container spacing={2} >
+            <div className="column" style={{width:"25%",backgroundColor:"rgb(232, 236, 239)",paddingRight:"1%"}}>
+              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired} openPopup={this.openOrCloseNewApp}/>
             </div>
-          </Modal.Body>
 
-        </Modal>
+            <div className="column" style={{paddingLeft:"1%",width:"25%",backgroundColor:"rgb(232, 236, 239)"}}>
+              <Rejected  rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired}/>
+            </div >
 
-      </div>
-    )
+             <div style={{paddingLeft:"1%",width:"25%",backgroundColor:"rgb(232, 236, 239)"}} className="interviews-container">
+              <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired}/>
+            </div>
+
+            <div className="column" style={{paddingLeft:"1%",width:"25%",backgroundColor:"rgb(232, 236, 239)"}} >
+              <Offers offers={this.state.sortedJobInfo.offers}desired={this.props.desired}/>
+            </div>
+
+          </Grid>
+
+
+          <Modal
+             show={this.state.showNew}
+             onHide={() => this.openOrCloseNewApp()}
+             dialogClassName="detailed-view"
+             aria-labelledby="modal-styling-title"
+
+          >
+            <Modal.Header closeButton>
+                  <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
+                    <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
+                  </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div>
+                  <Grid container direction={"row"} spacing={2}  className="new-app-row-1">
+
+                    <Grid item>
+                      <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}     variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state. positionTitle}     variant="filled"/>
+                    </Grid>
+
+                    </Grid>
+
+                    <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-2">
+
+                    <Grid item>
+                      <TextField required  label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink}       variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr}  variant="filled"/>
+                    </Grid>
+
+                    </Grid>
+
+                    <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
+                    <Grid item>
+                      <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate}       variant="filled"/>
+                    </Grid>
+
+                    <Grid item>
+                      <TextField required  label="Application Deadline" name="deadline"  onChange={this.changeHandler} value={this.state.deadline}      variant="filled"/>
+                    </Grid>
+
+                  </Grid>
+
+                  <div className="button-holder" style={{paddingLeft:"75%"}}>
+                    <Button variant="contained" style={{textAlign:"center"}}color="secondary" onClick={this.submitHandler}> Submit </Button>
+                  </div>
+
+              </div>
+            </Modal.Body>
+
+          </Modal>
+
+          </div>
+      )
+    }
+
+
+
   }
 }
 
 export default Jobs;
-
-
-
