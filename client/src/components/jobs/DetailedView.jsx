@@ -55,6 +55,10 @@ let moneyTemp = (desiredSalary,jobSalary) =>{
   }
 }
 
+let deleteApplication =() =>{
+  axios.delete('/api/applications/')
+}
+
 let DetailedView = ({jobInfo, desired,show}) => {
 
 

@@ -131,7 +131,7 @@ class Jobs extends React.Component{
   submitHandler(){
 
     let newApp = {
-      userId: this.props.userid,
+      userId: parseInt(this.props.userid),
       category: "applied",
       userId: this.props.userid,
       companyName: this.state.companyName,
@@ -143,6 +143,17 @@ class Jobs extends React.Component{
       deadline: this.state.deadline,
       urlLink: this.state.urlLink,
     }
+
+    this.setState({
+      companyName:"",
+      descr:"",
+      loc:"",
+      positionTitle:"",
+      salary: "",
+      submitDate:"",
+      deadline:"",
+      urlLink:""
+    })
 
     this.formChecker(newApp)
     .then((res)=>{
@@ -156,20 +167,6 @@ class Jobs extends React.Component{
     })
     .then(()=>{
       axios.post(`/api/applications/${newApp.id}`, newApp)
-      .then(()=>{
-        this.setState({
-          companyName:"",
-          descr:"",
-          loc:"",
-          positionTitle:"",
-          salary: "",
-          submitDate:"",
-          deadline:"",
-          urlLink:"",
-        })
-
-        alert('Added New Job Application');
-      })
       .catch((err)=>{
         console.error("Error Posting:",err);
       })
@@ -179,6 +176,8 @@ class Jobs extends React.Component{
       alert(err);
     })
 
+    alert('Added New Job Application');
+    this.forceUpdate();
   }
 
   getApplications(){
@@ -206,7 +205,6 @@ class Jobs extends React.Component{
   componentDidMount(){
 
     this.getApplications()
-
 
   }
 
