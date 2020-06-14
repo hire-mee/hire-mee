@@ -3,7 +3,7 @@ CREATE DATABASE hiremee;
 
 -- User
 CREATE TABLE userinfo(
-  id BIGSERIAL PRIMARY KEY, 
+  id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL UNIQUE,
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE userinfo(
 -- APPLICATION PAGE
 CREATE TABLE applications(
   id SERIAL PRIMARY KEY,
-  userId INTEGER REFERENCES userinfo (id),
+  userId BIGINT,
   category VARCHAR(255), -- Applied/On Site/ Rejected, Offered
   color VARCHAR(255),
   companyName VARCHAR(255),
@@ -32,8 +32,8 @@ CREATE TABLE applications(
   loc VARCHAR(255),
   positionTitle VARCHAR(255),
   salary INTEGER,
-  submitDate DATE,
-  deadline DATE,
+  submitDate VARCHAR(255),
+  deadline VARCHAR(255),
   urlLink VARCHAR(255)
 );
 

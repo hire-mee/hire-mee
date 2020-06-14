@@ -23,16 +23,12 @@ style.jobs = {
 
 const Offers = (props) =>{
   return(
-    <div className="offers" style={{backgroundColor:"rgb(232, 236, 239)"}}>
-       <Grid item xs={12} >
+
+       <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
          <div className="offer-holder" style={{padding:"1em"}}>
           <p style={style.offers}>Offers</p>
           <p style={style.jobs}>{props.offers.length} Job(s)</p>
          </div>
-         <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
-            <h3 style={{textAlign:"center",cursor:"pointer"}}>+</h3>
-         </div>
-
 
         <div className="job-offers">
           {props.offers.map((jobInfo,i)=>{
@@ -42,7 +38,7 @@ const Offers = (props) =>{
           })}
         </div>
         </Grid>
-    </div>
+
 
   )
 };

@@ -45,11 +45,13 @@ router
 .get(controller.getApplications)
 
 router.route('/applications/:userId')
-.post(controller.postApplications);
+.get(controller.getApplications)
+.post(controller.postApplications)
+.put(controller.updateApplications)
+.delete(controller.deleteApplications);
 
 router
 .route('/applications/:id')
-.put(controller.updateApplications)
-.delete(controller.deleteApplications);
+
 
 module.exports = router;

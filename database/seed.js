@@ -93,7 +93,7 @@ const fakeApplicationData = () => {
   applicationData.submitDate = faker.date.between('2020-01-01', '2020-06-10').toLocaleString()
   applicationData.deadline = faker.date.between('2020-06-20', '2020-08-10').toLocaleString()
   applicationData.urlLink = randomUrl();
-  
+
   return applicationData
 }
 

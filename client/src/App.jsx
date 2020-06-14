@@ -11,18 +11,18 @@ import Logout from './components/Logout/Logout.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import Settings from './components/Settings/Settings.jsx';
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
       page: 'Signup',
-      userId: '',
+      userId: 0,
       users: '',
       currentUser: '',
       logoutBox: false,
-      jobInfo:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Software Engineer",companyName: "IBM", salary: 125000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"San Diego, Ca", urlLink:"https://www.google.com/",descr:"not real",category:'rejected' }, {positionTitle: "React Developer",companyName: "GO Daddy", salary: 90000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"not real",category:'rejected'}, {positionTitle: "Software Engineer 1",companyName: "Weedmaps", salary: 200000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"interview" }, {positionTitle: "Software Engineer 3",companyName: "Apple", salary: 200000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Remote", urlLink:"https://www.google.com/",descr:"not real",category:"offers" } ],
-
       desired: 120000,
 
     };
@@ -38,7 +38,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    // this.getData();
+    //this.getData();
   }
 
   componentStartUp() {
@@ -81,7 +81,7 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs desired={this.state.desired} jobsInfo = {this.state.jobInfo} userId={this.state.userId}/> // passed userId into Jobs module -frankie
+        return <Jobs desired={this.state.desired} userid={this.state.userId}/>
       } else if (this.state.page === 'Statistics') {
         if(this.state.currentUser.totalapplied == undefined){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)

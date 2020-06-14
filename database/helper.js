@@ -36,7 +36,7 @@ module.exports = {
   },
   signUpPostInfo(input, callback) {
     let { email , firstname, lastname, pass } = input
-    
+
     const saltHash = genPassword(pass);
     const salt = saltHash.salt;
     pass = saltHash.hash;
@@ -94,18 +94,19 @@ module.exports = {
     })
   },
   // application table
-  getApplications(id, callback) {
+  getApplications(id) {
     const queryStr = `SELECT * FROM applications WHERE userId = ${id};`;
-    db.query(queryStr, (err, results) => {
-      if (err) {
-        callback(`ERROR: `, err);
-      } else {
-        callback(null, results.rows);
-      }
+    return new Promise((resolve,reject)=>{
+      db.query(queryStr)
+      .then((results)=>{
+        resolve(results.rows);
+      })
+      .catch((err)=>{
+        reject(new Error(`Cant Find Applications...${err}`))
+      })
     })
   },
   postApplications(input) {
-    console.log(input);
     let { userId, category, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input;
     let queryStr = `INSERT INTO applications(userId, category, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES (${userId}, '${category}', '${companyName}', '${descr}', '${loc}', '${positionTitle}', ${salary}, '${submitDate}', '${deadline}', '${urlLink}');`;
     db.query(queryStr)
