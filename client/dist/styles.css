@@ -30,7 +30,9 @@ body {
   grid-area: Dashboard;
 }
 
-.Account { grid-area: Account; }
+.Account {
+  grid-area: Account;
+}
 
 .Header {
   display: grid;
@@ -422,7 +424,7 @@ body {
 
 .userProfileData {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: 1.5vw;
   padding-right: 10px;
 }
 
