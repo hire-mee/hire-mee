@@ -10,7 +10,7 @@ import Slide from '@material-ui/core/Slide';
 import Modal from 'react-bootstrap/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
-//applied  rejected interview
+
 class Jobs extends React.Component{
   constructor(props){
     super(props);
@@ -35,11 +35,12 @@ class Jobs extends React.Component{
     this.openOrCloseNewApp = this.openOrCloseNewApp.bind(this);
     this.sortJobInfo = this.sortJobInfo.bind(this);
     this.formChecker = this.formChecker.bind(this);
+    this.getApplications = this.getApplications.bind(this);
   }
 
-  sortJobInfo(){
+  sortJobInfo(apps){
     //promise ;)
-    let jobs = this.props.jobsInfo;
+    let jobs = apps;
     let sortedJobInfo = {};
 
     sortedJobInfo.applied = [];
@@ -60,7 +61,7 @@ class Jobs extends React.Component{
         } else if(job.category === 'offers'){
           sortedJobInfo.offers.push(job)
         } else if(job.category === null || job.category === undefined || job.category === ''){
-          reject(new Error('Error Sorting Job Info...'), null);
+          reject(new Error('Error Sorting Job Info...'));
         }
       })
 
@@ -108,7 +109,7 @@ class Jobs extends React.Component{
     return new Promise((resolve,reject)=>{
       for(let key in newApp){
         if(newApp[key] === ""){
-          reject(new Error('Please Fill In All Text Boxes'), null);
+          reject(new Error('Please Fill In All Text Boxes'));
         }
       }
     resolve('Forms are Gucci!');
@@ -119,7 +120,7 @@ class Jobs extends React.Component{
     return new Promise((resolve,reject)=>{
       console.log(newAppSal)
       if(Number.isNaN(newAppSal)){
-        reject(new Error('Please Type A number for salary'), null);
+        reject(new Error('Please Type A number for salary'));
         return
       } else {
         resolve('Salary Is Gucci!');
@@ -128,10 +129,11 @@ class Jobs extends React.Component{
   }
 
   submitHandler(){
+
     let newApp = {
-      id: this.props.userId,
+      userId: this.props.userid,
       category: "applied",
-      userId: this.props.userId,
+      userId: this.props.userid,
       companyName: this.state.companyName,
       descr: this.state.descr,
       loc: this.state.loc,
@@ -152,25 +154,58 @@ class Jobs extends React.Component{
         alert(err);
       })
     })
+    .then(()=>{
+      axios.post(`/api/applications/${newApp.id}`, newApp)
+      .then(()=>{
+        this.setState({
+          companyName:"",
+          descr:"",
+          loc:"",
+          positionTitle:"",
+          salary: "",
+          submitDate:"",
+          deadline:"",
+          urlLink:"",
+        })
+
+        alert('Added New Job Application');
+      })
+      .catch((err)=>{
+        console.error("Error Posting:",err);
+      })
+    })
     .catch((err)=>{
       console.log('Error Posting')
       alert(err);
     })
 
+  }
 
+  getApplications(){
+    return new Promise(()=>{
+      console.log('Getting Application Job Info....')
+      axios.get(`/api/applications/${this.props.userid}`)
+      .then((data)=>{
+        console.log('Got Application Info!',data.data)
 
+        this.sortJobInfo(data.data)
+        .then((sortedJobs)=>{
+          this.setState({
+            sortedJobInfo: sortedJobs
+          },()=>console.log('Everything is Good',this.state.sortedJobInfo))
+        })
+        .catch((err)=>console.error(err))
+
+      })
+      .catch((err)=>console.error('Error Getting Applications data',err));
+
+    })
 
   }
 
   componentDidMount(){
 
-    this.sortJobInfo()
-    .then((sortedJobs)=>{
-      this.setState({
-        sortedJobInfo: sortedJobs
-      },()=>console.log(this.state.sortedJobInfo))
-    })
-    .catch((err)=>console.error(err))
+    this.getApplications()
 
 
   }

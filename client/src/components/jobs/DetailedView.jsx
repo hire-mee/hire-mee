@@ -200,7 +200,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
                   Submitted: <br />
                 </div>
                 <div style={style.submittedDate}>
-                  {jobInfo.submitDate} <br />
+                  {jobInfo.submitdate} <br />
                 </div>
               </div>
 
@@ -210,7 +210,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
                 </div>
 
                 <div style={style.submittedDate}>
-                  {jobInfo.deadLine} <br />
+                  {jobInfo.deadline} <br />
                 </div>
               </div>
 
@@ -229,7 +229,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
             <div className = "popupholder-right" style={{paddingTop:"2em",paddingLeft:"10em"}}>
               <div className="url-holder">
                 <div stle={style.Url}>
-                  URL: <a style={style.link} target="_blank" rel="noopener noreferrer" href={`${jobInfo.urlLink}`}>{jobInfo.urlLink}</a>
+                  URL: <a style={style.link} target="_blank" rel="noopener noreferrer" href={`${jobInfo.urllink}`}>{jobInfo.urllink}</a>
                 </div>
               </div>
               <div>

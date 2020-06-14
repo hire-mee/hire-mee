@@ -21,7 +21,7 @@ style.jobs = {
   textDecoration: "none",
   fontSize:"1vw"
 };
-//top, right, bottom, and left
+
 const Applied = (props) =>{
 
 
@@ -35,7 +35,6 @@ const Applied = (props) =>{
          <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
             <h3 style={{textAlign:"center",cursor:"pointer"}} onClick={props.openPopup}>+</h3>
          </div>
-
 
         <div className="applied-jobs">
           {props.applied.map((jobInfo,i)=>{

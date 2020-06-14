@@ -29,10 +29,6 @@ const Offers = (props) =>{
           <p style={style.offers}>Offers</p>
           <p style={style.jobs}>{props.offers.length} Job(s)</p>
          </div>
-         <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
-            <h3 style={{textAlign:"center",cursor:"pointer"}}>+</h3>
-         </div>
-
 
         <div className="job-offers">
           {props.offers.map((jobInfo,i)=>{

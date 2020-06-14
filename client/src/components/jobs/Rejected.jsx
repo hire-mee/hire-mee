@@ -29,10 +29,6 @@ const Rejected = (props) =>{
           <p style={style.rejected}>Rejected</p>
           <p style={style.jobs}>{props.rejected.length} Job(s)</p>
          </div>
-         <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
-            <h3 style={{textAlign:"center",cursor:"pointer"}}>+</h3>
-         </div>
-
 
         <div className="rejected-jobs">
           {props.rejected.map((jobInfo,i)=>{

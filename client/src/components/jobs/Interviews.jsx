@@ -28,10 +28,6 @@ const Interviews = (props) =>{
            <p style={style.offers}>Interviews</p>
            <p style={style.jobs}>{props.interviews.length}</p>
           </div>
-          <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
-             <h3 style={{textAlign:"center",cursor:"pointer"}}>+</h3>
-          </div>
-
 
          <div className="job-interviews">
            {props.interviews.map((jobInfo,i)=>{
