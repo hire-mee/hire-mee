@@ -52,7 +52,8 @@ module.exports = {
     })
   },
   postApplications: (req,res) => {
-    helper.postApplications(req.body);
+    console.log(req.body)
+    helper.postApplications(req.body)
   },
   updateApplications: (req, res) => {
     helper.updateApplications(req.body, req.params.id, (err, result) => {
