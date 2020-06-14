@@ -53,7 +53,7 @@ class App extends React.Component {
         <div>
           <div className="grid-container">
             <div className="Nav">
-              <div className="company_name">Hire-Mee</div>
+              <div className="company_name" onClick={() => this.changePage('page', 'Jobs')}>Hire-Mee</div>
               <div className="Dashboard">
                 <div className="category_title">Dashboard</div>
                 <div className="category" data-letter="Jobs" onClick={() => this.changePage('page', 'Jobs')}><Briefcase color="white" /> Jobs</div>
