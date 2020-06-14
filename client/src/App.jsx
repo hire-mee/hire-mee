@@ -33,11 +33,7 @@ class App extends React.Component {
     this.storeUserData = this.storeUserData.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.componentSignOut = this.componentSignOut.bind(this);
-<<<<<<< HEAD
-
-=======
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
->>>>>>> 6f9dce8782b2b5c9daad782606cc44ea864b5f90
   }
 
 
@@ -129,11 +125,6 @@ class App extends React.Component {
       .catch(err => console.error(err))
   }
 
-<<<<<<< HEAD
-
-
-  changePage(page) {
-=======
   getUpdatedUserData(id){
     axios.get(`/api/user/${id}`)
     .then(data => {
@@ -145,7 +136,6 @@ class App extends React.Component {
   }
 
   changePage(key, value) {
->>>>>>> 6f9dce8782b2b5c9daad782606cc44ea864b5f90
     this.setState({
       [key]: value
     })

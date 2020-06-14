@@ -98,7 +98,7 @@ class Applied extends React.Component{
           urlLink:""
         })
 
-
+        this.props.render();
 
         alert('Added New Job Application');
       }
@@ -106,8 +106,6 @@ class Applied extends React.Component{
   }
 
   submitHandler(){
-
-
 
     let newApp = {
       userId: this.props.userid,

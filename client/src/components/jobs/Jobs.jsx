@@ -79,11 +79,7 @@ class Jobs extends React.Component{
 
   reRender(){
     console.log('Updating');
-    this.forceUpdate(()=>{
-      this.setState({
-        render:!this.state.render
-      })
-    });
+    this.forceUpdate();
 
   }
 

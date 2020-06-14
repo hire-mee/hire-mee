@@ -82,7 +82,7 @@ module.exports = {
     });
   },
   getApplications: (req, res) => {
-    helper.getApplications(req.params.userId)
+    helper.getApplications(req.params.id)
     .then((result)=>{
       res.status(200).send(result)
     })

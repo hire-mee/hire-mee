@@ -94,9 +94,8 @@ module.exports = {
     })
   },
   // application table
-  getApplications(id, callback) {
+  getApplications(id) {
     const queryStr = `SELECT * FROM applications WHERE userId = ${id};`;
-
     return new Promise((resolve,reject)=>{
       db.query(queryStr)
       .then((results)=>{
