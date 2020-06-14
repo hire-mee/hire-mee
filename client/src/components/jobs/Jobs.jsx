@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
 import Modal from 'react-bootstrap/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import axios from 'axios';
+
 
 //applied  rejected interview
 class Jobs extends React.Component{
@@ -24,9 +26,9 @@ class Jobs extends React.Component{
       loc:"",
       positionTitle:"",
       salary: "",
-      submitDate:"",
-      deadline:"",
-      urlLink:"",
+      submitDate: "",
+      deadline: "",
+      urlLink: "",
       xClicked: false
     }
     this.openOrClosePopup = this.openOrClosePopup.bind(this);

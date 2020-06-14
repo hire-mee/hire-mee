@@ -38,7 +38,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.getData();
+    // this.getData();
   }
 
   componentStartUp() {
@@ -53,7 +53,7 @@ class App extends React.Component {
         <div>
           <div className="grid-container">
             <div className="Nav">
-              <div className="company_name">Hire-Mee</div>
+              <div className="company_name" onClick={() => this.changePage('page', 'Jobs')}>Hire-Mee</div>
               <div className="Dashboard">
                 <div className="category_title">Dashboard</div>
                 <div className="category" data-letter="Jobs" onClick={() => this.changePage('page', 'Jobs')}><Briefcase color="white" /> Jobs</div>
@@ -81,8 +81,11 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs desired={this.state.desired} jobsInfo = {this.state.jobInfo}/>
+        return <Jobs desired={this.state.desired} jobsInfo = {this.state.jobInfo} userId={this.state.userId}/> // passed userId into Jobs module -frankie
       } else if (this.state.page === 'Statistics') {
+        if(this.state.currentUser.totalapplied == undefined){
+          return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
+        }
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
         return (<div id='Leaderboard'></div>)
@@ -111,7 +114,7 @@ class App extends React.Component {
 
   getData() {
     axios
-      // .get(`/api/user/${this.state.userId}`) //commented out for data testing
+      //.get(`/api/user/${this.state.userId}`) //commented out for data testing
       .get(`/api/users`)
       .then(data => {
         this.setState({

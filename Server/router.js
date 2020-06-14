@@ -19,7 +19,7 @@ router
 .post(controller.signUpPostInfo)
 
 router
-.route('/users')
+.route('/users') // gets data from all users from userinfo table
 .get(controller.getInfo)
 
 router
@@ -30,14 +30,15 @@ router
 router
 .route('/user/:id')
 .put(controller.updateName)
+.get(controller.getUserData)
+
+router
+.route('/email/:email') // get data from a user by EMAIL (used in Login.jsx)
+.get(controller.getUserByEmail)
 
 router
 .route('/userApp/:id')
 .put(controller.updateApps)
-
-router
-.route('/user/:id')
-.get(controller.getUserData)
 
 router
 .route('/applications/:id')
