@@ -83,6 +83,9 @@ class App extends React.Component {
       if (this.state.page === 'Jobs') {
         return <Jobs desired={this.state.desired} jobsInfo = {this.state.jobInfo} userId={this.state.userId}/> // passed userId into Jobs module -frankie
       } else if (this.state.page === 'Statistics') {
+        if(this.state.currentUser.totalapplied == undefined){
+          return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
+        }
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
         return (<div id='Leaderboard'></div>)
