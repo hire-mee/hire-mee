@@ -33,6 +33,32 @@ module.exports = {
       res.status(200).send(result)
     })
   },
+  postInfo: (req, res) => {
+    helper.postInfo(req.body, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Posted data');
+    });
+  },
+  updateInfo: (req, res) => {
+    helper.updateInfo(req.body, req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Updated data');
+    });
+  },
+  updateName: (req, res) => {
+    console.log('update name req.body', req.body)
+    console.log('update name req.params', req.params)
+    helper.updateName(req.body, req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).send(err)
+      }
+      res.status(200).send('Updated name')
+    })
+  },
   deleteInfo: (req, res) => {
     helper.deleteInfo(req.params.id, (err, result) => {
       if (err) {

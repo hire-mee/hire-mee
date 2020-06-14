@@ -41,7 +41,7 @@ export default class SignUp extends Component {
       return (
         <div>
           <div className="signup_redirect_text">Account successfully created!</div>
-          <div id="signup_redirect_login">Login Here</div>
+          <div id="signup_redirect_login" onClick={() => this.props.changePage('page', 'Login')}>Login Here</div>
         </div>
       )
     } else {

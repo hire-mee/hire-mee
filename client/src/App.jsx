@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import { Briefcase, GraphUp, Trophy, GeoAlt, PersonFill, GearFill, PauseFill, ArrowClockwise, BoxArrowRight } from 'react-bootstrap-icons';
-
 import MapContainer from './components/Map/Map.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import Login from './components/LogIn/Login.jsx';
@@ -22,14 +21,10 @@ class App extends React.Component {
       users: '',
       currentUser: '',
       logoutBox: false,
-      appliedJobs:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
-
-      rejected: [{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real" }],
-
-      offered: [{positionTitle: "Full Stack Web Developer",companyName: "Amazon", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/19/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }],
+      jobInfo:[{positionTitle: "Full Stack WebDeveloper",companyName: "Google", salary: 150000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Front End WebDeveloper",companyName: "Facebook", salary: 100000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Back End WebDeveloper",companyName: "Amazon", salary: 120000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"applied" },{positionTitle: "Software Engineer",companyName: "IBM", salary: 125000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"San Diego, Ca", urlLink:"https://www.google.com/",descr:"not real",category:'rejected' }, {positionTitle: "React Developer",companyName: "GO Daddy", salary: 90000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Los Angeles, Ca", urlLink:"https://www.google.com/",descr:"not real",category:'rejected'}, {positionTitle: "Software Engineer 1",companyName: "Weedmaps", salary: 200000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Mountain View, Ca", urlLink:"https://www.google.com/",descr:"not real",category:"interview" }, {positionTitle: "Software Engineer 3",companyName: "Apple", salary: 200000, submitDate: "06/05/2020",  deadLine: "06/2020",loc:"Remote", urlLink:"https://www.google.com/",descr:"not real",category:"offers" } ],
 
       desired: 120000,
- 
+
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
@@ -38,17 +33,19 @@ class App extends React.Component {
     this.storeUserData = this.storeUserData.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.componentSignOut = this.componentSignOut.bind(this);
+    this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
   }
 
+
   componentDidMount() {
-    // this.getData();
+    this.getData();
   }
 
   componentStartUp() {
     if (this.state.page === 'Signup') {
       return <SignUp changePage={this.changePage}/>
     } else if (this.state.page === 'Login') {
-      return <Login 
+      return <Login
       changePage={this.changePage}
       storeUserData={this.storeUserData}/>
     } else {
@@ -75,7 +72,7 @@ class App extends React.Component {
             </div>
             <div className="Header">
               <div className="Header-title">{this.state.page}</div>
-              <div className="Profile-area"><Profile userData={this.state.currentUser}/></div>
+              <div className="Profile-area"><Profile userData={this.state.currentUser} getUpdatedData={this.getUpdatedUserData}/></div>
             </div>
             <div className="Display">{this.componentHandler()}</div>
           </div>
@@ -86,7 +83,7 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs applied={this.state.appliedJobs} userId={this.state.userId} desired={this.state.desired} offered={this.state.offered} rejected={this.state.rejected}/>
+        return <Jobs desired={this.state.desired} jobsInfo = {this.state.jobInfo}/>
       } else if (this.state.page === 'Statistics') {
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
@@ -99,7 +96,7 @@ class App extends React.Component {
         return <Settings user={this.state.currentUser} />
       } else if (this.state.page === 'Signup'){
         return <SignUp/>
-      } 
+      }
   }
 
   componentSignOut() {
@@ -117,7 +114,8 @@ class App extends React.Component {
 
   getData() {
     axios
-      .get(`/api/user/${this.state.userId}`)
+      // .get(`/api/user/${this.state.userId}`) //commented out for data testing
+      .get(`/api/users`)
       .then(data => {
         this.setState({
           users: data.data,
@@ -125,6 +123,16 @@ class App extends React.Component {
         }, () => console.log(this.state.currentUser))
       })
       .catch(err => console.error(err))
+  }
+
+  getUpdatedUserData(id){
+    axios.get(`/api/user/${id}`)
+    .then(data => {
+      this.setState({
+        currentUser: data.data[0]
+      })
+    })
+    .catch(err => console.error(err))
   }
 
   changePage(key, value) {

@@ -29,6 +29,10 @@ router
 
 router
 .route('/user/:id')
+.put(controller.updateName)
+
+router
+.route('/user/:id')
 .get(controller.getUserData)
 
 router
