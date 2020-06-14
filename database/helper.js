@@ -14,7 +14,18 @@ module.exports = {
     })
   },
   getUserData(id, callback){
-    const queryStr = `SELECT * FROM userinfo where id = ${id}`
+    const queryStr = `SELECT * FROM userinfo where id = ${id};`
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        console.log(`ERROR: `, err);
+      } else {
+        callback(null, results.rows)
+      }
+    })
+  },
+  getUserByEmail(input, callback){
+    let { email } = input   //input passed from req.params in controller
+    const queryStr = `SELECT * FROM userinfo where email = '${email}';`
     db.query(queryStr, (err, results) => {
       if (err) {
         console.log(`ERROR: `, err);
@@ -27,7 +38,6 @@ module.exports = {
     let { email , firstname, lastname, pass } = input
 
     const saltHash = genPassword(pass);
-    console.log("this is salt hash from helper.js", saltHash)
     const salt = saltHash.salt;
     pass = saltHash.hash;
 
@@ -46,6 +56,28 @@ module.exports = {
     db.query(queryStr, (err, results) => {
       if (err) {
        callback(err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
+  updateName(input, id, callback) {
+    const { firstName, lastName } = input
+    const queryStr = `UPDATE userinfo SET firstName='${firstName}', lastName='${lastName}' WHERE id=${id};`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
+  updateApps(input, id, callback) {
+    const { appliedToday, appliedMonth } = input;
+    const queryStr = `UPDATE userinfo SET appliedToday=${appliedToday}, appliedMonth=${appliedMonth} WHERE id=${id};`
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
       } else {
         callback(null, results.rows);
       }

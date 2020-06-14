@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Poppins', 'Times', 'Arial', 'sans-serif';
-  overflow-x: hidden !important;
+  overflow: hidden !important;
 }
 
 
@@ -30,7 +30,9 @@ body {
   grid-area: Dashboard;
 }
 
-.Account { grid-area: Account; }
+.Account {
+  grid-area: Account;
+}
 
 .Header {
   display: grid;
@@ -78,12 +80,20 @@ body {
   margin-bottom: 0.5vh;
 }
 
+.category:hover {
+  color: rgb(56, 182, 255);
+  font-weight: 600;
+  cursor: pointer;
+  border-right: 3px solid rgb(56, 182, 255);
+}
+
 .company_name {
   font-size: 2.5vw;
   font-weight: 500;
   margin-left: 2.5vw;
   margin-top: 2vh;
   margin-bottom: 10vh;
+  cursor: pointer;
 }
 
 /*
@@ -94,37 +104,43 @@ body {
 
 .signup_main_container {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 #signup_main_title{
-  font-size: 5.5em;
+  font-size: 3.5em;
   color: #535970;
   font-weight: 600;
+}
+
+.login_main_title {
+  font-size: 3.5em;
+  color: #535970;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 #signup_gist{
   color: #a6a6a6;
   font-weight: 300;
-  font-size: 1.3em;
 }
 
 #signup_start_here{
   color: #a6a6a6;
   font-weight: 300;
   margin-top: 2%;
-  font-size: 1.2em;
   margin: 2% 0 1% 0;
 }
 
 .sign_up_create_new_account_text{
   color: #535970;
-  font-size: 1.4em;
+  font-size: 1.1em;
 }
 
 .sign_up_input_container{
   text-align: center;
-  width: fit-content;
+  min-width: 25%;
+  max-width: 30%;
   padding: 2% 5%;
   margin-left: auto;
   margin-right: auto;
@@ -134,14 +150,19 @@ body {
 
 .signup_google_container{
   text-align: center;
-  display: flex;
   background: white;
   padding: 3% 6%;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 6%;
+  max-width: inherit;
   cursor: pointer;
+}
+
+.testDiv{
+  display: flex;
+  max-width: 100%;
 }
 
 #signup_google_icon{
@@ -150,6 +171,7 @@ body {
 }
 
 #signup_google_text{
+  font-size: 0.8em;
   font-weight: 300;
   margin-left: 5%;
 }
@@ -176,6 +198,7 @@ body {
 .signup_input_icon_div {
   display: flex;
   margin: 5% 0;
+  width: auto;
   align-items: center;
   border-radius: 3px;
 }
@@ -183,20 +206,25 @@ body {
 .signup_bootstrap_icon {
   color: #d9d9d9;
   z-index: 2;
+  position: relative;
+  left: 8%;
 }
 
 .signup_input_form_container input {
   border: none;
-  padding: 1% 11%;
+  padding-left: 15%;
+  width: 90%;
   font-weight: 300;
   color: #a6a6a6;
   font-size: 0.9em;
-  margin-left: -6%;
   border-radius: 3px;
+}
+.signup_input_field:focus{
+  border: none;
 }
 
 .signup_input_form_container input::placeholder {
-  padding-left: 10%;
+  padding-left: 5%;
   margin-top: 4%;
 }
 
@@ -298,6 +326,11 @@ body {
 /* Job View====================================================================
 ===============================================================================
 */
+#emptyStatisticsMessage {
+  font-size: 1.5em;
+  margin-top: 10%;
+}
+
 
 .stat_header {
   font-size: 2.5vw;
@@ -386,6 +419,7 @@ body {
 .userProfileContainer {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .userAvatar {
@@ -397,10 +431,26 @@ body {
 
 .userProfileData {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: 1.5vw;
   padding-right: 10px;
 }
 
+.updateNameContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.updateNameInput {
+  padding: 5px;
+  margin: 5px;
+}
+
+.nameChangeConfirmation {
+  text-align: center;
+  margin-top: 3px;
+}
 #Leaderboard {
   background-image: url('Leaderboard.png');
   background-repeat: no-repeat;
