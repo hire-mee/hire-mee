@@ -6,7 +6,8 @@ class Box extends React.Component{
     super(props);
 
     this.state = {
-      show: false
+      show: false,
+      render:false
     }
     this.openOrClosePopup = this.openOrClosePopup.bind(this);
   }
@@ -44,10 +45,9 @@ class Box extends React.Component{
 
   return (
 
-    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()} style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto",cursor: "pointer",}}>
+    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()} style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto",cursor: "pointer"}}>
       <p style={style.companyTitle}>{this.props.jobInfo.companyname}</p>
       <p style={style.jobTitle}>{this.props.jobInfo.positiontitle}</p>
-      {console.log(this.props.jobInfo)}
       <DetailedView jobInfo={this.props.jobInfo} desired={this.props.desired} show={this.state.show} />
     </div>
     );
