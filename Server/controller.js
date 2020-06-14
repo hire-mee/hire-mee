@@ -42,8 +42,16 @@ module.exports = {
       res.status(200).send('Updated data');
     });
   },
+  updateApps: (req, res) => {
+    helper.updateApps(req.body, req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('UpdatedApps');
+    })
+  },
   deleteInfo: (req, res) => {
-    helper.deleteInfo(req.params.id, (err, result) => {
+    helper.deleteInfo(req.params.id, (err, results) => {
       if (err) {
         res.status(400).send(err);
       }

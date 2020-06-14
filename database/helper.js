@@ -56,6 +56,17 @@ module.exports = {
       }
     })
   },
+  updateApps(input, id, callback) {
+    const { appliedToday, appliedMonth } = input;
+    const queryStr = `UPDATE userinfo SET appliedToday=${appliedToday}, appliedMonth=${appliedMonth} WHERE id=${id};`
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
   deleteInfo(id, callback) {
     const queryStr = `DELETE FROM userinfo WHERE id=${id};`;
     db.query(queryStr, (err, results) => {

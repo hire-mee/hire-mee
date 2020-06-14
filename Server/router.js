@@ -16,6 +16,10 @@ router
 .post(controller.signUpPostInfo)
 
 router
+.route('/user/:id')
+.put(controller.updateApps)
+
+router
 .route('/users/:id')
 .put(controller.updateInfo)
 .delete(controller.deleteInfo);
@@ -23,6 +27,7 @@ router
 router
 .route('/user/:id')
 .get(controller.getUserData)
+
 router
 .route('/applications/:id')
 .get(controller.getApplications)

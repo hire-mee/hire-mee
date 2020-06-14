@@ -87,7 +87,7 @@ class App extends React.Component {
       } else if (this.state.page === 'Friends') {
         return (<div id='Friends'></div>)
       } else if (this.state.page === 'Settings') {
-        return <Settings user={this.state.currentUser} />
+        return <Settings user={this.state.currentUser} getData={this.getData} logFunction={this.logFunction.bind(this)} />
       }
     } else {
       return <SignUp />
