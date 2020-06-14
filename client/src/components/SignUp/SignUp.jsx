@@ -12,6 +12,7 @@ export default class SignUp extends Component {
       lastname: '',
       email: '',
       pass: '',
+      passVerify: '',
       redirect: false
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
@@ -28,12 +29,20 @@ export default class SignUp extends Component {
     let { firstname, lastname, email, pass } = this.state;
     e.preventDefault();
     
-    axios.post('/api/signup', {firstname, lastname, email, pass}) // TO BE RE-CONFIGURED WITH passport.js
-    .then(() => {
-      this.setState({
-        redirect: true
+    if (!email.includes("@")){
+      window.alert("Please enter a valid email address");
+      location.reload()
+    } else if (this.state.pass !== this.state.passVerify){
+      window.alert("Passwords do not match");
+      location.reload()
+    } else {
+      axios.post('/api/signup', {firstname, lastname, email, pass})
+      .then(() => {
+        this.setState({
+          redirect: true
+        })
       })
-    })
+    }
   }
 
   render() {
@@ -97,6 +106,17 @@ export default class SignUp extends Component {
                         type="password"
                         name="pass"
                         placeholder="Password"
+                        required
+                      ></input>
+                    </div>
+                    <div className="signup_input_icon_div">
+                    <Lock className="signup_bootstrap_icon"/>
+                      <input
+                        onChange={this.inputChangeHandler}
+                        className="signup_input_field"
+                        type="password"
+                        name="passVerify"
+                        placeholder="Re-enter Password"
                         required
                       ></input>
                     </div>
