@@ -24,10 +24,10 @@ export default class Login extends Component {
     .then(() => {
       axios.get(`/api/email/${this.state.email}`)
       .then(innerResults => this.props.storeUserData(innerResults.data[0]))
-      .catch(innerErr => console.error("@@@@@@@@@@@@@@@", innerErr))
+      .catch(() =>window.alert("Error with login, please check your email & password"))
     })
     .then(() => this.props.changePage('page', 'Jobs'))
-    .catch(err => window.alert("error with handling login"))
+    .catch(() => {location.reload(); window.alert("Error with login, please check your email & password")})
   }
 
   inputChangeHandler(e) {
