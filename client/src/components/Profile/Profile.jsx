@@ -104,7 +104,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log('profile area props', this.props);
+    // console.log('profile area props', this.props);
     // console.log('profile area', this.props);
     return (
       <div>
@@ -116,7 +116,6 @@ class Profile extends React.Component {
               src="https://www.w3schools.com/howto/img_avatar.png"
             ></img>
           </div>
-          {}
           <div className="userProfileData">{this.props.userData.firstname}</div>
         </div>
         <div>
