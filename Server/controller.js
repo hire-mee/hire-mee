@@ -42,16 +42,17 @@ module.exports = {
     });
   },
   getApplications: (req, res) => {
-    helper.getApplications(req.params.id, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      }
-      res.status(200).send(result);
-    });
+    helper.getApplications(req.params.userId)
+    .then((result)=>{
+      res.status(200).send(result)
+    })
+    .catch((err)=>{
+      console.error(err);
+      res.status(404).send('Cant Find Applications')
+    })
   },
   postApplications: (req,res) => {
-    console.log(req)
-    helper.postApplications(req.params.userId);
+    helper.postApplications(req.body);
   },
   updateApplications: (req, res) => {
     helper.updateApplications(req.body, req.params.id, (err, result) => {

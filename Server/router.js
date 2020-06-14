@@ -31,16 +31,14 @@ router
 .route('/user/:id')
 .get(controller.getUserData)
 
-router
-.route('/applications/:id')
-.get(controller.getApplications)
-
 router.route('/applications/:userId')
-.post(controller.postApplications);
-
-router
-.route('/applications/:id')
+.get(controller.getApplications)
+.post(controller.postApplications)
 .put(controller.updateApplications)
 .delete(controller.deleteApplications);
+
+router
+.route('/applications/:id')
+
 
 module.exports = router;
