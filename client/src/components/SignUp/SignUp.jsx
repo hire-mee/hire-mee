@@ -63,6 +63,17 @@ export default class SignUp extends Component {
               <div className="sign_up_create_new_account_text">Create a free account</div>
               <div className="sign_up_create_new_account_text">to start organizing.</div>
   
+              <div className="signup_google_container">
+                <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
+                <div id="signup_google_text">Continue with Google</div>
+              </div>
+  
+              <div className="signup_or_separator_container">
+                <hr className="signup_or_hr_tag"/>
+                <div>or</div>
+                <hr className="signup_or_hr_tag"/>
+              </div>
+
                 <div className="signup_input_form_container">
                   <form onSubmit={this.submitHandler}>
                     <div className="signup_input_icon_div">
