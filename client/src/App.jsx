@@ -36,7 +36,6 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    //this.getData();
   }
 
   componentStartUp() {
@@ -86,7 +85,11 @@ class App extends React.Component {
         }
         return <Statistics user={this.state.currentUser} />
       } else if (this.state.page === 'Leaderboard') {
-        return (<div id='Leaderboard'></div>)
+        return (
+          <div >
+            <img src="./Leaderboard.png" id='Leaderboard'></img>
+          </div>
+          )
       } else if (this.state.page === 'Map') {
         return <MapContainer />
       } else if (this.state.page === 'Friends') {
@@ -107,7 +110,7 @@ class App extends React.Component {
   storeUserData(data) {
     this.setState({
       currentUser: data,
-    }, () => console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", this.state.currentUser))
+    })
   }
 
   getData() {
