@@ -149,7 +149,6 @@ class App extends React.Component {
         <div className="StartUp">
           {this.componentStartUp()}
           {this.componentSignOut()}
-          <button onClick={() => this.changePage('page', 'Jobs')}>LOGGED IN</button>
         </div>
       </div>
     );
