@@ -19,12 +19,11 @@ class App extends React.Component {
     this.state = {
       loggedIn: false,
       page: 'Signup',
-      userId: 0,
+      userId: '',
       users: '',
       currentUser: '',
       logoutBox: false,
-      desired: 120000,
-
+      salary: 100000
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
@@ -81,7 +80,7 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs desired={this.state.desired} userid={this.state.userId}/>
+        return <Jobs desired={this.state.currentUser} userid={this.state.currentUser}/>
       } else if (this.state.page === 'Statistics') {
         if(this.state.currentUser.totalapplied == undefined){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
@@ -108,8 +107,8 @@ class App extends React.Component {
 
   storeUserData(data) {
     this.setState({
-      currentUser: data
-    }, () => console.log(this.state.currentUser))
+      currentUser: data,
+    }, () => console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", this.state.currentUser))
   }
 
   getData() {
@@ -120,7 +119,7 @@ class App extends React.Component {
         this.setState({
           users: data.data,
           currentUser: data.data[0],
-        }, () => console.log(this.state.currentUser))
+        })
       })
       .catch(err => console.error(err))
   }
@@ -146,7 +145,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('LOGGED IN', this.state.loggedIn);
     return (
       <div>
         <div className="StartUp">

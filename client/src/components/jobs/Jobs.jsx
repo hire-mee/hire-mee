@@ -80,16 +80,15 @@ class Jobs extends React.Component{
   reRender(){
     console.log('Updating');
     this.forceUpdate();
-
   }
 
 
   getApplications(){
     return new Promise(()=>{
       console.log('Getting Application Job Info....')
-      axios.get(`/api/applications/${this.props.userid}`)
+      axios.get(`/api/applications/${this.props.userid.id}`)
       .then((data)=>{
-        console.log('Got Application Info!',data.data)
+        console.log('Got Application Info!', data.data)
 
         this.sortJobInfo(data.data)
         .then((sortedJobs)=>{
@@ -107,11 +106,9 @@ class Jobs extends React.Component{
   }
 
   componentDidMount(){
-
     this.getApplications()
-    .then(()=>console.log('Everythings Good'))
-    .catch((err)=>console.error(err))
-
+    // .then(()=>console.log('((((((((((((((((((((((((((', this.props.userid))
+    // .catch((err)=>console.error(err))
   }
 
 
@@ -129,19 +126,19 @@ class Jobs extends React.Component{
 
           <Grid container spacing={2} >
             <div className="column" style={{width:"25%"}}>
-              <Applied applied={this.state.sortedJobInfo.applied} render={this.reRender} desired={this.props.desired} userid={this.props.userid}/>
+              <Applied applied={this.state.sortedJobInfo.applied} render={this.reRender} desired={this.props.desired.salary} userid={this.props.userid.id}/>
             </div>
 
             <div className="column" style={{paddingLeft:"1%",width:"25%",}}>
-              <Rejected  rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired}/>
+              <Rejected  rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired.salary}/>
             </div >
 
              <div style={{paddingLeft:"1%",width:"25%"}} className="interviews-container">
-              <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired}/>
+              <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired.salary}/>
             </div>
 
             <div className="column" style={{paddingLeft:"1%",width:"25%"}} >
-              <Offers offers={this.state.sortedJobInfo.offers}desired={this.props.desired}/>
+              <Offers offers={this.state.sortedJobInfo.offers}desired={this.props.desired.salary}/>
             </div>
 
           </Grid>
@@ -149,9 +146,6 @@ class Jobs extends React.Component{
         </div>
       )
     }
-
-
-
   }
 }
 

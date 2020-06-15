@@ -26,7 +26,7 @@ export default class Login extends Component {
       .then(innerResults => this.props.storeUserData(innerResults.data[0]))
       .catch(() =>window.alert("Error with login, please check your email & password"))
     })
-    .then(() => this.props.changePage('page', 'Jobs'))
+    .then(() => this.props.changePage('page', 'Statistics'))
     .catch(() => {location.reload(); window.alert("Error with login, please check your email & password")})
   }
 
