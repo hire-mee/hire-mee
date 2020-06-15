@@ -26,7 +26,7 @@ const Interviews = (props) =>{
         <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
           <div className="interviews-holder" style={{padding:"1em"}}>
            <p style={style.offers}>Interviews</p>
-           <p style={style.jobs}>{props.interviews.length}</p>
+           <p style={style.jobs}>{props.interviews.length + " Interview(s)"}</p>
           </div>
 
          <div className="job-interviews">

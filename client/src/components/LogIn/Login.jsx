@@ -26,7 +26,7 @@ export default class Login extends Component {
       .then(innerResults => this.props.storeUserData(innerResults.data[0]))
       .catch(() =>window.alert("Error with login, please check your email & password"))
     })
-    .then(() => this.props.changePage('page', 'Jobs'))
+    .then(() => this.props.changePage('page', 'Statistics'))
     .catch(() => {location.reload(); window.alert("Error with login, please check your email & password")})
   }
 
@@ -44,7 +44,21 @@ export default class Login extends Component {
         <div id="signup_start_here"> Welcome back!</div>
           <div className="sign_up_input_container">
               <div className="sign_up_create_new_account_text">Log in to continue.</div>
+
                 <div className="signup_input_form_container">
+
+                    <div className="signup_google_container">
+                    <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
+                    <div id="signup_google_text">Log in with Google</div>
+                  </div>
+      
+                  <div className="signup_or_separator_container">
+                    <hr className="signup_or_hr_tag"/>
+                    <div>or</div>
+                    <hr className="signup_or_hr_tag"/>
+                  </div>
+
+
                   <form onSubmit={this.submitHandler}>
                     <div className="signup_input_icon_div">
                       <Envelope className="signup_bootstrap_icon"/>
@@ -75,9 +89,18 @@ export default class Login extends Component {
                 </div>
                   </form>
                 </div>
-
           </div>
         </div>
       );
   }
 }
+
+
+// background: white;
+//     padding: 3% 6%;
+//     border-radius: 4px;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-top: 6%;
+//     cursor: pointer;
+//     display: flex;

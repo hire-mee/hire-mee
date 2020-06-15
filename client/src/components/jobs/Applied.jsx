@@ -97,9 +97,7 @@ class Applied extends React.Component{
           deadline:"",
           urlLink:""
         })
-
-        this.props.render();
-
+        this.props.render()
         alert('Added New Job Application');
       }
     })

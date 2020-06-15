@@ -44,8 +44,9 @@ router
 .route('/applications/:id')
 .get(controller.getApplications)
 
-router.route('/applications/:userId')
-.get(controller.getApplications)
+router
+.route('/applications/:userId')
+// .get(controller.getApplications)
 .post(controller.postApplications)
 .put(controller.updateApplications)
 .delete(controller.deleteApplications);
