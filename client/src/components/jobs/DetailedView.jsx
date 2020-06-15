@@ -22,11 +22,11 @@ let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
 
 let plusOrMinus = (desiredSalary,jobSalary) =>{
   if(desiredSalary < jobSalary){
-    return '+'
+    return '+$'
   } else if(desiredSalary === jobSalary){
     return '';
   } else {
-    return '-';
+    return '-$';
   }
 };
 

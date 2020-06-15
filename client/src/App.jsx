@@ -22,8 +22,7 @@ class App extends React.Component {
       userId: '',
       users: '',
       currentUser: '',
-      logoutBox: false,
-      salary: 100000
+      logoutBox: false
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
