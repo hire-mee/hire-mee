@@ -126,7 +126,7 @@ class Jobs extends React.Component{
 
           <Grid container spacing={2} >
             <div className="column" style={{width:"25%"}}>
-              <Applied applied={this.state.sortedJobInfo.applied} render={this.reRender} desired={this.props.desired.salary} userid={this.props.userid.id}/>
+              <Applied applied={this.state.sortedJobInfo.applied} render={this.reRender} desired={this.props.desired.salary} userid={this.props.userid.id} changePage={this.props.changePage}/>
             </div>
 
             <div className="column" style={{paddingLeft:"1%",width:"25%",}}>

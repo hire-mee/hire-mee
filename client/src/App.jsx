@@ -80,7 +80,7 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs desired={this.state.currentUser} userid={this.state.currentUser}/>
+        return <Jobs desired={this.state.currentUser} userid={this.state.currentUser} changePage={this.changePage}/>
       } else if (this.state.page === 'Statistics') {
         if(this.state.currentUser.totalapplied == undefined){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
