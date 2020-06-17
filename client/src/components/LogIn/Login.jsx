@@ -19,6 +19,7 @@ export default class Login extends Component {
     e.preventDefault();
     axios.post('/api/login', {
 <<<<<<< HEAD
+<<<<<<< HEAD
         email: this.state.email,
         pass: this.state.pass
     })
@@ -31,6 +32,8 @@ export default class Login extends Component {
     .catch(() => (location.reload()))
     // .catch(err => window.alert("error with handling login"))
 =======
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
       email: this.state.email,
       pass: this.state.pass
     })
@@ -41,7 +44,10 @@ export default class Login extends Component {
     })
     .then(() => this.props.changePage('page', 'Statistics'))
     .catch(() => {location.reload(); window.alert("Error with login, please check your email & password")})
+<<<<<<< HEAD
 >>>>>>> 333e06b5a5abf08554eb819cb645904cb592c937
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
   }
 
   inputChangeHandler(e) {
@@ -59,9 +65,12 @@ export default class Login extends Component {
           <div className="sign_up_input_container">
               <div className="sign_up_create_new_account_text">Log in to continue.</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
   
                 <div className="signup_input_form_container">
 =======
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
 
                 <div className="signup_input_form_container">
 
@@ -77,7 +86,10 @@ export default class Login extends Component {
                   </div>
 
 
+<<<<<<< HEAD
 >>>>>>> 333e06b5a5abf08554eb819cb645904cb592c937
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
                   <form onSubmit={this.submitHandler}>
                     <div className="signup_input_icon_div">
                       <Envelope className="signup_bootstrap_icon"/>
@@ -100,6 +112,7 @@ export default class Login extends Component {
                       ></input>
                     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                     <div className="signup_button_container">
                     <button id="signup_signup_button" onClick={this.handleLogin}>Login</button>
@@ -113,6 +126,8 @@ export default class Login extends Component {
                 </div>
 
 =======
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
                     <div className="signup_button_container">
                     <button id="signup_signup_button" onClick={this.handleLogin}>Login</button>
                   </div>
@@ -122,12 +137,16 @@ export default class Login extends Component {
                 </div>
                   </form>
                 </div>
+<<<<<<< HEAD
 >>>>>>> 333e06b5a5abf08554eb819cb645904cb592c937
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
           </div>
         </div>
       );
   }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 // commented out for when Google auth is correctly implemented
 // 
@@ -142,6 +161,8 @@ export default class Login extends Component {
 //                 <hr className="signup_or_hr_tag"/>
 //               </div>
 =======
+=======
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3
 
 
 // background: white;
@@ -151,5 +172,9 @@ export default class Login extends Component {
 //     margin-right: auto;
 //     margin-top: 6%;
 //     cursor: pointer;
+<<<<<<< HEAD
 //     display: flex;
 >>>>>>> 333e06b5a5abf08554eb819cb645904cb592c937
+=======
+//     display: flex;
+>>>>>>> 51944d10f2f4485b82693ecabeaf7a1329cb5ce3

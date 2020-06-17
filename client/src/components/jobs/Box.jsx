@@ -6,7 +6,8 @@ class Box extends React.Component{
     super(props);
 
     this.state = {
-      show: false
+      show: false,
+      render:false
     }
     this.openOrClosePopup = this.openOrClosePopup.bind(this);
   }
@@ -27,9 +28,8 @@ class Box extends React.Component{
       textDecoration: "none",
       lineHeight: "1.4",
       fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-      fontSize: "31.244px",
       textTransform: "none",
-      fontSize:"2vw"
+      fontSize:"1.5vw"
     };
 
   style.jobTitle = {
@@ -39,16 +39,15 @@ class Box extends React.Component{
     textDecoration: "none",
     lineHeight: "1.4",
     fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-    fontSize: "18.3468px",
     textTransform: "none",
     fontSize:"1vw"
   }
 
   return (
-    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()} style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto",cursor: "pointer",}}>
-      <p style={style.companyTitle}>{this.props.jobInfo.companyName}</p>
-      <p style={style.jobTitle}>{this.props.jobInfo.positionTitle}</p>
 
+    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()} style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto",cursor: "pointer"}}>
+      <p style={style.companyTitle}>{this.props.jobInfo.companyname}</p>
+      <p style={style.jobTitle}>{this.props.jobInfo.positiontitle}</p>
       <DetailedView jobInfo={this.props.jobInfo} desired={this.props.desired} show={this.state.show} />
     </div>
     );

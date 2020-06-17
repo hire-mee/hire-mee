@@ -22,11 +22,11 @@ let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
 
 let plusOrMinus = (desiredSalary,jobSalary) =>{
   if(desiredSalary < jobSalary){
-    return '+'
+    return '+$'
   } else if(desiredSalary === jobSalary){
     return '';
   } else {
-    return '-';
+    return '-$';
   }
 };
 
@@ -53,6 +53,10 @@ let moneyTemp = (desiredSalary,jobSalary) =>{
       </div>
     );
   }
+}
+
+let deleteApplication =() =>{
+  axios.delete('/api/applications/')
 }
 
 let DetailedView = ({jobInfo, desired,show}) => {
@@ -178,13 +182,13 @@ let DetailedView = ({jobInfo, desired,show}) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
-            <h1 style={style.jobTitle} >{jobInfo.positionTitle}</h1>
+            <h1 style={style.jobTitle} >{jobInfo.positiontitle}</h1>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{borderRadius: "50px"}}>
           <div className="popupholder" style={{paddingLeft: "60px",paddingBottom:"100px",letterSpacing: "0.1em",display: "flex",flexDirection:"row"}}>
             <div className = "popupholder-left" >
-              <h2 style={style.company}>{jobInfo.companyName}</h2><br />
+              <h2 style={style.company}>{jobInfo.companyname}</h2><br />
 
               <div style={style.salary}>
                 Salary: <br />
@@ -200,7 +204,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
                   Submitted: <br />
                 </div>
                 <div style={style.submittedDate}>
-                  {jobInfo.submitDate} <br />
+                  {jobInfo.submitdate} <br />
                 </div>
               </div>
 
@@ -210,7 +214,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
                 </div>
 
                 <div style={style.submittedDate}>
-                  {jobInfo.deadLine} <br />
+                  {jobInfo.deadline} <br />
                 </div>
               </div>
 
@@ -229,7 +233,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
             <div className = "popupholder-right" style={{paddingTop:"2em",paddingLeft:"10em"}}>
               <div className="url-holder">
                 <div stle={style.Url}>
-                  URL: <a style={style.link} target="_blank" rel="noopener noreferrer" href={`${jobInfo.urlLink}`}>{jobInfo.urlLink}</a>
+                  URL: <a style={style.link} target="_blank" rel="noopener noreferrer" href={`${jobInfo.urllink}`}>Click Me To Go To Job posting</a>
                 </div>
               </div>
               <div>

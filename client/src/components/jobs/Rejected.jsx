@@ -23,16 +23,12 @@ style.jobs = {
 
 const Rejected = (props) =>{
   return(
-    <div className="rejected" style={{backgroundColor:"rgb(232, 236, 239)"}} >
-       <Grid item xs={12} >
+
+       <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
          <div className="rejected-holder" style={{padding:"1em"}}>
           <p style={style.rejected}>Rejected</p>
           <p style={style.jobs}>{props.rejected.length} Job(s)</p>
          </div>
-         <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
-            <h3 style={{textAlign:"center",cursor:"pointer"}}>+</h3>
-         </div>
-
 
         <div className="rejected-jobs">
           {props.rejected.map((jobInfo,i)=>{
@@ -44,7 +40,7 @@ const Rejected = (props) =>{
 
 
         </Grid>
-    </div>
+
 
   )
 }

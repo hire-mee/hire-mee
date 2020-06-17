@@ -11,9 +11,7 @@ class Logout extends React.Component {
   render() {
     return (
       <div>
-        {/* <Button> Open Modal</Button> */}
         <Modal show={this.props.show} onHide={() => console.log('Hide')}>
-          {/* <Modal.Header>Modal Head Part</Modal.Header> */}
           <Modal.Body>
             <br/>
             Hello {this.props.user.firstname}, are you sure you want to log out?
@@ -21,8 +19,8 @@ class Logout extends React.Component {
             <br/>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.handleModal} >Close</Button>
-            <Button onClick={() => { this.props.logFunction(); this.props.handleModal(); this.props.defaultPage(); }}> Log Out</Button>
+            <Button onClick={this.props.handleModal}>Close</Button>
+            <Button onClick={() => {this.props.handleModal(); this.props.changePage('loggedIn', !this.props.loggedIn); this.props.changePage('page', 'Login');}}> Log Out</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -31,3 +29,4 @@ class Logout extends React.Component {
 }
 
 export default Logout;
+
