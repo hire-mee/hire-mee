@@ -104,7 +104,7 @@ body {
 
 .signup_main_container {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 #signup_main_title{
@@ -366,8 +366,8 @@ body {
 .stat_pie {
   margin-top: 5vh;
   position: relative;
-  height:35vh;
-  width:21vw;
+  height:40vh;
+  width:24vw;
   color: #535970;
 }
 
