@@ -480,3 +480,11 @@ body {
   height: 85vh;
   width: 50vw;
 }
+
+.setting_reset {
+  margin-left: 15vw;
+}
+
+.setting_delete {
+  margin-left: 34.6vw;
+}

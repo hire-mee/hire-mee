@@ -54,7 +54,7 @@ class Settings extends React.Component {
       <div>
         <div className='stat_header'>Account Settings:</div>
         <div className='stat_info'>Reset number of applied jobs this month
-          <span><Button onClick={this.changeReset}>Reset</Button></span>
+          <span className='setting_reset'><Button onClick={this.changeReset}>Reset</Button></span>
           <Modal show={this.state.showReset} onHide={() => console.log('Hide')}>
             {/* <Modal.Header>Modal Head Part</Modal.Header> */}
             <Modal.Body>
@@ -67,7 +67,7 @@ class Settings extends React.Component {
           </Modal>
         </div>
         <div className='stat_info'>Delete account
-        <span><Button onClick={this.changeDelete}>Delete</Button></span>
+        <span className='setting_delete'><Button onClick={this.changeDelete}>Delete</Button></span>
         <Modal show={this.state.showDelete} onHide={() => console.log('Hide')}>
             {/* <Modal.Header>Modal Head Part</Modal.Header> */}
             <Modal.Body>
