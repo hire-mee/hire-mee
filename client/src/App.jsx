@@ -87,13 +87,19 @@ class App extends React.Component {
       } else if (this.state.page === 'Leaderboard') {
         return (
           <div >
+            <h1>Under Construction!</h1>
             <img src="./Leaderboard.png" id='Leaderboard'></img>
           </div>
           )
       } else if (this.state.page === 'Map') {
         return <MapContainer />
       } else if (this.state.page === 'Friends') {
-        return (<div id='Friends'></div>)
+        return (
+          <div>
+            <h1>Under Construction!</h1> 
+        <div id='Friends'> </div>
+        </div>
+        )
       } else if (this.state.page === 'Settings') {
         return <Settings user={this.state.currentUser} getData={this.getData} changePage={this.changePage} loggedIn={this.state.loggedIn} handleModal={this.handleModal}/>
       } else if (this.state.page === 'Signup'){
