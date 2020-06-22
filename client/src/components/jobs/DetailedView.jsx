@@ -243,6 +243,11 @@ let DetailedView = ({jobInfo, desired,show}) => {
                 <div style={style.submittedDate}>
                   {jobInfo.descr}
                 </div>
+                <ul className="detailedView_update_button_container">
+                  <button className="detailedView_update_rejected">Rejected</button>
+                  <button className="detailedView_update_interviews">Interviews</button>
+                  <button className="detailedView_update_offers">Offers</button>
+                </ul>
               </div>
 
             </div>

@@ -155,7 +155,7 @@ class Applied extends React.Component{
             <p style={style.jobs}>{this.props.applied.length} Job(s)</p>
           </div>
 
-          <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto"}}>
+          <div className="plus-holder" style={{backgroundColor:"white",width:"65%", paddingLeft:"5%",margin: "0 auto", borderRadius: "3px"}}>
            <h3 style={{textAlign:"center",cursor:"pointer"}} onClick={this.openOrCloseNewApp}>+</h3>
           </div>
 

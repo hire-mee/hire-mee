@@ -13,7 +13,6 @@ body {
   grid-template-rows: 0.2fr 1.6fr;
   grid-template-areas: "Nav Header" "Nav Display";
   color: #535970;
-
 }
 
 .Nav {
@@ -139,8 +138,7 @@ body {
 
 .sign_up_input_container{
   text-align: center;
-  min-width: 25%;
-  max-width: 30%;
+  max-width: 445px;
   padding: 2% 5%;
   margin-left: auto;
   margin-right: auto;
@@ -487,4 +485,55 @@ body {
 
 .setting_delete {
   margin-left: 34.6vw;
+}
+
+
+/* Detailed View
+===========================================================
+*/
+
+.detailedView_update_button_container {
+  display: grid;
+}
+
+.detailedView_update_rejected {
+  border: none;
+  border-radius: 4px;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
+
+.detailedView_update_interviews {
+  border: none;
+  border-radius: 4px;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
+
+.detailedView_update_offers {
+  border: none;
+  border-radius: 4px;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
+
+.detailedView_update_rejected:hover{
+  cursor: pointer;
+  background-color: #f50057;
+  color: white;
+}
+
+.detailedView_update_interviews:hover{
+  cursor: pointer;
+  background-color:rgb(56, 182, 255);
+  color: white;
+}
+
+.detailedView_update_offers:hover{
+  cursor: pointer;
+  background-color:rgb(32, 187, 136);
+  color: white;
 }
