@@ -486,3 +486,19 @@ body {
 .setting_delete {
   margin-left: 34.6vw;
 }
+
+
+/* Detailed View
+===========================================================
+*/
+
+.detailedView_update_button_container {
+  display: grid;
+}
+
+.detailedView_update_buttons {
+  border: none;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
