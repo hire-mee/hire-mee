@@ -51,8 +51,5 @@ router
 .put(controller.updateApplications)
 .delete(controller.deleteApplications);
 
-router
-.route('/applications/:id')
-
 
 module.exports = router;
