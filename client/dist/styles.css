@@ -496,9 +496,44 @@ body {
   display: grid;
 }
 
-.detailedView_update_buttons {
+.detailedView_update_rejected {
   border: none;
+  border-radius: 4px;
   padding: 2% 10%;
   max-width: 150px;
   margin-top: 10%;
+}
+
+.detailedView_update_interviews {
+  border: none;
+  border-radius: 4px;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
+
+.detailedView_update_offers {
+  border: none;
+  border-radius: 4px;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
+
+.detailedView_update_rejected:hover{
+  cursor: pointer;
+  background-color: #f50057;
+  color: white;
+}
+
+.detailedView_update_interviews:hover{
+  cursor: pointer;
+  background-color:rgb(56, 182, 255);
+  color: white;
+}
+
+.detailedView_update_offers:hover{
+  cursor: pointer;
+  background-color:rgb(32, 187, 136);
+  color: white;
 }
