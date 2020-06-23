@@ -96,11 +96,11 @@ module.exports = {
     helper.postApplications(req.body)
   },
   updateApplications: (req, res) => {
-    helper.updateApplications(req.body, req.params.id, (err, result) => {
+    helper.updateApplications(req.body, req.params.userId, (err, result) => {
       if (err) {
         res.status(400).send(err);
       }
-      res.status(200).send('Updated application data');
+      res.status(200).send(result);
     });
   },
   deleteApplications: (req, res) => {
