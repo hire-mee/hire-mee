@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import axios from 'axios';
 
 
 let calculateSalaryDifference = (desiredSalary,jobSalary)=>{
@@ -55,12 +56,32 @@ let moneyTemp = (desiredSalary,jobSalary) =>{
   }
 }
 
-let deleteApplication =() =>{
+
+let deleteApplication = () =>{
   axios.delete('/api/applications/')
 }
 
+
+
 let DetailedView = ({jobInfo, desired,show}) => {
 
+  let updateApplicationStatus = (status) => {
+    axios.put(`/api/update/${jobInfo.id}`, {
+      userid: jobInfo.userid,
+      category: status,
+      color: jobInfo.color,
+      companyname: jobInfo.companyname,
+      descr: jobInfo.descr,
+      loc: jobInfo.loc,
+      positiontitle: jobInfo.positiontitle,
+      salary: jobInfo.salary,
+      submitdate: jobInfo.submitdate,
+      deadline: jobInfo.deadline,
+      urllink: jobInfo.urllink
+    })
+    .then(()=> console.log(`moved application to ${status}`))
+    .catch(err => console.log(err))
+  }
 
   const style = {};
 
@@ -244,9 +265,9 @@ let DetailedView = ({jobInfo, desired,show}) => {
                   {jobInfo.descr}
                 </div>
                 <ul className="detailedView_update_button_container">
-                  <button className="detailedView_update_rejected">Rejected</button>
-                  <button className="detailedView_update_interviews">Interviews</button>
-                  <button className="detailedView_update_offers">Offers</button>
+                  <button className="detailedView_update_rejected" onClick={() => updateApplicationStatus('rejected')}>Rejected</button>
+                  <button className="detailedView_update_interviews" onClick={() => updateApplicationStatus('interview')}>Interviews</button>
+                  <button className="detailedView_update_offers" onClick={() => updateApplicationStatus('offers')}>Offers</button>
                 </ul>
               </div>
 

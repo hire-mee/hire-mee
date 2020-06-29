@@ -77,6 +77,8 @@ class Applied extends React.Component{
     })
   }
 
+
+
   salaryChecker(newAppSal){
     return new Promise((resolve,reject)=>{
       console.log(newAppSal)

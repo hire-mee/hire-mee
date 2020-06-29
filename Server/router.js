@@ -48,8 +48,10 @@ router
 .route('/applications/:userId')
 // .get(controller.getApplications)
 .post(controller.postApplications)
-.put(controller.updateApplications)
 .delete(controller.deleteApplications);
 
+router
+.route('/update/:id')
+.put(controller.updateApplications)
 
 module.exports = router;

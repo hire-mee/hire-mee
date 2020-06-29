@@ -116,7 +116,7 @@ module.exports = {
   updateApplications(input, id, callback) {
     const { category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
     // const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyName='${companyName}', descr='${descr}', loc='${loc}', positionTitle='${positionTitle}', salary=${salary}, submitDate='${submitDate}', deadline='${deadline}', urlLink='${urlLink}' WHERE userId=${id}`;
-    const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyname='${companyName}', descr='${descr}', loc='${loc}', positiontitle='${positionTitle}', salary=${salary}, submitdate='${submitDate}', deadline='${deadline}', urllink='${urlLink}' WHERE userid=${id}`;
+    const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyname='${companyName}', descr='${descr}', loc='${loc}', positiontitle='${positionTitle}', salary=${salary}, submitdate='${submitDate}', deadline='${deadline}', urllink='${urlLink}' WHERE id=${id}`;
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);
