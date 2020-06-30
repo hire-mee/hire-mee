@@ -2,7 +2,7 @@ const helper = require('../database/helper.js');
 
 module.exports = {
   loginSuccess: (req, res) => {
-    res.status(200).send('1'); // hardcoded for the time being
+    res.status(200).end();
   },
   loginFailure: (req, res) => {
     res.status(200).redirect('localhost:3000');
@@ -96,12 +96,15 @@ module.exports = {
     helper.postApplications(req.body)
   },
   updateApplications: (req, res) => {
-    helper.updateApplications(req.body, req.params.id, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      }
-      res.status(200).send('Updated application data');
-    });
+    helper.updateApplications(req.body, req.params.id)
+    .then((result)=>{
+      res.status(200).send(result)
+      res.end();
+    })
+    .catch((err)=>{
+      console.error(err);
+      res.status(404).send(err)
+    })
   },
   deleteApplications: (req, res) => {
     helper.deleteApplications(req.params.id, (err, results) => {
