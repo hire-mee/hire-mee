@@ -66,18 +66,19 @@ let deleteApplication = () =>{
 let DetailedView = ({jobInfo, desired,show}) => {
 
   let updateApplicationStatus = (status) => {
+    console.log("HERES JOB INFO", jobInfo)
     axios.put(`/api/update/${jobInfo.id}`, {
       userid: jobInfo.userid,
-      category: status,
+      category: 'rejected',
       color: jobInfo.color,
-      companyname: jobInfo.companyname,
+      companyName: jobInfo.companyname,
       descr: jobInfo.descr,
       loc: jobInfo.loc,
-      positiontitle: jobInfo.positiontitle,
+      positionTitle: jobInfo.positiontitle,
       salary: jobInfo.salary,
-      submitdate: jobInfo.submitdate,
+      submitDate: jobInfo.submitdate,
       deadline: jobInfo.deadline,
-      urllink: jobInfo.urllink
+      urlLink: jobInfo.urllink
     })
     .then(()=> console.log(`moved application to ${status}`))
     .catch(err => console.log(err))

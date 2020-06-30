@@ -96,7 +96,7 @@ module.exports = {
   // application table
   getApplications(id) {
     const queryStr = `SELECT * FROM applications WHERE userId = ${id};`;
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve,reject) => {
       db.query(queryStr)
       .then((results)=>{
         resolve(results.rows);
@@ -113,16 +113,18 @@ module.exports = {
     .then(()=>console.log('Successfully Posted New Application'))
     .catch((err)=>console.error('Error Posting Application:',err))
   },
-  updateApplications(input, id, callback) {
+  updateApplications(input, id) {
     const { category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
     // const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyName='${companyName}', descr='${descr}', loc='${loc}', positionTitle='${positionTitle}', salary=${salary}, submitDate='${submitDate}', deadline='${deadline}', urlLink='${urlLink}' WHERE userId=${id}`;
-    const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyname='${companyName}', descr='${descr}', loc='${loc}', positiontitle='${positionTitle}', salary=${salary}, submitdate='${submitDate}', deadline='${deadline}', urllink='${urlLink}' WHERE id=${id}`;
-    db.query(queryStr, (err, results) => {
-      if (err) {
-        callback(`ERROR: `, err);
-      } else {
-        callback(null, results.rows);
-      }
+    const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyname='${companyName}', descr='${descr}', loc='${loc}', positiontitle='${positionTitle}', salary=${salary}, submitdate='${submitDate}', deadline='${deadline}', urlLink='${urlLink}' WHERE id=${id};`;
+    return new Promise((resolve, reject) => {
+      db.query(queryStr)
+      .then((results)=>{
+        console.log("Application updated!")
+      })
+      .catch((err)=>{
+       console.log(err)
+      })
     })
   },
   deleteApplications(id, callback) {

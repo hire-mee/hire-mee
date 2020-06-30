@@ -96,12 +96,15 @@ module.exports = {
     helper.postApplications(req.body)
   },
   updateApplications: (req, res) => {
-    helper.updateApplications(req.body, req.params.id, (err, result) => {
-      if (err) {
-        res.status(400).send(err);
-      }
-      res.status(200).send('Updated application!');
-    });
+    helper.updateApplications(req.body, req.params.id)
+    .then((result)=>{
+      res.status(200).send(result)
+      res.end();
+    })
+    .catch((err)=>{
+      console.error(err);
+      res.status(404).send(err)
+    })
   },
   deleteApplications: (req, res) => {
     helper.deleteApplications(req.params.id, (err, results) => {
