@@ -69,7 +69,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
     console.log("HERES JOB INFO", jobInfo)
     axios.put(`/api/update/${jobInfo.id}`, {
       userid: jobInfo.userid,
-      category: 'rejected',
+      category: status,
       color: jobInfo.color,
       companyName: jobInfo.companyname,
       descr: jobInfo.descr,
