@@ -537,3 +537,14 @@ body {
   background-color:rgb(32, 187, 136);
   color: white;
 }
+
+/*======================
+BOX COMPONENT
+=======================*/
+.applied-box-holder{
+background-color: white;
+width: 65%;
+padding-left: 5%;
+margin: 0 auto;
+cursor: pointer
+}
