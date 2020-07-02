@@ -43,12 +43,13 @@ router
 router
 .route('/applications/:id')
 .get(controller.getApplications)
+.delete(controller.deleteApplications);
 
 router
 .route('/applications/:userId')
 // .get(controller.getApplications)
 .post(controller.postApplications)
-.delete(controller.deleteApplications);
+
 
 router
 .route('/update/:id')

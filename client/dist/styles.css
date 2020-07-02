@@ -520,6 +520,14 @@ body {
   margin-top: 10%;
 }
 
+.detailedView_delete_app {
+  border: none;
+  border-radius: 4px;
+  padding: 2% 10%;
+  max-width: 150px;
+  margin-top: 10%;
+}
+
 .detailedView_update_rejected:hover{
   cursor: pointer;
   background-color: #f50057;
@@ -536,4 +544,20 @@ body {
   cursor: pointer;
   background-color:rgb(32, 187, 136);
   color: white;
+}
+
+.detailedView_delete_app:hover{
+  cursor: pointer;
+  background-color: #ca1a1a;
+  color: white;
+}
+/*======================
+BOX COMPONENT
+=======================*/
+.applied-box-holder{
+background-color: white;
+width: 65%;
+padding-left: 5%;
+margin: 0 auto;
+cursor: pointer
 }
