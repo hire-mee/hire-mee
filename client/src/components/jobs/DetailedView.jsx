@@ -82,11 +82,14 @@ let DetailedView = ({jobInfo, desired,show}) => {
   }
 
   let deleteApplication = () =>{
-    axios.delete(`/api/applications/${jobInfo.userid}`)
+    let deletePrompt = window.confirm("Are you sure you want to delete this application?");
+    if (deletePrompt){
+      axios.delete(`/api/applications/${jobInfo.userid}`)
     .then(res => {
       window.alert("Application Deleted")
     })
     .catch(err => {console.log(err)})
+    }
   }
   
   const style = {};

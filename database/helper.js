@@ -128,7 +128,7 @@ module.exports = {
     })
   },
   deleteApplications(id, callback) {
-    const queryStr = `DELETE FROM applications WHERE userId=${id}`;
+    const queryStr = `DELETE FROM applications WHERE id=${id}`;
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);
