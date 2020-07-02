@@ -57,16 +57,13 @@ let moneyTemp = (desiredSalary,jobSalary) =>{
 }
 
 
-let deleteApplication = () =>{
-  axios.delete('/api/applications/')
-}
+
 
 
 
 let DetailedView = ({jobInfo, desired,show}) => {
 
   let updateApplicationStatus = (status) => {
-    console.log("HERES JOB INFO", jobInfo)
     axios.put(`/api/update/${jobInfo.id}`, {
       userid: jobInfo.userid,
       category: status,
@@ -84,6 +81,14 @@ let DetailedView = ({jobInfo, desired,show}) => {
     .catch(err => console.log(err))
   }
 
+  let deleteApplication = () =>{
+    axios.delete(`/api/applications/${jobInfo.userid}`)
+    .then(res => {
+      window.alert("Application Deleted")
+    })
+    .catch(err => {console.log(err)})
+  }
+  
   const style = {};
 
   style.jobTitle = {
@@ -269,6 +274,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
                   <button className="detailedView_update_rejected" onClick={() => updateApplicationStatus('rejected')}>Rejected</button>
                   <button className="detailedView_update_interviews" onClick={() => updateApplicationStatus('interview')}>Interviews</button>
                   <button className="detailedView_update_offers" onClick={() => updateApplicationStatus('offers')}>Offers</button>
+                  <button className="detailedView_delete_app" onClick={() => deleteApplication('offers')}>Delete</button>
                 </ul>
               </div>
 
