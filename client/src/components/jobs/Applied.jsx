@@ -81,7 +81,6 @@ class Applied extends React.Component{
 
   salaryChecker(newAppSal){
     return new Promise((resolve,reject)=>{
-      console.log(newAppSal)
       if(Number.isNaN(newAppSal)){
         reject(new Error('Please Type A number for salary'));
         return
@@ -120,15 +119,9 @@ class Applied extends React.Component{
       urlLink: this.state.urlLink,
     }
 
-    console.log(newApp);
-
     this.formChecker(newApp)
     .then((res)=>{
-      console.log(res)
       this.salaryChecker(newApp.salary)
-      .then((res)=>{
-        console.log(res)
-      })
       .catch((err)=>{
         console.error(err);
         alert(err);
@@ -141,7 +134,6 @@ class Applied extends React.Component{
       })
     })
     .catch((err)=>{
-      console.log('Error Posting')
       alert(err);
     })
   }

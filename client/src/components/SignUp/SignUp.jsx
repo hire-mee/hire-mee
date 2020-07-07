@@ -22,7 +22,7 @@ export default class SignUp extends Component {
   inputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    }, ()=> console.log(this.state));
+    });
   }
 
   submitHandler(e) {

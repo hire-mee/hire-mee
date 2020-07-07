@@ -32,7 +32,7 @@ class Settings extends React.Component {
     .delete(`/api/users/${id}`)
     .then(() => {
       this.props.getData();
-      console.log('DELETED ACCOUNT')
+      console.log('SUCCESSFULLY DELETED ACCOUNT')
     })
     .catch(err => console.error(err));
   }
@@ -76,7 +76,7 @@ class Settings extends React.Component {
             <Modal.Footer>
               <Button onClick={this.changeDelete} >Close</Button>
               {/* <Button onClick={() => { this.deleteAcc(this.props.user.id); this.props.logFunction(); }}> DELETE</Button> */}
-              <Button onClick={() => { this.props.changePage('loggedIn', !this.props.loggedIn); this.changeDelete(); this.props.changePage('page', 'Login'); }}> DELETE</Button>
+              <Button onClick={() => {this.props.changePage('loggedIn', !this.props.loggedIn); this.deleteAcc(this.props.user.id);this.changeDelete(); this.props.changePage('page', 'Login'); }}>DELETE</Button>
             </Modal.Footer>
           </Modal>
         </div>

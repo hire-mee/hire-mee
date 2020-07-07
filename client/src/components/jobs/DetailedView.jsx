@@ -77,7 +77,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
       deadline: jobInfo.deadline,
       urlLink: jobInfo.urllink
     })
-    .then(()=> console.log(`moved application to ${status}`))
+    // .then(()=> console.log(`moved application to ${status}`))
     .catch(err => console.log(err))
   }
 
