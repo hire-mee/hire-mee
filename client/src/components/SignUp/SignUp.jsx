@@ -147,15 +147,3 @@ export default class SignUp extends Component {
     }
   }
 }
-
-// commented out for when Google auth is correctly implemented
-// <div className="signup_google_container">
-// <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
-// <div id="signup_google_text">Continue with Google</div>
-// </div>
-
-// <div className="signup_or_separator_container">
-// <hr className="signup_or_hr_tag"/>
-// <div>or</div>
-// <hr className="signup_or_hr_tag"/>
-// </div>

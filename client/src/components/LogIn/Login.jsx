@@ -33,7 +33,7 @@ export default class Login extends Component {
   inputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    }, ()=>console.log(this.state));
+    });
   }
 
   render() {

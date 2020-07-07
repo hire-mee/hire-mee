@@ -35,8 +35,6 @@ class Jobs extends React.Component{
     sortedJobInfo.rejected = [];
     sortedJobInfo.interview = [];
     sortedJobInfo.offers = [];
-
-    console.log('Sorting...');
     return new Promise((resolve, reject)=>{
 
       jobs.map((job)=>{
@@ -52,10 +50,7 @@ class Jobs extends React.Component{
           reject(new Error('Error Sorting Job Info...'));
         }
       })
-
-      console.log('Sorted  😎');
       resolve(sortedJobInfo);
-
     })
   }
 
@@ -77,23 +72,19 @@ class Jobs extends React.Component{
   }
 
   reRender(){
-    console.log('Updating');
     this.forceUpdate();
   }
 
 
   getApplications(){
     return new Promise(()=>{
-      console.log('Getting Application Job Info....')
       axios.get(`/api/applications/${this.props.userid.id}`)
       .then((data)=>{
-        console.log('Got Application Info!', data.data)
-
         this.sortJobInfo(data.data)
         .then((sortedJobs)=>{
           this.setState({
             sortedJobInfo: sortedJobs
-          },()=>console.log('Everything is Good',this.state.sortedJobInfo))
+          })
         })
         .catch((err)=>console.error(err))
 
@@ -106,8 +97,6 @@ class Jobs extends React.Component{
 
   componentDidMount(){
     this.getApplications()
-    // .then(()=>console.log('((((((((((((((((((((((((((', this.props.userid))
-    // .catch((err)=>console.error(err))
   }
 
 
