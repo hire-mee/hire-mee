@@ -81,7 +81,6 @@ class Applied extends React.Component{
 
   salaryChecker(newAppSal){
     return new Promise((resolve,reject)=>{
-      console.log(newAppSal)
       if(Number.isNaN(newAppSal)){
         reject(new Error('Please Type A number for salary'));
         return
@@ -106,9 +105,9 @@ class Applied extends React.Component{
   }
 
   submitHandler(){
-
+    console.log("HELLO HERE IS PROPS FOR APPLIED.jsx", this.props.currentUser)
     let newApp = {
-      userId: this.props.userid,
+      userId: this.props.currentUser.userid,
       category: "applied",
       companyName: this.state.companyName,
       descr: this.state.descr,
@@ -118,17 +117,12 @@ class Applied extends React.Component{
       submitDate: this.state.submitDate,
       deadline: this.state.deadline,
       urlLink: this.state.urlLink,
+      totalapplied: this.props.currentUser.totalapplied++
     }
-
-    console.log(newApp);
 
     this.formChecker(newApp)
     .then((res)=>{
-      console.log(res)
       this.salaryChecker(newApp.salary)
-      .then((res)=>{
-        console.log(res)
-      })
       .catch((err)=>{
         console.error(err);
         alert(err);
@@ -141,7 +135,6 @@ class Applied extends React.Component{
       })
     })
     .catch((err)=>{
-      console.log('Error Posting')
       alert(err);
     })
   }

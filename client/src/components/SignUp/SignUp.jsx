@@ -22,7 +22,7 @@ export default class SignUp extends Component {
   inputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    }, ()=> console.log(this.state));
+    });
   }
 
   submitHandler(e) {
@@ -32,7 +32,7 @@ export default class SignUp extends Component {
     if (!email.includes("@")){
       window.alert("Please enter a valid email address");
       location.reload()
-    } else if (this.state.pass !== this.state.passVerify){
+    } else if (this.state.pass !== this.state.passVerify) {
       window.alert("Passwords do not match");
       location.reload()
     } else {
@@ -147,15 +147,3 @@ export default class SignUp extends Component {
     }
   }
 }
-
-// commented out for when Google auth is correctly implemented
-// <div className="signup_google_container">
-// <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
-// <div id="signup_google_text">Continue with Google</div>
-// </div>
-
-// <div className="signup_or_separator_container">
-// <hr className="signup_or_hr_tag"/>
-// <div>or</div>
-// <hr className="signup_or_hr_tag"/>
-// </div>

@@ -47,6 +47,7 @@ class App extends React.Component {
       storeUserData={this.storeUserData}/>
       // <div className="category" data-letter="Friends" onClick={() => this.changePage('page', 'Friends')}><PersonFill color="white" /> Friends</div>
       //   <div className="category" data-letter="Leaderboard" onClick={() => this.changePage('page', 'Leaderboard')}><Trophy color="white" /> Leaderboard</div>
+      // <div className="category" data-letter="Map" onClick={() => this.changePage('page', 'Map')}><GeoAlt color="white" /> Map</div>
     } else {
       return (
         <div>
@@ -58,7 +59,7 @@ class App extends React.Component {
                 <div className="category" data-letter="Jobs" onClick={() => this.changePage('page', 'Jobs')}><Briefcase color="white" /> Jobs</div>
                 <div className="category" data-letter="Statistics" onClick={() => this.changePage('page', 'Statistics')}><GraphUp color="white" /> Statistics</div>
 
-                <div className="category" data-letter="Map" onClick={() => this.changePage('page', 'Map')}><GeoAlt color="white" /> Map</div>
+
               </div>
               <div className="Account">
                 <div className="category_title">Account</div>
@@ -79,7 +80,7 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs desired={this.state.currentUser} userid={this.state.currentUser} changePage={this.changePage}/>
+        return <Jobs desired={this.state.currentUser} currentUser={this.state.currentUser} changePage={this.changePage}/>
       } else if (this.state.page === 'Statistics') {
         if(this.state.currentUser.totalapplied == undefined){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
@@ -122,7 +123,6 @@ class App extends React.Component {
 
   getData() {
     axios
-      //.get(`/api/user/${this.state.userId}`) //commented out for data testing
       .get(`/api/users`)
       .then(data => {
         this.setState({

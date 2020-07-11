@@ -15,9 +15,9 @@ let verifyCallback = (email, pass, done) => {
           return done(err); 
       }
 
-      if (!user) {
+      if (!user || user.rows.length < 1) {
         return done(null, false);
-      }
+      } 
 
       const isValid = validatePassword(pass, user.rows[0].pass, user.rows[0].salt); // verifies input attempt with hash in DB
 
