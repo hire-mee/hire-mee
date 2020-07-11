@@ -78,7 +78,7 @@ class Jobs extends React.Component{
 
   getApplications(){
     return new Promise(()=>{
-      axios.get(`/api/applications/${this.props.userid.id}`)
+      axios.get(`/api/applications/${this.props.currentUser.id}`)
       .then((data)=>{
         this.sortJobInfo(data.data)
         .then((sortedJobs)=>{
@@ -114,7 +114,7 @@ class Jobs extends React.Component{
 
           <Grid container spacing={2} >
             <div className="column" style={{width:"25%"}}>
-              <Applied applied={this.state.sortedJobInfo.applied} render={this.reRender} desired={this.props.desired.salary} userid={this.props.userid.id} changePage={this.props.changePage}/>
+              <Applied applied={this.state.sortedJobInfo.applied} render={this.reRender} desired={this.props.desired.salary} currentUser={this.props.currentUser} changePage={this.props.changePage}/>
             </div>
 
             <div className="column" style={{paddingLeft:"1%",width:"25%",}}>

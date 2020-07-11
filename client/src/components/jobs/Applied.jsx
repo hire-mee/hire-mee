@@ -105,9 +105,9 @@ class Applied extends React.Component{
   }
 
   submitHandler(){
-
+    console.log("HELLO HERE IS PROPS FOR APPLIED.jsx", this.props.currentUser)
     let newApp = {
-      userId: this.props.userid,
+      userId: this.props.currentUser.userid,
       category: "applied",
       companyName: this.state.companyName,
       descr: this.state.descr,
@@ -117,6 +117,7 @@ class Applied extends React.Component{
       submitDate: this.state.submitDate,
       deadline: this.state.deadline,
       urlLink: this.state.urlLink,
+      totalapplied: this.props.currentUser.totalapplied++
     }
 
     this.formChecker(newApp)

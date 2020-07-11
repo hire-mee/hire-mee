@@ -32,7 +32,7 @@ export default class SignUp extends Component {
     if (!email.includes("@")){
       window.alert("Please enter a valid email address");
       location.reload()
-    } else if (this.state.pass !== this.state.passVerify){
+    } else if (this.state.pass !== this.state.passVerify) {
       window.alert("Passwords do not match");
       location.reload()
     } else {
