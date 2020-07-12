@@ -32,7 +32,6 @@ class Settings extends React.Component {
     .delete(`/api/users/${id}`)
     .then(() => {
       this.props.getData();
-      console.log('SUCCESSFULLY DELETED ACCOUNT')
     })
     .catch(err => console.error(err));
   }

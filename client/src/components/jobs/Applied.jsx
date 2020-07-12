@@ -105,7 +105,6 @@ class Applied extends React.Component{
   }
 
   submitHandler(){
-    console.log("HELLO HERE IS PROPS FOR APPLIED.jsx", this.props.currentUser)
     let newApp = {
       userId: this.props.currentUser.userid,
       category: "applied",
