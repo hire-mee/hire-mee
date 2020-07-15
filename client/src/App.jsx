@@ -36,7 +36,6 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    console.log("testing App.jsx launch component did mount")
   }
 
   componentStartUp() {
