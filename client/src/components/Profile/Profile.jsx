@@ -23,6 +23,7 @@ class Profile extends React.Component {
   }
 
   onClickHandler() {
+    console.log('clicked');
     this.setState({
       changeName: !this.state.changeName
     });
@@ -103,6 +104,8 @@ class Profile extends React.Component {
   }
 
   render() {
+    // console.log('profile area props', this.props);
+    // console.log('profile area', this.props);
     return (
       <div>
         <div className="userProfileContainer">

@@ -137,5 +137,15 @@ module.exports = {
       }
     })
   },
+  updateSalary(salary, id, callback) {
+    const queryStr = `UPDATE userinfo SET salary = ${salary} WHERE id=${id};`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  }
 }
 

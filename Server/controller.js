@@ -113,5 +113,13 @@ module.exports = {
       }
       res.status(200).send('Deleted application data');
     });
+  },
+  updateSalary: (req, res) => {
+    helper.updateSalary(req.body.salary, req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Updated user\'s salary!');
+    });
   }
 };
