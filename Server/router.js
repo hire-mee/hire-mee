@@ -45,6 +45,9 @@ router // updates a single user's desired salary
 .route('/user/salary/:id')
 .put(controller.updateSalary);
 
+router // updates a single user's firstName, lastName, salary
+.route('/user/profileUpdate/:id')
+.put(controller.updateAllProfileSettings)
 
 // APPLICATIONS ROUTES =========================================================// 
 

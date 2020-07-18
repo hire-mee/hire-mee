@@ -146,6 +146,16 @@ module.exports = {
         callback(null, results.rows);
       }
     })
+  },
+  updateAllProfileSettings(bodyData, id, callback) {
+    const queryStr = `UPDATE userinfo SET firstName = ${bodyData.firstName}, lastName = ${bodyData.lastName},salary = ${bodyData.salary} WHERE id=${id};`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
   }
 }
 
