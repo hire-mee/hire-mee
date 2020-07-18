@@ -64,7 +64,18 @@ class Profile extends React.Component {
 
   profileChangeSubmit() {
     if (this.state.firstName && this.state.lastName && this.state.salary) {
-      // UPDATE ALL THREE ITEMS
+      axios
+      .put(`/api/user/profileUpdate/${this.props.userData.id}`, {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        salary: this.state.salary
+      })
+      .then(() => {
+        this.closeClickHandler()
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     } else if (this.state.firstName && this.state.lastName) {
         axios
         .put(`/api/user/${this.props.userData.id}`, {
@@ -72,7 +83,7 @@ class Profile extends React.Component {
           lastName: this.state.lastName
         })
         .then(() => {
-          // DO STUFF HERE
+          this.closeClickHandler()
         })
         .catch((err) => {
           console.log(err);
@@ -83,7 +94,7 @@ class Profile extends React.Component {
           salary: this.state.salary
         })
         .then(() => {
-          // DO STUFF HERE
+          this.closeClickHandler()
         })
         .catch((err) => {
           console.log(err);
@@ -120,7 +131,6 @@ class Profile extends React.Component {
                       name="firstName"
                       onChange={this.onChangeHandler}
                       placeholder="First Name"
-                      required
                     />
                     <input
                       type="text"
@@ -128,7 +138,13 @@ class Profile extends React.Component {
                       name="lastName"
                       onChange={this.onChangeHandler}
                       placeholder="Last Name"
-                      required
+                    />
+                     <input
+                      type="text"
+                      className="updateNameInput"
+                      name="salary"
+                      onChange={this.onChangeHandler}
+                      placeholder="Desired Salary"
                     />
                   </div>
                 </form>
