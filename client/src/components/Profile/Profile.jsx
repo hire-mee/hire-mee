@@ -10,13 +10,13 @@ class Profile extends React.Component {
       lastName: '',
       salary: '',
       updateSuccess: false,
-      profileModuleOpen: false
+      profileModuleOpen: false,
     };
     this.profileChangeSubmit = this.profileChangeSubmit.bind(this);
     this.launchProfileModule = this.launchProfileModule.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.closeClickHandler = this.closeClickHandler.bind(this);
-    // this.incompleteFormHandler = this.incompleteFormHandler.bind(this);
+    this.incompleteFormHandler = this.incompleteFormHandler.bind(this);
     this.profileUpdateSubmitSuccess = this.profileUpdateSubmitSuccess.bind(this);
   }
 
@@ -52,15 +52,15 @@ class Profile extends React.Component {
     });
   }
 
-  // incompleteFormHandler() {
-  //   if (this.state.incomplete === true) {
-  //     return (
-  //       <div className="nameChangeConfirmation">
-  //         <h4>Please complete the form</h4>
-  //       </div>
-  //     );
-  //   }
-  // }
+  incompleteFormHandler() {
+    if (this.state.incomplete === true) {
+      return (
+        <div className="nameChangeConfirmation">
+          <h4>Please complete one of the two changes</h4>
+        </div>
+      );
+    }
+  }
 
   profileChangeSubmit() {
     if (this.state.firstName && this.state.lastName && this.state.salary) {
@@ -71,7 +71,9 @@ class Profile extends React.Component {
         salary: this.state.salary
       })
       .then(() => {
-        this.closeClickHandler()
+        this.setState({
+          profileModuleOpen: false
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -83,7 +85,9 @@ class Profile extends React.Component {
           lastName: this.state.lastName
         })
         .then(() => {
-          this.closeClickHandler()
+          this.setState({
+            profileModuleOpen: false
+          })
         })
         .catch((err) => {
           console.log(err);
@@ -94,7 +98,9 @@ class Profile extends React.Component {
           salary: this.state.salary
         })
         .then(() => {
-          this.closeClickHandler()
+          this.setState({
+            profileModuleOpen: false
+          })
         })
         .catch((err) => {
           console.log(err);
@@ -150,6 +156,8 @@ class Profile extends React.Component {
                 </form>
               </div>
               <br />
+              {/* {this.nameChangeSubmitConfimation()}
+              {this.incompleteFormHandler()} */}
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.closeClickHandler}>Close</Button>
