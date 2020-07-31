@@ -204,7 +204,7 @@ let DetailedView = ({jobInfo, desired,show}) => {
 
       <Modal
         show={show}
-        onHide={() => console.log('Hide')}
+        onHide={() => {}}
         dialogClassName="detailed-view"
         aria-labelledby="modal-styling-title"
 

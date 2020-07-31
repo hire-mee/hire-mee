@@ -22,7 +22,6 @@ class Profile extends React.Component {
   }
 
   launchProfileModule() {
-    console.log('clicked');
     this.setState({
       profileModuleOpen: !this.state.profileModuleOpen
     });
@@ -35,7 +34,7 @@ class Profile extends React.Component {
   onChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    }, ()=> console.log(this.props));
+    });
   }
 
   profileUpdateSubmitSuccess() {
@@ -64,7 +63,7 @@ class Profile extends React.Component {
     if (this.state.incomplete) {
       return (
         <div className="nameChangeConfirmation">
-          <h4>Please complete one of the two changes</h4>
+          <h4>Please complete at least one of the two changes</h4>
         </div>
       );
     }
@@ -80,7 +79,6 @@ class Profile extends React.Component {
         salary: this.state.salary
       })
       .then(() => {
-        console.log("Successful PUT on ALL fields")
         this.setState({
           updateSuccess: true,
           incomplete: null
@@ -88,10 +86,11 @@ class Profile extends React.Component {
           document.getElementById("firstNameInputBar").value = '';
           document.getElementById("lastNameInputBar").value = '';
           document.getElementById("desiredSalaryInputBar").value = '';
+          this.props.getUpdatedData(this.props.userData.id);
         })
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
     } else if (this.state.firstName && this.state.lastName) {
         axios
@@ -100,18 +99,17 @@ class Profile extends React.Component {
           lastName: this.state.lastName
         })
         .then(() => {
-          console.log("Successful PUT on NAME fields")
           this.setState({
             updateSuccess: true,
             incomplete: null
-            // profileModuleOpen: false
           }, ()=> {
             document.getElementById("firstNameInputBar").value = '';
-            document.getElementById("lastNameInputBar").value = ''
+            document.getElementById("lastNameInputBar").value = '';
+            this.props.getUpdatedData(this.props.userData.id);
           })
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     } else if ((!this.state.firstName && !this.state.lastName) && this.state.salary){
         axios
@@ -119,17 +117,16 @@ class Profile extends React.Component {
           salary: this.state.salary
         })
         .then(() => {
-          console.log("Successful PUT on ONLY PRICE field");
           this.setState({
             updateSuccess: true,
             incomplete: null
-            // profileModuleOpen: false
           }, ()=> {
-            document.getElementById("desiredSalaryInputBar").value = ''
+            document.getElementById("desiredSalaryInputBar").value = '';
+            this.props.getUpdatedData(this.props.userData.id);
           })
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     } else {
       this.setState({incomplete: true})
