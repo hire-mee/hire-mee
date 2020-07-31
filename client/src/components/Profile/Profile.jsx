@@ -6,27 +6,29 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      changeName: false,
       firstName: '',
       lastName: '',
-      nameChangeSubmitted: false,
-      incomplete: false
+      salary: '',
+      updateSuccess: false,
+      profileModuleOpen: false,
+      incomplete: null,
     };
-    this.onClickHandler = this.onClickHandler.bind(this);
+    this.profileChangeSubmit = this.profileChangeSubmit.bind(this);
+    this.launchProfileModule = this.launchProfileModule.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.nameChangeSubmit = this.nameChangeSubmit.bind(this);
     this.closeClickHandler = this.closeClickHandler.bind(this);
     this.incompleteFormHandler = this.incompleteFormHandler.bind(this);
-    this.nameChangeSubmitConfimation = this.nameChangeSubmitConfimation.bind(
-      this
-    );
+    this.profileUpdateSubmitSuccess = this.profileUpdateSubmitSuccess.bind(this);
   }
 
-  onClickHandler() {
-    console.log('clicked');
+  launchProfileModule() {
     this.setState({
-      changeName: !this.state.changeName
+      profileModuleOpen: !this.state.profileModuleOpen
     });
+  }
+
+  componentDidMount(){
+   
   }
 
   onChangeHandler(e) {
@@ -35,83 +37,109 @@ class Profile extends React.Component {
     });
   }
 
-  nameChangeSubmitConfimation() {
-    if (this.state.nameChangeSubmitted === true) {
-      return (
+  profileUpdateSubmitSuccess() {
+    if (this.state.updateSuccess) {
+        return (
         <div className="nameChangeConfirmation">
           <h4>Update has been submitted!</h4>
         </div>
-      );
+        );
     }
   }
 
   closeClickHandler() {
     this.setState({
-      changeName: false,
-      nameChangeSubmitted: false,
-      incomplete: false,
       firstName: '',
-      lastName: ''
+      lastName: '',
+      salary: '',
+      updateSuccess: false,
+      incomplete: null,
+      numberTypeError: false,
+      profileModuleOpen: !this.state.profileModuleOpen
     });
   }
 
   incompleteFormHandler() {
-    if (this.state.incomplete === true) {
+    if (this.state.incomplete) {
       return (
         <div className="nameChangeConfirmation">
-          <h4>Please complete the form</h4>
+          <h4>Please complete at least one of the two changes</h4>
         </div>
       );
     }
   }
 
-  nameChangeSubmit() {
-    if (this.state.firstName.length === 0 || this.state.lastName.length === 0) {
-      this.setState({
-        incomplete: true
-      });
-    } else {
-      if (this.state.incomplete === true) {
-        this.setState({
-          incomplete: false
-        });
-      }
-      this.setState({
-        nameChangeSubmitted: !this.state.nameChangeSubmitted
-      });
+
+  profileChangeSubmit() {
+    if (this.state.firstName && this.state.lastName && this.state.salary) {
       axios
+      .put(`/api/user/profileUpdate/${this.props.userData.id}`, {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        salary: this.state.salary
+      })
+      .then(() => {
+        this.setState({
+          updateSuccess: true,
+          incomplete: null
+        }, ()=> {
+          document.getElementById("firstNameInputBar").value = '';
+          document.getElementById("lastNameInputBar").value = '';
+          document.getElementById("desiredSalaryInputBar").value = '';
+          this.props.getUpdatedData(this.props.userData.id);
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    } else if (this.state.firstName && this.state.lastName) {
+        axios
         .put(`/api/user/${this.props.userData.id}`, {
           firstName: this.state.firstName,
           lastName: this.state.lastName
         })
         .then(() => {
           this.setState({
-            nameChangeSubmitted: !this.state.nameChangeSubmitted
-          });
+            updateSuccess: true,
+            incomplete: null
+          }, ()=> {
+            document.getElementById("firstNameInputBar").value = '';
+            document.getElementById("lastNameInputBar").value = '';
+            this.props.getUpdatedData(this.props.userData.id);
+          })
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else if ((!this.state.firstName && !this.state.lastName) && this.state.salary){
+        axios
+        .put(`/api/user/salary/${this.props.userData.id}`, {
+          salary: this.state.salary
         })
         .then(() => {
           this.setState({
-            changeName: !this.state.changeName
-          });
-        })
-        .then(() => {
-          this.props.getUpdatedData(this.props.userData.id);
+            updateSuccess: true,
+            incomplete: null
+          }, ()=> {
+            document.getElementById("desiredSalaryInputBar").value = '';
+            this.props.getUpdatedData(this.props.userData.id);
+          })
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
+    } else {
+      this.setState({incomplete: true})
     }
   }
 
   render() {
-    // console.log('profile area props', this.props);
-    // console.log('profile area', this.props);
     return (
       <div>
         <div className="userProfileContainer">
           <div className="userAvatar">
             <img
-              onClick={this.onClickHandler}
+              onClick={this.launchProfileModule}
               className="userAvatar"
               src="https://www.w3schools.com/howto/img_avatar.png"
             ></img>
@@ -119,7 +147,7 @@ class Profile extends React.Component {
           <div className="userProfileData">{this.props.userData.firstname}</div>
         </div>
         <div>
-          <Modal show={this.state.changeName} onHide={this.closeClickHandler}>
+          <Modal show={this.state.profileModuleOpen} onHide={this.closeClickHandler}>
             <Modal.Header closeButton>
               <Modal.Title>Update Name</Modal.Title>
             </Modal.Header>
@@ -134,7 +162,7 @@ class Profile extends React.Component {
                       name="firstName"
                       onChange={this.onChangeHandler}
                       placeholder="First Name"
-                      required
+                      id="firstNameInputBar"
                     />
                     <input
                       type="text"
@@ -142,18 +170,26 @@ class Profile extends React.Component {
                       name="lastName"
                       onChange={this.onChangeHandler}
                       placeholder="Last Name"
-                      required
+                      id="lastNameInputBar"
+                    />
+                     <input
+                      type="number"
+                      className="updateNameInput"
+                      name="salary"
+                      onChange={this.onChangeHandler}
+                      placeholder="Desired Salary"
+                      id="desiredSalaryInputBar"
                     />
                   </div>
                 </form>
               </div>
-              {this.nameChangeSubmitConfimation()}
-              {this.incompleteFormHandler()}
               <br />
+              {this.profileUpdateSubmitSuccess()}
+              {this.incompleteFormHandler()}
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.closeClickHandler}>Close</Button>
-              <Button onClick={this.nameChangeSubmit}>Submit</Button>
+              <Button onClick={this.profileChangeSubmit}>Submit</Button>
             </Modal.Footer>
           </Modal>
         </div>

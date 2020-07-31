@@ -77,8 +77,6 @@ class MapContainer extends Component {
   }
 
   render() {
-    console.log("STATE", this.state)
-    console.log('filter', this.geocodeGen());
     let applicationCities = this.geocodeGen();
 
     const lngLatConversion = applicationCities.map((data, i) => {
@@ -88,8 +86,6 @@ class MapContainer extends Component {
           <Async promise={geoLocs} key={i} then={(val) => <Marker position={val.results[0].geometry.location} />} />
         )
     })
-
-    console.log('conversion', lngLatConversion)
     return (
       <div className="mainMapContainer">
         <Map

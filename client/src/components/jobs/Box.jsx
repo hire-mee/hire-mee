@@ -13,7 +13,6 @@ class Box extends React.Component{
   }
 
   openOrClosePopup(){
-    console.log("testing OpenOrClosePopup")
     this.setState({
       show: !this.state.show
     })
