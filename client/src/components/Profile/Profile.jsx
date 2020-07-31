@@ -11,6 +11,7 @@ class Profile extends React.Component {
       salary: '',
       updateSuccess: false,
       profileModuleOpen: false,
+      incomplete: null,
     };
     this.profileChangeSubmit = this.profileChangeSubmit.bind(this);
     this.launchProfileModule = this.launchProfileModule.bind(this);
@@ -28,7 +29,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.state)
+   
   }
 
   onChangeHandler(e) {
@@ -39,11 +40,11 @@ class Profile extends React.Component {
 
   profileUpdateSubmitSuccess() {
     if (this.state.updateSuccess) {
-      return (
+        return (
         <div className="nameChangeConfirmation">
           <h4>Update has been submitted!</h4>
         </div>
-      );
+        );
     }
   }
 
@@ -52,12 +53,14 @@ class Profile extends React.Component {
       firstName: '',
       lastName: '',
       salary: '',
+      updateSuccess: false,
+      incomplete: null,
       profileModuleOpen: !this.state.profileModuleOpen
     });
   }
 
   incompleteFormHandler() {
-    if (this.state.incomplete === true) {
+    if (this.state.incomplete) {
       return (
         <div className="nameChangeConfirmation">
           <h4>Please complete one of the two changes</h4>
@@ -75,8 +78,14 @@ class Profile extends React.Component {
         salary: this.state.salary
       })
       .then(() => {
+        console.log("Successful PUT on ALL fields")
         this.setState({
-          profileModuleOpen: false
+          updateSuccess: true,
+          incomplete: null
+        }, ()=> {
+          document.getElementById("firstNameInputBar").value = '';
+          document.getElementById("lastNameInputBar").value = '';
+          document.getElementById("desiredSalaryInputBar").value = '';
         })
       })
       .catch((err) => {
@@ -89,8 +98,14 @@ class Profile extends React.Component {
           lastName: this.state.lastName
         })
         .then(() => {
+          console.log("Successful PUT on NAME fields")
           this.setState({
-            profileModuleOpen: false
+            updateSuccess: true,
+            incomplete: null
+            // profileModuleOpen: false
+          }, ()=> {
+            document.getElementById("firstNameInputBar").value = '';
+            document.getElementById("lastNameInputBar").value = ''
           })
         })
         .catch((err) => {
@@ -102,13 +117,20 @@ class Profile extends React.Component {
           salary: this.state.salary
         })
         .then(() => {
+          console.log("Successful PUT on ONLY PRICE field");
           this.setState({
-            profileModuleOpen: false
+            updateSuccess: true,
+            incomplete: null
+            // profileModuleOpen: false
+          }, ()=> {
+            document.getElementById("desiredSalaryInputBar").value = ''
           })
         })
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      this.setState({incomplete: true})
     }
   }
 
@@ -141,6 +163,7 @@ class Profile extends React.Component {
                       name="firstName"
                       onChange={this.onChangeHandler}
                       placeholder="First Name"
+                      id="firstNameInputBar"
                     />
                     <input
                       type="text"
@@ -148,6 +171,7 @@ class Profile extends React.Component {
                       name="lastName"
                       onChange={this.onChangeHandler}
                       placeholder="Last Name"
+                      id="lastNameInputBar"
                     />
                      <input
                       type="text"
@@ -155,13 +179,14 @@ class Profile extends React.Component {
                       name="salary"
                       onChange={this.onChangeHandler}
                       placeholder="Desired Salary"
+                      id="desiredSalaryInputBar"
                     />
                   </div>
                 </form>
               </div>
               <br />
-              {/* {this.nameChangeSubmitConfimation()}
-              {this.incompleteFormHandler()} */}
+              {this.profileUpdateSubmitSuccess()}
+              {this.incompleteFormHandler()}
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.closeClickHandler}>Close</Button>

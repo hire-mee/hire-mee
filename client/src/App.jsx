@@ -59,6 +59,9 @@ class App extends React.Component {
                 <div className="category_title">Dashboard</div>
                 <div className="category" data-letter="Jobs" onClick={() => this.changePage('page', 'Jobs')}><Briefcase color="white" /> Jobs</div>
                 <div className="category" data-letter="Statistics" onClick={() => this.changePage('page', 'Statistics')}><GraphUp color="white" /> Statistics</div>
+                <div className="category" data-letter="Friends" onClick={() => this.changePage('page', 'Friends')}><PersonFill color="white" /> Friends</div>
+        <div className="category" data-letter="Leaderboard" onClick={() => this.changePage('page', 'Leaderboard')}><Trophy color="white" /> Leaderboard</div>
+      <div className="category" data-letter="Map" onClick={() => this.changePage('page', 'Map')}><GeoAlt color="white" /> Map</div>
               </div>
               <div className="Account">
                 <div className="category_title">Account</div>
