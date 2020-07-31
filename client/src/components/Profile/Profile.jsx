@@ -35,7 +35,7 @@ class Profile extends React.Component {
   onChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
-    });
+    }, ()=> console.log(this.props));
   }
 
   profileUpdateSubmitSuccess() {
@@ -55,6 +55,7 @@ class Profile extends React.Component {
       salary: '',
       updateSuccess: false,
       incomplete: null,
+      numberTypeError: false,
       profileModuleOpen: !this.state.profileModuleOpen
     });
   }
@@ -68,6 +69,7 @@ class Profile extends React.Component {
       );
     }
   }
+
 
   profileChangeSubmit() {
     if (this.state.firstName && this.state.lastName && this.state.salary) {
@@ -174,7 +176,7 @@ class Profile extends React.Component {
                       id="lastNameInputBar"
                     />
                      <input
-                      type="text"
+                      type="number"
                       className="updateNameInput"
                       name="salary"
                       onChange={this.onChangeHandler}
