@@ -1,7 +1,9 @@
 DROP DATABASE IF EXISTS hiremee;
 CREATE DATABASE hiremee;
 
--- User
+
+DROP TABLE IF EXISTS userinfo;
+
 CREATE TABLE userinfo(
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL UNIQUE,
@@ -21,7 +23,8 @@ CREATE TABLE userinfo(
   totalApplied INTEGER
 );
 
--- APPLICATION PAGE
+DROP TABLE IF EXISTS applications;
+
 CREATE TABLE applications(
   id SERIAL PRIMARY KEY,
   userId BIGINT,
@@ -37,7 +40,9 @@ CREATE TABLE applications(
   urlLink VARCHAR(255)
 );
 
--- FRIENDS LIST
+
+DROP TABLE IF EXISTS friends;
+
 CREATE TABLE friends(
   id SERIAL PRIMARY KEY,
   userId INTEGER REFERENCES userinfo (id)

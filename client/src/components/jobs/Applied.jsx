@@ -98,27 +98,29 @@ class Applied extends React.Component{
           deadline:"",
           urlLink:""
         })
-        this.props.render()
+        this.props.getApplications()
         alert('Added New Job Application');
       }
     })
   }
 
   submitHandler(){
-   
+   let {id, totalapplied} = this.props.currentUser;
+   let {companyName, descr, loc, positionTitle, submitDate, deadline, urlLink, salary} = this.state
     let newApp = {
-      userId: this.props.currentUser.id,
+      userId: id,
       category: "applied",
-      companyName: this.state.companyName,
-      descr: this.state.descr,
-      loc: this.state.loc,
-      positionTitle:this.state.positionTitle,
-      salary: parseInt(this.state.salary),
-      submitDate: this.state.submitDate,
-      deadline: this.state.deadline,
-      urlLink: this.state.urlLink,
-      totalapplied: this.props.currentUser.totalapplied++
+      companyName: companyName,
+      descr: descr,
+      loc: loc,
+      positionTitle: positionTitle,
+      salary: parseInt(salary),
+      submitDate: submitDate,
+      deadline: deadline,
+      urlLink: urlLink,
+      totalapplied: totalapplied++
     }
+
     this.formChecker(newApp)
     .then((res)=>{
       this.salaryChecker(newApp.salary)
@@ -127,14 +129,15 @@ class Applied extends React.Component{
         alert(err);
       })
     })
-    .then(()=>{
-      axios.post(`/api/applications/${newApp.userId}`, newApp)
-      .catch((err)=>{
-        console.error("Error Posting:",err);
-      })
+
+    // TODO: Figure out why console log isn't happening
+    axios.post(`/api/applications/${id}`, newApp)
+    .then((data)=> {
+      // this.props.getApplications()
+      console.log("HERES DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", data)
     })
     .catch((err)=>{
-      alert(err);
+      console.error(err);
     })
   }
 
@@ -172,7 +175,7 @@ class Applied extends React.Component{
           >
             <Modal.Header closeButton>
               <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
-                <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
+                <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application</h1> <br/>
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -223,15 +226,11 @@ class Applied extends React.Component{
               <div className="button-holder" style={{paddingLeft:"75%"}}>
                 <Button variant="contained" style={{textAlign:"center"}} color="secondary" onClick={this.submitHandler}> Submit </Button>
               </div>
-
-
-
-
         </Modal.Body>
        </Modal>
         </div>
       </div>
-        )
+     )
   }
 
 }
