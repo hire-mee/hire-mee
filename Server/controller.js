@@ -64,8 +64,6 @@ module.exports = {
     })
   },
   updateName: (req, res) => {
-    console.log('update name req.body', req.body)
-    console.log('update name req.params', req.params)
     helper.updateName(req.body, req.params.id, (err, result) => {
       if (err) {
         res.status(400).send(err)
@@ -92,8 +90,13 @@ module.exports = {
     })
   },
   postApplications: (req,res) => {
-    console.log(req.body)
     helper.postApplications(req.body)
+    .then((result)=>{
+      res.status(200).send(result)
+    })
+    .catch((err)=>{
+      res.status(404).send('Cant post Applications, error: ', err)
+    })
   },
   updateApplications: (req, res) => {
     helper.updateApplications(req.body, req.params.id)
