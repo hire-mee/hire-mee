@@ -90,19 +90,17 @@ module.exports = {
     })
   },
   postApplications: (req,res) => {
-    helper.postApplications(req.body)
-    .then((result)=>{
-      res.status(200).send(result)
-    })
-    .catch((err)=>{
-      res.status(404).send('Cant post Applications, error: ', err)
+    helper.postApplications(req.body, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Posted Application');
     })
   },
   updateApplications: (req, res) => {
     helper.updateApplications(req.body, req.params.id)
     .then((result)=>{
       res.status(200).send(result)
-      res.end();
     })
     .catch((err)=>{
       console.error(err);

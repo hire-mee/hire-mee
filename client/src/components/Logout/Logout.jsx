@@ -14,7 +14,7 @@ class Logout extends React.Component {
         <Modal show={this.props.show} onHide={() => console.log('Hide')}>
           <Modal.Body>
             <br/>
-            Hello {this.props.user.firstname}, are you sure you want to log out?
+            Hello {this.props.user.first_name}, are you sure you want to log out?
             <br/>
             <br/>
           </Modal.Body>

@@ -8,8 +8,8 @@ export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email: '',
       pass: '',
       passVerify: '',
@@ -26,7 +26,7 @@ export default class SignUp extends Component {
   }
 
   submitHandler(e) {
-    let { firstname, lastname, email, pass } = this.state;
+    let { first_name, last_name, email, pass } = this.state;
     e.preventDefault();
     
     if (!email.includes("@")){
@@ -36,7 +36,7 @@ export default class SignUp extends Component {
       window.alert("Passwords do not match");
       location.reload()
     } else {
-      axios.post('/api/signup', {firstname, lastname, email, pass})
+      axios.post('/api/signup', {first_name, last_name, email, pass})
       .then(() => {
         this.setState({
           redirect: true
@@ -82,7 +82,7 @@ export default class SignUp extends Component {
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
                         type="text"
-                        name="firstname"
+                        name="first_name"
                         placeholder="First Name"
                         required
                       ></input>
@@ -93,7 +93,7 @@ export default class SignUp extends Component {
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
                         type="text"
-                        name="lastname"
+                        name="last_name"
                         placeholder="Last Name"
                         required
                       ></input>

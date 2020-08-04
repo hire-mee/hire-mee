@@ -5,8 +5,6 @@ import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import axios from "axios";
 
 let calculateSalaryDifference = (desiredSalary, jobSalary) => {
-  //let difference = 100 * Math.abs((desiredSalary - jobSalary)/((desiredSalary+jobSalary)/2));
-
   if (desiredSalary < jobSalary) {
     return jobSalary - desiredSalary;
   } else if (desiredSalary === jobSalary) {
@@ -63,17 +61,17 @@ let DetailedView = ({ jobInfo, desired, show }) => {
   let updateApplicationStatus = (status) => {
     axios
       .put(`/api/update/${jobInfo.id}`, {
-        userid: jobInfo.userid,
+        user_id: jobInfo.user_id,
         category: status,
         color: jobInfo.color,
-        companyName: jobInfo.companyname,
-        descr: jobInfo.descr,
-        loc: jobInfo.loc,
-        positionTitle: jobInfo.positiontitle,
+        company_name: jobInfo.company_name,
+        app_description: jobInfo.app_description,
+        app_location: jobInfo.app_location,
+        position_title: jobInfo.position_title,
         salary: jobInfo.salary,
-        submitDate: jobInfo.submitdate,
+        submit_date: jobInfo.submit_date,
         deadline: jobInfo.deadline,
-        urlLink: jobInfo.urllink,
+        url_link: jobInfo.url_link,
       })
       .catch((err) => console.log(err));
   };
@@ -225,7 +223,7 @@ let DetailedView = ({ jobInfo, desired, show }) => {
             id="emodal-styling-title"
             style={{ paddingLeft: "50px" }}
           >
-            <h1 style={style.jobTitle}>{jobInfo.positiontitle}</h1>
+            <h1 style={style.jobTitle}>{jobInfo.position_title}</h1>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ borderRadius: "50px" }}>
@@ -240,7 +238,7 @@ let DetailedView = ({ jobInfo, desired, show }) => {
             }}
           >
             <div className="popupholder-left">
-              <h2 style={style.company}>{jobInfo.companyname}</h2>
+              <h2 style={style.company}>{jobInfo.company_name}</h2>
               <br />
 
               <div style={style.salary}>
@@ -284,7 +282,7 @@ let DetailedView = ({ jobInfo, desired, show }) => {
                   Location: <br />
                 </div>
 
-                <div style={style.submittedDate}>{jobInfo.loc}</div>
+                <div style={style.submittedDate}>{jobInfo.app_location}</div>
               </div>
             </div>
 
@@ -299,7 +297,7 @@ let DetailedView = ({ jobInfo, desired, show }) => {
                     style={style.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={`${jobInfo.urllink}`}
+                    href={`${jobInfo.url_link}`}
                   >
                     Click Me To Go To Job posting
                   </a>
@@ -309,7 +307,7 @@ let DetailedView = ({ jobInfo, desired, show }) => {
                 <div style={style.submitted}>
                   Description: <br />
                 </div>
-                <div style={style.submittedDate}>{jobInfo.descr}</div>
+                <div style={style.submittedDate}>{jobInfo.app_description}</div>
                 <ul className="detailedView_update_button_container">
                   <button
                     className="detailedView_update_rejected"

@@ -110,12 +110,16 @@ module.exports = {
         })
     })
   },
-  postApplications(input) {
+  postApplications(input, callback) {
     let { user_id, category, company_name, app_description, app_location, position_title, salary, submit_date, deadline, url_link } = input;
     let queryStr = `INSERT INTO applications(user_id, category, company_name, app_description, app_location, position_title, salary, submit_date, deadline, url_link) VALUES (${user_id}, '${category}', '${company_name}', '${app_description}', '${app_location}', '${position_title}', ${salary}, '${submit_date}', '${deadline}', '${url_link}');`;
-    db.query(queryStr)
-      .then(() => console.log('Successfully Posted New Application'))
-      .catch((err) => console.error('Error Posting Application:', err))
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
   },
   updateApplications(input, id) {
     const { category, color, company_name, app_description, app_location, position_title, salary, submit_date, deadline, url_link } = input

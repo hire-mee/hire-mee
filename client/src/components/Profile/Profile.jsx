@@ -6,8 +6,8 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last: '',
       salary: '',
       updateSuccess: false,
       profileModuleOpen: false,
@@ -49,8 +49,8 @@ class Profile extends React.Component {
 
   closeClickHandler() {
     this.setState({
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       salary: '',
       updateSuccess: false,
       incomplete: null,
@@ -71,11 +71,11 @@ class Profile extends React.Component {
 
 
   profileChangeSubmit() {
-    if (this.state.firstName && this.state.lastName && this.state.salary) {
+    if (this.state.first_name && this.state.last_name && this.state.salary) {
       axios
       .put(`/api/user/profileUpdate/${this.props.userData.id}`, {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
         salary: this.state.salary
       })
       .then(() => {
@@ -83,8 +83,8 @@ class Profile extends React.Component {
           updateSuccess: true,
           incomplete: null
         }, ()=> {
-          document.getElementById("firstNameInputBar").value = '';
-          document.getElementById("lastNameInputBar").value = '';
+          document.getElementById("first_nameInputBar").value = '';
+          document.getElementById("last_nameInputBar").value = '';
           document.getElementById("desiredSalaryInputBar").value = '';
           this.props.getUpdatedData(this.props.userData.id);
         })
@@ -92,26 +92,26 @@ class Profile extends React.Component {
       .catch((err) => {
         console.error(err);
       });
-    } else if (this.state.firstName && this.state.lastName) {
+    } else if (this.state.first_name && this.state.last_name) {
         axios
         .put(`/api/user/${this.props.userData.id}`, {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName
+          first_name: this.state.first_name,
+          last_name: this.state.last_name
         })
         .then(() => {
           this.setState({
             updateSuccess: true,
             incomplete: null
           }, ()=> {
-            document.getElementById("firstNameInputBar").value = '';
-            document.getElementById("lastNameInputBar").value = '';
+            document.getElementById("first_nameInputBar").value = '';
+            document.getElementById("last_nameInputBar").value = '';
             this.props.getUpdatedData(this.props.userData.id);
           })
         })
         .catch((err) => {
           console.error(err);
         });
-    } else if ((!this.state.firstName && !this.state.lastName) && this.state.salary){
+    } else if ((!this.state.first_name && !this.state.last_name) && this.state.salary){
         axios
         .put(`/api/user/salary/${this.props.userData.id}`, {
           salary: this.state.salary
@@ -144,7 +144,7 @@ class Profile extends React.Component {
               src="https://www.w3schools.com/howto/img_avatar.png"
             ></img>
           </div>
-          <div className="userProfileData">{this.props.userData.firstname}</div>
+          <div className="userProfileData">{this.props.userData.first_name}</div>
         </div>
         <div>
           <Modal show={this.state.profileModuleOpen} onHide={this.closeClickHandler}>
@@ -159,18 +159,18 @@ class Profile extends React.Component {
                     <input
                       type="text"
                       className="updateNameInput"
-                      name="firstName"
+                      name="first_name"
                       onChange={this.onChangeHandler}
                       placeholder="First Name"
-                      id="firstNameInputBar"
+                      id="first_nameInputBar"
                     />
                     <input
                       type="text"
                       className="updateNameInput"
-                      name="lastName"
+                      name="last_name"
                       onChange={this.onChangeHandler}
                       placeholder="Last Name"
-                      id="lastNameInputBar"
+                      id="last_nameInputBar"
                     />
                      <input
                       type="number"

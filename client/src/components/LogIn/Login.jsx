@@ -94,13 +94,3 @@ export default class Login extends Component {
       );
   }
 }
-
-
-// background: white;
-//     padding: 3% 6%;
-//     border-radius: 4px;
-//     margin-left: auto;
-//     margin-right: auto;
-//     margin-top: 6%;
-//     cursor: pointer;
-//     display: flex;
