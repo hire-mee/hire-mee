@@ -33,14 +33,14 @@ class Applied extends React.Component{
 
     this.state = {
       showNew: false,
-      companyName:"",
-      descr:"",
-      loc:"",
-      positionTitle:"",
+      company_name:"",
+      app_description:"",
+      app_location:"",
+      position_title:"",
       salary: "",
-      submitDate:"",
+      submit_date:"",
       deadline:"",
-      urlLink:"",
+      url_link:"",
       foo:false,
       status: ""
     }
@@ -89,36 +89,38 @@ class Applied extends React.Component{
         //this function is called after an object is built that holds the new job info and
         //this was the only way I could submit and clear input fields AFTER the checker functions were called
         this.setState({
-          companyName:"",
-          descr:"",
-          loc:"",
-          positionTitle:"",
+          company_name:"",
+          app_description:"",
+          app_location:"",
+          position_title:"",
           salary: "",
-          submitDate:"",
+          submit_date:"",
           deadline:"",
-          urlLink:""
+          url_link:""
         })
-        this.props.render()
+        this.props.getApplications()
         alert('Added New Job Application');
       }
     })
   }
 
   submitHandler(){
-   
+   let {id, total_applied} = this.props.currentUser;
+   let {company_name, app_description, app_location, position_title, submit_date, deadline, url_link, salary} = this.state
     let newApp = {
-      userId: this.props.currentUser.id,
+      user_id: id,
       category: "applied",
-      companyName: this.state.companyName,
-      descr: this.state.descr,
-      loc: this.state.loc,
-      positionTitle:this.state.positionTitle,
-      salary: parseInt(this.state.salary),
-      submitDate: this.state.submitDate,
-      deadline: this.state.deadline,
-      urlLink: this.state.urlLink,
-      totalapplied: this.props.currentUser.totalapplied++
+      company_name: company_name,
+      app_description: app_description,
+      app_location: app_location,
+      position_title: position_title,
+      salary: parseInt(salary),
+      submit_date: submit_date,
+      deadline: deadline,
+      url_link: url_link,
+      total_applied: total_applied++
     }
+
     this.formChecker(newApp)
     .then((res)=>{
       this.salaryChecker(newApp.salary)
@@ -127,14 +129,15 @@ class Applied extends React.Component{
         alert(err);
       })
     })
-    .then(()=>{
-      axios.post(`/api/applications/${newApp.userId}`, newApp)
-      .catch((err)=>{
-        console.error("Error Posting:",err);
-      })
+
+
+    // TODO: Figure out why console log isn't happening
+    axios.post(`/api/applications/${id}`, newApp)
+    .then((data)=> {
+      this.props.getApplications();
     })
     .catch((err)=>{
-      alert(err);
+      console.error(err);
     })
   }
 
@@ -172,7 +175,7 @@ class Applied extends React.Component{
           >
             <Modal.Header closeButton>
               <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
-                <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application?</h1> <br/>
+                <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application</h1> <br/>
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -180,15 +183,15 @@ class Applied extends React.Component{
               <Grid container direction={"row"} spacing={2}  className="new-app-row-1">
 
                 <Grid item>
-                  <TextField required  label="Company Name" name="companyName" onChange={this.changeHandler} value={this.state.companyName}     variant="filled"/>
+                  <TextField required  label="Company Name" name="company_name" onChange={this.changeHandler} value={this.state.company_name}     variant="filled"/>
                 </Grid>
 
                 <Grid item>
-                  <TextField required  label="Job Location" name="loc"  onChange={this.changeHandler} value={this.state.loc} variant="filled"/>
+                  <TextField required  label="Job app_locationation" name="app_location"  onChange={this.changeHandler} value={this.state.app_location} variant="filled"/>
                 </Grid>
 
                 <Grid item>
-                  <TextField required  label="Position Title" name="positionTitle" onChange={this.changeHandler} value={this.state. positionTitle}     variant="filled"/>
+                  <TextField required  label="Position Title" name="position_title" onChange={this.changeHandler} value={this.state. position_title}     variant="filled"/>
                 </Grid>
 
                 </Grid>
@@ -200,18 +203,18 @@ class Applied extends React.Component{
                 </Grid>
 
                 <Grid item>
-                  <TextField required  label="Job Posting Link" name="urlLink" onChange={this.changeHandler} value={this.state.urlLink}       variant="filled"/>
+                  <TextField required  label="Job Posting Link" name="url_link" onChange={this.changeHandler} value={this.state.url_link}       variant="filled"/>
                 </Grid>
 
                 <Grid item>
-                  <TextField label="Job Description" required name="descr"  onChange={this.changeHandler} value={this.state.descr}  variant="filled"/>
+                  <TextField label="Job app_description" required name="app_description"  onChange={this.changeHandler} value={this.state.app_description}  variant="filled"/>
                 </Grid>
 
                 </Grid>
 
                 <Grid container direction={"row"} spacing={2} style={{paddingTop:"10%"}} className="new-app-row-3">
                 <Grid item>
-                  <TextField required  label="Date Submitted" name="submitDate" onChange={this.changeHandler} value={this.state.submitDate}       variant="filled"/>
+                  <TextField required  label="Date Submitted" name="submit_date" onChange={this.changeHandler} value={this.state.submit_date}       variant="filled"/>
                 </Grid>
 
                 <Grid item>
@@ -221,17 +224,13 @@ class Applied extends React.Component{
               </Grid>
 
               <div className="button-holder" style={{paddingLeft:"75%"}}>
-                <Button variant="contained" style={{textAlign:"center"}} color="secondary" onClick={this.submitHandler}> Submit </Button>
+                <Button variant="contained" style={{textAlign:"center"}} color="secondary" onClick={() => this.submitHandler()}> Submit </Button>
               </div>
-
-
-
-
         </Modal.Body>
        </Modal>
         </div>
       </div>
-        )
+     )
   }
 
 }

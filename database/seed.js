@@ -5,19 +5,19 @@ const db = require('./index.js')
 const fakeUserInfoData = () => {
   let userInfo = {};
   userInfo.email = faker.internet.email().replace(/"/g, "'");
-  userInfo.firstName = faker.name.firstName().replace(/"/g, "'");
-  userInfo.lastName = faker.name.lastName().replace(/"/g, "'");
+  userInfo.first_name = faker.name.first_name().replace(/"/g, "'");
+  userInfo.last_name = faker.name.last_name().replace(/"/g, "'");
   userInfo.pass = faker.internet.password().replace(/"/g, "'");
-  userInfo.appliedToday = faker.random.number({'min': 1, 'max': 10});
-  userInfo.appliedMonth = faker.random.number({'min': 1, 'max': 20});
-  userInfo.appOnSite = faker.random.number({'min': 1, 'max': 8});
-  userInfo.appRejected = faker.random.number({'min': 1, 'max': 50});
-  userInfo.appNoResponse = faker.random.number({'min': 1, 'max': 100});
+  userInfo.applied_today = faker.random.number({'min': 1, 'max': 10});
+  userInfo.applied_month = faker.random.number({'min': 1, 'max': 20});
+  userInfo.app_on_site = faker.random.number({'min': 1, 'max': 8});
+  userInfo.app_rejected = faker.random.number({'min': 1, 'max': 50});
+  userInfo.app_no_response = faker.random.number({'min': 1, 'max': 100});
   userInfo.loc = `${faker.address.city().replace(/"/g, "'")}, ${faker.address.state().replace(/"/g, "'")}`;
-  userInfo.jobTitle = faker.name.jobTitle().replace(/"/g, "'");
+  userInfo.job_title = faker.name.job_title().replace(/"/g, "'");
   userInfo.salary = faker.random.number({'min': 50000, 'max': 150000});
   userInfo.streak = faker.random.number({'min': 0, 'max': 12});
-  userInfo.totalApplied = faker.random.number({'min': 3, 'max': 20})
+  userInfo.total_applied = faker.random.number({'min': 3, 'max': 20})
   return userInfo
 };
 
@@ -32,16 +32,18 @@ const createUserInfo = () => {
 const userData = createUserInfo()
 
 //USERINFO DATA
+
 const insertFakeData = () => {
   userData.forEach((item) => {
     console.log('Data', item)
-    let queryStr = `insert into userinfo(email, firstName, lastName, pass, appliedToday, appliedMonth, appOnSite, appRejected, appNoResponse, loc, jobTitle, salary, streak, totalApplied) values ('${item.email}', '${item.firstName}', '${item.lastName}', '${item.pass}', ${item.appliedToday}, ${item.appliedMonth}, ${item.appOnSite}, ${item.appRejected}, ${item.appNoResponse}, '${item.loc}', '${item.jobTitle}', ${item.salary}, ${item.streak}, ${item.totalApplied})`
+    let queryStr = `insert into user_info(email, first_name, last_name, pass, applied_today, applied_month, app_on_site, app_rejected, app_no_response, user_location, job_title, salary, streak, total_applied) values ('${item.email}', '${item.first_name}', '${item.last_name}', '${item.pass}', ${item.applied_today}, ${item.applied_month}, ${item.app_on_site}, ${item.app_rejected}, ${item.app_no_response}, '${item.loc}', '${item.job_title}', ${item.salary}, ${item.streak}, ${item.total_applied})`
     db.query(queryStr, (err) => {
       if(err) {console.log(err)}
-      console.log("seeded userInfo!")
+      console.log("seeded into table user_info!")
     })
   })
 }
+
 // ---------> UNCOMMENT TO SEED DB <---------
 // insertFakeData()
 
@@ -88,7 +90,7 @@ const fakeApplicationData = () => {
   applicationData.companyName = faker.company.companyName();
   applicationData.descr = faker.random.words();
   applicationData.loc = randomLocation();
-  applicationData.positionTitle = faker.name.jobTitle();
+  applicationData.positionTitle = faker.name.job_title();
   applicationData.salary = faker.random.number({'min': 50000, 'max': 150000});
   applicationData.submitDate = faker.date.between('2020-01-01', '2020-06-10').toLocaleString()
   applicationData.deadline = faker.date.between('2020-06-20', '2020-08-10').toLocaleString()
