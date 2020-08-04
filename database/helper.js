@@ -13,7 +13,7 @@ module.exports = {
       }
     })
   },
-  getUserData(id, callback){
+  getUserData(id, callback) {
     const queryStr = `SELECT * FROM userinfo where id = ${id};`
     db.query(queryStr, (err, results) => {
       if (err) {
@@ -23,7 +23,7 @@ module.exports = {
       }
     })
   },
-  getUserByEmail(input, callback){
+  getUserByEmail(input, callback) {
     let { email } = input   //input passed from req.params in controller
     const queryStr = `SELECT * FROM userinfo where email = '${email}';`
     db.query(queryStr, (err, results) => {
@@ -35,13 +35,13 @@ module.exports = {
     })
   },
   signUpPostInfo(input, callback) {
-    let { email , firstname, lastname, pass } = input
+    let { email, firstname, lastname, pass } = input
 
     const saltHash = genPassword(pass);
     const salt = saltHash.salt;
     pass = saltHash.hash;
 
-    const queryStr = `INSERT INTO userinfo(email, firstname, lastname, salt, pass) VALUES ('${email}', '${firstname}', '${lastname}', '${salt}','${pass}');`;
+    const queryStr = `INSERT INTO userinfo(email, firstName, lastName, salt, pass) VALUES ('${email}', '${firstname}', '${lastname}', '${salt}','${pass}');`;
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(err);
@@ -55,7 +55,7 @@ module.exports = {
     const queryStr = `UPDATE userinfo SET appliedtoday=${appliedtoday}, appliedmonth=${appliedmonth}, apponsite=${apponsite}, apprejected=${apprejected}, appnoresponse=${appnoresponse}, loc='${loc}', jobtitle='${jobtitle}', salary=${salary}, streak=${streak}, totalapplied=${totalapplied} WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
-       callback(err);
+        callback(err);
       } else {
         callback(null, results.rows);
       }
@@ -96,22 +96,22 @@ module.exports = {
   // application table
   getApplications(id) {
     const queryStr = `SELECT * FROM applications WHERE userId = ${id};`;
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
       db.query(queryStr)
-      .then((results)=>{
-        resolve(results.rows);
-      })
-      .catch((err)=>{
-        reject(new Error(`Cant Find Applications...${err}`))
-      })
+        .then((results) => {
+          resolve(results.rows);
+        })
+        .catch((err) => {
+          reject(new Error(`Cant Find Applications...${err}`))
+        })
     })
   },
   postApplications(input) {
     let { userId, category, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input;
     let queryStr = `INSERT INTO applications(userId, category, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink) VALUES (${userId}, '${category}', '${companyName}', '${descr}', '${loc}', '${positionTitle}', ${salary}, '${submitDate}', '${deadline}', '${urlLink}');`;
     db.query(queryStr)
-    .then(()=>console.log('Successfully Posted New Application'))
-    .catch((err)=>console.error('Error Posting Application:',err))
+      .then(() => console.log('Successfully Posted New Application'))
+      .catch((err) => console.error('Error Posting Application:', err))
   },
   updateApplications(input, id) {
     const { category, color, companyName, descr, loc, positionTitle, salary, submitDate, deadline, urlLink } = input
@@ -119,12 +119,12 @@ module.exports = {
     const queryStr = `UPDATE applications SET category='${category}', color='${color}', companyname='${companyName}', descr='${descr}', loc='${loc}', positiontitle='${positionTitle}', salary=${salary}, submitdate='${submitDate}', deadline='${deadline}', urlLink='${urlLink}' WHERE id=${id};`;
     return new Promise((resolve, reject) => {
       db.query(queryStr)
-      .then((results)=>{
-        console.log("Application updated!")
-      })
-      .catch((err)=>{
-       console.log(err)
-      })
+        .then((results) => {
+          console.log("Application updated!")
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     })
   },
   deleteApplications(id, callback) {
