@@ -86,9 +86,10 @@ let DetailedView = ({ jobInfo, desired, show, getApplications}) => {
     );
     if (deletePrompt) {
       axios
-        .delete(`/api/applications/${jobInfo.userid}`)
+        .delete(`/api/applications/${jobInfo.user_id}`)
         .then((res) => {
           window.alert("Application Deleted");
+          getApplications()
         })
         .catch((err) => {
           console.error(err);

@@ -98,17 +98,15 @@ module.exports = {
 //==========================================================================================================
 //==================================== APPLICATIONS TABLE===================================================
 //==========================================================================================================
-  getApplications(id) {
+  getApplications(id, callback) {
     const queryStr = `SELECT * FROM applications WHERE user_id = ${id};`;
-    return new Promise((resolve, reject) => {
-      db.query(queryStr)
-        .then((results) => {
-          resolve(results.rows);
-        })
-        .catch((err) => {
-          reject(new Error(`Cant Find Applications...${err}`))
-        })
-    })
+      db.query(queryStr, (err, results) => {
+        if (err) {
+          callback(`ERROR: `, err);
+        } else {
+          callback(null, results.rows);
+        }
+      })
   },
   postApplications(input, callback) {
     let { user_id, category, company_name, app_description, app_location, position_title, salary, submit_date, deadline, url_link } = input;

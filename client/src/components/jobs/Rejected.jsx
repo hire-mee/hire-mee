@@ -21,28 +21,37 @@ style.jobs = {
   fontSize:"1vw"
 };
 
-const Rejected = (props) =>{
-  return(
+class Rejected extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
 
-       <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
-         <div className="rejected-holder" style={{padding:"1em"}}>
+    }
+  }
+
+  render() {
+    return (
+
+      <Grid item xs={12} style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
+        <div className="rejected-holder" style={{ padding: "1em" }}>
           <p style={style.rejected}>Rejected</p>
-          <p style={style.jobs}>{props.rejected.length} Job(s)</p>
-         </div>
+          <p style={style.jobs}>{this.props.rejected.length} Rejected</p>
+        </div>
 
         <div className="rejected-jobs">
-          {props.rejected.map((jobInfo,i)=>{
-            return(
-              <Box jobInfo={jobInfo} desired={props.desired} key={i}/>
+          {this.props.rejected.map((jobInfo, i) => {
+            return (
+              <Box jobInfo={jobInfo} desired={this.props.desired} key={i} />
             )
           })}
         </div>
 
 
-        </Grid>
+      </Grid>
 
 
-  )
+    )
+  }
 }
 
 export default Rejected;

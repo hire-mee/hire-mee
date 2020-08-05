@@ -80,13 +80,11 @@ module.exports = {
     });
   },
   getApplications: (req, res) => {
-    helper.getApplications(req.params.id)
-    .then((result)=>{
-      res.status(200).send(result)
-    })
-    .catch((err)=>{
-      console.error(err);
-      res.status(404).send('Cant Find Applications')
+    helper.getApplications(req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send(results);
     })
   },
   postApplications: (req,res) => {

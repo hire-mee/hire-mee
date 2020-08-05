@@ -100,19 +100,19 @@ class Jobs extends React.Component {
 
           <Grid container spacing={2} >
             <div className="column" style={{ width: "25%" }}>
-              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired.salary} currentUser={this.props.currentUser} changePage={this.props.changePage} getApplications={this.getApplications} />
+              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} />
             </div>
 
             <div className="column" style={{ paddingLeft: "1%", width: "25%", }}>
-              <Rejected rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired.salary} />
+              <Rejected rejected={this.state.sortedJobInfo.rejected} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications}/>
             </div >
 
             <div style={{ paddingLeft: "1%", width: "25%" }} className="interviews-container">
-              <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired.salary} />
+              <Interviews interviews={this.state.sortedJobInfo.interview} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications}/>
             </div>
 
             <div className="column" style={{ paddingLeft: "1%", width: "25%" }} >
-              <Offers offers={this.state.sortedJobInfo.offers} desired={this.props.desired.salary} />
+              <Offers offers={this.state.sortedJobInfo.offers} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications}/>
             </div>
 
           </Grid>
