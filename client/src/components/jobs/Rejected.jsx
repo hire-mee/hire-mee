@@ -34,8 +34,8 @@ class Rejected extends React.Component {
 
       <Grid item xs={12} style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
         <div className="rejected-holder" style={{ padding: "1em" }}>
-          <p style={style.rejected}>Rejected</p>
-          <p style={style.jobs}>{this.props.rejected.length} Rejected</p>
+          <p className="applications_columns">Rejected</p>
+          <p className="applications_count_number">{this.props.rejected.length} Rejected</p>
         </div>
 
         <div className="rejected-jobs">
