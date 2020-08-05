@@ -98,13 +98,11 @@ module.exports = {
     })
   },
   updateApplications: (req, res) => {
-    helper.updateApplications(req.body, req.params.id)
-    .then((result)=>{
-      res.status(200).send(result)
-    })
-    .catch((err)=>{
-      console.error(err);
-      res.status(404).send(err)
+    helper.updateApplications(req.body, req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Updated user data');
     })
   },
   deleteApplications: (req, res) => {

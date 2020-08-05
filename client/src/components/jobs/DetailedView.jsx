@@ -57,7 +57,8 @@ let moneyTemp = (desiredSalary, jobSalary) => {
   }
 };
 
-let DetailedView = ({ jobInfo, desired, show }) => {
+let DetailedView = ({ jobInfo, desired, show, getApplications}) => {
+
   let updateApplicationStatus = (status) => {
     axios
       .put(`/api/update/${jobInfo.id}`, {
@@ -73,7 +74,10 @@ let DetailedView = ({ jobInfo, desired, show }) => {
         deadline: jobInfo.deadline,
         url_link: jobInfo.url_link,
       })
-      .catch((err) => console.log(err));
+      .then((data)=> {
+        getApplications()
+      })
+      .catch((err) => console.error(err));
   };
 
   let deleteApplication = () => {
@@ -87,7 +91,7 @@ let DetailedView = ({ jobInfo, desired, show }) => {
           window.alert("Application Deleted");
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
   };

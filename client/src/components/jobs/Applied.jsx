@@ -131,7 +131,6 @@ class Applied extends React.Component{
     })
 
 
-    // TODO: Figure out why console log isn't happening
     axios.post(`/api/applications/${id}`, newApp)
     .then((data)=> {
       this.props.getApplications();
@@ -159,7 +158,7 @@ class Applied extends React.Component{
           <div className="applied-jobs">
             {this.props.applied.map((jobInfo,i)=>{
             return(
-              <Box jobInfo={jobInfo} desired={this.props.desired} key={i}/>
+              <Box jobInfo={jobInfo} desired={this.props.desired} key={i} getApplications={this.props.getApplications}/>
               )
             })}
           </div>
