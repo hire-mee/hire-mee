@@ -93,7 +93,7 @@ class Interviews extends React.Component {
     } = this.state;
     let newApp = {
       user_id: id,
-      category: "interviews",
+      category: "interview",
       company_name: company_name,
       app_description: app_description,
       app_location: app_location,
