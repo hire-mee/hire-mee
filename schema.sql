@@ -12,7 +12,7 @@ CREATE TABLE user_info(
   salt VARCHAR(255),
   pass VARCHAR(255) NOT NULL,
   applied_today INTEGER,
-  applied_month INTEGER
+  applied_month INTEGER,
   app_onsite INTEGER,
   app_rejected INTEGER,
   app_no_response INTEGER,
