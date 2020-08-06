@@ -28,8 +28,8 @@ const Interviews = (props) => {
       style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
     >
       <div className="interviews-holder" style={{ padding: "1em" }}>
-        <p style={style.offers}>Interviews</p>
-        <p style={style.jobs}>{props.interviews.length + " Interview(s)"}</p>
+        <p className="applications_columns">Interviews</p>
+        <p className="applications_count_number">{props.interviews.length + " Interview(s)"}</p>
       </div>
 
       <div className="job-interviews">

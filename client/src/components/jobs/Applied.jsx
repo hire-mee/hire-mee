@@ -22,7 +22,6 @@ class Applied extends React.Component{
       submit_date:"",
       deadline:"",
       url_link:"",
-      foo:false,
       status: ""
     }
 
@@ -79,7 +78,7 @@ class Applied extends React.Component{
           deadline:"",
           url_link:""
         })
-        this.props.getApplications()
+        this.props.getApplications();
         alert('Added New Job Application');
       }
     })

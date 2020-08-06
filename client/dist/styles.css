@@ -564,19 +564,19 @@ cursor: pointer
 }
 
 .applications_columns{
-  text-align:"center";
-  font-weight: "700";
-  font-style: "normal";
-  color: "rgb(84, 84, 84)";
-  text-decoration: "none";
-  font-size:"2vw";
+  text-align: center;
+  font-weight: 700;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-size:2vw;
 }
 
 .applications_count_number {
-  text-align:"center";
-  font-weight: "400";
-  font-style: "normal";
-  color: "rgb(84, 84, 84)";
-  text-decoration: "none";
-  font-size:"1vw";
+  text-align:center;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-size: 1vw;
 }
