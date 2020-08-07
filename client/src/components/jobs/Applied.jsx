@@ -8,25 +8,6 @@ import Slide from '@material-ui/core/Slide';
 import axios from 'axios';
 
 
-let style = {}
-style.applied = {
-  textAlign:"center",
-  fontWeight: "700",
-  fontStyle: "normal",
-  color: "rgb(84, 84, 84)",
-  textDecoration: "none",
-  fontSize:"2vw"
-};
-
-style.jobs = {
-  textAlign:"center",
-  fontWeight: "400",
-  fontStyle: "normal",
-  color: "rgb(84, 84, 84)",
-  textDecoration: "none",
-  fontSize:"1vw"
-};
-
 class Applied extends React.Component{
   constructor(props){
     super(props)
@@ -41,7 +22,6 @@ class Applied extends React.Component{
       submit_date:"",
       deadline:"",
       url_link:"",
-      foo:false,
       status: ""
     }
 
@@ -98,7 +78,7 @@ class Applied extends React.Component{
           deadline:"",
           url_link:""
         })
-        this.props.getApplications()
+        this.props.getApplications();
         alert('Added New Job Application');
       }
     })
@@ -131,7 +111,6 @@ class Applied extends React.Component{
     })
 
 
-    // TODO: Figure out why console log isn't happening
     axios.post(`/api/applications/${id}`, newApp)
     .then((data)=> {
       this.props.getApplications();
@@ -148,8 +127,8 @@ class Applied extends React.Component{
       <div className="applied-component-holder" style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
         <Grid item xs={12} style={{backgroundColor:"rgb(232, 236, 239)",height:"100%"}}>
           <div className="applied-holder" style={{padding:"1em"}}>
-            <p style={style.applied}>Applied</p>
-            <p style={style.jobs}>{this.props.applied.length} Job(s)</p>
+            <p className="applications_columns">Applied</p>
+            <p className="applications_count_number">{this.props.applied.length} App(s)</p>
           </div>
 
           <div className="" style={{backgroundColor:"white",width:"65%",margin: "0 auto", borderRadius: "3px"}}>
@@ -159,7 +138,7 @@ class Applied extends React.Component{
           <div className="applied-jobs">
             {this.props.applied.map((jobInfo,i)=>{
             return(
-              <Box jobInfo={jobInfo} desired={this.props.desired} key={i}/>
+              <Box jobInfo={jobInfo} desired={this.props.desired} key={i} getApplications={this.props.getApplications}/>
               )
             })}
           </div>

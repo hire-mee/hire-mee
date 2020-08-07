@@ -48,7 +48,7 @@ class Box extends React.Component{
     <div className="applied-box-holder" onClick={() => this.openOrClosePopup()}>
       <p style={style.companyTitle}>{this.props.jobInfo.company_name}</p>
       <p style={style.jobTitle}>{this.props.jobInfo.position_title}</p>
-      <DetailedView jobInfo={this.props.jobInfo} desired={this.props.desired} show={this.state.show} />
+      <DetailedView jobInfo={this.props.jobInfo} desired={this.props.desired} show={this.state.show} getApplications={this.props.getApplications}/>
     </div>
     );
   }
