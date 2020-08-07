@@ -1,6 +1,6 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Box from './Box.jsx';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Box from "./Box.jsx";
 import Modal from "react-bootstrap/Modal";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -28,7 +28,6 @@ class Offers extends React.Component {
     this.formChecker = this.formChecker.bind(this);
     this.salaryChecker = this.salaryChecker.bind(this);
   }
-
 
   toggleNewApplicationModal() {
     this.setState({
@@ -125,25 +124,51 @@ class Offers extends React.Component {
 
   render() {
     return (
-      <div className="applied-component-holder" style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
-        <Grid item xs={12} style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
+      <div
+        className="applied-component-holder"
+        style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+      >
+        <Grid
+          item
+          xs={12}
+          style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+        >
           <div className="applied-holder" style={{ padding: "1em" }}>
             <p className="applications_columns">Offers</p>
-            <p className="applications_count_number">{this.props.offers.length} Offer(s)</p>
+            <p className="applications_count_number">
+              {this.props.offers.length} Offer(s)
+            </p>
           </div>
 
-          <div className="" style={{ backgroundColor: "white", width: "65%", margin: "0 auto", borderRadius: "3px" }}>
-            <h3 style={{ textAlign: "center", cursor: "pointer" }} onClick={this.toggleNewApplicationModal}>+</h3>
+          <div
+            className=""
+            style={{
+              backgroundColor: "white",
+              width: "65%",
+              margin: "0 auto",
+              borderRadius: "3px",
+            }}
+          >
+            <h3
+              style={{ textAlign: "center", cursor: "pointer" }}
+              onClick={this.toggleNewApplicationModal}
+            >
+              +
+            </h3>
           </div>
 
           <div className="applied-jobs">
             {this.props.offers.map((jobInfo, i) => {
               return (
-                <Box jobInfo={jobInfo} desired={this.props.desired} key={i} getApplications={this.props.getApplications} />
-              )
+                <Box
+                  jobInfo={jobInfo}
+                  desired={this.props.desired}
+                  key={i}
+                  getApplications={this.props.getApplications}
+                />
+              );
             })}
           </div>
-
         </Grid>
 
         <div className="new-application-holder">
@@ -154,64 +179,145 @@ class Offers extends React.Component {
             aria-labelledby="modal-styling-title"
           >
             <Modal.Header closeButton>
-              <Modal.Title id="emodal-styling-title" style={{ paddingLeft: "50px" }}>
-                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "3vw" }}>New Interview Entry</h1> <br />
+              <Modal.Title
+                id="emodal-styling-title"
+                style={{ paddingLeft: "50px" }}
+              >
+                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "30px" }}>
+                  New Interview Entry
+                </h1>{" "}
+                <br />
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-
-              <Grid container direction={"row"} spacing={2} className="new-app-row-1">
-
+              <Grid
+                container
+                direction={"row"}
+                spacing={2}
+                className="new-app-row-1"
+              >
                 <Grid item>
-                  <TextField required label="Company Name" name="company_name" onChange={this.changeHandler} value={this.state.company_name} variant="filled" />
+                  <TextField
+                    required
+                    label="Company Name"
+                    name="company_name"
+                    onChange={this.changeHandler}
+                    value={this.state.company_name}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job app_locationation" name="app_location" onChange={this.changeHandler} value={this.state.app_location} variant="filled" />
+                  <TextField
+                    required
+                    label="Job app_locationation"
+                    name="app_location"
+                    onChange={this.changeHandler}
+                    value={this.state.app_location}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Position Title" name="position_title" onChange={this.changeHandler} value={this.state.position_title} variant="filled" />
+                  <TextField
+                    required
+                    label="Position Title"
+                    name="position_title"
+                    onChange={this.changeHandler}
+                    value={this.state.position_title}
+                    variant="filled"
+                  />
                 </Grid>
-
               </Grid>
 
-              <Grid container direction={"row"} spacing={2} style={{ paddingTop: "10%" }} className="new-app-row-2">
-
+              <Grid
+                container
+                direction={"row"}
+                spacing={2}
+                style={{ paddingTop: "10%" }}
+                className="new-app-row-2"
+              >
                 <Grid item>
-                  <TextField required label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled" />
+                  <TextField
+                    required
+                    label="Job Salary"
+                    name="salary"
+                    onChange={this.changeHandler}
+                    value={this.state.salary}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job Posting Link" name="url_link" onChange={this.changeHandler} value={this.state.url_link} variant="filled" />
+                  <TextField
+                    required
+                    label="Job Posting Link"
+                    name="url_link"
+                    onChange={this.changeHandler}
+                    value={this.state.url_link}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField label="Job app_description" required name="app_description" onChange={this.changeHandler} value={this.state.app_description} variant="filled" />
+                  <TextField
+                    label="Job app_description"
+                    required
+                    name="app_description"
+                    onChange={this.changeHandler}
+                    value={this.state.app_description}
+                    variant="filled"
+                  />
                 </Grid>
-
               </Grid>
 
-              <Grid container direction={"row"} spacing={2} style={{ paddingTop: "10%" }} className="new-app-row-3">
+              <Grid
+                container
+                direction={"row"}
+                spacing={2}
+                style={{ paddingTop: "10%" }}
+                className="new-app-row-3"
+              >
                 <Grid item>
-                  <TextField required label="Date Submitted" name="submit_date" onChange={this.changeHandler} value={this.state.submit_date} variant="filled" />
+                  <TextField
+                    required
+                    label="Date Submitted"
+                    name="submit_date"
+                    onChange={this.changeHandler}
+                    value={this.state.submit_date}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Application Deadline" name="deadline" onChange={this.changeHandler} value={this.state.deadline} variant="filled" />
+                  <TextField
+                    required
+                    label="Application Deadline"
+                    name="deadline"
+                    onChange={this.changeHandler}
+                    value={this.state.deadline}
+                    variant="filled"
+                  />
                 </Grid>
-
               </Grid>
 
               <div className="button-holder" style={{ paddingLeft: "75%" }}>
-                <Button variant="contained" style={{ textAlign: "center" }} color="secondary" onClick={() => this.submitHandler()}> Submit </Button>
+                <Button
+                  variant="contained"
+                  style={{ textAlign: "center" }}
+                  color="secondary"
+                  onClick={() => this.submitHandler()}
+                >
+                  {" "}
+                  Submit{" "}
+                </Button>
               </div>
             </Modal.Body>
           </Modal>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default Offers;
