@@ -167,7 +167,7 @@ class Offers extends React.Component {
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job app_location" name="app_location" onChange={this.changeHandler} value={this.state.app_location} variant="filled" />
+                  <TextField required label="Job Location" name="app_location" onChange={this.changeHandler} value={this.state.app_location} variant="filled" />
                 </Grid>
 
                 <Grid item>
@@ -187,7 +187,7 @@ class Offers extends React.Component {
                 </Grid>
 
                 <Grid item>
-                  <TextField label="Job app_description" required name="app_description" onChange={this.changeHandler} value={this.state.app_description} variant="filled" />
+                  <TextField label="Job Description" required name="app_description" onChange={this.changeHandler} value={this.state.app_description} variant="filled" />
                 </Grid>
 
               </Grid>
