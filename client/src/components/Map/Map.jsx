@@ -77,8 +77,6 @@ class MapContainer extends Component {
   }
 
   render() {
-    console.log("STATE", this.state);
-    console.log("filter", this.geocodeGen());
     let applicationCities = this.geocodeGen();
 
     const lngLatConversion = applicationCities.map((data, i) => {
