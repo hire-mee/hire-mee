@@ -97,10 +97,9 @@ class Applied extends React.Component{
       salary: parseInt(salary),
       submit_date: submit_date,
       deadline: deadline,
-      url_link: url_link,
-      total_applied: total_applied++
+      url_link: url_link
     }
-
+    // also need to make a put request to update userinfo with applied_total ++
     this.formChecker(newApp)
     .then((res)=>{
       this.salaryChecker(newApp.salary)

@@ -83,7 +83,7 @@ class App extends React.Component {
       if (this.state.page === 'Jobs') {
         return <Jobs desired={this.state.currentUser} currentUser={this.state.currentUser} changePage={this.changePage}/>
       } else if (this.state.page === 'Statistics') {
-        if(this.state.currentUser.totalapplied == undefined){
+        if(!this.state.currentUser.total_applied){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
         }
         return <Statistics user={this.state.currentUser} />
@@ -129,7 +129,7 @@ class App extends React.Component {
         this.setState({
           users: data.data,
           currentUser: data.data[0],
-        })
+        }, () => console.log(this.state))
       })
       .catch(err => console.error(err))
   }
@@ -139,7 +139,7 @@ class App extends React.Component {
     .then(data => {
       this.setState({
         currentUser: data.data[0]
-      })
+      }, () => console.log(this.state.currentUser))
     })
     .catch(err => console.error(err))
   }

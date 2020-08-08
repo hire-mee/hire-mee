@@ -6,15 +6,16 @@ class Statistics extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
   }
-
+componentDidMount(){
+  // console.log("props of statistics", this.props)
+}
   render() {
     const pieData = {
       labels: ['On Site', 'Rejected', 'No Response'],
       datasets: [{
-        data: [this.props.user.apponsite, this.props.user.apprejected, this.props.user.appnoresponse],
+        data: [this.props.user.app_onsite, this.props.user.app_rejected, this.props.user.app_no_response],
         backgroundColor: ['#78c975', '#cf4a4a', '#bababa'],
         hoverBackgroundColor: ['#78c975', '#cf4a4a', '#bababa']
       }]
@@ -23,10 +24,10 @@ class Statistics extends React.Component {
     return (
       <div>
         <div className='stat_header'>Current Application Statistics:</div>
-        <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.appliedtoday}</span> jobs on a daily average.</div>
-        <div className='stat_info'>You applied to <span className='stat_color'>{Math.floor(this.props.user.appliedmonth/4)}</span> jobs on a weekly average.</div>
-        <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.appliedmonth}</span> jobs this month.</div>
-        <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.totalapplied}</span> jobs in total.</div>
+        <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.applied_today}</span> jobs on a daily average.</div>
+        <div className='stat_info'>You applied to <span className='stat_color'>{Math.floor(this.props.user.applied_month/4)}</span> jobs on a weekly average.</div>
+        <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.applied_month}</span> jobs this month.</div>
+        <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.total_applied}</span> jobs in total.</div>
         <div id="chart">
 
         </div>
@@ -63,7 +64,7 @@ class Statistics extends React.Component {
               }
             }}
           />
-          <p className='stat_pieInfo'>Status on <span className='stat_color'>{this.props.user.totalapplied}</span> applications.</p>
+          <p className='stat_pieInfo'>Status on <span className='stat_color'>{this.props.user.total_applied}</span> applications.</p>
         </div>
       </div>
     )
