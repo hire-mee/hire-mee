@@ -15,14 +15,16 @@ const WrappedMap = withScriptjs(withGoogleMap(Map));
 export class MapView extends Component {
   render() {
     return (
-      <div style={{ width: "50vw", height: "50vh" }}>
+      <div style={{}}>
         <WrappedMap
           googleMapURL={
             "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
           }
-          loadingElement={<div style={{ height: "50%" }} />}
-          containerElement={<div style={{ height: "50%" }} />}
-          mapElement={<div style={{ height: "50%" }} />}
+          loadingElement={<div style={{ height: "75vh" }} />}
+          containerElement={
+            <div style={{ height: "75vh", width: "75vw", margin: "auto" }} />
+          }
+          mapElement={<div style={{ height: "75vh" }} />}
         />
       </div>
     );
