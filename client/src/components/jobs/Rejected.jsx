@@ -1,15 +1,15 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Box from './Box.jsx';
-import Modal from 'react-bootstrap/Modal';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Slide from '@material-ui/core/Slide';
-import axios from 'axios';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Box from "./Box.jsx";
+import Modal from "react-bootstrap/Modal";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Slide from "@material-ui/core/Slide";
+import axios from "axios";
 
 class Rejected extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       modalOpen: false,
       company_name: "",
@@ -20,8 +20,8 @@ class Rejected extends React.Component {
       submit_date: "",
       deadline: "",
       url_link: "",
-      status: ""
-    }
+      status: "",
+    };
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.toggleNewApplicationModal = this.toggleNewApplicationModal.bind(this);
@@ -31,36 +31,36 @@ class Rejected extends React.Component {
 
   toggleNewApplicationModal() {
     this.setState({
-      modalOpen: !this.state.modalOpen
-    })
+      modalOpen: !this.state.modalOpen,
+    });
   }
 
   changeHandler(e) {
     e.preventDefault();
 
     this.setState({
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   }
 
   formChecker(newApp) {
     return new Promise((resolve, reject) => {
       for (let key in newApp) {
         if (newApp[key] === "") {
-          reject(new Error('Please Fill In All Text Boxes'));
+          reject(new Error("Please Fill In All Text Boxes"));
         }
       }
-      resolve('Forms are Gucci!');
-    })
+      resolve("Forms are Gucci!");
+    });
   }
 
   salaryChecker(newAppSal) {
     return new Promise((resolve, reject) => {
       if (Number.isNaN(newAppSal)) {
-        reject(new Error('Please Type A number for salary'));
-        return
+        reject(new Error("Please Type A number for salary"));
+        return;
       } else {
-        resolve('Salary Is Gucci!');
+        resolve("Salary Is Gucci!");
         //this function is called after an object is built that holds the new job info and
         //this was the only way I could submit and clear input fields AFTER the checker functions were called
         this.setState({
@@ -71,17 +71,26 @@ class Rejected extends React.Component {
           salary: "",
           submit_date: "",
           deadline: "",
-          url_link: ""
-        })
+          url_link: "",
+        });
         this.props.getApplications();
-        alert('Added New Job Application');
+        alert("Added New Job Application");
       }
-    })
+    });
   }
 
   submitHandler() {
     let { id, total_applied } = this.props.currentUser;
-    let { company_name, app_description, app_location, position_title, submit_date, deadline, url_link, salary } = this.state
+    let {
+      company_name,
+      app_description,
+      app_location,
+      position_title,
+      submit_date,
+      deadline,
+      url_link,
+      salary,
+    } = this.state;
     let newApp = {
       user_id: id,
       category: "rejected",
@@ -93,49 +102,73 @@ class Rejected extends React.Component {
       submit_date: submit_date,
       deadline: deadline,
       url_link: url_link,
-      total_applied: total_applied++
-    }
+      total_applied: total_applied++,
+    };
 
-    this.formChecker(newApp)
-      .then((res) => {
-        this.salaryChecker(newApp.salary)
-          .catch((err) => {
-            console.error(err);
-            alert(err);
-          })
-      })
+    this.formChecker(newApp).then((res) => {
+      this.salaryChecker(newApp.salary).catch((err) => {
+        console.error(err);
+        alert(err);
+      });
+    });
 
-
-    axios.post(`/api/applications/${id}`, newApp)
+    axios
+      .post(`/api/applications/${id}`, newApp)
       .then((data) => {
         this.props.getApplications();
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
 
   render() {
     return (
-      <div className="applied-component-holder" style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
-        <Grid item xs={12} style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
+      <div
+        className="applied-component-holder"
+        style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+      >
+        <Grid
+          item
+          xs={12}
+          style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+        >
           <div className="applied-holder" style={{ padding: "1em" }}>
             <p className="applications_columns">Rejected</p>
-            <p className="applications_count_number">{this.props.rejected.length} App(s)</p>
+            <p className="applications_count_number">
+              {this.props.rejected.length} App(s)
+            </p>
           </div>
 
-          <div className="" style={{ backgroundColor: "white", width: "65%", margin: "0 auto", borderRadius: "3px" }}>
-            <h3 style={{ textAlign: "center", cursor: "pointer" }} onClick={this.toggleNewApplicationModal}>+</h3>
+          <div
+            className=""
+            style={{
+              backgroundColor: "white",
+              width: "65%",
+              margin: "0 auto",
+              borderRadius: "3px",
+            }}
+          >
+            <h3
+              style={{ textAlign: "center", cursor: "pointer" }}
+              onClick={this.toggleNewApplicationModal}
+            >
+              +
+            </h3>
           </div>
 
           <div className="applied-jobs">
             {this.props.rejected.map((jobInfo, i) => {
               return (
-                <Box jobInfo={jobInfo} desired={this.props.desired} key={i} getApplications={this.props.getApplications} />
-              )
+                <Box
+                  jobInfo={jobInfo}
+                  desired={this.props.desired}
+                  key={i}
+                  getApplications={this.props.getApplications}
+                />
+              );
             })}
           </div>
-
         </Grid>
 
         <div className="new-application-holder">
@@ -146,64 +179,144 @@ class Rejected extends React.Component {
             aria-labelledby="modal-styling-title"
           >
             <Modal.Header closeButton>
-              <Modal.Title id="emodal-styling-title" style={{ paddingLeft: "50px" }}>
-                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "3vw" }}>New Rejected Entry</h1> <br />
+              <Modal.Title
+                id="emodal-styling-title"
+                style={{ paddingLeft: "50px" }}
+              >
+                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "30px" }}>
+                  New Rejected Entry
+                </h1>{" "}
+                <br />
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-
-              <Grid container direction={"row"} spacing={2} className="new-app-row-1">
-
+              <Grid
+                container
+                direction={"row"}
+                spacing={2}
+                className="new-app-row-1"
+              >
                 <Grid item>
-                  <TextField required label="Company Name" name="company_name" onChange={this.changeHandler} value={this.state.company_name} variant="filled" />
+                  <TextField
+                    required
+                    label="Company Name"
+                    name="company_name"
+                    onChange={this.changeHandler}
+                    value={this.state.company_name}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job app_locationation" name="app_location" onChange={this.changeHandler} value={this.state.app_location} variant="filled" />
+                  <TextField
+                    required
+                    label="Job app_locationation"
+                    name="app_location"
+                    onChange={this.changeHandler}
+                    value={this.state.app_location}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Position Title" name="position_title" onChange={this.changeHandler} value={this.state.position_title} variant="filled" />
+                  <TextField
+                    required
+                    label="Position Title"
+                    name="position_title"
+                    onChange={this.changeHandler}
+                    value={this.state.position_title}
+                    variant="filled"
+                  />
                 </Grid>
-
               </Grid>
 
-              <Grid container direction={"row"} spacing={2} style={{ paddingTop: "10%" }} className="new-app-row-2">
-
+              <Grid
+                container
+                direction={"row"}
+                spacing={2}
+                style={{ paddingTop: "10%" }}
+                className="new-app-row-2"
+              >
                 <Grid item>
-                  <TextField required label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled" />
+                  <TextField
+                    required
+                    label="Job Salary"
+                    name="salary"
+                    onChange={this.changeHandler}
+                    value={this.state.salary}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job Posting Link" name="url_link" onChange={this.changeHandler} value={this.state.url_link} variant="filled" />
+                  <TextField
+                    required
+                    label="Job Posting Link"
+                    name="url_link"
+                    onChange={this.changeHandler}
+                    value={this.state.url_link}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField label="Job app_description" required name="app_description" onChange={this.changeHandler} value={this.state.app_description} variant="filled" />
+                  <TextField
+                    label="Job app_description"
+                    required
+                    name="app_description"
+                    onChange={this.changeHandler}
+                    value={this.state.app_description}
+                    variant="filled"
+                  />
                 </Grid>
-
               </Grid>
 
-              <Grid container direction={"row"} spacing={2} style={{ paddingTop: "10%" }} className="new-app-row-3">
+              <Grid
+                container
+                direction={"row"}
+                spacing={2}
+                style={{ paddingTop: "10%" }}
+                className="new-app-row-3"
+              >
                 <Grid item>
-                  <TextField required label="Date Submitted" name="submit_date" onChange={this.changeHandler} value={this.state.submit_date} variant="filled" />
+                  <TextField
+                    required
+                    label="Date Submitted"
+                    name="submit_date"
+                    onChange={this.changeHandler}
+                    value={this.state.submit_date}
+                    variant="filled"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Application Deadline" name="deadline" onChange={this.changeHandler} value={this.state.deadline} variant="filled" />
+                  <TextField
+                    required
+                    label="Application Deadline"
+                    name="deadline"
+                    onChange={this.changeHandler}
+                    value={this.state.deadline}
+                    variant="filled"
+                  />
                 </Grid>
-
               </Grid>
 
               <div className="button-holder" style={{ paddingLeft: "75%" }}>
-                <Button variant="contained" style={{ textAlign: "center" }} color="secondary" onClick={() => this.submitHandler()}> Submit </Button>
+                <Button
+                  variant="contained"
+                  style={{ textAlign: "center" }}
+                  color="secondary"
+                  onClick={() => this.submitHandler()}
+                >
+                  {" "}
+                  Submit{" "}
+                </Button>
               </div>
             </Modal.Body>
           </Modal>
         </div>
       </div>
-
-    )
+    );
   }
 }
 
