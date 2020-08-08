@@ -152,7 +152,7 @@ class Applied extends React.Component{
           dialogClassName="detailed-view"
           aria-labelledby="modal-styling-title"
           >
-            <Modal.Header closeButton>
+            <Modal.Header className="modal-header" closeButton>
               <Modal.Title id="emodal-styling-title" style={{paddingLeft:"50px"}}>
                 <h1 style={{color:"rgb(84, 84, 84)",fontSize:"3vw"}}>New Job Application</h1> <br/>
               </Modal.Title>
