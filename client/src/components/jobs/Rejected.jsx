@@ -178,23 +178,21 @@ class Rejected extends React.Component {
             dialogClassName="detailed-view"
             aria-labelledby="modal-styling-title"
           >
-            <Modal.Header closeButton>
-              <Modal.Title
-                id="emodal-styling-title"
-                style={{ paddingLeft: "50px" }}
-              >
+            <Modal.Header className="modal-header" closeButton>
+              <Modal.Title className="modal-title">
                 <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "30px" }}>
                   New Rejected Entry
                 </h1>{" "}
                 <br />
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body style={{ margin: "auto" }}>
               <Grid
                 container
                 direction={"row"}
-                spacing={2}
+                spacing={3}
                 className="new-app-row-1"
+                style={{ paddingTop: "20px" }}
               >
                 <Grid item>
                   <TextField
@@ -203,18 +201,18 @@ class Rejected extends React.Component {
                     name="company_name"
                     onChange={this.changeHandler}
                     value={this.state.company_name}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
 
                 <Grid item>
                   <TextField
                     required
-                    label="Job app_locationation"
+                    label="Job Location"
                     name="app_location"
                     onChange={this.changeHandler}
                     value={this.state.app_location}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
 
@@ -225,7 +223,7 @@ class Rejected extends React.Component {
                     name="position_title"
                     onChange={this.changeHandler}
                     value={this.state.position_title}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
               </Grid>
@@ -233,18 +231,18 @@ class Rejected extends React.Component {
               <Grid
                 container
                 direction={"row"}
-                spacing={2}
-                style={{ paddingTop: "10%" }}
+                spacing={3}
+                style={{ paddingTop: "5%" }}
                 className="new-app-row-2"
               >
                 <Grid item>
                   <TextField
                     required
-                    label="Job Salary"
+                    label="Salary"
                     name="salary"
                     onChange={this.changeHandler}
                     value={this.state.salary}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
 
@@ -255,18 +253,18 @@ class Rejected extends React.Component {
                     name="url_link"
                     onChange={this.changeHandler}
                     value={this.state.url_link}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
 
                 <Grid item>
                   <TextField
-                    label="Job app_description"
+                    label="Description"
                     required
                     name="app_description"
                     onChange={this.changeHandler}
                     value={this.state.app_description}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
               </Grid>
@@ -274,8 +272,8 @@ class Rejected extends React.Component {
               <Grid
                 container
                 direction={"row"}
-                spacing={2}
-                style={{ paddingTop: "10%" }}
+                spacing={3}
+                style={{ paddingTop: "5%" }}
                 className="new-app-row-3"
               >
                 <Grid item>
@@ -285,7 +283,7 @@ class Rejected extends React.Component {
                     name="submit_date"
                     onChange={this.changeHandler}
                     value={this.state.submit_date}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
 
@@ -296,12 +294,19 @@ class Rejected extends React.Component {
                     name="deadline"
                     onChange={this.changeHandler}
                     value={this.state.deadline}
-                    variant="filled"
+                    variant="outlined"
                   />
                 </Grid>
               </Grid>
 
-              <div className="button-holder" style={{ paddingLeft: "75%" }}>
+              <div
+                className="button-holder"
+                style={{
+                  paddingLeft: "550px",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
                 <Button
                   variant="contained"
                   style={{ textAlign: "center" }}

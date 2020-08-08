@@ -119,7 +119,12 @@ body {
 } */
 
 .modal-header {
-  /* margin: auto; */
+  height: 90px;
+}
+
+.modal-title {
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 /*
