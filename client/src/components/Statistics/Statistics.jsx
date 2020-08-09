@@ -7,20 +7,22 @@ class Statistics extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      user_app_data: [],
       app_on_site_count: 0,
       app_rejected_count: 0,
       app_no_response_count: 0
     }
+    this.getDataForPieChart = this.getDataForPieChart.bind(this);
     this.applicationsPieChartCount = this.applicationsPieChartCount.bind(this);
   }
 
   componentDidMount() {
-    this.applicationsPieChartCount()
+    this.getDataForPieChart()
   }
 
   applicationsPieChartCount() {
-    for (let i = 0; i < this.props.user_app_data.length; i++) {
-      let current = this.props.user_app_data[i]
+    for (let i = 0; i < this.state.user_app_data.length; i++) {
+      let current = this.state.user_app_data[i]
       if (current.category == "interview") {
         this.setState({ app_on_site_count: this.state.app_on_site_count += 1 })
       } else if (current.category == "rejected") {
@@ -30,8 +32,18 @@ class Statistics extends React.Component {
       }
     }
     this.setState({
-      total_applied: this.props.user_app_data.length
+      total_applied: this.state.user_app_data.length
     })
+  }
+
+  getDataForPieChart() {
+    axios.get(`/api/applications/${this.props.user.id}`)
+      .then((results) => {
+        this.setState({
+          user_app_data: results.data
+        }, () => this.applicationsPieChartCount())
+      })
+      .catch((err) => console.error('Error Getting Applications data', err));
   }
 
   render() {

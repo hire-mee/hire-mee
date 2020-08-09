@@ -33,7 +33,6 @@ class App extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.componentSignOut = this.componentSignOut.bind(this);
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
-    this.getUserApplicationData = this.getUserApplicationData.bind(this);
   }
 
 
@@ -88,7 +87,7 @@ class App extends React.Component {
         if(!this.state.currentUser.total_applied){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
         }
-        return <Statistics user={this.state.currentUser} getData={this.getData} user_app_data={this.state.currentUserApplications}/>
+        return <Statistics user={this.state.currentUser} getData={this.getData}/>
       } else if (this.state.page === 'Leaderboard') {
         return (
           <div >
@@ -141,16 +140,6 @@ class App extends React.Component {
     .then(data => {
       this.setState({
         currentUser: data.data[0]
-      })
-    })
-    .catch(err => console.error(err))
-  }
-
-  getUserApplicationData(id){ // TODO: UNUSED ANYWHERE YET
-    axios.get(`/api/applications/${id}`)
-    .then(data => {
-      this.setState({
-        currentUserApplications: data.data
       })
     })
     .catch(err => console.error(err))
