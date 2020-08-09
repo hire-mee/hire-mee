@@ -33,8 +33,8 @@ router
 
 router // route for ALL users
 .route('/users/:id')
-.put(controller.updateInfo)
-.delete(controller.deleteInfo);
+.put(controller.updateInfo) // updates user_info streaks/applied quantities fields
+.delete(controller.deleteInfo); // route to delete user from database
 
 router // route for a single user 
 .route('/user/:id')
@@ -53,7 +53,7 @@ router // updates a single user's firstName, lastName, salary
 
 router
 .route('/userApp/:id')
-.put(controller.updateApps);
+.put(controller.updateApps);  // updates user_info table, used in Settings Module to reset progress
 
 router
 .route('/applications/:id')
@@ -67,6 +67,6 @@ router
 
 router
 .route('/update/:id')
-.put(controller.updateApplications);
+.put(controller.updateApplications); // route to move job application from one column to another
 
 module.exports = router;

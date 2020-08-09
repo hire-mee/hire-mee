@@ -74,7 +74,7 @@ class Jobs extends React.Component {
           .then((sortedJobs) => {
             this.setState({
               sortedJobInfo: sortedJobs
-            })
+            }, () => this.props.getUpdatedUserData())
           })
           .catch((err) => console.error(err))
       })
@@ -100,7 +100,7 @@ class Jobs extends React.Component {
 
           <Grid container spacing={2} >
             <div className="column" style={{ width: "25%" }}>
-              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} />
+              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} getUpdatedUserData={this.props.getUpdatedUserData} />
             </div>
 
             <div className="column" style={{ paddingLeft: "1%", width: "25%", }}>

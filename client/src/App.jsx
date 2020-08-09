@@ -22,6 +22,7 @@ class App extends React.Component {
       userId: '',
       users: '',
       currentUser: '',
+      currentUserApplications: [],
       logoutBox: false
     };
     this.componentHandler = this.componentHandler.bind(this);
@@ -32,6 +33,7 @@ class App extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.componentSignOut = this.componentSignOut.bind(this);
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
+    this.getUserApplicationData = this.getUserApplicationData.bind(this);
   }
 
 
@@ -81,12 +83,12 @@ class App extends React.Component {
 
   componentHandler() {
       if (this.state.page === 'Jobs') {
-        return <Jobs desired={this.state.currentUser} currentUser={this.state.currentUser} changePage={this.changePage}/>
+        return <Jobs desired={this.state.currentUser} currentUser={this.state.currentUser} changePage={this.changePage}  getUpdatedUserData={this.getUpdatedUserData}/>
       } else if (this.state.page === 'Statistics') {
         if(!this.state.currentUser.total_applied){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
         }
-        return <Statistics user={this.state.currentUser} />
+        return <Statistics user={this.state.currentUser} getData={this.getData} user_app_data={this.state.currentUserApplications}/>
       } else if (this.state.page === 'Leaderboard') {
         return (
           <div >
@@ -129,7 +131,7 @@ class App extends React.Component {
         this.setState({
           users: data.data,
           currentUser: data.data[0],
-        }, () => console.log(this.state))
+        })
       })
       .catch(err => console.error(err))
   }
@@ -139,7 +141,17 @@ class App extends React.Component {
     .then(data => {
       this.setState({
         currentUser: data.data[0]
-      }, () => console.log(this.state.currentUser))
+      })
+    })
+    .catch(err => console.error(err))
+  }
+
+  getUserApplicationData(id){ // TODO: UNUSED ANYWHERE YET
+    axios.get(`/api/applications/${id}`)
+    .then(data => {
+      this.setState({
+        currentUserApplications: data.data
+      })
     })
     .catch(err => console.error(err))
   }

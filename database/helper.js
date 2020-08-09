@@ -19,7 +19,7 @@ module.exports = {
     const queryStr = `SELECT * FROM user_info where id = ${id};`
     db.query(queryStr, (err, results) => {
       if (err) {
-        console.log(`ERROR: `, err);
+        console.error(`ERROR: `, err);
       } else {
         callback(null, results.rows)
       }
@@ -30,7 +30,7 @@ module.exports = {
     const queryStr = `SELECT * FROM user_info where email = '${email}';`
     db.query(queryStr, (err, results) => {
       if (err) {
-        console.log(`ERROR: `, err);
+        console.error(`ERROR: `, err);
       } else {
         callback(null, results.rows)
       }
@@ -53,8 +53,8 @@ module.exports = {
     })
   },
   updateInfo(input, id, callback) {
-    const { applied_today, applied_month, app_onsite, app_rejected, app_no_response, app_location, job_title, salary, streak, total_applied } = input
-    const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month}, app_onsite=${app_onsite}, app_rejected=${app_rejected}, app_no_response=${app_no_response}, app_location='${app_location}', job_title='${job_title}', salary=${salary}, streak=${streak}, total_applied=${total_applied} WHERE id=${id};`;
+    const { applied_today, applied_month, total_applied } = input
+    const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month}, total_applied=${total_applied} WHERE id=${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(err);
