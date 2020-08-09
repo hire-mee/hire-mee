@@ -43,7 +43,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("testing");
+    // console.log("testing");
   }
 
   componentStartUp() {
@@ -168,7 +168,7 @@ class App extends React.Component {
         </div>
       );
     } else if (this.state.page === "Map") {
-      return <MapContainer />;
+      return <MapContainer userData={this.state.currentUser} />;
     } else if (this.state.page === "Friends") {
       return (
         <div>
