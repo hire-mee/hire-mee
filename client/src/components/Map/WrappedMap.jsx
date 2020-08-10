@@ -32,11 +32,27 @@ export const WrappedMap = withScriptjs(
         {selectedJob && (
           <InfoWindow
             position={{ lat: selectedJob.lat, lng: selectedJob.lng }}
+            options={{
+              pixelOffset: new google.maps.Size(0, -30),
+              minWidth: 200,
+              maxWidth: 300,
+            }}
             onCloseClick={() => {
               setSelectedJob(null);
             }}
           >
-            <div>{selectedJob.companyName}</div>
+            <div>
+              <h4>{selectedJob.companyName}</h4>
+              <p className={selectedJob.category}>
+                {selectedJob.category.toUpperCase()}
+              </p>
+              <a href={selectedJob.link} target="_blank">
+                {selectedJob.link}
+              </a>
+
+              <p className="salary">${selectedJob.salary}</p>
+              <p className="job-description">{selectedJob.description}</p>
+            </div>
           </InfoWindow>
         )}
       </GoogleMap>

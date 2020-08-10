@@ -447,6 +447,50 @@ body {
   font-weight: 300;
 }
 
+.applied {
+  color: grey;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.rejected {
+  color: red;
+  text-decoration: line-through;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.offers {
+  color: green;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.interview {
+  color: yellow;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.salary {
+  color: limegreen;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.job-description {
+  margin-bottom: 5px;
+}
+
 /* =========> USER PROFILE STYLES <============= */
 
 .userProfileContainer {

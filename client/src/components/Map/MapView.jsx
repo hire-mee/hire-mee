@@ -35,6 +35,11 @@ export class MapView extends Component {
     this.state.jobData.map((job) => {
       var location = job.app_location;
       var companyName = job.company_name;
+      var category = job.category;
+      var link = job.url_link;
+      var salary = job.salary;
+      var description = job.app_description;
+      console.log(job, "gimme the info");
 
       axios
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
@@ -46,7 +51,7 @@ export class MapView extends Component {
         .then((res) => {
           var lat = res.data.results[0].geometry.location.lat;
           var lng = res.data.results[0].geometry.location.lng;
-          var coord = { lat, lng, companyName };
+          var coord = { lat, lng, companyName, category, link, salary, description };
           this.setState({
             geoCodes: [...this.state.geoCodes, coord],
           });
