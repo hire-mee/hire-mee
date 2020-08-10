@@ -57,7 +57,7 @@ class Statistics extends React.Component {
     };
 
     return (
-      <div>
+      <div className="module_component_container">
         <div className='stat_header'>Current Application Statistics:</div>
         <div className='stat_info'>You applied to <span className='stat_color'>{this.props.user.applied_today}</span> jobs on a daily average.</div>
         <div className='stat_info'>You applied to <span className='stat_color'>{Math.floor(this.props.user.applied_month / 4)}</span> jobs on a weekly average.</div>

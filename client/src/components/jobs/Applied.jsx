@@ -35,16 +35,16 @@ class Applied extends React.Component {
 
   openOrCloseNewApp() {
     this.setState({
-      showNew: !this.state.showNew
-    })
+      showNew: !this.state.showNew,
+    });
   }
 
   changeHandler(e) {
     e.preventDefault();
 
     this.setState({
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   }
 
   formChecker(newApp) {
@@ -79,7 +79,7 @@ class Applied extends React.Component {
         reject(new Error('Please Type A number for salary'));
         return
       } else {
-        resolve('Salary Is Gucci!');
+        resolve("Salary Is Gucci!");
         //this function is called after an object is built that holds the new job info and
         //this was the only way I could submit and clear input fields AFTER the checker functions were called
         this.setState({
@@ -94,7 +94,7 @@ class Applied extends React.Component {
         })
         alert('Added New Job Application');
       }
-    })
+    });
   }
 
   submitHandler() {
@@ -140,7 +140,9 @@ class Applied extends React.Component {
         <Grid item xs={12} style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
           <div className="applied-holder" style={{ padding: "1em" }}>
             <p className="applications_columns">Applied</p>
-            <p className="applications_count_number">{this.props.applied.length} App(s)</p>
+            <p className="applications_count_number">
+              {this.props.applied.length} App(s)
+            </p>
           </div>
 
           <div className="" style={{ backgroundColor: "white", width: "65%", margin: "0 auto", borderRadius: "3px" }}>
@@ -164,66 +166,151 @@ class Applied extends React.Component {
             dialogClassName="detailed-view"
             aria-labelledby="modal-styling-title"
           >
-            <Modal.Header closeButton>
-              <Modal.Title id="emodal-styling-title" style={{ paddingLeft: "50px" }}>
-                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "3vw" }}>New Job Application</h1> <br />
+            <Modal.Header className="modal-header" closeButton>
+              <Modal.Title className="modal-title">
+                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "3vw" }}>
+                  New Job Application
+                </h1>{" "}
+                <br />
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-
-              <Grid container direction={"row"} spacing={2} className="new-app-row-1">
-
+            <Modal.Body style={{ margin: "auto" }}>
+              <Grid
+                container
+                direction={"row"}
+                spacing={3}
+                className="new-app-row-1"
+                style={{ paddingTop: "20px" }}
+              >
                 <Grid item>
-                  <TextField required label="Company Name" name="company_name" onChange={this.changeHandler} value={this.state.company_name} variant="filled" />
+                  <TextField
+                    required
+                    label="Company Name"
+                    name="company_name"
+                    onChange={this.changeHandler}
+                    value={this.state.company_name}
+                    variant="outlined"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job Location" name="app_location" onChange={this.changeHandler} value={this.state.app_location} variant="filled" />
+                  <TextField
+                    required
+                    label="Job Location"
+                    name="app_location"
+                    onChange={this.changeHandler}
+                    value={this.state.app_location}
+                    variant="outlined"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Position Title" name="position_title" onChange={this.changeHandler} value={this.state.position_title} variant="filled" />
+                  <TextField
+                    required
+                    label="Position Title"
+                    name="position_title"
+                    onChange={this.changeHandler}
+                    value={this.state.position_title}
+                    variant="outlined"
+                  />
                 </Grid>
-
               </Grid>
 
-              <Grid container direction={"row"} spacing={2} style={{ paddingTop: "10%" }} className="new-app-row-2">
-
+              <Grid
+                container
+                direction={"row"}
+                spacing={3}
+                style={{ paddingTop: "5%" }}
+                className="new-app-row-2"
+              >
                 <Grid item>
-                  <TextField required label="Job Salary" name="salary" onChange={this.changeHandler} value={this.state.salary} variant="filled" />
+                  <TextField
+                    required
+                    label="Salary"
+                    name="salary"
+                    onChange={this.changeHandler}
+                    value={this.state.salary}
+                    variant="outlined"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Job Posting Link" name="url_link" onChange={this.changeHandler} value={this.state.url_link} variant="filled" />
+                  <TextField
+                    required
+                    label="Job Posting Link"
+                    name="url_link"
+                    onChange={this.changeHandler}
+                    value={this.state.url_link}
+                    variant="outlined"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField label="Job Description" required name="app_description" onChange={this.changeHandler} value={this.state.app_description} variant="filled" />
+                  <TextField
+                    label="Description"
+                    required
+                    name="app_description"
+                    onChange={this.changeHandler}
+                    value={this.state.app_description}
+                    variant="outlined"
+                  />
                 </Grid>
-
               </Grid>
 
-              <Grid container direction={"row"} spacing={2} style={{ paddingTop: "10%" }} className="new-app-row-3">
+              <Grid
+                container
+                direction={"row"}
+                spacing={3}
+                style={{ paddingTop: "5%" }}
+                className="new-app-row-3"
+              >
                 <Grid item>
-                  <TextField required label="Date Submitted" name="submit_date" onChange={this.changeHandler} value={this.state.submit_date} variant="filled" />
+                  <TextField
+                    required
+                    label="Date Submitted"
+                    name="submit_date"
+                    onChange={this.changeHandler}
+                    value={this.state.submit_date}
+                    variant="outlined"
+                  />
                 </Grid>
 
                 <Grid item>
-                  <TextField required label="Application Deadline" name="deadline" onChange={this.changeHandler} value={this.state.deadline} variant="filled" />
+                  <TextField
+                    required
+                    label="Application Deadline"
+                    name="deadline"
+                    onChange={this.changeHandler}
+                    value={this.state.deadline}
+                    variant="outlined"
+                  />
                 </Grid>
-
               </Grid>
 
-              <div className="button-holder" style={{ paddingLeft: "75%" }}>
-                <Button variant="contained" style={{ textAlign: "center" }} color="secondary" onClick={() => this.submitHandler()}> Submit </Button>
+              <div
+                className="button-holder"
+                style={{
+                  paddingLeft: "550px",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  style={{ textAlign: "center" }}
+                  color="secondary"
+                  onClick={() => this.submitHandler()}
+                >
+                  {" "}
+                  Submit{" "}
+                </Button>
               </div>
             </Modal.Body>
           </Modal>
         </div>
       </div>
-    )
+    );
   }
-
 }
 
 export default Applied;
