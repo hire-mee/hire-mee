@@ -87,7 +87,7 @@ class App extends React.Component {
         if(!this.state.currentUser.total_applied){
           return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
         }
-        return <Statistics user={this.state.currentUser} getData={this.getData}/>
+        return <Statistics user={this.state.currentUser} getData={this.getData} user_app_data={this.state.currentUserApplications}/>
       } else if (this.state.page === 'Leaderboard') {
         return (
           <div >
@@ -140,7 +140,7 @@ class App extends React.Component {
     .then(data => {
       this.setState({
         currentUser: data.data[0]
-      })
+      },)
     })
     .catch(err => console.error(err))
   }
