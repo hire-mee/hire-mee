@@ -71,6 +71,14 @@ module.exports = {
       res.status(200).send('Updated name')
     })
   },
+  updateAddress: (req, res) => {
+    helper.updateAddress(req.body, req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).send(err)
+      }
+      res.status(200).json(req.body)
+    })
+  },
   deleteInfo: (req, res) => {
     helper.deleteInfo(req.params.id, (err, results) => {
       if (err) {
@@ -87,7 +95,7 @@ module.exports = {
       res.status(200).send(results);
     })
   },
-  postApplications: (req,res) => {
+  postApplications: (req, res) => {
     helper.postApplications(req.body, (err, results) => {
       if (err) {
         res.status(400).send(err);
