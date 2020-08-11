@@ -351,9 +351,6 @@ body {
   color: #34a853;
 }
 
-.column {
-}
-
 /* Job View====================================================================
 ===============================================================================
 */
@@ -660,6 +657,72 @@ fieldset {
   color: white;
 }
 
+.detailedView_position_text{
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(82, 89, 112);
+  text-decoration: none;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.detailedView_position_company_text {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(56, 182, 255);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 42.6667px;
+}
+
+.detailedView_position_salary_text {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  line-height: 1.4;
+  font-size: 21.3333px;
+}
+
+.detailedView_position_submitted_text {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 21.3333px;
+}
+
+.detailedView_position_submitted_date {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: "19.8757px";
+  text-transform: none;
+  font-weight: 300;
+}
+
+.detailedView_position_url {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 21.3333px;
+  text-transform: none;
+}
+
+.detailedView_link {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(56, 182, 255);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 21.2201px;
+  text-transform: none;
+  cursor: pointer;
+}
 /*======================
 BOX COMPONENT
 =======================*/
@@ -669,6 +732,30 @@ BOX COMPONENT
   /* padding-left: 5%; */
   margin: 0 auto;
   cursor: pointer;
+}
+
+.company_name_text{
+  color: rgb(56, 182, 255);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 1.4;
+  text-transform: none;
+  padding-top: 7px;
+  padding-left: 7px;
+}
+
+.position_title_text{
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  line-height: 1.4;
+  text-transform: none;
+  font-size: 10px;
+  padding-top: 7px;
+  padding-left: 7px;
 }
 
 .applications_columns {
