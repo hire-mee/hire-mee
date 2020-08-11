@@ -12,22 +12,82 @@ export const WrappedMap = withScriptjs(
     const [selectedJob, setSelectedJob] = useState(null);
     return (
       <GoogleMap
-        defaultZoom={10}
+        defaultZoom={11}
         defaultCenter={{ lat: 33.97575, lng: -118.39114 }}
       >
-        {props.geoCodes.map((location) => (
-          <Marker
-            key={location.lat}
-            position={{ lat: location.lat, lng: location.lng }}
-            onClick={() => {
-              setSelectedJob(location);
-            }}
-            icon={{
-              url: "career.svg",
-              scaledSize: new window.google.maps.Size(40, 40),
-            }}
-          />
-        ))}
+        <Marker
+          key={location.lat}
+          position={{
+            lat: props.homeCoords.lat,
+            lng: props.homeCoords.lng,
+          }}
+          onClick={() => {
+            setSelectedJob(false);
+          }}
+          icon={{
+            url: "house.svg",
+            scaledSize: new window.google.maps.Size(40, 40),
+          }}
+        />
+        {props.geoCodes.map((location) => {
+          if (location.category === "applied") {
+            return (
+              <Marker
+                key={location.lat}
+                position={{ lat: location.lat, lng: location.lng }}
+                onClick={() => {
+                  setSelectedJob(location);
+                }}
+                icon={{
+                  url: "applied.svg",
+                  scaledSize: new window.google.maps.Size(40, 40),
+                }}
+              />
+            );
+          } else if (location.category === "rejected") {
+            return (
+              <Marker
+                key={location.lat}
+                position={{ lat: location.lat, lng: location.lng }}
+                onClick={() => {
+                  setSelectedJob(location);
+                }}
+                icon={{
+                  url: "rejected.svg",
+                  scaledSize: new window.google.maps.Size(40, 40),
+                }}
+              />
+            );
+          } else if (location.category === "interview") {
+            return (
+              <Marker
+                key={location.lat}
+                position={{ lat: location.lat, lng: location.lng }}
+                onClick={() => {
+                  setSelectedJob(location);
+                }}
+                icon={{
+                  url: "interview.svg",
+                  scaledSize: new window.google.maps.Size(40, 40),
+                }}
+              />
+            );
+          } else if (location.category === "offers") {
+            return (
+              <Marker
+                key={location.lat}
+                position={{ lat: location.lat, lng: location.lng }}
+                onClick={() => {
+                  setSelectedJob(location);
+                }}
+                icon={{
+                  url: "offers.svg",
+                  scaledSize: new window.google.maps.Size(40, 40),
+                }}
+              />
+            );
+          }
+        })}
 
         {selectedJob && (
           <InfoWindow

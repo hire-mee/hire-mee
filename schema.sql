@@ -20,7 +20,8 @@ CREATE TABLE user_info(
   job_title VARCHAR(255),
   salary INTEGER,
   streak INTEGER,
-  total_applied INTEGER
+  total_applied INTEGER,
+  home_address VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS applications;

@@ -473,7 +473,7 @@ body {
 }
 
 .interview {
-  color: yellow;
+  color: gold;
   font-weight: 700;
   margin-top: 5px;
   margin-bottom: 7.5px;
@@ -489,6 +489,39 @@ body {
 
 .job-description {
   margin-bottom: 5px;
+}
+
+legend {
+  margin: 20px;
+  width: 97px;
+}
+
+fieldset {
+  border: 2px #e8ecef solid;
+  border-radius: 10px;
+  padding: 0 25px 25px 25px;
+  text-align: center;
+}
+
+.field-div {
+  /* height: 185px; */
+  width: 800px;
+  margin: 30px auto 30px auto;
+}
+
+.legend-items {
+  margin: 0 15px 0 15px;
+}
+
+.address-div {
+  width: 800px;
+  margin-top: -20px;
+  margin-bottom: 35px;
+  margin-left: 5vw;
+}
+
+.address-input {
+  margin-left: 10px;
 }
 
 /* =========> USER PROFILE STYLES <============= */

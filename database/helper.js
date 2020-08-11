@@ -74,6 +74,17 @@ module.exports = {
       }
     })
   },
+  updateAddress(input, id, callback) {
+    const { homeAddress } = input
+    const queryStr = `UPDATE user_info SET home_address='${homeAddress}' WHERE id=${id};`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
   updateApps(input, id, callback) {
     const { applied_today, applied_month } = input;
     const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month} WHERE id=${id};`
@@ -95,18 +106,18 @@ module.exports = {
       }
     })
   },
-//==========================================================================================================
-//==================================== APPLICATIONS TABLE===================================================
-//==========================================================================================================
+  //==========================================================================================================
+  //==================================== APPLICATIONS TABLE===================================================
+  //==========================================================================================================
   getApplications(id, callback) {
     const queryStr = `SELECT * FROM applications WHERE user_id = ${id};`;
-      db.query(queryStr, (err, results) => {
-        if (err) {
-          callback(`ERROR: `, err);
-        } else {
-          callback(null, results.rows);
-        }
-      })
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
   },
   postApplications(input, callback) {
     let { user_id, category, company_name, app_description, app_location, position_title, salary, submit_date, deadline, url_link } = input;
@@ -122,13 +133,13 @@ module.exports = {
   updateApplications(input, id, callback) {
     const { category, color, company_name, app_description, app_location, position_title, salary, submit_date, deadline, url_link } = input
     const queryStr = `UPDATE applications SET category='${category}', color='${color}', company_name='${company_name}', app_description='${app_description}', app_location='${app_location}', position_title='${position_title}', salary=${salary}, submit_date='${submit_date}', deadline='${deadline}', url_link='${url_link}' WHERE id=${id};`;
-      db.query(queryStr, (err, results) => {
-        if (err) {
-          callback(`ERROR: `, err);
-        } else {
-          callback(null, results.rows);
-        }
-      })
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
   },
   deleteApplications(id, callback) {
     const queryStr = `DELETE FROM applications WHERE id=${id}`;
