@@ -26,11 +26,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      page: "Signup",
-      userId: "",
-      users: "",
-      currentUser: "",
-      logoutBox: false,
+      page: 'Signup',
+      userId: '',
+      users: '',
+      currentUser: '',
+      currentUserApplications: [],
+      logoutBox: false
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
@@ -143,23 +144,25 @@ class App extends React.Component {
   }
 
   componentHandler() {
-    if (this.state.page === "Jobs") {
-      return (
-        <Jobs
-          desired={this.state.currentUser}
-          currentUser={this.state.currentUser}
-          changePage={this.changePage}
+      if (this.state.page === 'Jobs') {
+        return <Jobs 
+        desired={this.state.currentUser}
+        currentUser={this.state.currentUser}
+        changePage={this.changePage} 
+        getUpdatedUserData={this.getUpdatedUserData}
         />
-      );
-    } else if (this.state.page === "Statistics") {
-      if (this.state.currentUser.totalapplied == undefined) {
+      } else if (this.state.page === 'Statistics') {
+        if(!this.state.currentUser.total_applied){
+          return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
+        }
+        return <Statistics user={this.state.currentUser} getData={this.getData} user_app_data={this.state.currentUserApplications}/>
+      } else if (this.state.page === 'Leaderboard') {
         return (
-          <div id="emptyStatisticsMessage">
-            Submit applications to see your statistics here!
-          </div>
+          <div className="module_component_container">
+          <h1>Under Construction!</h1>
+          <img src="./Leaderboard.png" id="Leaderboard"></img>
+        </div>
         );
-      }
-      return <Statistics user={this.state.currentUser} />;
     } else if (this.state.page === "Leaderboard") {
       return (
         <div>
@@ -171,7 +174,7 @@ class App extends React.Component {
       return <MapContainer userData={this.state.currentUser} />;
     } else if (this.state.page === "Friends") {
       return (
-        <div>
+        <div className="module_component_container">
           <h1>Under Construction!</h1>
           <div id="Friends"> </div>
         </div>

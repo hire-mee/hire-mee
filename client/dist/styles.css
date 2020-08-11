@@ -72,6 +72,7 @@ body {
   width: 100%;
 }
 
+
 /* GRID CONTAINER */
 
 .category_title {
@@ -356,6 +357,14 @@ body {
 /* Job View====================================================================
 ===============================================================================
 */
+
+.module_component_container{
+  grid-area: Display;
+  margin-left: 75px;
+  margin-right: auto;
+  width: 70%;
+}
+
 #emptyStatisticsMessage {
   text-align: center;
   background: white;
@@ -389,8 +398,8 @@ body {
 .stat_pie {
   margin-top: 5px;
   position: relative;
-  height: 40px;
-  width: 24px;
+  height: 250px;
+  width: 250px;
   color: #535970;
 }
 
@@ -398,6 +407,7 @@ body {
   font-size: 16px;
   font-weight: 300;
 }
+
 
 /* =========> MAP STYLES <================ */
 

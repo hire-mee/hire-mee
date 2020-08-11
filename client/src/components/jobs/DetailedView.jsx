@@ -57,7 +57,7 @@ let moneyTemp = (desiredSalary, jobSalary) => {
   }
 };
 
-let DetailedView = ({ jobInfo, desired, show, getApplications}) => {
+let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
 
   let updateApplicationStatus = (status) => {
     axios
@@ -74,7 +74,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications}) => {
         deadline: jobInfo.deadline,
         url_link: jobInfo.url_link,
       })
-      .then((data)=> {
+      .then((data) => {
         getApplications()
       })
       .catch((err) => console.error(err));
@@ -219,7 +219,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications}) => {
     <div>
       <Modal
         show={show}
-        onHide={() => {}}
+        onHide={() => { }}
         dialogClassName="detailed-view"
         aria-labelledby="modal-styling-title"
       >

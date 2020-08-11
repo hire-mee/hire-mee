@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS hiremee;
 CREATE DATABASE hiremee;
 
 
-DROP TABLE IF EXISTS user_info;
+DROP TABLE user_info CASCADE;
 
 CREATE TABLE user_info(
   id BIGSERIAL PRIMARY KEY,
@@ -24,7 +24,7 @@ CREATE TABLE user_info(
   home_address VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS applications;
+DROP TABLE applications CASCADE;
 
 CREATE TABLE applications(
   id SERIAL PRIMARY KEY,
@@ -42,7 +42,7 @@ CREATE TABLE applications(
 );
 
 
-DROP TABLE IF EXISTS friends;
+DROP TABLE friends CASCADE;
 
 CREATE TABLE friends(
   id SERIAL PRIMARY KEY,

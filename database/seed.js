@@ -10,7 +10,7 @@ const fakeUserInfoData = () => {
   userInfo.pass = faker.internet.password().replace(/"/g, "'");
   userInfo.applied_today = faker.random.number({'min': 1, 'max': 10});
   userInfo.applied_month = faker.random.number({'min': 1, 'max': 20});
-  userInfo.app_on_site = faker.random.number({'min': 1, 'max': 8});
+  userInfo.app_onsite = faker.random.number({'min': 1, 'max': 8});
   userInfo.app_rejected = faker.random.number({'min': 1, 'max': 50});
   userInfo.app_no_response = faker.random.number({'min': 1, 'max': 100});
   userInfo.loc = `${faker.address.city().replace(/"/g, "'")}, ${faker.address.state().replace(/"/g, "'")}`;
@@ -36,7 +36,7 @@ const userData = createUserInfo()
 const insertFakeData = () => {
   userData.forEach((item) => {
     console.log('Data', item)
-    let queryStr = `insert into user_info(email, first_name, last_name, pass, applied_today, applied_month, app_on_site, app_rejected, app_no_response, user_location, job_title, salary, streak, total_applied) values ('${item.email}', '${item.first_name}', '${item.last_name}', '${item.pass}', ${item.applied_today}, ${item.applied_month}, ${item.app_on_site}, ${item.app_rejected}, ${item.app_no_response}, '${item.loc}', '${item.job_title}', ${item.salary}, ${item.streak}, ${item.total_applied})`
+    let queryStr = `insert into user_info(email, first_name, last_name, pass, applied_today, applied_month, app_onsite, app_rejected, app_no_response, user_location, job_title, salary, streak, total_applied) values ('${item.email}', '${item.first_name}', '${item.last_name}', '${item.pass}', ${item.applied_today}, ${item.applied_month}, ${item.app_onsite}, ${item.app_rejected}, ${item.app_no_response}, '${item.loc}', '${item.job_title}', ${item.salary}, ${item.streak}, ${item.total_applied})`
     db.query(queryStr, (err) => {
       if(err) {console.log(err)}
       console.log("seeded into table user_info!")

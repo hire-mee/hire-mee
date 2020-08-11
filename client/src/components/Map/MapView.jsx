@@ -102,7 +102,7 @@ export class MapView extends Component {
   inputChangeHandler(e) {
     this.setState({
       homeAddress: e.target.value,
-    });
+    }, ()=>console.log(this.state.homeAddress));
   }
 
   submitHandler(e) {

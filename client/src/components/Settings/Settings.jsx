@@ -39,8 +39,8 @@ class Settings extends React.Component {
   resetJobs(id) {
     axios
     .put(`/api/userApp/${id}`, {
-      appliedToday: 0,
-      appliedMonth: 0
+      applied_today: 0,
+      applied_month: 0
     })
     .then(() => {
       this.props.getData();
@@ -50,7 +50,7 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="module_component_container">
         <div className='stat_header'>Account Settings:</div>
         <div className='stat_info'>Reset number of applied jobs this month
           <span className='setting_reset'><Button onClick={this.changeReset}>Reset</Button></span>
