@@ -663,7 +663,6 @@ fieldset {
   color: rgb(82, 89, 112);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   font-weight: bold;
 }
 
@@ -673,7 +672,6 @@ fieldset {
   color: rgb(56, 182, 255);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   font-size: 42.6667px;
 }
 
@@ -691,7 +689,6 @@ fieldset {
   color: rgb(0, 0, 0);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   font-size: 21.3333px;
 }
 
@@ -701,7 +698,6 @@ fieldset {
   color: rgb(84, 84, 84);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   font-size: "19.8757px";
   text-transform: none;
   font-weight: 300;
@@ -713,7 +709,6 @@ fieldset {
   color: rgb(0, 0, 0);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   font-size: 21.3333px;
   text-transform: none;
 }
@@ -724,7 +719,6 @@ fieldset {
   color: rgb(56, 182, 255);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   font-size: 21.2201px;
   text-transform: none;
   cursor: pointer;
@@ -758,7 +752,6 @@ BOX COMPONENT
   color: rgb(84, 84, 84);
   text-decoration: none;
   line-height: 1.4;
-  /* font-family: "YACkoA9eHeY 0, _fb_, auto"; */
   text-transform: none;
   font-size: 10px;
   padding-top: 7px;
