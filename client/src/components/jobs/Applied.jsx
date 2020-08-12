@@ -1,16 +1,15 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Box from './Box.jsx';
-import Modal from 'react-bootstrap/Modal';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Slide from '@material-ui/core/Slide';
-import axios from 'axios';
-
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Box from "./Box.jsx";
+import Modal from "react-bootstrap/Modal";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Slide from "@material-ui/core/Slide";
+import axios from "axios";
 
 class Applied extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       showNew: false,
@@ -22,8 +21,8 @@ class Applied extends React.Component {
       submit_date: "",
       deadline: "",
       url_link: "",
-      status: ""
-    }
+      status: "",
+    };
 
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -51,33 +50,39 @@ class Applied extends React.Component {
     return new Promise((resolve, reject) => {
       for (let key in newApp) {
         if (newApp[key] === "") {
-          reject(new Error('Please Fill In All Text Boxes'));
+          reject(new Error("Please Fill In All Text Boxes"));
         }
       }
-      resolve('Forms are Gucci!');
-    })
+      resolve("Forms are Gucci!");
+    });
   }
 
   updateStreaks() {
-    let { id, applied_today, applied_month, total_applied } = this.props.currentUser;
+    let {
+      id,
+      applied_today,
+      applied_month,
+      total_applied,
+    } = this.props.currentUser;
 
-    axios.put(`/api/users/${id}`, {
-      applied_today: applied_today += 1,
-      applied_month: applied_month += 1,
-      total_applied: total_applied += 1,
-    })
+    axios
+      .put(`/api/users/${id}`, {
+        applied_today: (applied_today += 1),
+        applied_month: (applied_month += 1),
+        total_applied: (total_applied += 1),
+      })
       .then(() => {
         this.props.getApplications();
-        this.props.getUpdatedUserData(id)
+        this.props.getUpdatedUserData(id);
       })
-      .catch((err) => console.error(err))
+      .catch((err) => console.error(err));
   }
 
   salaryChecker(newAppSal) {
     return new Promise((resolve, reject) => {
       if (Number.isNaN(newAppSal)) {
-        reject(new Error('Please Type A number for salary'));
-        return
+        reject(new Error("Please Type A number for salary"));
+        return;
       } else {
         resolve("Salary Is Gucci!");
         //this function is called after an object is built that holds the new job info and
@@ -90,16 +95,25 @@ class Applied extends React.Component {
           salary: "",
           submit_date: "",
           deadline: "",
-          url_link: ""
-        })
-        alert('Added New Job Application');
+          url_link: "",
+        });
+        alert("Added New Job Application");
       }
     });
   }
 
   submitHandler() {
     let { id, total_applied } = this.props.currentUser;
-    let { company_name, app_description, app_location, position_title, submit_date, deadline, url_link, salary } = this.state
+    let {
+      company_name,
+      app_description,
+      app_location,
+      position_title,
+      submit_date,
+      deadline,
+      url_link,
+      salary,
+    } = this.state;
     let newApp = {
       user_id: id,
       category: "applied",
@@ -110,34 +124,37 @@ class Applied extends React.Component {
       salary: parseInt(salary),
       submit_date: submit_date,
       deadline: deadline,
-      url_link: url_link
-    }
+      url_link: url_link,
+    };
 
-    this.formChecker(newApp)
-      .then((res) => {
-        this.salaryChecker(newApp.salary)
-          .catch((err) => {
-            console.error(err);
-            alert(err);
-          })
-      })
+    this.formChecker(newApp).then((res) => {
+      this.salaryChecker(newApp.salary).catch((err) => {
+        console.error(err);
+        alert(err);
+      });
+    });
 
-
-    axios.post(`/api/applications/${id}`, newApp)
+    axios
+      .post(`/api/applications/${id}`, newApp)
       .then((data) => {
         this.updateStreaks();
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
-
 
   render() {
     return (
-
-      <div className="applied-component-holder" style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
-        <Grid item xs={12} style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}>
+      <div
+        className="applied-component-holder"
+        style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+      >
+        <Grid
+          item
+          xs={12}
+          style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+        >
           <div className="applied-holder" style={{ padding: "1em" }}>
             <p className="applications_columns">Applied</p>
             <p className="applications_count_number">
@@ -145,18 +162,35 @@ class Applied extends React.Component {
             </p>
           </div>
 
-          <div className="" style={{ backgroundColor: "white", width: "65%", margin: "0 auto", borderRadius: "3px" }}>
-            <h3 style={{ textAlign: "center", cursor: "pointer" }} onClick={this.openOrCloseNewApp}>+</h3>
+          <div
+            className=""
+            style={{
+              backgroundColor: "white",
+              width: "65%",
+              margin: "0 auto",
+              borderRadius: "3px",
+            }}
+          >
+            <h3
+              style={{ textAlign: "center", cursor: "pointer" }}
+              onClick={this.openOrCloseNewApp}
+            >
+              +
+            </h3>
           </div>
 
           <div className="applied-jobs">
             {this.props.applied.map((jobInfo, i) => {
               return (
-                <Box jobInfo={jobInfo} desired={this.props.desired} key={i} getApplications={this.props.getApplications} />
-              )
+                <Box
+                  jobInfo={jobInfo}
+                  desired={this.props.desired}
+                  key={i}
+                  getApplications={this.props.getApplications}
+                />
+              );
             })}
           </div>
-
         </Grid>
 
         <div className="new-application-holder">

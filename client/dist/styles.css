@@ -72,7 +72,6 @@ body {
   width: 100%;
 }
 
-
 /* GRID CONTAINER */
 
 .category_title {
@@ -358,7 +357,7 @@ body {
 ===============================================================================
 */
 
-.module_component_container{
+.module_component_container {
   grid-area: Display;
   margin-left: 75px;
   margin-right: auto;
@@ -407,7 +406,6 @@ body {
   font-size: 16px;
   font-weight: 300;
 }
-
 
 /* =========> MAP STYLES <================ */
 
@@ -532,6 +530,69 @@ fieldset {
 
 .address-input {
   margin-left: 10px;
+}
+
+/*
+====================================================================
+=======================FRIENDS==================================
+====================================================================
+*/
+
+.friends-div {
+  background-color: #ececec;
+  height: 600px;
+  width: 700px;
+  border-radius: 5px;
+  margin-left: 45px;
+}
+
+.friend-header {
+  /* width: 300px; */
+  padding-left: 45px;
+  padding-right: 55px;
+  padding-top: 35px;
+  font-size: 18px;
+}
+
+.all-friends {
+  width: 200px;
+  float: left;
+}
+
+.add-friend {
+  float: right;
+}
+
+.friend-grid-holder {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  margin-right: 40px;
+}
+
+.row {
+  /* display: table;
+  clear: both; */
+  /* height: 450px; */
+}
+
+.column {
+  display: flex;
+  flex-direction: row;
+  float: left;
+  width: 230px;
+  padding: 15px;
+  background-color: white;
+  margin-right: 65px;
+  margin-bottom: 20px;
+  height: 70px;
+  border-radius: 5px;
+}
+
+.friend-name {
+  margin: auto;
+  margin-left: 20px;
 }
 
 /* =========> USER PROFILE STYLES <============= */

@@ -16,6 +16,7 @@ import MapContainer from "./components/Map/MapView.jsx";
 import SignUp from "./components/SignUp/SignUp.jsx";
 import Login from "./components/LogIn/Login.jsx";
 import Statistics from "./components/Statistics/Statistics.jsx";
+import Friends from "./components/Friends/Friends.jsx";
 import Jobs from "./components/jobs/Jobs.jsx";
 import Logout from "./components/Logout/Logout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
@@ -26,12 +27,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      page: 'Signup',
-      userId: '',
-      users: '',
-      currentUser: '',
+      page: "Signup",
+      userId: "",
+      users: "",
+      currentUser: "",
       currentUserApplications: [],
-      logoutBox: false
+      logoutBox: false,
     };
     this.componentHandler = this.componentHandler.bind(this);
     this.componentStartUp = this.componentStartUp.bind(this);
@@ -144,25 +145,37 @@ class App extends React.Component {
   }
 
   componentHandler() {
-      if (this.state.page === 'Jobs') {
-        return <Jobs 
-        desired={this.state.currentUser}
-        currentUser={this.state.currentUser}
-        changePage={this.changePage} 
-        getUpdatedUserData={this.getUpdatedUserData}
+    if (this.state.page === "Jobs") {
+      return (
+        <Jobs
+          desired={this.state.currentUser}
+          currentUser={this.state.currentUser}
+          changePage={this.changePage}
+          getUpdatedUserData={this.getUpdatedUserData}
         />
-      } else if (this.state.page === 'Statistics') {
-        if(!this.state.currentUser.total_applied){
-          return (<div id="emptyStatisticsMessage">Submit applications to see your statistics here!</div>)
-        }
-        return <Statistics user={this.state.currentUser} getData={this.getData} user_app_data={this.state.currentUserApplications}/>
-      } else if (this.state.page === 'Leaderboard') {
+      );
+    } else if (this.state.page === "Statistics") {
+      if (!this.state.currentUser.total_applied) {
         return (
-          <div className="module_component_container">
+          <div id="emptyStatisticsMessage">
+            Submit applications to see your statistics here!
+          </div>
+        );
+      }
+      return (
+        <Statistics
+          user={this.state.currentUser}
+          getData={this.getData}
+          user_app_data={this.state.currentUserApplications}
+        />
+      );
+    } else if (this.state.page === "Leaderboard") {
+      return (
+        <div className="module_component_container">
           <h1>Under Construction!</h1>
           <img src="./Leaderboard.png" id="Leaderboard"></img>
         </div>
-        );
+      );
     } else if (this.state.page === "Leaderboard") {
       return (
         <div>
@@ -173,12 +186,7 @@ class App extends React.Component {
     } else if (this.state.page === "Map") {
       return <MapContainer userData={this.state.currentUser} />;
     } else if (this.state.page === "Friends") {
-      return (
-        <div className="module_component_container">
-          <h1>Under Construction!</h1>
-          <div id="Friends"> </div>
-        </div>
-      );
+      return <Friends />;
     } else if (this.state.page === "Settings") {
       return (
         <Settings
