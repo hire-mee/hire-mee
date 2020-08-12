@@ -12,7 +12,7 @@ export class Friends extends Component {
         <div className="friend-header">
           <div className="all-friends">All friends (5)</div>
           <div className="add-friend">
-            <input></input>
+            <input size="18"></input>
             <Button
               style={{
                 marginLeft: "20px",
