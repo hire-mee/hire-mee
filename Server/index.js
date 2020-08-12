@@ -13,7 +13,7 @@ require('dotenv').config(); // allows the use of secret keys in rootdirectory/.e
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded( {extended: true} ));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('dev'));
 
@@ -25,15 +25,17 @@ const db = require('../database/index.js'); // database connection
 
 // const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'session'})
 //   store: sessionStore,
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
 
-  cookie: {
-    maxAge: 1000* 60 * 60 * 24 
-  }
-}))
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24
+    }
+  })
+)
 
 require('./passport.js'); // require 'passport.use(strategy) from passport.js
 app.use(passport.initialize()) // calls passport initialization

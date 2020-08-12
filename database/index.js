@@ -7,7 +7,7 @@ const pool = new Pool({
 })
 
 pool.connect()
-.then(console.log('Connectd to psql!'))
-.catch((err)=>console.log(err));
+  .then(console.log('Connectd to psql!'))
+  .catch((err) => console.log(err));
 
 module.exports = pool;

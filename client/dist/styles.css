@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,500&display=swap");
 
 body {
-  font-family: 'Poppins', 'Times', 'Arial', 'sans-serif';
-  overflow: hidden !important;
+  font-family: "Poppins", "Times", "Arial", "sans-serif";
+  /* overflow: hidden !important; */
+  overflow: scroll;
 }
-
 
 /* GRID CONTAINER */
 .grid-container {
@@ -17,8 +17,9 @@ body {
 
 .Nav {
   display: grid;
+  width: 190px;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 1.0fr 1.5fr;
+  grid-template-rows: 0.3fr 1fr 1.5fr;
   grid-template-areas: "." "Dashboard" "Account";
   grid-area: Nav;
   background-color: #e8ecef;
@@ -27,6 +28,10 @@ body {
 
 .Dashboard {
   grid-area: Dashboard;
+  font-size: 16px;
+  height: 200px;
+  width: 100%;
+  margin: auto;
 }
 
 .Account {
@@ -35,48 +40,52 @@ body {
 
 .Header {
   display: grid;
+  height: 70px;
   grid-template-columns: 1.7fr 0.3fr;
   grid-template-rows: 1fr;
   grid-template-areas: "Header-title Profile-area";
   grid-area: Header;
   border-bottom: 2px solid #e8ecef;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .Header-title {
   grid-area: Header-title;
-  font-size: 2.5vw;
+  /* padding-top: 10px; */
+  font-size: 30px;
   font-weight: 500;
-  margin-left: 2.5vw;
+  margin-top: 5px;
+  margin-left: 30px;
 }
 
 .Profile-area {
   grid-area: Profile-area;
-  margin-left: 2.5vw;
+  margin-left: 25px;
 }
 
 .Display {
   grid-area: Display;
-  margin-left: 4vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 100%;
 }
 
 /* GRID CONTAINER */
 
 .category_title {
   color: #535970;
-  font-size: 1.5vw;
   font-weight: 300;
-  margin-left: 2.5vw;
+  margin-left: 35px;
 }
 
 .category {
   color: #535970;
-  font-size: 1.4vw;
   font-weight: 300;
-  margin-left: 2.7vw;
-  margin-top: 0.4vh;
-  margin-bottom: 0.5vh;
+  margin-left: 37px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .category:hover {
@@ -87,12 +96,35 @@ body {
 }
 
 .company_name {
-  font-size: 2.5vw;
+  font-size: 28px;
   font-weight: 500;
-  margin-left: 2.5vw;
-  margin-top: 2vh;
-  margin-bottom: 10vh;
+  margin: auto;
+  margin-top: 20px;
   cursor: pointer;
+  height: 80px;
+}
+
+/*
+====================================================================
+=======================JOB STATUSES==================================
+====================================================================
+*/
+
+/* .jobs-component {
+
+}
+
+.job-status {
+
+} */
+
+.modal-header {
+  height: 90px;
+}
+
+.modal-title {
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 /*
@@ -106,7 +138,7 @@ body {
   margin-top: 2%;
 }
 
-#signup_main_title{
+#signup_main_title {
   font-size: 3.5em;
   color: #535970;
   font-weight: 600;
@@ -119,24 +151,24 @@ body {
   cursor: pointer;
 }
 
-#signup_gist{
+#signup_gist {
   color: #a6a6a6;
   font-weight: 300;
 }
 
-#signup_start_here{
+#signup_start_here {
   color: #a6a6a6;
   font-weight: 300;
   margin-top: 2%;
   margin: 2% 0 1% 0;
 }
 
-.sign_up_create_new_account_text{
+.sign_up_create_new_account_text {
   color: #535970;
   font-size: 1.1em;
 }
 
-.sign_up_input_container{
+.sign_up_input_container {
   text-align: center;
   max-width: 445px;
   padding: 2% 5%;
@@ -146,7 +178,7 @@ body {
   background-color: #e8ecef;
 }
 
-.signup_google_container{
+.signup_google_container {
   text-align: center;
   background: white;
   padding: 3% 0;
@@ -159,26 +191,26 @@ body {
   cursor: pointer;
 }
 
-.testDiv{
+.testDiv {
   display: flex;
   max-width: 100%;
 }
 
-#signup_google_icon{
+#signup_google_icon {
   max-height: 20px;
   margin: auto;
 }
 
-#signup_google_text{
-    font-size: 0.8em;
-    font-weight: 300;
-    text-align: center;
-    margin: auto;
-    margin-left: -4%;
-    width: fit-content;
+#signup_google_text {
+  font-size: 0.8em;
+  font-weight: 300;
+  text-align: center;
+  margin: auto;
+  margin-left: -4%;
+  width: fit-content;
 }
 
-.signup_or_separator_container{
+.signup_or_separator_container {
   display: flex;
   padding-top: 5%;
 }
@@ -192,8 +224,7 @@ body {
   margin-top: 5%;
 }
 
-
-.signup_input_form_container{
+.signup_input_form_container {
   text-align: center;
 }
 
@@ -221,7 +252,7 @@ body {
   font-size: 0.9em;
   border-radius: 3px;
 }
-.signup_input_field:focus{
+.signup_input_field:focus {
   border: none;
 }
 
@@ -247,23 +278,23 @@ body {
   border-radius: 4px;
 }
 
-#signup_signup_button:hover{
+#signup_signup_button:hover {
   background-color: #535970;
-  font-weight:500;
+  font-weight: 500;
 }
 
-.signup_already_signedup_container{
+.signup_already_signedup_container {
   text-align: center;
 }
 
-#signup_already_signedup_text{
+#signup_already_signedup_text {
   font-weight: 300;
   color: #828282;
   margin-top: 7%;
   font-size: 0.9em;
 }
 
-#signup_already_signedup_button{
+#signup_already_signedup_button {
   font-weight: 500;
   color: #38b6ff;
   font-size: 0.9em;
@@ -274,20 +305,20 @@ body {
   margin-top: 2%;
 }
 
-#signup_already_signedup_button:hover{
+#signup_already_signedup_button:hover {
   font-weight: 600;
   color: #535970;
   cursor: pointer;
   border-bottom: 1px solid #535970;
 }
 
-.signup_redirect_text{
+.signup_redirect_text {
   margin-top: 5%;
   text-align: center;
   font-size: 1.5em;
 }
 
-#signup_redirect_login{
+#signup_redirect_login {
   text-align: center;
   font-size: 1.2em;
   font-weight: 500;
@@ -299,81 +330,79 @@ body {
   margin-top: 2%;
 }
 
-#signup_redirect_login:hover{
+#signup_redirect_login:hover {
   font-weight: 600;
   color: #535970;
   cursor: pointer;
 }
 
 /* Job View*/
-.detailed-view{
-  height: 70vw;
-  max-height: 70vw;
-  width: 70vw;
-  max-width: 70vw;
+.detailed-view {
+  height: 700px;
+  max-height: 700px;
+  width: 700px;
+  max-width: 700px;
 }
 /* Job View====================================================================
 ===============================================================================
 */
 .stat_color {
-  color:#34a853;
+  color: #34a853;
 }
-
-.column{
-
-}
-
-
 
 /* Job View====================================================================
 ===============================================================================
 */
-#emptyStatisticsMessage {text-align: center;
-  background: white;
-  padding: 3% 6%;
-  border-radius: 4px;
-  margin-left: auto;
+
+.module_component_container {
+  grid-area: Display;
+  margin-left: 75px;
   margin-right: auto;
-  margin-top: 6%;
-  display: flex;
-  height: 4vh;
-  cursor: pointer;
-  font-size: 1.5em;
-  margin-top: 10%;
+  width: 70%;
 }
 
+#emptyStatisticsMessage {
+  text-align: center;
+  background: white;
+  /* padding: 3% 6%; */
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 2vh;
+  /* display: flex; */
+  cursor: pointer;
+  font-size: 1.5em;
+}
 
 .stat_header {
-  font-size: 2.5vw;
+  font-size: 25px;
   font-weight: 500;
   /* line-height: 39px; */
   color: #535970;
-  margin-top: 2vh;
-  margin-bottom: 1.5vh;
+  margin-top: 2px;
+  margin-bottom: 15px;
 }
 
 .stat_info {
-  font-size: 1.6vw;
+  font-size: 16px;
   font-weight: 300;
   line-height: 30px;
   color: #535970;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .stat_pie {
-  margin-top: 5vh;
+  margin-top: 5px;
   position: relative;
-  height:40vh;
-  width:24vw;
+  height: 250px;
+  width: 250px;
   color: #535970;
 }
 
 .stat_pieInfo {
-  font-size: 1.6vw;
+  font-size: 16px;
   font-weight: 300;
 }
-
 
 /* =========> MAP STYLES <================ */
 
@@ -395,7 +424,6 @@ body {
   justify-content: space-between;
 }
 
-
 .mapSearchBarContainer {
   align-self: center;
   width: 60%;
@@ -412,18 +440,157 @@ body {
   text-indent: 10px;
 }
 
-.mapSearchBar:focus{
+.mapSearchBar:focus {
   outline: none;
 }
 
 .mapPageTitle {
   margin: 0px 0px 5px 25px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: rgb(84, 90, 111);
-  font-size: 1.6vw;
+  font-size: 16px;
   font-weight: 300;
 }
 
+.applied {
+  color: grey;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.rejected {
+  color: red;
+  text-decoration: line-through;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.offers {
+  color: green;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.interview {
+  color: gold;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.salary {
+  color: limegreen;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.job-description {
+  margin-bottom: 5px;
+}
+
+legend {
+  margin: 20px;
+  width: 97px;
+}
+
+fieldset {
+  border: 2px #e8ecef solid;
+  border-radius: 10px;
+  padding: 0 25px 25px 25px;
+  text-align: center;
+}
+
+.field-div {
+  /* height: 185px; */
+  width: 800px;
+  margin: 30px auto 30px auto;
+}
+
+.legend-items {
+  margin: 0 15px 0 15px;
+}
+
+.address-div {
+  width: 800px;
+  margin-top: -20px;
+  margin-bottom: 35px;
+  margin-left: 5vw;
+}
+
+.address-input {
+  margin-left: 10px;
+}
+
+/*
+====================================================================
+=======================FRIENDS==================================
+====================================================================
+*/
+
+.friends-div {
+  background-color: #f3f3f3;
+  height: 600px;
+  width: 700px;
+  border-radius: 5px;
+  margin-left: 45px;
+}
+
+.friend-header {
+  /* width: 300px; */
+  padding-left: 45px;
+  padding-right: 55px;
+  padding-top: 35px;
+  font-size: 18px;
+}
+
+.all-friends {
+  width: 200px;
+  float: left;
+}
+
+.add-friend {
+  float: right;
+}
+
+.friend-grid-holder {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  margin-right: 40px;
+}
+
+.row {
+  /* display: table;
+  clear: both; */
+  /* height: 450px; */
+}
+
+.column {
+  display: flex;
+  flex-direction: row;
+  float: left;
+  width: 230px;
+  padding: 15px;
+  background-color: white;
+  margin-right: 65px;
+  margin-bottom: 20px;
+  height: 70px;
+  border-radius: 5px;
+}
+
+.friend-name {
+  margin: auto;
+  margin-left: 20px;
+}
 
 /* =========> USER PROFILE STYLES <============= */
 
@@ -441,8 +608,8 @@ body {
 }
 
 .userProfileData {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.5vw;
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
   padding-right: 10px;
 }
 
@@ -466,27 +633,26 @@ body {
 #Leaderboard {
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  max-height: 40vh;
-  max-width: 38vw;
+  max-height: 400px;
+  max-width: 380px;
   cursor: pointer;
 }
 
 #Friends {
-  background-image: url('Friends.png');
+  background-image: url("Friends.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 85vh;
-  width: 50vw;
+  height: 500px;
+  width: 500px;
 }
 
 .setting_reset {
-  margin-left: 15vw;
+  margin-left: 150px;
 }
 
 .setting_delete {
-  margin-left: 34.6vw;
+  margin-left: 346px;
 }
-
 
 /* Detailed View
 ===========================================================
@@ -528,37 +694,145 @@ body {
   margin-top: 10%;
 }
 
-.detailedView_update_rejected:hover{
+.detailedView_update_rejected:hover {
   cursor: pointer;
   background-color: #f50057;
   color: white;
 }
 
-.detailedView_update_interviews:hover{
+.detailedView_update_interviews:hover {
   cursor: pointer;
-  background-color:rgb(56, 182, 255);
+  background-color: rgb(56, 182, 255);
   color: white;
 }
 
-.detailedView_update_offers:hover{
+.detailedView_update_offers:hover {
   cursor: pointer;
-  background-color:rgb(32, 187, 136);
+  background-color: rgb(32, 187, 136);
   color: white;
 }
 
-.detailedView_delete_app:hover{
+.detailedView_delete_app:hover {
   cursor: pointer;
   background-color: #ca1a1a;
   color: white;
 }
 
+.detailedView_position_text{
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(82, 89, 112);
+  text-decoration: none;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.detailedView_position_company_text {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(56, 182, 255);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 42.6667px;
+}
+
+.detailedView_position_salary_text {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  line-height: 1.4;
+  font-size: 21.3333px;
+}
+
+.detailedView_position_submitted_text {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 21.3333px;
+}
+
+.detailedView_position_submitted_date {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: "19.8757px";
+  text-transform: none;
+  font-weight: 300;
+}
+
+.detailedView_position_url {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 21.3333px;
+  text-transform: none;
+}
+
+.detailedView_link {
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(56, 182, 255);
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 21.2201px;
+  text-transform: none;
+  cursor: pointer;
+}
 /*======================
 BOX COMPONENT
 =======================*/
-.applied-box-holder{
-background-color: white;
-width: 65%;
-padding-left: 5%;
-margin: 0 auto;
-cursor: pointer
+.applied-box-holder {
+  background-color: white;
+  width: 65%;
+  /* padding-left: 5%; */
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.company_name_text{
+  color: rgb(56, 182, 255);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 1.4;
+  text-transform: none;
+  padding-top: 7px;
+  padding-left: 7px;
+}
+
+.position_title_text{
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  line-height: 1.4;
+  text-transform: none;
+  font-size: 10px;
+  padding-top: 7px;
+  padding-left: 7px;
+}
+
+.applications_columns {
+  text-align: center;
+  font-weight: 700;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.applications_count_number {
+  text-align: center;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-size: 10px;
 }
