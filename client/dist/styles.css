@@ -106,17 +106,9 @@ body {
 
 /*
 ====================================================================
-=======================JOB STATUSES==================================
+=======================JOB STATUSES=================================
 ====================================================================
 */
-
-/* .jobs-component {
-
-}
-
-.job-status {
-
-} */
 
 .modal-header {
   height: 90px;
@@ -336,327 +328,83 @@ body {
   cursor: pointer;
 }
 
-/* Job View*/
+
+/*
+====================================================================
+=======================BOX COMPONENT================================
+====================================================================
+*/
+.applied-box-holder {
+  background-color: white;
+  width: 65%;
+  /* padding-left: 5%; */
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.applied-component-holder {
+  background-color: rgb(232, 236, 239);
+  height: 100%;
+}
+
+.applied-holder {
+  padding: 1em;
+}
+
+.company_name_text{
+  color: rgb(56, 182, 255);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 1.4;
+  text-transform: none;
+  padding-top: 7px;
+  padding-left: 7px;
+}
+
+.position_title_text{
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  line-height: 1.4;
+  text-transform: none;
+  font-size: 10px;
+  padding-top: 7px;
+  padding-left: 7px;
+}
+
+.applications_columns {
+  text-align: center;
+  font-weight: 700;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.applications_count_number {
+  text-align: center;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-size: 10px;
+}
+
+/*
+====================================================================
+=======================DETAILED VIEW ===============================
+====================================================================
+*/
+
 .detailed-view {
   height: 700px;
   max-height: 700px;
   width: 700px;
   max-width: 700px;
 }
-/* Job View====================================================================
-===============================================================================
-*/
-.stat_color {
-  color: #34a853;
-}
-
-/* Job View====================================================================
-===============================================================================
-*/
-
-.module_component_container {
-  grid-area: Display;
-  margin-left: 75px;
-  margin-right: auto;
-  width: 70%;
-}
-
-#emptyStatisticsMessage {
-  text-align: center;
-  background: white;
-  /* padding: 3% 6%; */
-  border-radius: 4px;
-  margin: auto;
-  margin-top: 2vh;
-  /* display: flex; */
-  cursor: pointer;
-  font-size: 1.5em;
-}
-
-.stat_header {
-  font-size: 25px;
-  font-weight: 500;
-  /* line-height: 39px; */
-  color: #535970;
-  margin-top: 2px;
-  margin-bottom: 15px;
-}
-
-.stat_info {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 30px;
-  color: #535970;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.stat_pie {
-  margin-top: 5px;
-  position: relative;
-  height: 250px;
-  width: 250px;
-  color: #535970;
-}
-
-.stat_pieInfo {
-  font-size: 16px;
-  font-weight: 300;
-}
-
-/* =========> MAP STYLES <================ */
-
-.pageBodyLine {
-  width: 90%;
-  margin-left: 20px;
-  background-color: rgb(243, 243, 243);
-  height: 1px;
-  border: none;
-}
-
-.mainMapContainer {
-  width: 100%;
-  height: 100%;
-}
-
-.mapTopContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.mapSearchBarContainer {
-  align-self: center;
-  width: 60%;
-  padding-right: 15%;
-}
-
-.mapSearchBar {
-  width: 80%;
-  height: 27px;
-  border-radius: 2%;
-  background-color: rgb(232, 236, 239);
-  border: none;
-  font-family: "Poppins", sans-serif;
-  text-indent: 10px;
-}
-
-.mapSearchBar:focus {
-  outline: none;
-}
-
-.mapPageTitle {
-  margin: 0px 0px 5px 25px;
-  font-family: "Poppins", sans-serif;
-  color: rgb(84, 90, 111);
-  font-size: 16px;
-  font-weight: 300;
-}
-
-.applied {
-  color: grey;
-  font-weight: 700;
-  margin-top: 5px;
-  margin-bottom: 7.5px;
-  font-size: 15px;
-}
-
-.rejected {
-  color: red;
-  text-decoration: line-through;
-  font-weight: 700;
-  margin-top: 5px;
-  margin-bottom: 7.5px;
-  font-size: 15px;
-}
-
-.offers {
-  color: green;
-  font-weight: 700;
-  margin-top: 5px;
-  margin-bottom: 7.5px;
-  font-size: 15px;
-}
-
-.interview {
-  color: gold;
-  font-weight: 700;
-  margin-top: 5px;
-  margin-bottom: 7.5px;
-  font-size: 15px;
-}
-
-.salary {
-  color: limegreen;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 15px;
-}
-
-.job-description {
-  margin-bottom: 5px;
-}
-
-legend {
-  margin: 20px;
-  width: 97px;
-}
-
-fieldset {
-  border: 2px #e8ecef solid;
-  border-radius: 10px;
-  padding: 0 25px 25px 25px;
-  text-align: center;
-}
-
-.field-div {
-  /* height: 185px; */
-  width: 800px;
-  margin: 30px auto 30px auto;
-}
-
-.legend-items {
-  margin: 0 15px 0 15px;
-}
-
-.address-div {
-  width: 800px;
-  margin-top: -20px;
-  margin-bottom: 35px;
-  margin-left: 5vw;
-}
-
-.address-input {
-  margin-left: 10px;
-}
-
-/*
-====================================================================
-=======================FRIENDS==================================
-====================================================================
-*/
-
-.friends-div {
-  background-color: #f3f3f3;
-  height: 600px;
-  width: 700px;
-  border-radius: 5px;
-  margin-left: 45px;
-}
-
-.friend-header {
-  /* width: 300px; */
-  padding-left: 45px;
-  padding-right: 55px;
-  padding-top: 35px;
-  font-size: 18px;
-}
-
-.all-friends {
-  width: 200px;
-  float: left;
-}
-
-.add-friend {
-  float: right;
-}
-
-.friend-grid-holder {
-  height: 80%;
-  width: 80%;
-  margin: auto;
-  margin-top: 80px;
-  margin-right: 40px;
-}
-
-.row {
-  /* display: table;
-  clear: both; */
-  /* height: 450px; */
-}
-
-.column {
-  display: flex;
-  flex-direction: row;
-  float: left;
-  width: 230px;
-  padding: 15px;
-  background-color: white;
-  margin-right: 65px;
-  margin-bottom: 20px;
-  height: 70px;
-  border-radius: 5px;
-}
-
-.friend-name {
-  margin: auto;
-  margin-left: 20px;
-}
-
-/* =========> USER PROFILE STYLES <============= */
-
-.userProfileContainer {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.userAvatar {
-  margin-right: 10px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.userProfileData {
-  font-family: "Poppins", sans-serif;
-  font-size: 17px;
-  padding-right: 10px;
-}
-
-.updateNameContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-}
-
-.updateNameInput {
-  padding: 5px;
-  margin: 5px;
-}
-
-.nameChangeConfirmation {
-  text-align: center;
-  margin-top: 3px;
-}
-
-#Leaderboard {
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  max-height: 400px;
-  max-width: 380px;
-  cursor: pointer;
-}
-
-#Friends {
-  background-image: url("Friends.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 500px;
-  width: 500px;
-}
-
-.setting_reset {
-  margin-left: 150px;
-}
-
-.setting_delete {
-  margin-left: 346px;
-}
-
-/* Detailed View
-===========================================================
-*/
 
 .detailedView_update_button_container {
   display: grid;
@@ -784,55 +532,321 @@ fieldset {
   text-transform: none;
   cursor: pointer;
 }
-/*======================
-BOX COMPONENT
-=======================*/
-.applied-box-holder {
+
+/*
+====================================================================
+======================= STATISTICS =================================
+====================================================================
+*/
+.stat_color {
+  color: #34a853;
+}
+
+
+.module_component_container {
+  grid-area: Display;
+  margin-left: 75px;
+  margin-right: auto;
+  width: 70%;
+}
+
+#emptyStatisticsMessage {
+  text-align: center;
+  background: white;
+  /* padding: 3% 6%; */
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 2vh;
+  /* display: flex; */
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.stat_header {
+  font-size: 25px;
+  font-weight: 500;
+  /* line-height: 39px; */
+  color: #535970;
+  margin-top: 2px;
+  margin-bottom: 15px;
+}
+
+.stat_info {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+  color: #535970;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.stat_pie {
+  margin-top: 5px;
+  position: relative;
+  height: 250px;
+  width: 250px;
+  color: #535970;
+}
+
+.stat_pieInfo {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+/*
+====================================================================
+=======================MAP=========================================
+====================================================================
+*/
+
+.pageBodyLine {
+  width: 90%;
+  margin-left: 20px;
+  background-color: rgb(243, 243, 243);
+  height: 1px;
+  border: none;
+}
+
+.mainMapContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.mapTopContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mapSearchBarContainer {
+  align-self: center;
+  width: 60%;
+  padding-right: 15%;
+}
+
+.mapSearchBar {
+  width: 80%;
+  height: 27px;
+  border-radius: 2%;
+  background-color: rgb(232, 236, 239);
+  border: none;
+  font-family: "Poppins", sans-serif;
+  text-indent: 10px;
+}
+
+.mapSearchBar:focus {
+  outline: none;
+}
+
+.mapPageTitle {
+  margin: 0px 0px 5px 25px;
+  font-family: "Poppins", sans-serif;
+  color: rgb(84, 90, 111);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.applied {
+  color: grey;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.rejected {
+  color: red;
+  text-decoration: line-through;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.offers {
+  color: green;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.interview {
+  color: gold;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 7.5px;
+  font-size: 15px;
+}
+
+.salary {
+  color: limegreen;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.job-description {
+  margin-bottom: 5px;
+}
+
+legend {
+  margin: 20px;
+  width: 97px;
+}
+
+fieldset {
+  border: 2px #e8ecef solid;
+  border-radius: 10px;
+  padding: 0 25px 25px 25px;
+  text-align: center;
+}
+
+.field-div {
+  /* height: 185px; */
+  width: 800px;
+  margin: 30px auto 30px auto;
+}
+
+.legend-items {
+  margin: 0 15px 0 15px;
+}
+
+.address-div {
+  width: 800px;
+  margin-top: -20px;
+  margin-bottom: 35px;
+  margin-left: 5vw;
+}
+
+.address-input {
+  margin-left: 10px;
+}
+
+/*
+====================================================================
+=======================FRIENDS======================================
+====================================================================
+*/
+
+.friends-div {
+  background-color: #f3f3f3;
+  height: 600px;
+  width: 700px;
+  border-radius: 5px;
+  margin-left: 45px;
+}
+
+.friend-header {
+  /* width: 300px; */
+  padding-left: 45px;
+  padding-right: 55px;
+  padding-top: 35px;
+  font-size: 18px;
+}
+
+.all-friends {
+  width: 200px;
+  float: left;
+}
+
+.add-friend {
+  float: right;
+}
+
+.friend-grid-holder {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  margin-right: 40px;
+}
+
+.row {
+  /* display: table;
+  clear: both; */
+  /* height: 450px; */
+}
+
+.column {
+  display: flex;
+  flex-direction: row;
+  float: left;
+  width: 230px;
+  padding: 15px;
   background-color: white;
-  width: 65%;
-  /* padding-left: 5%; */
-  margin: 0 auto;
+  margin-right: 65px;
+  margin-bottom: 20px;
+  height: 70px;
+  border-radius: 5px;
+}
+
+.friend-name {
+  margin: auto;
+  margin-left: 20px;
+}
+
+/*
+====================================================================
+==============USER PROFILE STYLES ==================================
+====================================================================
+*/
+
+.userProfileContainer {
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
-.company_name_text{
-  color: rgb(56, 182, 255);
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.4;
-  text-transform: none;
-  padding-top: 7px;
-  padding-left: 7px;
+.userAvatar {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
-.position_title_text{
-  font-weight: 400;
-  font-style: normal;
-  color: rgb(84, 84, 84);
-  text-decoration: none;
-  line-height: 1.4;
-  text-transform: none;
-  font-size: 10px;
-  padding-top: 7px;
-  padding-left: 7px;
+.userProfileData {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  padding-right: 10px;
 }
 
-.applications_columns {
+.updateNameContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.updateNameInput {
+  padding: 5px;
+  margin: 5px;
+}
+
+.nameChangeConfirmation {
   text-align: center;
-  font-weight: 700;
-  font-style: normal;
-  color: rgb(84, 84, 84);
-  text-decoration: none;
-  font-size: 20px;
+  margin-top: 3px;
 }
 
-.applications_count_number {
-  text-align: center;
-  font-weight: 400;
-  font-style: normal;
-  color: rgb(84, 84, 84);
-  text-decoration: none;
-  font-size: 10px;
+#Leaderboard {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  max-height: 400px;
+  max-width: 380px;
+  cursor: pointer;
+}
+
+#Friends {
+  background-image: url("Friends.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 500px;
+  width: 500px;
+}
+
+.setting_reset {
+  margin-left: 150px;
+}
+
+.setting_delete {
+  margin-left: 346px;
 }

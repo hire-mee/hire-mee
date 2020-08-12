@@ -124,16 +124,13 @@ class Offers extends React.Component {
 
   render() {
     return (
-      <div
-        className="applied-component-holder"
-        style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
-      >
+      <div className="applied-component-holder">
         <Grid
           item
           xs={12}
           style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
         >
-          <div className="applied-holder" style={{ padding: "1em" }}>
+          <div className="applied-holder">
             <p className="applications_columns">Offers</p>
             <p className="applications_count_number">
               {this.props.offers.length} Offer(s)
