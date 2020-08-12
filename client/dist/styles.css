@@ -328,7 +328,6 @@ body {
   cursor: pointer;
 }
 
-
 /*
 ====================================================================
 =======================BOX COMPONENT================================
@@ -351,7 +350,7 @@ body {
   padding: 1em;
 }
 
-.company_name_text{
+.company_name_text {
   color: rgb(56, 182, 255);
   font-size: 15px;
   font-weight: 400;
@@ -363,7 +362,7 @@ body {
   padding-left: 7px;
 }
 
-.position_title_text{
+.position_title_text {
   font-weight: 400;
   font-style: normal;
   color: rgb(84, 84, 84);
@@ -466,7 +465,7 @@ body {
   color: white;
 }
 
-.detailedView_position_text{
+.detailedView_position_text {
   font-weight: 400;
   font-style: normal;
   color: rgb(82, 89, 112);
@@ -542,7 +541,6 @@ body {
   color: #34a853;
 }
 
-
 .module_component_container {
   grid-area: Display;
   margin-left: 75px;
@@ -591,6 +589,84 @@ body {
 .stat_pieInfo {
   font-size: 16px;
   font-weight: 300;
+}
+
+/*
+====================================================================
+=======================LEADERBOARD===================================
+====================================================================
+*/
+
+.leader-header {
+  font-size: 25px;
+  font-weight: 500;
+  /* line-height: 39px; */
+  color: #535970;
+  margin-top: 2px;
+  margin-bottom: 15px;
+}
+
+.orange-text {
+  color: #fbbc05;
+}
+
+.leader-columns {
+  display: flex;
+  flex-direction: row;
+  /* height: 500px; */
+  width: 600px;
+  margin-top: 40px;
+}
+
+.crown {
+  margin: -5px 10px 0 -42px;
+}
+
+.left-div {
+  width: 200px;
+  height: 100%;
+}
+
+.right-div {
+  width: 50%;
+  height: 100%;
+}
+
+.divider {
+  width: 3px;
+  min-height: 100%;
+  background: black;
+}
+
+.leader-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.participant-name {
+  font-weight: 100;
+  margin-bottom: 5px;
+}
+
+.leader-bar-first {
+  background-color: #fbbc05;
+  height: 20px;
+  width: 300px;
+  margin: 0 0 10px 15px;
+  text-align: right;
+}
+
+.leader-bar {
+  background-color: #38b6ff;
+  height: 20px;
+  width: 300px;
+  margin: 0 0 10px 15px;
+  text-align: right;
+}
+
+.weekly-num {
+  margin-right: -30px;
+  font-weight: 100;
 }
 
 /*
@@ -783,6 +859,7 @@ fieldset {
 .friend-name {
   margin: auto;
   margin-left: 20px;
+  font-weight: 100;
 }
 
 /*

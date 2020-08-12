@@ -17,6 +17,7 @@ import SignUp from "./components/SignUp/SignUp.jsx";
 import Login from "./components/LogIn/Login.jsx";
 import Statistics from "./components/Statistics/Statistics.jsx";
 import Friends from "./components/Friends/Friends.jsx";
+import Leaderboard from "./components/Leaderboard/Leaderboard.jsx";
 import Jobs from "./components/jobs/Jobs.jsx";
 import Logout from "./components/Logout/Logout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
@@ -171,10 +172,7 @@ class App extends React.Component {
       );
     } else if (this.state.page === "Leaderboard") {
       return (
-        <div className="module_component_container">
-          <h1>Under Construction!</h1>
-          <img src="./Leaderboard.png" id="Leaderboard"></img>
-        </div>
+        <Leaderboard/>
       );
     } else if (this.state.page === "Leaderboard") {
       return (
