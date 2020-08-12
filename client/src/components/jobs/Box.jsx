@@ -19,42 +19,13 @@ class Box extends React.Component {
   }
 
   render() {
-    let style = {};
-
-    style.companyTitle = {
-      fontWeight: "400",
-      fontStyle: "normal",
-      color: "rgb(56, 182, 255)",
-      textDecoration: "none",
-      lineHeight: "1.4",
-      fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-      textTransform: "none",
-      fontSize: "15px",
-      paddingTop: "7px",
-      paddingLeft: "7px",
-      marginBottom: "0px",
-    };
-
-    style.jobTitle = {
-      fontWeight: "400",
-      fontStyle: "normal",
-      color: "rgb(84, 84, 84)",
-      textDecoration: "none",
-      lineHeight: "1.4",
-      fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-      textTransform: "none",
-      fontSize: "10px",
-      paddingTop: "7px",
-      paddingLeft: "7px",
-    };
-
     return (
       <div
         className="applied-box-holder"
-        onClick={() => this.openOrClosePopup()}
+       onClick={() => this.openOrClosePopup()}
       >
-        <p style={style.companyTitle}>{this.props.jobInfo.company_name}</p>
-        <p style={style.jobTitle}>{this.props.jobInfo.position_title}</p>
+    <p className="company_name_text">{this.props.jobInfo.company_name}</p>
+   <p className="position_title_text">{this.props.jobInfo.position_title}</p>
         <DetailedView
           jobInfo={this.props.jobInfo}
           desired={this.props.desired}
