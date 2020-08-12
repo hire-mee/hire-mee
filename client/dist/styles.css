@@ -795,6 +795,15 @@ BOX COMPONENT
   cursor: pointer;
 }
 
+.applied-component-holder {
+  background-color: rgb(232, 236, 239);
+  height: 100%;
+}
+
+.applied-holder {
+  padding: 1em;
+}
+
 .company_name_text{
   color: rgb(56, 182, 255);
   font-size: 15px;
