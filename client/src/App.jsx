@@ -171,9 +171,7 @@ class App extends React.Component {
         />
       );
     } else if (this.state.page === "Leaderboard") {
-      return (
-        <Leaderboard/>
-      );
+      return <Leaderboard />;
     } else if (this.state.page === "Leaderboard") {
       return (
         <div>
@@ -184,7 +182,7 @@ class App extends React.Component {
     } else if (this.state.page === "Map") {
       return <MapContainer userData={this.state.currentUser} />;
     } else if (this.state.page === "Friends") {
-      return <Friends />;
+      return <Friends id={this.state.currentUser.id} />;
     } else if (this.state.page === "Settings") {
       return (
         <Settings

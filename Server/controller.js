@@ -134,5 +134,19 @@ module.exports = {
       }
       res.status(200).send('Updated user\'s first name, last name, salary!');
     });
-  }
+  },
+  addFriend: (req, res) => {
+    helper.addFriend(req.body, req.params.id, (err, result) => {
+      if (err) { res.status(400).send(err) }
+      res.status(200).send(result)
+    })
+  },
+  getFriends: (req, res) => {
+    helper.getFriends(req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send(result);
+    });
+  },
 };

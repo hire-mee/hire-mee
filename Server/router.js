@@ -32,9 +32,9 @@ router
     .get(controller.getInfo);
 
 router // route for ALL users
-.route('/users/:id')
-.put(controller.updateInfo) // updates user_info streaks/applied quantities fields
-.delete(controller.deleteInfo); // route to delete user from database
+    .route('/users/:id')
+    .put(controller.updateInfo) // updates user_info streaks/applied quantities fields
+    .delete(controller.deleteInfo); // route to delete user from database
 
 router // route for a single user 
     .route('/user/:id')
@@ -53,8 +53,8 @@ router // updates a single user's firstName, lastName, salary
 // APPLICATIONS ROUTES =========================================================// 
 
 router
-.route('/userApp/:id')
-.put(controller.updateApps);  // updates user_info table, used in Settings Module to reset progress
+    .route('/userApp/:id')
+    .put(controller.updateApps);  // updates user_info table, used in Settings Module to reset progress
 
 router
     .route('/applications/:id')
@@ -67,7 +67,15 @@ router
     .post(controller.postApplications);
 
 router
-.route('/update/:id')
-.put(controller.updateApplications); // route to move job application from one column to another
+    .route('/update/:id')
+    .put(controller.updateApplications); // route to move job application from one column to another
+
+// FRIEND ROUTES =========================================================// 
+
+router
+    .route('/friends/:id')
+    .post(controller.addFriend)
+    .get(controller.getFriends)
+
 
 module.exports = router;

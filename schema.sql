@@ -45,6 +45,6 @@ CREATE TABLE applications(
 DROP TABLE friends CASCADE;
 
 CREATE TABLE friends(
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES user_info (id)
+  user_id INTEGER,
+  email VARCHAR(255) REFERENCES user_info (email)
 );

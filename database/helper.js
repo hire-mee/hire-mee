@@ -171,8 +171,31 @@ module.exports = {
         callback(null, results.rows);
       }
     })
-  }
-}
+  },
+
   //==========================================================================================================
   //====================================FRIENDS TABLE=======================================================
   //==========================================================================================================
+
+  addFriend(input, id, callback) {
+    let { email } = input
+    const queryStr = `INSERT INTO friends(user_id, email) VALUES (${id}, '${email}');`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
+  getFriends(id, callback) {
+    const queryStr = `SELECT first_name, last_name, applied_month FROM user_info INNER JOIN friends on user_info.email = friends.email WHERE friends.user_id = ${id};`;
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(`ERROR: `, err);
+      } else {
+        callback(null, results.rows);
+      }
+    })
+  },
+}
