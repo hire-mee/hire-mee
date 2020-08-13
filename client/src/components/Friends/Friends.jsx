@@ -10,10 +10,17 @@ export class Friends extends Component {
   constructor() {
     super();
     this.state = {
+      currentId: "",
+      newFriend: "",
       friends: [],
     };
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
   }
   componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentId: nextProps.id,
+    });
     axios
       .get(`/api/friends/${nextProps.id}`)
       .then((res) => {
@@ -23,6 +30,23 @@ export class Friends extends Component {
       })
       .catch((err) => console.log(err));
   }
+
+  inputChangeHandler(e) {
+    this.setState({
+      newFriend: e.target.value,
+    });
+  }
+
+  submitHandler(e) {
+    e.preventDefault();
+    axios
+      .post(`/api/friends/${this.state.currentId}`, {
+        email: this.state.newFriend,
+      })
+      .then((res) => console.log("friend added"))
+      .catch((err) => console.log(err));
+  }
+
   render() {
     let friendList = this.state.friends.map((friend) => {
       return (
@@ -41,8 +65,9 @@ export class Friends extends Component {
             All friends ({this.state.friends.length})
           </div>
           <div className="add-friend">
-            <input size="18"></input>
+            <input size="18" onChange={this.inputChangeHandler}></input>
             <Button
+              onClick={this.submitHandler}
               style={{
                 marginLeft: "20px",
                 marginBottom: "7px",
