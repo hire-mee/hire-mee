@@ -31,13 +31,17 @@ export class Leaderboard extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
+    var {first_name, last_name, applied_month } = nextProps.userData
+    var myStats = {first_name, last_name, applied_month }
     this.setState({
       currentId: nextProps.id,
     });
     axios
       .get(`/api/friends/${nextProps.id}`)
       .then((res) => {
-        var sorted = res.data.sort((a, b) =>
+        var unsorted = res.data
+        unsorted.push(myStats)
+        var sorted = unsorted.sort((a, b) =>
           a.applied_month > b.applied_month ? -1 : 1
         );
         this.setState({

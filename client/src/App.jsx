@@ -172,7 +172,7 @@ class App extends React.Component {
         />
       );
     } else if (this.state.page === "Leaderboard") {
-      return <Leaderboard id={this.state.currentUser.id} />;
+      return <Leaderboard id={this.state.currentUser.id} userData={this.state.currentUser} />;
     } else if (this.state.page === "Leaderboard") {
       return (
         <div>
