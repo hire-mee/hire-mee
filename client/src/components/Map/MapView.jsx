@@ -56,7 +56,6 @@ export class MapView extends Component {
             this.setState({
               homeCoords: coord,
             });
-            console.log(this.state.homeCoords, "yeeet");
           })
           .catch((err) => console.log(err));
       });
@@ -100,9 +99,12 @@ export class MapView extends Component {
   }
 
   inputChangeHandler(e) {
-    this.setState({
-      homeAddress: e.target.value,
-    }, ()=>console.log(this.state.homeAddress));
+    this.setState(
+      {
+        homeAddress: e.target.value,
+      },
+      () => console.log(this.state.homeAddress)
+    );
   }
 
   submitHandler(e) {

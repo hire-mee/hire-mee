@@ -32,6 +32,7 @@ class App extends React.Component {
       userId: "",
       users: "",
       currentUser: "",
+      // friends: [],
       currentUserApplications: [],
       logoutBox: false,
     };
@@ -171,7 +172,7 @@ class App extends React.Component {
         />
       );
     } else if (this.state.page === "Leaderboard") {
-      return <Leaderboard />;
+      return <Leaderboard id={this.state.currentUser.id} />;
     } else if (this.state.page === "Leaderboard") {
       return (
         <div>
@@ -217,7 +218,7 @@ class App extends React.Component {
     });
   }
 
-  getData() {
+  getData(id) {
     axios
       .get(`/api/users`)
       .then((data) => {

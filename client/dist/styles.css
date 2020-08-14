@@ -606,6 +606,16 @@ body {
   margin-bottom: 15px;
 }
 
+.no-leader {
+  margin: auto;
+  width: 400px;
+  height: 50px;
+  padding-top: 10px;
+  border: 4px grey double;
+  text-align: center;
+  margin-top: 200px;
+}
+
 .orange-text {
   color: #fbbc05;
 }
@@ -654,14 +664,16 @@ body {
   width: 300px;
   margin: 0 0 10px 15px;
   text-align: right;
+  animation: barFill ease 0.5s;
 }
 
-.leader-bar {
-  background-color: #38b6ff;
-  height: 20px;
-  width: 300px;
-  margin: 0 0 10px 15px;
-  text-align: right;
+@keyframes barFill {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 300px;
+  }
 }
 
 .weekly-num {
