@@ -336,7 +336,6 @@ body {
 .applied-box-holder {
   background-color: white;
   width: 65%;
-  /* padding-left: 5%; */
   margin: 0 auto;
   cursor: pointer;
 }
@@ -344,6 +343,8 @@ body {
 .applied-component-holder {
   background-color: rgb(232, 236, 239);
   height: 100%;
+  /* min-height: 180px; */
+  margin-bottom: 40px;
 }
 
 .applied-holder {
@@ -352,26 +353,28 @@ body {
 
 .company_name_text {
   color: rgb(56, 182, 255);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 300;
   font-style: normal;
   text-decoration: none;
   line-height: 1.4;
   text-transform: none;
   padding-top: 7px;
-  padding-left: 7px;
+  padding-left: 12px;
+  margin-bottom: 0px;
 }
 
 .position_title_text {
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   color: rgb(84, 84, 84);
   text-decoration: none;
   line-height: 1.4;
   text-transform: none;
-  font-size: 10px;
+  font-size: 14px;
   padding-top: 7px;
-  padding-left: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
 }
 
 .applications_columns {
@@ -389,7 +392,7 @@ body {
   font-style: normal;
   color: rgb(84, 84, 84);
   text-decoration: none;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 /*
@@ -472,6 +475,7 @@ body {
   text-decoration: none;
   line-height: 1.4;
   font-weight: bold;
+  font-size: 30px;
 }
 
 .detailedView_position_company_text {
@@ -480,7 +484,7 @@ body {
   color: rgb(56, 182, 255);
   text-decoration: none;
   line-height: 1.4;
-  font-size: 42.6667px;
+  font-size: 25px;
 }
 
 .detailedView_position_salary_text {

@@ -169,7 +169,7 @@ class Applied extends React.Component {
             }}
           >
             <h3
-              style={{ textAlign: "center", cursor: "pointer" }}
+              style={{ textAlign: "center", cursor: "pointer", marginBottom: "16px" }}
               onClick={this.openOrCloseNewApp}
             >
               +
@@ -199,7 +199,7 @@ class Applied extends React.Component {
           >
             <Modal.Header className="modal-header" closeButton>
               <Modal.Title className="modal-title">
-                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "3vw" }}>
+                <h1 style={{ color: "rgb(84, 84, 84)", fontSize: "30px" }}>
                   New Job Application
                 </h1>{" "}
                 <br />
