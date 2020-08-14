@@ -15,27 +15,27 @@ module.exports = {
       res.status(200).send(result);
     });
   },
-  updateInfo : (req, res) => {
+  updateInfo: (req, res) => {
     helper.updateInfo(req.body, req.params.id, (err, result) => {
-      if (err) { res.status(400).send(err)}
+      if (err) { res.status(400).send(err) }
       res.status(200).send(result)
     })
   },
   getUserData: (req, res) => {
     helper.getUserData(req.params.id, (err, result) => {
-      if (err) { res.status(400).send(err)}
+      if (err) { res.status(400).send(err) }
       res.status(200).send(result)
     })
   },
   getUserByEmail: (req, res) => {
     helper.getUserByEmail(req.params, (err, result) => {
-      if (err) { res.status(400).send(err)}
+      if (err) { res.status(400).send(err) }
       res.status(200).send(result)
     })
   },
   signUpPostInfo: (req, res) => {
     helper.signUpPostInfo(req.body, (err, result) => {
-      if (err) { res.status(400).send(err)}
+      if (err) { res.status(400).send(err) }
       res.status(200).send(result)
     })
   },
@@ -64,13 +64,19 @@ module.exports = {
     })
   },
   updateName: (req, res) => {
-    console.log('update name req.body', req.body)
-    console.log('update name req.params', req.params)
     helper.updateName(req.body, req.params.id, (err, result) => {
       if (err) {
         res.status(400).send(err)
       }
       res.status(200).send('Updated name')
+    })
+  },
+  updateAddress: (req, res) => {
+    helper.updateAddress(req.body, req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).send(err)
+      }
+      res.status(200).json(req.body)
     })
   },
   deleteInfo: (req, res) => {
@@ -82,28 +88,27 @@ module.exports = {
     });
   },
   getApplications: (req, res) => {
-    helper.getApplications(req.params.id)
-    .then((result)=>{
-      res.status(200).send(result)
-    })
-    .catch((err)=>{
-      console.error(err);
-      res.status(404).send('Cant Find Applications')
+    helper.getApplications(req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send(results);
     })
   },
-  postApplications: (req,res) => {
-    console.log(req.body)
-    helper.postApplications(req.body)
+  postApplications: (req, res) => {
+    helper.postApplications(req.body, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Posted Application');
+    })
   },
   updateApplications: (req, res) => {
-    helper.updateApplications(req.body, req.params.id)
-    .then((result)=>{
-      res.status(200).send(result)
-      res.end();
-    })
-    .catch((err)=>{
-      console.error(err);
-      res.status(404).send(err)
+    helper.updateApplications(req.body, req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Updated user data');
     })
   },
   deleteApplications: (req, res) => {
@@ -113,5 +118,35 @@ module.exports = {
       }
       res.status(200).send('Deleted application data');
     });
-  }
+  },
+  updateSalary: (req, res) => {
+    helper.updateSalary(req.body.salary, req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Updated user\'s salary!');
+    });
+  },
+  updateAllProfileSettings: (req, res) => {
+    helper.updateAllProfileSettings(req.body, req.params.id, (err, results) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send('Updated user\'s first name, last name, salary!');
+    });
+  },
+  addFriend: (req, res) => {
+    helper.addFriend(req.body, req.params.id, (err, result) => {
+      if (err) { res.status(400).send(err) }
+      res.status(200).send(result)
+    })
+  },
+  getFriends: (req, res) => {
+    helper.getFriends(req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.status(200).send(result);
+    });
+  },
 };

@@ -41,7 +41,7 @@
     "express-session": "1.17.1",
     "faker": "^4.1.0",
     "google-maps-react": "^2.0.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "passport": "0.4.1",
@@ -54,8 +54,10 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-geocode": "^0.2.1",
+    "react-google-maps": "^9.4.5",
     "react-promise": "^3.0.2",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",
