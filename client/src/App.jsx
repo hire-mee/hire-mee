@@ -4,6 +4,7 @@ import Signup from "./components/SignUp/SignUp.jsx";
 import Login from "./components/LogIn/Login.jsx";
 import Demo from "./components/Demo/Demo.jsx";
 import Main from "./Main.jsx";
+import Redirect from './components/Redirect/Redirect.jsx'
 
 
 import {
@@ -20,9 +21,10 @@ export default function App() {
           <Route path="/signup">
             <Signup />
           </Route>
-          <Route path="/login">
-            <Login />
+          <Route path="/redirect">
+            <Redirect />
           </Route>
+          <Route exact path="/login" component={Login}/>
           <Route path="/main">
             <Main />
           </Route>

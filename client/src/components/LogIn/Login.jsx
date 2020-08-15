@@ -3,6 +3,7 @@ import axios from "axios"
 import { PersonFill } from 'react-bootstrap-icons';
 import { Envelope } from 'react-bootstrap-icons';
 import { Lock } from 'react-bootstrap-icons';
+import { NavLink } from "react-router-dom";
 
 export default class Login extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ export default class Login extends Component {
   render() {
       return (
         <div className="signup_main_container">
-        <div className="login_main_title" onClick={() => this.props.changePage('page', 'Signup')}>Hire-Mee</div>
+        <NavLink className="login_main_title" to="/">Hire-Mee</NavLink>
         <div id="signup_gist">Better than your own Excel Sheet.</div>
         <div id="signup_start_here"> Welcome back!</div>
           <div className="sign_up_input_container">
@@ -84,8 +85,7 @@ export default class Login extends Component {
                     <button id="signup_signup_button" onClick={this.handleLogin}>Login</button>
                   </div>
                   <div className="signup_already_signedup_container">
-                  <div id="signup_already_signedup_text">Click here to sign up.</div>
-                  <div id="signup_already_signedup_button" onClick={()=>this.props.changePage('page', 'Signup')}>Sign Up</div>
+                  <div id="signup_already_signedup_text">Click <NavLink to="/signup">here </NavLink> to sign up.</div>
                 </div>
                   </form>
                 </div>
