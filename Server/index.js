@@ -19,8 +19,6 @@ app.use(morgan('dev'));
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
-
-
 const db = require('../database/index.js'); // database connection
 
 // const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'session'})
