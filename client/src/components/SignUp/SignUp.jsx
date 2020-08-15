@@ -3,7 +3,7 @@ import axios from "axios"
 import { PersonFill } from 'react-bootstrap-icons';
 import { Envelope } from 'react-bootstrap-icons';
 import { Lock } from 'react-bootstrap-icons';
-import { NavLink } from "react-router-dom";
+import { NavLink , Redirect, Route} from "react-router-dom";
 
 
 
@@ -41,9 +41,9 @@ export default class SignUp extends Component {
     } else {
       axios.post('/api/signup', {first_name, last_name, email, pass})
       .then(() => {
-      <Route path="/redirect">
-        <Redirect/>
-      </Route>
+        this.setState({
+          redirect: true
+        })
       })
     }
   }
@@ -51,10 +51,7 @@ export default class SignUp extends Component {
   render() {
     if (this.state.redirect) {
       return (
-        <div>
-          <div className="signup_redirect_text">Account successfully created!</div>
-          <div id="signup_redirect_login" onClick={() => this.props.changePage('page', 'Login')}>Login Here</div>
-        </div>
+        <Redirect to="/redirect"/>
       )
     } else {
       return (
