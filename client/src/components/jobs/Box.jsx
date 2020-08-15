@@ -1,59 +1,40 @@
-import React, { useState } from 'react';
-import DetailedView from './DetailedView.jsx';
+import React, { useState } from "react";
+import DetailedView from "./DetailedView.jsx";
 
-class Box extends React.Component{
-  constructor(props){
+class Box extends React.Component {
+  constructor(props) {
     super(props);
 
     this.state = {
       show: false,
-      render:false
-    }
+      render: false,
+    };
     this.openOrClosePopup = this.openOrClosePopup.bind(this);
   }
 
-  openOrClosePopup(){
-    console.log("testing OpenOrClosePopup")
+  openOrClosePopup() {
     this.setState({
-      show: !this.state.show
-    })
+      show: !this.state.show,
+    });
   }
 
-  render(){
-    let style = {};
-
-    style.companyTitle = {
-      fontWeight: "400",
-      fontStyle: "normal",
-      color: "rgb(56, 182, 255)",
-      textDecoration: "none",
-      lineHeight: "1.4",
-      fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-      textTransform: "none",
-      fontSize:"1.5vw"
-    };
-
-  style.jobTitle = {
-    fontWeight: "400",
-    fontStyle: "normal",
-    color: "rgb(84, 84, 84)",
-    textDecoration: "none",
-    lineHeight: "1.4",
-    fontFamily: "YACkoA9eHeY 0, _fb_, auto",
-    textTransform: "none",
-    fontSize:"1vw"
-  }
-
-  return (
-
-    <div className="applied-box-holder" onClick={() => this.openOrClosePopup()}>
-      <p style={style.companyTitle}>{this.props.jobInfo.companyname}</p>
-      <p style={style.jobTitle}>{this.props.jobInfo.positiontitle}</p>
-      <DetailedView jobInfo={this.props.jobInfo} desired={this.props.desired} show={this.state.show} />
-    </div>
+  render() {
+    return (
+      <div
+        className="applied-box-holder"
+       onClick={() => this.openOrClosePopup()}
+      >
+    <p className="company_name_text">{this.props.jobInfo.company_name}</p>
+   <p className="position_title_text">{this.props.jobInfo.position_title}</p>
+        <DetailedView
+          jobInfo={this.props.jobInfo}
+          desired={this.props.desired}
+          show={this.state.show}
+          getApplications={this.props.getApplications}
+        />
+      </div>
     );
   }
 }
-
 
 export default Box;

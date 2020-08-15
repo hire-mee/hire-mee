@@ -9,7 +9,7 @@ let customFields = {
 }
 
 let verifyCallback = (email, pass, done) => {
-    let queryStr = `SELECT * from userinfo WHERE email = '${email}';`
+    let queryStr = `SELECT * from user_info WHERE email = '${email}';`
     connection.query(queryStr, function(err, user) {
       if (err) { 
           return done(err); 
@@ -42,7 +42,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((email, callback) => {
-    connection.query('SELECT id, email FROM userinfo WHERE email = $1', [email], (err, results) => {
+    connection.query('SELECT id, email FROM user_info WHERE email = $1', [email], (err, results) => {
       if(err) {
         console.log('Error when selecting user on session deserialize', err)
         return callback(err)

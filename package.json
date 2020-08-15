@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "Main repo",
   "main": "index.js",
+  "engines": {
+    "node": "13.8.0",
+    "npm": "6.13.4"
+  },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --w --mode development",
-    "build-prod": "webpack --mode production",
+    "build": "webpack --env.ENVIRONMENT=development --w --mode development",
+    "build-prod": "webpack --env.ENVIRONMENT=development --mode production",
     "create-schema": "psql -U postgres -d hiremee < schema.sql",
     "start-database": "psql -U postgres",
     "docker-build": "npm run build-prod && docker build . -t hiremee",
     "docker-run": "docker run -p 3000:3000 hiremee",
-    "jobs": "git add client/src/components/jobs/."
+    "jobs": "git add client/src/components/jobs/.",
+    "heroku-postbuild": "cd client && npm install && npm run-script build"
   },
   "repository": {
     "type": "git",
@@ -41,7 +46,7 @@
     "express-session": "1.17.1",
     "faker": "^4.1.0",
     "google-maps-react": "^2.0.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "passport": "0.4.1",
@@ -54,8 +59,10 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-geocode": "^0.2.1",
+    "react-google-maps": "^9.4.5",
     "react-promise": "^3.0.2",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",
@@ -67,5 +74,6 @@
     "babel-preset-react": "^6.24.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
-  }
+  },
+  "proxy": "https://localhost:3000"
 }
