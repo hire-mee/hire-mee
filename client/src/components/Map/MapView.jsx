@@ -7,7 +7,7 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
-import MAP_API_KEY from "../../../../maps-api-key";
+// import MAP_API_KEY from "../../../../maps-api-key";
 import WrappedMap from "./WrappedMap.jsx";
 import Button from "@material-ui/core/Button";
 
@@ -43,7 +43,7 @@ export class MapView extends Component {
           .get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
               address: data[0].home_address,
-              key: MAP_API_KEY,
+              key: process.env.MAP_API_KEY,
             },
           })
           .then((res) => {
@@ -75,7 +75,7 @@ export class MapView extends Component {
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
           params: {
             address: location,
-            key: MAP_API_KEY,
+            key: process.env.MAP_API_KEY,
           },
         })
         .then((res) => {
