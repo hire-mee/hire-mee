@@ -43,7 +43,7 @@ export class MapView extends Component {
           .get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
               address: data[0].home_address,
-              key: process.env.MAP_API_KEY,
+              key: process.env.REACT_APP_GOOGLE_KEY,
             },
           })
           .then((res) => {
@@ -62,7 +62,6 @@ export class MapView extends Component {
   }
 
   geocode() {
-    // var location = "10770 lawler st los angeles CA";
     this.state.jobData.map((job) => {
       var location = job.app_location;
       var companyName = job.company_name;
@@ -75,7 +74,7 @@ export class MapView extends Component {
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
           params: {
             address: location,
-            key: process.env.MAP_API_KEY,
+            key: process.env.REACT_APP_GOOGLE_KEY,
           },
         })
         .then((res) => {
@@ -122,7 +121,7 @@ export class MapView extends Component {
           .get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
               address: res.data.homeAddress,
-              key: MAP_API_KEY,
+              key: process.env.REACT_APP_GOOGLE_KEY,
             },
           })
           .then((res) => {
@@ -165,9 +164,10 @@ export class MapView extends Component {
             Set
           </Button>
         </div>
+
         <div>
           <WrappedMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${MAP_API_KEY}`}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
             loadingElement={<div style={{ height: "75vh" }} />}
             containerElement={
               <div style={{ height: "75vh", width: "75vw", margin: "auto" }} />

@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --w --mode development",
-    "build-prod": "webpack --mode production",
+    "build": "webpack --env.ENVIRONMENT=development --w --mode development",
+    "build-prod": "webpack --env.ENVIRONMENT=development --mode production",
     "create-schema": "psql -U postgres -d hiremee < schema.sql",
     "start-database": "psql -U postgres",
     "docker-build": "npm run build-prod && docker build . -t hiremee",

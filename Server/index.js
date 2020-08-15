@@ -50,7 +50,7 @@ app.use(passport.session()) // calls passport session
 app.use('/api', router);
 app.listen(PORT, () => console.log(`app listening at http://localhost:${PORT}`));
 
-if(process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production") {
   //server static content
   //npm run build
   app.use(express.static(path.join(__dirname, '../client/dist/build')))

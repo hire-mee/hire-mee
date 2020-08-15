@@ -6,6 +6,5 @@ Auth
 auth-middleware.js
 firebase-auth-Controller.js
 /client/src/components/SignUp/
-maps-api-key.js
 client/dist/bundle.js
 .env
