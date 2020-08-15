@@ -7,7 +7,13 @@ const cors = require('cors');
 const path = require('path');
 const router = require('./router.js')
 const app = express();
-const port = 3000;
+const oldPort = 3000;
+const PORT = process.env.PORT || 3000;
+
+//process.env.PORT
+//process.env.NODE_ENV => production or undefined
+
+
 
 require('dotenv').config(); // allows the use of secret keys in rootdirectory/.env file
 
@@ -42,4 +48,10 @@ app.use(passport.initialize()) // calls passport initialization
 app.use(passport.session()) // calls passport session
 
 app.use('/api', router);
-app.listen(port, () => console.log(`app listening at http://localhost:${port}`));
+app.listen(PORT, () => console.log(`app listening at http://localhost:${PORT}`));
+
+if(process.env.NODE_ENV === "production"){
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, '../client/dist/build')))
+}
