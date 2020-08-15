@@ -7,7 +7,6 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
-// import MAP_API_KEY from "../../../../maps-api-key";
 import WrappedMap from "./WrappedMap.jsx";
 import Button from "@material-ui/core/Button";
 

@@ -4,7 +4,6 @@
 // import Geocode from "react-geocode";
 // import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 // import "../../../dist/mapStyles.css";
-// import MAP_API_KEY from "../../../../maps-api-key";
 // Geocode.setApiKey(MAP_API_KEY);
 
 // const mapStyles = {
