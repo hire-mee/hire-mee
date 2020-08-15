@@ -305,14 +305,12 @@ body {
 }
 
 .signup_redirect_text {
-  margin-top: 5%;
-  text-align: center;
-  font-size: 1.5em;
+  margin-top: 150px;
+  font-size: 25px;
 }
 
 #signup_redirect_login {
-  text-align: center;
-  font-size: 1.2em;
+  font-size: 20px;
   font-weight: 500;
   color: #38b6ff;
   margin-left: auto;
