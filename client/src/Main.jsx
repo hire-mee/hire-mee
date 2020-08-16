@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
 import {
   Briefcase,
@@ -29,10 +29,10 @@ import {
   useParams,
   useRouteMatch,
   NavLink,
-  withRouter
+  withRouter,
 } from "react-router-dom";
 
- class Main extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,14 +50,14 @@ import {
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
   }
 
-
   storeUserData(data) {
     this.setState({
       currentUser: data,
     });
   }
 
-  getData(id) { // route to get all users from user_info, currently not in use
+  getData(id) {
+    // route to get all users from user_info, currently not in use
     axios
       .get(`/api/users`)
       .then((data) => {
@@ -81,135 +81,149 @@ import {
       .catch((err) => console.error(err));
   }
 
-
   handleModal() {
-    this.setState({ logoutBox: !this.state.logoutBox });
+    this.setState({ showLogoutModal: !this.state.showLogoutModal });
   }
 
   render() {
-
-    let  { path, url } = this.props.match
+    let { path, url } = this.props.match;
 
     return (
       <div>
         <div className="StartUp">
-        <div>
-          <div className="grid-container">
-            <div className="Nav">
-                <NavLink className="company_name" to="/">Hire-Mee</NavLink>
-              <div className="Dashboard">
-                <div className="category_title">Dashboard</div>
-                <div className="category" data-letter="Jobs">
-                  <Briefcase color="white" /> <Link className="company_name" to={`${url}/jobs`}>Jobs</Link> 
+          <div>
+            <div className="grid-container">
+              <div className="Nav">
+                <NavLink className="company_name" to="/">
+                  Hire-Mee
+                </NavLink>
+                <div className="Dashboard">
+                  <div className="category_title">Dashboard</div>
+                  <div className="category" data-letter="Jobs">
+                    <Briefcase color="white" />{" "}
+                    <Link className="sidebar_nav_link" to={`${url}/jobs`}>
+                      Jobs
+                    </Link>
+                  </div>
+                  <div className="category" data-letter="Statistics">
+                    <GraphUp color="white" />{" "}
+                    <Link className="sidebar_nav_link" to={`${url}/statistics`}>
+                      Statistics
+                    </Link>
+                  </div>
+                  <div className="category" data-letter="Friends">
+                    <PersonFill color="white" />
+                    <Link className="sidebar_nav_link" to={`${url}/friends`}>
+                      Friends
+                    </Link>
+                  </div>
+                  <div className="category" data-letter="Leaderboard">
+                    <Trophy color="white" />{" "}
+                    <Link
+                      className="sidebar_nav_link"
+                      to={`${url}/leaderboard`}
+                    >
+                      Leaderboard
+                    </Link>
+                  </div>
+                  <div className="category" data-letter="Map">
+                    <GeoAlt color="white" />{" "}
+                    <Link className="sidebar_nav_link" to={`${url}/map`}>
+                      Map
+                    </Link>
+                  </div>
                 </div>
-                <div
-                  className="category"
-                  data-letter="Statistics"
-                >
-                  <GraphUp color="white" /> <Link className="company_name" to={`${url}/statistics`}>Statistics</Link> 
-                </div>
-                <div
-                  className="category"
-                  data-letter="Friends"
-                >
-                  <PersonFill color="white" /><Link className="company_name" to={`${url}/friends`}>Friends</Link> 
-                </div>
-                <div
-                  className="category"
-                  data-letter="Leaderboard"
-                >
-                  <Trophy color="white" /> <Link className="company_name" to={`${url}/leaderboard`}>Leaderboard</Link> 
-                </div>
-                <div
-                  className="category"
-                  data-letter="Map"
-                >
-                  <GeoAlt color="white" /> <Link className="company_name" to={`${url}/map`}>Map</Link> 
+                <div className="Account">
+                  <div className="category_title">Account</div>
+                  <div className="category" data-letter="Settings">
+                    <GearFill color="white" />{" "}
+                    <Link className="sidebar_nav_link" to={`${url}/settings`}>
+                      Settings
+                    </Link>
+                  </div>
+                  <div
+                    className="category"
+                    data-letter="Logout"
+                    onClick={this.handleModal}
+                  >
+                    <BoxArrowRight color="white" />{" "}
+                    <a className="sidebar_nav_link" onClick={this.handleModal}>
+                      {" "}
+                      Logout{" "}
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div className="Account">
-                <div className="category_title">Account</div>
-                <div
-                  className="category"
-                  data-letter="Settings"
-                >
-                  <GearFill color="white" /> <Link className="company_name" to={`${url}/settings`}>Settings</Link> 
+              <div className="Header">
+                <div className="Header-title">{this.state.page}</div>
+                <div className="Profile-area">
+                  <Profile
+                    userData={this.state.currentUser}
+                    getUpdatedData={this.getUpdatedUserData}
+                  />
                 </div>
-                <div
-                  className="category"
-                  data-letter="Logout"
-                  onClick={this.handleModal}
-                >
-                  <BoxArrowRight color="white" /> Logout
-                </div>
+              </div>
+              <div className="Display">
+                {
+                  <Switch>
+                    <Route exact path={`${path}`}>
+                      <Jobs
+                        currentUser={this.state.currentUser}
+                        getUpdatedUserData={this.getUpdatedUserData}
+                      />
+                    </Route>
+
+                    <Route path={`${path}/jobs`}>
+                      <Jobs
+                        currentUser={this.state.currentUser}
+                        getUpdatedUserData={this.getUpdatedUserData}
+                      />
+                    </Route>
+
+                    <Route path={`${path}/statistics`}>
+                      <Statistics
+                        user={this.state.currentUser}
+                        user_app_data={this.state.currentUserApplications}
+                      />
+                    </Route>
+
+                    <Route path={`${path}/friends`}>
+                      <Friends id={this.state.currentUser.id} />
+                    </Route>
+
+                    <Route path={`${path}/leaderboard`}>
+                      <Leaderboard
+                        id={this.state.currentUser.id}
+                        userData={this.state.currentUser}
+                      />
+                    </Route>
+
+                    <Route path={`${path}/map`}>
+                      <MapContainer userData={this.state.currentUser} />
+                    </Route>
+
+                    <Route path={`${path}/settings`}>
+                      <Settings
+                        user={this.state.currentUser}
+                        getData={this.getData}
+                        loggedIn={this.state.loggedIn}
+                        handleModal={this.handleModal}
+                      />
+                    </Route>
+                  </Switch>
+                }
               </div>
             </div>
-            <div className="Header">
-              <div className="Header-title">{this.state.page}</div>
-              <div className="Profile-area">
-                <Profile
-                  userData={this.state.currentUser}
-                  getUpdatedData={this.getUpdatedUserData}
-                />
-              </div>
-            </div>
-            <div className="Display">{
-
-<Switch>
-<Route exact path={`${path}`}>
-<Jobs
-currentUser={this.state.currentUser}
-getUpdatedUserData={this.getUpdatedUserData}
-/>
-</Route>
-
-<Route path={`${path}/jobs`}>
-<Jobs
-currentUser={this.state.currentUser}
-getUpdatedUserData={this.getUpdatedUserData}
-/>
-</Route>
-
-<Route path={`${path}/statistics`}>
-  <Statistics
-  user={this.state.currentUser}
-  user_app_data={this.state.currentUserApplications}
-/>
-</Route>
-
-<Route path={`${path}/friends`}>
-  <Friends id={this.state.currentUser.id} />
-</Route>
-
-<Route path={`${path}/leaderboard`}>
-  <Leaderboard id={this.state.currentUser.id} userData={this.state.currentUser}/>
-</Route>
-
-<Route path={`${path}/map`}>
-  <MapContainer userData={this.state.currentUser}/>
-</Route>
-
-<Route path={`${path}/settings`}>
-  <Settings   
-  user={this.state.currentUser}
-  getData={this.getData}
-  loggedIn={this.state.loggedIn}
-  handleModal={this.handleModal}/>
-</Route>
-
-</Switch>
-            }</div>
           </div>
-        </div>
 
           <Logout
-              user={this.state.currentUser}
-              showLogoutModal={this.state.showLogoutModal}
-              handleModal={this.handleModal}
+            user={this.state.currentUser}
+            showLogoutModal={this.state.showLogoutModal}
+            handleModal={this.handleModal}
           />
         </div>
       </div>
-    )
+    );
   }
 }
 
