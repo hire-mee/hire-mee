@@ -8,3 +8,4 @@ firebase-auth-Controller.js
 /client/src/components/SignUp/
 client/dist/bundle.js
 .env
+maps-api-keys.js

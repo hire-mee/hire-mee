@@ -26,6 +26,7 @@ class Jobs extends React.Component {
     this.getApplications = this.getApplications.bind(this);
   }
 
+
   sortJobInfo(apps) {
     let jobs = apps;
     let sortedJobInfo = {};
@@ -103,13 +104,13 @@ class Jobs extends React.Component {
         >
           <Grid container spacing={2} style={{ padding: "5px" }}>
             <div style={{ width: "25%" }}>
-              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.desired.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} getUpdatedUserData={this.props.getUpdatedUserData} />
+              <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.currentUser.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} getUpdatedUserData={this.props.getUpdatedUserData} />
             </div>
 
             <div style={{ paddingLeft: "1%", width: "25%" }}>
               <Rejected
                 rejected={this.state.sortedJobInfo.rejected}
-                desired={this.props.desired.salary}
+                desired={this.props.currentUser.salary}
                 currentUser={this.props.currentUser}
                 getApplications={this.getApplications}
               />
@@ -121,7 +122,7 @@ class Jobs extends React.Component {
             >
               <Interviews
                 interviews={this.state.sortedJobInfo.interview}
-                desired={this.props.desired.salary}
+                desired={this.props.currentUser.salary}
                 currentUser={this.props.currentUser}
                 getApplications={this.getApplications}
               />
@@ -130,7 +131,7 @@ class Jobs extends React.Component {
             <div style={{ paddingLeft: "1%", width: "25%" }}>
               <Offers
                 offers={this.state.sortedJobInfo.offers}
-                desired={this.props.desired.salary}
+                desired={this.props.currentUser.salary}
                 currentUser={this.props.currentUser}
                 getApplications={this.getApplications}
               />

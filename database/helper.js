@@ -9,7 +9,7 @@ module.exports = {
     const queryStr = `SELECT * FROM user_info;`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        callback(`ERROR: `, err);
+        callback(err, null);
       } else {
         callback(null, results.rows);
       }
@@ -19,7 +19,7 @@ module.exports = {
     const queryStr = `SELECT * FROM user_info where id = ${id};`
     db.query(queryStr, (err, results) => {
       if (err) {
-        console.error(`ERROR: `, err);
+        callback(err, null);
       } else {
         callback(null, results.rows)
       }
@@ -27,10 +27,10 @@ module.exports = {
   },
   getUserByEmail(input, callback) {
     let { email } = input
-    const queryStr = `SELECT * FROM user_info where email = '${email}';`
+    const queryStr = `SELECT * FROM user_info where email='${email}';`
     db.query(queryStr, (err, results) => {
-      if (err) {
-        console.error(`ERROR: `, err);
+      if (!results.rows.length) {
+        callback(err, null);
       } else {
         callback(null, results.rows)
       }
@@ -192,7 +192,7 @@ module.exports = {
     const queryStr = `SELECT first_name, last_name, applied_month FROM user_info INNER JOIN friends on user_info.email = friends.email WHERE friends.user_id = ${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        callback(`ERROR: `, err);
+        callback(err);
       } else {
         callback(null, results.rows);
       }

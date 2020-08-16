@@ -4,7 +4,8 @@ require('dotenv').config();
 const devConfig = {
   user: process.env.PG_USER,
   port: process.env.PG_PORT,
-  database: process.env.PG_DATABASE
+  // database: process.env.PG_DATABASE
+  database: 'hiremee'
 }
 
 const proConfig = {

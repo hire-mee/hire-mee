@@ -2,10 +2,15 @@ const helper = require('../database/helper.js');
 
 module.exports = {
   loginSuccess: (req, res) => {
-    res.status(200).end();
+    // res.status(200).redirect('/localhost:3000/main');
+    res.status(200).redirect('/');
   },
   loginFailure: (req, res) => {
-    res.status(200).redirect('localhost:3000');
+    res.status(200).redirect('/');
+  },
+  logout: (req, res) => {
+    req.logOut();
+    res.redirect('/login');
   },
   getInfo: (req, res) => {
     helper.getInfo((err, result) => {
@@ -29,8 +34,10 @@ module.exports = {
   },
   getUserByEmail: (req, res) => {
     helper.getUserByEmail(req.params, (err, result) => {
-      if (err) { res.status(400).send(err) }
-      res.status(200).send(result)
+      if (result == null) {
+         return res.status(400).send("error getting things from postgres")
+        }
+      return res.status(200).send(result)
     })
   },
   signUpPostInfo: (req, res) => {
