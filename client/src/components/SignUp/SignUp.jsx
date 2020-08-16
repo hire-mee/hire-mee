@@ -3,7 +3,7 @@ import axios from "axios"
 import { PersonFill } from 'react-bootstrap-icons';
 import { Envelope } from 'react-bootstrap-icons';
 import { Lock } from 'react-bootstrap-icons';
-import { NavLink , Redirect, Route} from "react-router-dom";
+import { NavLink , Redirect} from "react-router-dom";
 
 
 
@@ -16,7 +16,7 @@ export default class SignUp extends Component {
       email: '',
       pass: '',
       passVerify: '',
-      redirect: false
+      redirect: false,
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -28,16 +28,23 @@ export default class SignUp extends Component {
     });
   }
 
+  componentDidMount(){
+    this.setState({ 
+      redirect: false,
+      signupFailure: false
+    })
+  }
+
   submitHandler(e) {
     let { first_name, last_name, email, pass } = this.state;
-    e.preventDefault();
+    // e.preventDefault();
     
     if (!email.includes("@")){
       window.alert("Please enter a valid email address");
-      location.reload()
+      document.getElementById('signup_input_form').reset();
     } else if (this.state.pass !== this.state.passVerify) {
       window.alert("Passwords do not match");
-      location.reload()
+      document.getElementById('signup_input_form').reset();
     } else {
       axios.post('/api/signup', {first_name, last_name, email, pass})
       .then(() => {
@@ -75,7 +82,7 @@ export default class SignUp extends Component {
               </div>
 
                 <div className="signup_input_form_container">
-                  <form onSubmit={this.submitHandler}>
+                  <form onSubmit={this.submitHandler} id="signup_input_form">
                     <div className="signup_input_icon_div">
                       <PersonFill className="signup_bootstrap_icon"/>
                       <input
