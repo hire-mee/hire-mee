@@ -13,8 +13,6 @@ const PORT = process.env.PORT || 3000;
 //process.env.PORT
 //process.env.NODE_ENV => production or undefined
 
-
-
 require('dotenv').config(); // allows the use of secret keys in rootdirectory/.env file
 
 
