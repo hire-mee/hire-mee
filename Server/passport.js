@@ -45,7 +45,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((email, callback) => {
-    connection.query('SELECT id, email FROM user_info WHERE email = $1', [email], (err, results) => {
+    connection.query(`SELECT id, email FROM user_info where email='${email}';`, (err, results) => {
       if(err) {
         console.log('Error when selecting user on session deserialize', err)
         return callback(err)

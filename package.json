@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "Main repo",
   "main": "index.js",
+  "engines": {
+    "node": "13.8.0",
+    "npm": "6.13.4"
+  },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --w --mode development",
-    "build-prod": "webpack --mode production",
+    "build": "webpack --env.ENVIRONMENT=development --w --mode development",
+    "build-prod": "webpack --env.ENVIRONMENT=development --mode production",
     "create-schema": "psql -U postgres -d hiremee < schema.sql",
     "start-database": "psql -U postgres",
     "docker-build": "npm run build-prod && docker build . -t hiremee",
     "docker-run": "docker run -p 3000:3000 hiremee",
-    "jobs": "git add client/src/components/jobs/."
+    "jobs": "git add client/src/components/jobs/.",
+    "heroku-postbuild": "cd client && npm install && npm build"
   },
   "repository": {
     "type": "git",
@@ -70,5 +75,6 @@
     "babel-preset-react": "^6.24.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
-  }
+  },
+  "proxy": "https://localhost:3000"
 }

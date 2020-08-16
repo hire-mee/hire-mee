@@ -237,6 +237,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
             style={{
               paddingLeft: "60px",
               paddingBottom: "100px",
+              paddingTop: "1em",
               letterSpacing: "0.1em",
               display: "flex",
               flexDirection: "row",
@@ -293,7 +294,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
 
             <div
               className="popupholder-right"
-              style={{ paddingTop: "2em", paddingLeft: "10em" }}
+              style={{ paddingTop: "1em", paddingLeft: "5em" }}
             >
               <div className="url-holder">
                 <div className="detailedView_position_url">
