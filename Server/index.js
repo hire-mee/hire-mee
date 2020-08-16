@@ -21,6 +21,7 @@ app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use('/signup', express.static(path.join(__dirname, '../client/dist')));
 app.use('/redirect', express.static(path.join(__dirname, '../client/dist')));
 app.use('/login', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main', express.static(path.join(__dirname, '../client/dist')));
 app.use('/main/jobs', express.static(path.join(__dirname, '../client/dist')));
 app.use('/main/statistics', express.static(path.join(__dirname, '../client/dist')));
 app.use('/main/friends', express.static(path.join(__dirname, '../client/dist')));
@@ -30,15 +31,14 @@ app.use('/main/settings', express.static(path.join(__dirname, '../client/dist'))
 
 
 
-const db = require('../database/index.js'); // database connection
+// const db = require('../database/index.js'); // database connection
 
-// const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'session'})
-//   store: sessionStore,
+
 app.use(
   session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
 
     cookie: {
       maxAge: 1000 * 60 * 60 * 24
@@ -49,6 +49,7 @@ app.use(
 require('./passport.js'); // require 'passport.use(strategy) from passport.js
 app.use(passport.initialize()) // calls passport initialization
 app.use(passport.session()) // calls passport session
+
 
 app.use('/api', router);
 app.listen(port, () => console.log(`app listening at http://localhost:${port}`));

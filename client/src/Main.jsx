@@ -20,6 +20,7 @@ import Jobs from "./components/jobs/Jobs.jsx";
 import Logout from "./components/Logout/Logout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import Settings from "./components/Settings/Settings.jsx";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import {
   BrowserRouter as Router,
@@ -30,6 +31,7 @@ import {
   useRouteMatch,
   NavLink,
   withRouter,
+  Redirect
 } from "react-router-dom";
 
 class Main extends React.Component {
@@ -85,14 +87,26 @@ class Main extends React.Component {
   }
 
   handleModal() {
-    this.setState({ showLogoutModal: !this.state.showLogoutModal });
+    // this.setState({ showLogoutModal: !this.state.showLogoutModal});
+
+    axios.delete('/api/logout') //TODO: Fix logout
+    .then(()=> {
+      console.log("logout success....redirecting to Login")
+    })
+    .catch(err => console.error(err))
   }
 
   render() {
-    let { path, url } = this.props.match;
-
-    return (
-      <div>
+      if(!this.state.currentUser){
+        return (
+            <div style={{ textAlign: "center", paddingTop: "25%" }}>
+            <CircularProgress /> Loading...
+          </div>
+        )
+      } else {
+        let { path, url } = this.props.match;
+        return (
+        <div>
         <div className="StartUp">
           <div>
             <div className="grid-container">
@@ -191,7 +205,7 @@ class Main extends React.Component {
                     </Route>
 
                     <Route path={`${path}/friends`}>
-                      <Friends id={this.state.currentUser.id} />
+                      <Friends id={this.state.currentUser} />
                     </Route>
 
                     <Route path={`${path}/leaderboard`}>
@@ -226,7 +240,8 @@ class Main extends React.Component {
           />
         </div>
       </div>
-    );
+        );
+      }
   }
 }
 

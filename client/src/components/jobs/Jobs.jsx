@@ -26,6 +26,7 @@ class Jobs extends React.Component {
     this.getApplications = this.getApplications.bind(this);
   }
 
+
   sortJobInfo(apps) {
     let jobs = apps;
     let sortedJobInfo = {};
@@ -71,8 +72,7 @@ class Jobs extends React.Component {
 
   getApplications() {
     axios
-      // .get(`/api/applications/${this.props.currentUser.id}`)
-      .get(`/api/applications/1`)
+      .get(`/api/applications/${this.props.currentUser.id}`)
       .then((data) => {
         this.sortJobInfo(data.data)
           .then((sortedJobs) => {
