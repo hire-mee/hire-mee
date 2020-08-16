@@ -23,21 +23,22 @@ const BarWrapper = styled.div`
 `;
 
 export class Leaderboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentId: "",
       friends: [],
     };
   }
-  componentWillReceiveProps(nextProps) {
-    var {first_name, last_name, applied_month } = nextProps.userData
+
+  componentDidMount() {
+    var {first_name, last_name, applied_month } = this.props.userData
     var myStats = {first_name, last_name, applied_month }
     this.setState({
-      currentId: nextProps.id,
+      currentId: this.props.userData.id,
     });
     axios
-      .get(`/api/friends/${nextProps.id}`)
+      .get(`/api/friends/${this.props.userData.id}`)
       .then((res) => {
         var unsorted = res.data
         unsorted.push(myStats)
@@ -50,6 +51,7 @@ export class Leaderboard extends Component {
       })
       .catch((err) => console.log(err));
   }
+
   render() {
     let names = this.state.friends.slice(1).map((friend, i) => {
       return (

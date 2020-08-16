@@ -52,9 +52,9 @@ export class Friends extends Component {
   }
 
   render() {
-    let friendList = this.state.friends.map((friend) => {
+    let friendList = this.state.friends.map((friend, i) => {
       return (
-        <div className="column" key={friend.first_name}>
+        <div className="column" key={i}>
           <Avatar>{friend.first_name[0] + friend.last_name[0]}</Avatar>
           <p className="friend-name">
             {friend.first_name + " " + friend.last_name}
