@@ -1,5 +1,5 @@
 const db = require('./index.js')
-const genPassword = require('../server/lib/passwordUtils.js').genPassword;
+const genPassword = require('../Server/lib/passwordUtils').genPassword;
 
 module.exports = {
   //==========================================================================================================
