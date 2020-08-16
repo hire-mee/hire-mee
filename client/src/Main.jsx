@@ -11,9 +11,8 @@ import {
   ArrowClockwise,
   BoxArrowRight,
 } from "react-bootstrap-icons";
+
 import MapContainer from "./components/Map/MapView.jsx";
-import SignUp from "./components/SignUp/SignUp.jsx";
-import Login from "./components/LogIn/Login.jsx";
 import Statistics from "./components/Statistics/Statistics.jsx";
 import Friends from "./components/Friends/Friends.jsx";
 import Leaderboard from "./components/Leaderboard/Leaderboard.jsx";
@@ -22,93 +21,110 @@ import Logout from "./components/Logout/Logout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 
-class App extends React.Component {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch,
+  NavLink,
+  withRouter
+} from "react-router-dom";
+
+ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
-      page: "Signup",
-      userId: "",
+      userId: 1,
       users: "",
       currentUser: "",
       // friends: [],
       currentUserApplications: [],
-      logoutBox: false,
+      showLogoutModal: false,
     };
-    this.componentHandler = this.componentHandler.bind(this);
-    this.componentStartUp = this.componentStartUp.bind(this);
     this.getData = this.getData.bind(this);
-    this.changePage = this.changePage.bind(this);
     this.storeUserData = this.storeUserData.bind(this);
     this.handleModal = this.handleModal.bind(this);
-    this.componentSignOut = this.componentSignOut.bind(this);
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
   }
 
-  componentDidMount() {
-    // console.log("testing");
+
+  storeUserData(data) {
+    this.setState({
+      currentUser: data,
+    });
   }
 
-  componentStartUp() {
-    if (this.state.page === "Signup") {
-      return <SignUp changePage={this.changePage} />;
-    } else if (this.state.page === "Login") {
-      return (
-        <Login
-          changePage={this.changePage}
-          storeUserData={this.storeUserData}
-        />
-      );
-      // <div className="category" data-letter="Friends" onClick={() => this.changePage('page', 'Friends')}><PersonFill color="white" /> Friends</div>
-      //   <div className="category" data-letter="Leaderboard" onClick={() => this.changePage('page', 'Leaderboard')}><Trophy color="white" /> Leaderboard</div>
-      // <div className="category" data-letter="Map" onClick={() => this.changePage('page', 'Map')}><GeoAlt color="white" /> Map</div>
-    } else {
-      return (
+  getData(id) { // route to get all users from user_info, currently not in use
+    axios
+      .get(`/api/users`)
+      .then((data) => {
+        this.setState({
+          users: data.data,
+          currentUser: data.data[0],
+        });
+      })
+      .catch((err) => console.error(err));
+  }
+
+  getUpdatedUserData(id) {
+    axios
+      // .get(`/api/user/${id}`)
+      .get(`/api/user/1`)
+      .then((data) => {
+        this.setState({
+          currentUser: data.data[0],
+        });
+      })
+      .catch((err) => console.error(err));
+  }
+
+
+  handleModal() {
+    this.setState({ logoutBox: !this.state.logoutBox });
+  }
+
+  render() {
+
+    let  { path, url } = this.props.match
+
+    return (
+      <div>
+        <div className="StartUp">
         <div>
           <div className="grid-container">
             <div className="Nav">
-              <div
-                className="company_name"
-                onClick={() => this.changePage("page", "Jobs")}
-              >
-                Hire-Mee
-              </div>
+                <NavLink className="company_name" to="/">Hire-Mee</NavLink>
               <div className="Dashboard">
                 <div className="category_title">Dashboard</div>
-                <div
-                  className="category"
-                  data-letter="Jobs"
-                  onClick={() => this.changePage("page", "Jobs")}
-                >
-                  <Briefcase color="white" /> Jobs
+                <div className="category" data-letter="Jobs">
+                  <Briefcase color="white" /> <Link className="company_name" to={`${url}/jobs`}>Jobs</Link> 
                 </div>
                 <div
                   className="category"
                   data-letter="Statistics"
-                  onClick={() => this.changePage("page", "Statistics")}
                 >
-                  <GraphUp color="white" /> Statistics
+                  <GraphUp color="white" /> <Link className="company_name" to={`${url}/statistics`}>Statistics</Link> 
                 </div>
                 <div
                   className="category"
                   data-letter="Friends"
-                  onClick={() => this.changePage("page", "Friends")}
                 >
-                  <PersonFill color="white" /> Friends
+                  <PersonFill color="white" /><Link className="company_name" to={`${url}/friends`}>Friends</Link> 
                 </div>
                 <div
                   className="category"
                   data-letter="Leaderboard"
-                  onClick={() => this.changePage("page", "Leaderboard")}
                 >
-                  <Trophy color="white" /> Leaderboard
+                  <Trophy color="white" /> <Link className="company_name" to={`${url}/leaderboard`}>Leaderboard</Link> 
                 </div>
                 <div
                   className="category"
                   data-letter="Map"
-                  onClick={() => this.changePage("page", "Map")}
                 >
-                  <GeoAlt color="white" /> Map
+                  <GeoAlt color="white" /> <Link className="company_name" to={`${url}/map`}>Map</Link> 
                 </div>
               </div>
               <div className="Account">
@@ -116,9 +132,8 @@ class App extends React.Component {
                 <div
                   className="category"
                   data-letter="Settings"
-                  onClick={() => this.changePage("page", "Settings")}
                 >
-                  <GearFill color="white" /> Settings
+                  <GearFill color="white" /> <Link className="company_name" to={`${url}/settings`}>Settings</Link> 
                 </div>
                 <div
                   className="category"
@@ -138,129 +153,62 @@ class App extends React.Component {
                 />
               </div>
             </div>
-            <div className="Display">{this.componentHandler()}</div>
+            <div className="Display">{}</div>
           </div>
         </div>
-      );
-    }
-  }
 
-  componentHandler() {
-    if (this.state.page === "Jobs") {
-      return (
-        <Jobs
-          desired={this.state.currentUser}
+          <Logout
+              user={this.state.currentUser}
+              showLogoutModal={this.state.showLogoutModal}
+              handleModal={this.handleModal}
+          />
+
+        </div>
+
+
+        <Switch>
+          <Route exact path={path}>
+            <h3>Please select a view.</h3>
+          </Route>
+
+          <Route path={`${path}/jobs`}>
+          <Jobs
           currentUser={this.state.currentUser}
-          changePage={this.changePage}
           getUpdatedUserData={this.getUpdatedUserData}
-        />
-      );
-    } else if (this.state.page === "Statistics") {
-      if (!this.state.currentUser.total_applied) {
-        return (
-          <div id="emptyStatisticsMessage">
-            Submit applications to see your statistics here!
-          </div>
-        );
-      }
-      return (
-        <Statistics
-          user={this.state.currentUser}
-          getData={this.getData}
-          user_app_data={this.state.currentUserApplications}
-        />
-      );
-    } else if (this.state.page === "Leaderboard") {
-      return <Leaderboard id={this.state.currentUser.id} userData={this.state.currentUser} />;
-    } else if (this.state.page === "Leaderboard") {
-      return (
-        <div>
-          <h1>Under Construction!</h1>
-          <img src="./Leaderboard.png" id="Leaderboard"></img>
-        </div>
-      );
-    } else if (this.state.page === "Map") {
-      return <MapContainer userData={this.state.currentUser} />;
-    } else if (this.state.page === "Friends") {
-      return <Friends id={this.state.currentUser.id} />;
-    } else if (this.state.page === "Settings") {
-      return (
-        <Settings
-          user={this.state.currentUser}
-          getData={this.getData}
-          changePage={this.changePage}
-          loggedIn={this.state.loggedIn}
-          handleModal={this.handleModal}
-        />
-      );
-    } else if (this.state.page === "Signup") {
-      return <SignUp />;
-    }
-  }
+          />
+          </Route>
 
-  componentSignOut() {
-    if (this.state.logoutBox) {
-      return (
-        <Logout
-          user={this.state.currentUser}
-          show={this.state.logoutBox}
-          handleModal={this.handleModal}
-          changePage={this.changePage}
-        />
-      );
-    }
-  }
+          <Route path={`${path}/statistics`}>
+            <Statistics
+            user={this.state.currentUser}
+            user_app_data={this.state.currentUserApplications}
+          />
+          </Route>
 
-  storeUserData(data) {
-    this.setState({
-      currentUser: data,
-    });
-  }
+          <Route path={`${path}/friends`}>
+            <Friends id={this.state.currentUser.id} />
+          </Route>
 
-  getData(id) {
-    axios
-      .get(`/api/users`)
-      .then((data) => {
-        this.setState({
-          users: data.data,
-          currentUser: data.data[0],
-        });
-      })
-      .catch((err) => console.error(err));
-  }
+          <Route path={`${path}/leaderboard`}>
+            <Leaderboard id={this.state.currentUser.id} userData={this.state.currentUser}/>
+          </Route>
 
-  getUpdatedUserData(id) {
-    axios
-      .get(`/api/user/${id}`)
-      // .get(`/api/user/1`)
-      .then((data) => {
-        this.setState({
-          currentUser: data.data[0],
-        });
-      })
-      .catch((err) => console.error(err));
-  }
+          <Route path={`${path}/map`}>
+            <MapContainer userData={this.state.currentUser}/>
+          </Route>
 
-  changePage(key, value) {
-    this.setState({
-      [key]: value,
-    });
-  }
+          <Route path={`${path}/settings`}>
+            <Settings   
+            user={this.state.currentUser}
+            getData={this.getData}
+            loggedIn={this.state.loggedIn}
+            handleModal={this.handleModal}/>
+          </Route>
 
-  handleModal() {
-    this.setState({ logoutBox: !this.state.logoutBox });
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="StartUp">
-          {this.componentStartUp()}
-          {this.componentSignOut()}
-        </div>
+        </Switch>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default withRouter(Main);

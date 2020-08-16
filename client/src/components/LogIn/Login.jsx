@@ -3,7 +3,7 @@ import axios from "axios"
 import { PersonFill } from 'react-bootstrap-icons';
 import { Envelope } from 'react-bootstrap-icons';
 import { Lock } from 'react-bootstrap-icons';
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 export default class Login extends Component {
   constructor(props) {
@@ -11,10 +11,16 @@ export default class Login extends Component {
     this.state = {
         email: '',
         pass: '',
+        redirect: false
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.handleLogin = this.handleLogin.bind(this)
   }
+
+  componentDidMount(){
+    this.setState({ redirect: false})
+  }
+
 
   handleLogin(e){
     e.preventDefault();
@@ -27,7 +33,7 @@ export default class Login extends Component {
       .then(innerResults => this.props.storeUserData(innerResults.data[0]))
       .catch(() =>window.alert("Error with login, please check your email & password"))
     })
-    .then(() => this.props.changePage('page', 'Statistics'))
+    .then(this.setState({redirect: true}))
     .catch(() => {location.reload(); window.alert("Error with login, please check your email & password")})
   }
 
@@ -38,6 +44,9 @@ export default class Login extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      <Redirect to="/main"/>
+    } else {
       return (
         <div className="signup_main_container">
         <NavLink className="login_main_title" to="/">Hire-Mee</NavLink>
@@ -92,5 +101,6 @@ export default class Login extends Component {
           </div>
         </div>
       );
+    }
   }
 }

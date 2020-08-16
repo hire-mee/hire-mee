@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Signup from "./components/SignUp/SignUp.jsx";
 import Login from "./components/LogIn/Login.jsx";
 import Demo from "./components/Demo/Demo.jsx";
@@ -26,7 +25,7 @@ export default function App() {
           </Route>
           <Route exact path="/login" component={Login}/>
           <Route path="/main">
-            <Main />
+            <Main/>
           </Route>
           <Route path="/">
             <Demo />
