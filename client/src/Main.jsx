@@ -113,7 +113,7 @@ class Main extends React.Component {
                   </div>
                   <div className="category" data-letter="Friends">
                     <PersonFill color="white" />
-                    <Link className="sidebar_nav_link" to={`${url}/friends`}>
+                    <Link className="sidebar_nav_link" to={`${url}/friends`} style={{marginLeft: "5px"}}>
                       Friends
                     </Link>
                   </div>
