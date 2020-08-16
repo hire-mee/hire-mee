@@ -37,7 +37,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      userId: 1,
+      userId: "",
       users: "",
       currentUser: "",
       // friends: [],
@@ -48,6 +48,10 @@ class Main extends React.Component {
     this.storeUserData = this.storeUserData.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
+  }
+
+  componentDidMount(){
+    this.setState({currentUser: this.props.location.state.userData})
   }
 
   storeUserData(data) {
@@ -71,8 +75,7 @@ class Main extends React.Component {
 
   getUpdatedUserData(id) {
     axios
-      // .get(`/api/user/${id}`)
-      .get(`/api/user/1`)
+      .get(`/api/user/${id}`)
       .then((data) => {
         this.setState({
           currentUser: data.data[0],

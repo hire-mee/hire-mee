@@ -18,6 +18,17 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
+app.use('/signup', express.static(path.join(__dirname, '../client/dist')));
+app.use('/redirect', express.static(path.join(__dirname, '../client/dist')));
+app.use('/login', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/jobs', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/statistics', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/friends', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/leaderboard', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/map', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/settings', express.static(path.join(__dirname, '../client/dist')));
+
+
 
 const db = require('../database/index.js'); // database connection
 

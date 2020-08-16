@@ -23,7 +23,9 @@ export default function App() {
           <Route path="/redirect">
             <Redirect />
           </Route>
-          <Route exact path="/login" component={Login}/>
+          <Route path="/login">
+          <Login/>
+          </Route>
           <Route path="/main">
             <Main/>
           </Route>

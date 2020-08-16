@@ -6,19 +6,20 @@ import { Lock } from 'react-bootstrap-icons';
 import { NavLink, Redirect } from "react-router-dom";
 
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
         email: '',
         pass: '',
-        redirect: false
+        userData: {},
+        loginSuccess: false
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.handleLogin = this.handleLogin.bind(this)
   }
 
   componentDidMount(){
-    this.setState({ redirect: false})
+    this.setState({ loginSuccess: false})
   }
 
 
@@ -28,13 +29,22 @@ export default class Login extends Component {
       email: this.state.email,
       pass: this.state.pass
     })
-    .then(() => {
-      axios.get(`/api/email/${this.state.email}`)
-      .then(innerResults => this.props.storeUserData(innerResults.data[0]))
-      .catch(() =>window.alert("Error with login, please check your email & password"))
-    })
-    .then(this.setState({redirect: true}))
-    .catch(() => {location.reload(); window.alert("Error with login, please check your email & password")})
+      .then(() => {
+          axios.get(`/api/email/${this.state.email}`)
+            .then(userData => {
+              this.setState({userData: userData.data[0]}, ()=> {
+                this.setState({loginSuccess: true})
+              })
+            })
+            .catch(() =>{
+              window.alert("Error with login, please check your email & password");
+              document.getElementById("login_input_form").reset();
+            })
+        })
+      .catch(() => {
+        window.alert("Error with login, please check your email & password");
+        document.getElementById("login_input_form").reset();
+      })
   }
 
   inputChangeHandler(e) {
@@ -44,8 +54,11 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.state.redirect) {
-      <Redirect to="/main"/>
+    if (this.state.loginSuccess) {
+     return( <Redirect to={{
+       pathname: "/main",
+       state: { userData: this.state.userData}
+     }}/> )
     } else {
       return (
         <div className="signup_main_container">
@@ -69,7 +82,7 @@ export default class Login extends Component {
                   </div>
 
 
-                  <form onSubmit={this.submitHandler}>
+                  <form onSubmit={this.submitHandler} id="login_input_form">
                     <div className="signup_input_icon_div">
                       <Envelope className="signup_bootstrap_icon"/>
                       <input
