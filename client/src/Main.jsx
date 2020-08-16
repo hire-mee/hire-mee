@@ -153,7 +153,52 @@ import {
                 />
               </div>
             </div>
-            <div className="Display">{}</div>
+            <div className="Display">{
+
+<Switch>
+<Route exact path={`${path}`}>
+<Jobs
+currentUser={this.state.currentUser}
+getUpdatedUserData={this.getUpdatedUserData}
+/>
+</Route>
+
+<Route path={`${path}/jobs`}>
+<Jobs
+currentUser={this.state.currentUser}
+getUpdatedUserData={this.getUpdatedUserData}
+/>
+</Route>
+
+<Route path={`${path}/statistics`}>
+  <Statistics
+  user={this.state.currentUser}
+  user_app_data={this.state.currentUserApplications}
+/>
+</Route>
+
+<Route path={`${path}/friends`}>
+  <Friends id={this.state.currentUser.id} />
+</Route>
+
+<Route path={`${path}/leaderboard`}>
+  <Leaderboard id={this.state.currentUser.id} userData={this.state.currentUser}/>
+</Route>
+
+<Route path={`${path}/map`}>
+  <MapContainer userData={this.state.currentUser}/>
+</Route>
+
+<Route path={`${path}/settings`}>
+  <Settings   
+  user={this.state.currentUser}
+  getData={this.getData}
+  loggedIn={this.state.loggedIn}
+  handleModal={this.handleModal}/>
+</Route>
+
+</Switch>
+            }</div>
           </div>
         </div>
 
@@ -162,50 +207,7 @@ import {
               showLogoutModal={this.state.showLogoutModal}
               handleModal={this.handleModal}
           />
-
         </div>
-
-
-        <Switch>
-          <Route exact path={path}>
-            <h3>Please select a view.</h3>
-          </Route>
-
-          <Route path={`${path}/jobs`}>
-          <Jobs
-          currentUser={this.state.currentUser}
-          getUpdatedUserData={this.getUpdatedUserData}
-          />
-          </Route>
-
-          <Route path={`${path}/statistics`}>
-            <Statistics
-            user={this.state.currentUser}
-            user_app_data={this.state.currentUserApplications}
-          />
-          </Route>
-
-          <Route path={`${path}/friends`}>
-            <Friends id={this.state.currentUser.id} />
-          </Route>
-
-          <Route path={`${path}/leaderboard`}>
-            <Leaderboard id={this.state.currentUser.id} userData={this.state.currentUser}/>
-          </Route>
-
-          <Route path={`${path}/map`}>
-            <MapContainer userData={this.state.currentUser}/>
-          </Route>
-
-          <Route path={`${path}/settings`}>
-            <Settings   
-            user={this.state.currentUser}
-            getData={this.getData}
-            loggedIn={this.state.loggedIn}
-            handleModal={this.handleModal}/>
-          </Route>
-
-        </Switch>
       </div>
     )
   }
