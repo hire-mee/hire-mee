@@ -42,7 +42,7 @@ class Main extends React.Component {
       userId: "",
       users: "",
       currentUser: "",
-      // friends: [],
+      friends: [],
       currentUserApplications: [],
       showLogoutModal: false,
     };
@@ -53,7 +53,11 @@ class Main extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({currentUser: this.props.location.state.userData})
+    this.setState({currentUser: this.props.location.state.userData}, () => {
+      axios.get(`/api/friends/${this.state.currentUser.id}`)
+      .then((results) => this.setState({friends: results.data}))
+      .catch(err => console.error(err))
+    })
   }
 
   storeUserData(data) {
@@ -205,7 +209,7 @@ class Main extends React.Component {
                     </Route>
 
                     <Route path={`${path}/friends`}>
-                      <Friends id={this.state.currentUser} />
+                      <Friends currentUser={this.state.currentUser} friends={this.state.friends}/>
                     </Route>
 
                     <Route path={`${path}/leaderboard`}>

@@ -192,7 +192,7 @@ module.exports = {
     const queryStr = `SELECT first_name, last_name, applied_month FROM user_info INNER JOIN friends on user_info.email = friends.email WHERE friends.user_id = ${id};`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        callback(`ERROR: `, err);
+        callback(err);
       } else {
         callback(null, results.rows);
       }

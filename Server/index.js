@@ -40,7 +40,8 @@ app.use('/main/settings', express.static(path.join(__dirname, '../client/dist'))
 
 app.use(
   session({
-    secret: process.env.SECRET,
+    // secret: process.env.SECRET,
+    secret: "hot",
     resave: false,
     saveUninitialized: false,
 
