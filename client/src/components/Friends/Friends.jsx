@@ -7,28 +7,21 @@ import axios from "axios";
 // import Card from "@material-ui/core/Card";
 
 export class Friends extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      currentId: "",
       newFriend: "",
       friends: [],
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.getFriendData = this.getFriendData.bind(this)
   }
-  componentWillReceiveProps(nextProps) {
+
+  componentDidMount(){
     this.setState({
-      currentId: nextProps.id,
-    });
-    axios
-      .get(`/api/friends/${nextProps.id}`)
-      .then((res) => {
-        this.setState({
-          friends: res.data,
-        });
-      })
-      .catch((err) => console.log(err));
+        currentId: this.props.currentUser.id,
+      }, () => this.getFriendData());
   }
 
   inputChangeHandler(e) {
@@ -37,20 +30,31 @@ export class Friends extends Component {
     });
   }
 
+  getFriendData(){
+    axios
+    .get(`/api/friends/${this.props.currentUser.id}`)
+    .then((res) => {
+      this.setState({
+        friends: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+  }
+
   submitHandler(e) {
     e.preventDefault();
     axios
-      .post(`/api/friends/${this.state.currentId}`, {
+      .post(`/api/friends/${this.props.currentUser.id}`, {
         email: this.state.newFriend,
       })
-      .then((res) => console.log("friend added"))
+      .then((res) => this.getFriendData())
       .catch((err) => console.log(err));
   }
 
   render() {
-    let friendList = this.state.friends.map((friend) => {
+    let friendList = this.state.friends.map((friend, i) => {
       return (
-        <div className="column" key={friend.first_name}>
+        <div className="column" key={i}>
           <Avatar>{friend.first_name[0] + friend.last_name[0]}</Avatar>
           <p className="friend-name">
             {friend.first_name + " " + friend.last_name}

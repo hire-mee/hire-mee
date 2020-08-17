@@ -16,7 +16,7 @@
     "docker-build": "npm run build-prod && docker build . -t hiremee",
     "docker-run": "docker run -p 3000:3000 hiremee",
     "jobs": "git add client/src/components/jobs/.",
-    "heroku-postbuild": "cd client && npm install && npm run-script build"
+    "heroku-postbuild": "cd client && npm install && npm build"
   },
   "repository": {
     "type": "git",
@@ -62,7 +62,8 @@
     "react-google-maps": "^9.4.5",
     "react-promise": "^3.0.2",
     "style-loader": "^1.2.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "react-router-dom": "5.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",

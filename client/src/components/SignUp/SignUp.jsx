@@ -3,6 +3,9 @@ import axios from "axios"
 import { PersonFill } from 'react-bootstrap-icons';
 import { Envelope } from 'react-bootstrap-icons';
 import { Lock } from 'react-bootstrap-icons';
+import { NavLink , Redirect} from "react-router-dom";
+
+
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -13,7 +16,7 @@ export default class SignUp extends Component {
       email: '',
       pass: '',
       passVerify: '',
-      redirect: false
+      redirect: false,
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
@@ -25,16 +28,23 @@ export default class SignUp extends Component {
     });
   }
 
+  componentDidMount(){
+    this.setState({ 
+      redirect: false,
+      signupFailure: false
+    })
+  }
+
   submitHandler(e) {
     let { first_name, last_name, email, pass } = this.state;
-    e.preventDefault();
+    // e.preventDefault();
     
     if (!email.includes("@")){
       window.alert("Please enter a valid email address");
-      location.reload()
+      document.getElementById('signup_input_form').reset();
     } else if (this.state.pass !== this.state.passVerify) {
       window.alert("Passwords do not match");
-      location.reload()
+      document.getElementById('signup_input_form').reset();
     } else {
       axios.post('/api/signup', {first_name, last_name, email, pass})
       .then(() => {
@@ -48,15 +58,12 @@ export default class SignUp extends Component {
   render() {
     if (this.state.redirect) {
       return (
-        <div>
-          <div className="signup_redirect_text">Account successfully created!</div>
-          <div id="signup_redirect_login" onClick={() => this.props.changePage('page', 'Login')}>Login Here</div>
-        </div>
+        <Redirect to="/redirect"/>
       )
     } else {
       return (
         <div className="signup_main_container">
-        <div id="signup_main_title">Hire-Mee</div>
+        <NavLink className="login_main_title" to="/">Hire-Mee</NavLink>
         <div id="signup_gist">Better than your own Excel Sheet.</div>
         <div id="signup_start_here"> Start Here.</div>
           <div className="sign_up_input_container">
@@ -75,7 +82,7 @@ export default class SignUp extends Component {
               </div>
 
                 <div className="signup_input_form_container">
-                  <form onSubmit={this.submitHandler}>
+                  <form onSubmit={this.submitHandler} id="signup_input_form">
                     <div className="signup_input_icon_div">
                       <PersonFill className="signup_bootstrap_icon"/>
                       <input
@@ -133,13 +140,14 @@ export default class SignUp extends Component {
                     </div>
                     <div className="signup_button_container">
                       <button id="signup_signup_button" onClick={(e) => this.submitHandler(e)}>Sign up</button>
+                      {/* <button id="signup_signup_button" onClick={(e) => this.submitHandler(e)}>Sign up</button> */}
                     </div>
                   </form>
                 </div>
   
                 <div className="signup_already_signedup_container">
                   <div id="signup_already_signedup_text">Already have an account?</div>
-                  <div id="signup_already_signedup_button" onClick={() => this.props.changePage('page', 'Login')}>Login</div>
+                  <NavLink id="signup_already_signedup_button" to="/login">Login</NavLink>
                 </div>
           </div>
         </div>

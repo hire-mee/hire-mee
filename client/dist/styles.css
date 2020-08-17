@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,500&display=swap");
 
 body {
-  font-family: "Poppins", "Times", "Arial", "sans-serif";
+  font-family: "Poppins", "Arial", "sans-serif";
   /* overflow: hidden !important; */
   overflow: scroll;
 }
 
+a:hover {
+  color: rgb(56, 182, 255);
+  text-decoration: none;
+  font-weight: 600;
+}
 /* GRID CONTAINER */
 .grid-container {
   display: grid;
@@ -89,19 +94,28 @@ body {
 }
 
 .category:hover {
-  color: rgb(56, 182, 255);
-  font-weight: 600;
-  cursor: pointer;
   border-right: 3px solid rgb(56, 182, 255);
 }
 
-.company_name {
+.company_name{
   font-size: 28px;
   font-weight: 500;
   margin: auto;
   margin-top: 20px;
   cursor: pointer;
   height: 80px;
+}
+.company_name:visited {
+  color: #535970;
+}
+
+.company_name a:active {
+  text-decoration: none;
+}
+
+.sidebar_nav_link {
+  color: #6a6e7b;
+  font-weight: 400;
 }
 
 /*
@@ -305,14 +319,12 @@ body {
 }
 
 .signup_redirect_text {
-  margin-top: 5%;
-  text-align: center;
-  font-size: 1.5em;
+  margin-top: 150px;
+  font-size: 25px;
 }
 
 #signup_redirect_login {
-  text-align: center;
-  font-size: 1.2em;
+  font-size: 20px;
   font-weight: 500;
   color: #38b6ff;
   margin-left: auto;

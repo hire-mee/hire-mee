@@ -13,8 +13,6 @@ const PORT = process.env.PORT || 3000;
 //process.env.PORT
 //process.env.NODE_ENV => production or undefined
 
-
-
 require('dotenv').config(); // allows the use of secret keys in rootdirectory/.env file
 
 
@@ -24,18 +22,28 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
+app.use('/signup', express.static(path.join(__dirname, '../client/dist')));
+app.use('/redirect', express.static(path.join(__dirname, '../client/dist')));
+app.use('/login', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/jobs', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/statistics', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/friends', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/leaderboard', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/map', express.static(path.join(__dirname, '../client/dist')));
+app.use('/main/settings', express.static(path.join(__dirname, '../client/dist')));
 
 
 
-const db = require('../database/index.js'); // database connection
+// const db = require('../database/index.js'); // database connection
 
-// const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'session'})
-//   store: sessionStore,
+
 app.use(
   session({
-    secret: process.env.SECRET,
+    // secret: process.env.SECRET,
+    secret: "hot",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
 
     cookie: {
       maxAge: 1000 * 60 * 60 * 24
@@ -46,6 +54,7 @@ app.use(
 require('./passport.js'); // require 'passport.use(strategy) from passport.js
 app.use(passport.initialize()) // calls passport initialization
 app.use(passport.session()) // calls passport session
+
 
 app.use('/api', router);
 app.listen(PORT, () => console.log(`app listening at http://localhost:${PORT}`));
