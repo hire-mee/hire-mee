@@ -38,7 +38,7 @@ import {
                     <div id="demo_header_about_text">Say goodbye to the old way</div>
                     <div id="demo_header_about_text">of organizing job apps.</div>
                     <div className="demo_pink_button_container">
-                      <button className="demo_pink_button">Start here</button>
+                      <Link to="/signup" className="demo_pink_button">Start here</Link>
                     </div>
                 </div>
 
@@ -134,8 +134,8 @@ import {
                         <div className="demo_footer_main_text">your job search process?</div>
                         </div>
                       <div className="demo_footer_button_container">
-                      <button className="demo_pink_button">Sign-up</button>
-                      <button className="demo_pink_button" style={{marginLeft:'20px'}}>Log-in</button>
+                        <Link to="/signup" className="demo_pink_button">Sign-up</Link>
+                        <Link to="/login" className="demo_pink_button" style={{marginLeft:'20px'}}>Log-in</Link>
                       </div>
                   </div>
 
