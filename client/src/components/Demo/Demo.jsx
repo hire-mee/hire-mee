@@ -120,6 +120,32 @@ import {
 
             </div>
             
+
+            <h2 className="more_features_text">More Features coming soon!</h2>
+
+
+            <div className="demo_footer_container">
+              <div className="demo_footer_subcontainer">
+
+
+                  <div className="demo_footer_left_container">
+                      <div className="demo_footer_left_text_container">
+                        <div className="demo_footer_main_text">Ready to streamline</div>
+                        <div className="demo_footer_main_text">your job search process?</div>
+                        </div>
+                      <div className="demo_footer_button_container">
+                      <button className="demo_pink_button">Sign-up</button>
+                      <button className="demo_pink_button" style={{marginLeft:'20px'}}>Log-in</button>
+                      </div>
+                  </div>
+
+                  <div className="demo_footer_right_container">
+                    <div className="demo_footer_hiremee_text">Hire-Mee</div>
+                    <div className="demo_footer_copyright_text">Copyright © 2020. All rights Reserved</div>
+                  </div>
+
+              </div>
+            </div>
       </div>
     )
   }
