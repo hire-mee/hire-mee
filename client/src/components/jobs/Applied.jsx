@@ -229,6 +229,7 @@ class Applied extends React.Component {
                     required
                     label="Job Location"
                     name="app_location"
+                    placeholder="Ex: 1442 2nd St A Santa Monica CA"
                     onChange={this.changeHandler}
                     value={this.state.app_location}
                     variant="outlined"

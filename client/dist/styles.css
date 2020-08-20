@@ -2,7 +2,6 @@
 
 body {
   font-family: "Poppins", "Arial", "sans-serif";
-  /* overflow: hidden !important; */
   overflow: scroll;
 }
 
@@ -133,6 +132,9 @@ a:hover {
   padding-top: 10px;
 }
 
+.MuiOutlinedInput-input::placeholder {
+  font-size: 10px;
+}
 /*
 ====================================================================
 =======================SIGNUP PAGE==================================
@@ -960,4 +962,300 @@ fieldset {
 
 .setting_delete {
   margin-left: 346px;
+}
+
+
+/*
+====================================================================
+==============DEMO PAGE STYLES ==================================
+====================================================================
+*/
+
+.demo_body_container {
+  overflow-x: hidden;
+  margin:0 0 auto;
+}
+
+.demo_top_container {
+  background-color: #3e4080;
+  
+}
+
+
+.demo_nav_container {
+  display: flex;
+  height: 40px;
+}
+
+.demo_nav_links_ul {
+  display: flex;
+  margin: 15px 100px 0 auto;
+}
+
+.demo_nav_links {
+  list-style: none;
+  margin-left: 40px;
+}
+
+.demo_nav_links:hover {
+  border-bottom: 1px solid white;
+}
+
+.demo_nav_links a {
+  color:white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+.demo_header_background_wrapper {
+  background-color: #3e4080;
+  width: 100%;
+}
+
+
+.demo_header_container_wrapper {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+}
+
+.demo_header_container {
+  background-color: #3e4080;
+  display: flex;
+  max-height: fit-content;
+}
+
+.demo_header_photo {
+  height: 500px;
+  margin: auto;
+}
+
+.demo_header_text_container {
+  margin: auto;
+}
+
+#demo_header_hiremee_text {
+  text-align: initial;
+  font-size: 65px;
+  color: white;
+  letter-spacing: -4px;
+}
+
+#demo_header_about_text {
+  text-align: initial;
+  color: white;
+  font-weight: 100;
+  font-size: 23px;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+.demo_pink_button_container {
+  text-align: initial;
+  margin-top: 25px;
+}
+
+.demo_pink_button {
+  border: none;
+  border-radius: 20px;
+  padding: 6px 15px;
+  color: white;
+  background-color: #d85893;
+  border: 2px solid #d85893;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 7px 5px 13px #d858935e;
+}
+
+.demo_pink_button:hover {
+  color: #2d2e5c;
+  background-color: white;
+  border: 2px solid #3e4080;
+  box-shadow: 7px 5px 13px #ffffff5e;
+}
+
+.demo_pink_button a {
+  color: white;
+  background-color: #d85893;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.demo_pink_button a:hover {
+  color: #2d2e5c;
+  background-color: white;
+}
+
+/*=============================================*/
+
+.demo_rightside_feature_container {
+  display: flex;
+}
+
+.demo_rightside_feature_desc_container {
+  display: flex;
+}
+
+.demo_rightside_feature_container{
+  display: flex;
+  margin-top: 65px;
+  padding: 50px 0;
+  box-shadow: 12px 6px 14px 0px #3e408026;
+}
+
+.demo_rightside_flower_container{
+  margin-left: 120px;
+}
+
+.demo_rightside_fower {
+  max-width: 300px;
+}
+
+.demo_rightside_feature_subcontainer{
+  text-align: initial;
+    margin-left: -248px;
+    margin-top: 90px;
+    max-width: inherit;
+}
+
+.demo_rightside_feature_heading_text {
+    color: #29292b;
+    font-family: "Poppins", "sans-serif";
+    font-weight: 500;
+    font-size: 23px;
+}
+
+.demo_rightside_feature_heading_subtext{
+    color: #29292b;
+    font-family: "Poppins", "sans-serif";
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.demo_rightside_feature_static_image_container {
+  max-width: 60%;
+  margin-left: auto;
+}
+
+.demo_rightside_feature_image {
+  width: 675px;
+  margin-left: 90px;
+}
+
+/*===========================================================*/
+
+.demo_leftside_feature_container {
+  display: flex;
+}
+
+.demo_leftside_feature_desc_container {
+  display: flex;
+}
+
+.demo_leftside_feature_container{
+  display: flex;
+  margin-top: 65px;
+  padding: 50px 0;
+  box-shadow: 12px 6px 14px 0px #3e408026;
+}
+
+.demo_leftside_flower_container{
+  margin-top: -30px;
+}
+
+.demo_leftside_fower {
+  max-width: 300px;
+}
+
+.demo_leftside_feature_subcontainer{
+  margin-left: -260px;
+}
+
+.demo_leftside_feature_heading_text {
+    color: #29292b;
+    font-family: "Poppins", "sans-serif";
+    font-weight: 500;
+    font-size: 23px;
+}
+
+.demo_leftside_feature_heading_subtext{
+    color: #29292b;
+    font-family: "Poppins", "sans-serif";
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.demo_leftside_flower_text_container {
+  display: flex;
+  margin-top: 70px;
+  margin-left: 50px;
+}
+
+.demo_leftside_feature_static_image_container {
+  max-width: 60%;
+  margin-right: auto;
+}
+
+.demo_leftside_feature_image {
+  width: 675px;
+  margin-right: 90px;
+}
+
+.more_features_text {
+  font-family: "Poppins", "sans-serif";
+  font-weight: 100;
+  text-align: center;
+  padding: 50px 0;
+  color: #444446;
+}
+
+/*===============================================*/
+
+.demo_footer_container {
+  background-color: #3e4080;
+}
+
+.demo_footer_subcontainer {
+  width: 90%;
+  margin: auto;
+  padding: 5%;
+  display: flex;
+}
+
+.demo_footer_left_container {
+
+}
+
+.demo_footer_left_text_container {
+
+}
+
+.demo_footer_main_text {
+  text-align: initial;
+  color: white;
+  font-size: 30px;
+  font-weight: 100;
+  font-family: "Poppins", "sans-serif";
+}
+
+.demo_footer_button_container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.demo_footer_right_container {
+  margin-left:auto;
+}
+
+.demo_footer_hiremee_text {
+  font-family: "Poppins", "sans-serif";
+  font-size: 60px;
+  color: white;
+  margin-top: 50px;
+}
+
+.demo_footer_copyright_text {
+  font-family: "Poppins", "sans-serif";
+  color: white;
+  font-size: 11px;
+  font-weight: 100;
+  margin-top: -13px;
 }
