@@ -1027,11 +1027,11 @@ fieldset {
 
 .demo_header_photo {
   height: 500px;
+  margin: auto;
 }
 
 .demo_header_text_container {
-  margin-left: 100px;
-  margin-top: 150px;
+  margin: auto;
 }
 
 #demo_header_hiremee_text {
@@ -1047,6 +1047,7 @@ fieldset {
   font-weight: 100;
   font-size: 23px;
   letter-spacing: -1px;
+  margin-bottom: 10px;
 }
 
 .demo_pink_button_container {
