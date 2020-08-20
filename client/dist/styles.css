@@ -2,7 +2,6 @@
 
 body {
   font-family: "Poppins", "Arial", "sans-serif";
-  /* overflow: hidden !important; */
   overflow: scroll;
 }
 
@@ -971,8 +970,14 @@ fieldset {
 ==============DEMO PAGE STYLES ==================================
 ====================================================================
 */
+
+.demo_body_container {
+  overflow-x: hidden;
+}
+
 .demo_top_container {
   background-color: #3e4080;
+  
 }
 
 
@@ -1064,4 +1069,60 @@ fieldset {
   background-color: white;
   border: 2px solid #3e4080;
   box-shadow: 7px 5px 13px #ffffff5e;
+}
+
+/*=============================================*/
+
+.demo_rightside_feature_container {
+  display: flex;
+}
+
+.demo_rightside_feature_desc_container {
+  display: flex;
+}
+
+.demo_rightside_feature_container{
+  display: flex;
+  margin-top: 65px;
+  padding: 50px 0;
+  box-shadow: 9px 0px 13px #0000005e;
+}
+
+.demo_rightside_flower_container{
+  margin-left: 120px;
+}
+
+.demo_rightside_fower {
+  max-width: 300px;
+}
+
+.demo_rightside_feature_subcontainer{
+  text-align: initial;
+    margin-left: -248px;
+    margin-top: 90px;
+    max-width: inherit;
+}
+
+.demo_rightside_feature_heading_text {
+    color: #29292b;
+    font-family: "Poppins", "sans-serif";
+    font-weight: 500;
+    font-size: 23px;
+}
+
+.demo_rightside_feature_heading_subtext{
+    color: #29292b;
+    font-family: "Poppins", "sans-serif";
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.demo_rightside_feature_static_image_container {
+  max-width: 60%;
+  margin-left: auto;
+}
+
+.demo_rightside_feature_image {
+  width: 675px;
+  margin-left: 90px;
 }
