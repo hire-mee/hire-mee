@@ -964,3 +964,95 @@ fieldset {
 .setting_delete {
   margin-left: 346px;
 }
+
+
+/*
+====================================================================
+==============DEMO PAGE STYLES ==================================
+====================================================================
+*/
+.demo_top_container {
+  background-color: #3e4080;
+}
+
+
+.demo_nav_container {
+  display: flex;
+  height: 40px;
+}
+
+.demo_nav_links_ul {
+  display: flex;
+  margin: 15px 100px 0 auto;
+}
+
+.demo_nav_links {
+  list-style: none;
+  margin-left: 40px;
+}
+
+.demo_nav_links:hover {
+  border-bottom: 1px solid white;
+}
+
+.demo_nav_links a {
+  color:white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+.demo_header_background_wrapper {
+  background-color: #3e4080;
+  width: 100%;
+}
+
+
+.demo_header_container_wrapper {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+}
+
+.demo_header_container {
+  background-color: #3e4080;
+  display: flex;
+  max-height: fit-content;
+}
+
+.demo_header_photo {
+  height: 500px;
+}
+
+.demo_header_text_container {
+  margin-left: 100px;
+  margin-top: 150px;
+}
+
+#demo_header_hiremee_text {
+  text-align: initial;
+  font-size: 65px;
+  color: white;
+  letter-spacing: -4px;
+}
+
+#demo_header_about_text {
+  text-align: initial;
+  color: white;
+  font-weight: 100;
+  font-size: 23px;
+  letter-spacing: -1px;
+}
+
+.demo_pink_button_container {
+  text-align: initial;
+  margin-top: 25px;
+}
+
+.demo_pink_button {
+  border: none;
+  border-radius: 20px;
+  padding: 6px 15px;
+  color: white;
+  background-color: #d85893;
+  font-family: 'Open Sans', sans-serif;
+}

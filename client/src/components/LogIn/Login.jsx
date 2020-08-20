@@ -70,7 +70,7 @@ export default class Login extends Component {
 
                 <div className="signup_input_form_container">
 
-                    <div className="signup_google_container">
+                    <div className="signup_google_container" onClick={()=>window.alert("Google Authentication coming soon!")}>
                     <img id="signup_google_icon" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"></img>
                     <div id="signup_google_text">Log in with Google</div>
                   </div>
