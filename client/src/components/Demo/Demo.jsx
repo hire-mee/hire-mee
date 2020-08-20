@@ -64,11 +64,39 @@ import {
               </div>
 
               <div className="demo_rightside_feature_static_image_container">
-
                 <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/job-view.png"></img>
               </div>
 
             </div>
+
+
+
+            <div className="demo_leftside_feature_container">
+              <div className="demo_leftside_feature_desc_container">
+
+                  <div className="demo_leftside_feature_static_image_container">
+                    <img className="demo_leftside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/map-view.png"></img>
+                  </div>
+
+              <div className="demo_leftside_flower_text_container">
+                  <div className="demo_leftside_flower_container">
+                    <img src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/flower2.png" className="demo_rightside_fower"></img>
+                  </div>
+
+                  <div className="demo_leftside_feature_subcontainer">
+                    <div className="demo_leftside_feature_heading_text">Made by visual developers,</div>
+                    <div className="demo_leftside_feature_heading_text">for visual users.</div>
+                    <div className="demo_leftside_feature_heading_subtext">Interactive map to display</div>
+                    <div className="demo_leftside_feature_heading_subtext">recorded applications' </div>
+                    <div className="demo_leftside_feature_heading_subtext">locations relative to set </div>
+                    <div className="demo_leftside_feature_heading_subtext">points and other data points. </div>
+                  </div>
+                  </div>
+             
+              </div>
+
+            </div>
+
 
             <div className="demo_rightside_feature_container">
               <div className="demo_rightside_feature_desc_container">
@@ -77,8 +105,8 @@ import {
                     <img src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/flower3.png" className="demo_rightside_fower"></img>
                   </div>
 
-                  <div className="demo_rightside_feature_subcontainer">
-                    <div className="demo_rightside_feature_heading_text">Data-driven experience.</div>
+                  <div className="demo_rightside_feature_subcontainer" style={{marginTop:'120px'}}>
+                    <div className="demo_rightside_feature_heading_text" >Data-driven experience.</div>
                     <div className="demo_rightside_feature_heading_subtext">Numbers mean more than</div>
                     <div className="demo_rightside_feature_heading_subtext">just that, let the statistics</div>
                     <div className="demo_rightside_feature_heading_subtext">speak for itself. </div>
@@ -87,7 +115,6 @@ import {
               </div>
 
               <div className="demo_rightside_feature_static_image_container">
-
                 <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/stats-view.png"></img>
               </div>
 
