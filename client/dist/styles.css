@@ -1056,10 +1056,12 @@ fieldset {
   background-color: #d85893;
   border: 2px solid #d85893;
   font-family: 'Open Sans', sans-serif;
+  box-shadow: 7px 5px 13px #d858935e;
 }
 
 .demo_pink_button:hover {
   color: #2d2e5c;
   background-color: white;
   border: 2px solid #3e4080;
+  box-shadow: 7px 5px 13px #ffffff5e;
 }
