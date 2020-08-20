@@ -9,6 +9,7 @@ import {
     return (
       <div className="demo_body_container">
 
+
         <div className="demo_top_container">
           <nav className="demo_nav_container">
               <ul className="demo_nav_links_ul">
@@ -24,6 +25,7 @@ import {
               </ul>
             </nav>
           </div>
+
 
           <div className="demo_header_background_wrapper">
             <div className="demo_header_container_wrapper">
@@ -44,6 +46,7 @@ import {
               </div>
             </div>
 
+
             <div className="demo_rightside_feature_container">
               <div className="demo_rightside_feature_desc_container">
 
@@ -63,6 +66,29 @@ import {
               <div className="demo_rightside_feature_static_image_container">
 
                 <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/job-view.png"></img>
+              </div>
+
+            </div>
+
+            <div className="demo_rightside_feature_container">
+              <div className="demo_rightside_feature_desc_container">
+
+                  <div className="demo_rightside_flower_container">
+                    <img src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/flower3.png" className="demo_rightside_fower"></img>
+                  </div>
+
+                  <div className="demo_rightside_feature_subcontainer">
+                    <div className="demo_rightside_feature_heading_text">Data-driven experience.</div>
+                    <div className="demo_rightside_feature_heading_subtext">Numbers mean more than</div>
+                    <div className="demo_rightside_feature_heading_subtext">just that, let the statistics</div>
+                    <div className="demo_rightside_feature_heading_subtext">speak for itself. </div>
+                  </div>
+
+              </div>
+
+              <div className="demo_rightside_feature_static_image_container">
+
+                <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/stats-view.png"></img>
               </div>
 
             </div>
