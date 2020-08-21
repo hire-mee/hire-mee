@@ -19,5 +19,5 @@ View here: http://54.151.84.70:3000/
 
 <h3>Job Menu</h3>
 
-![Login/Sign-up](https://imgur.com/qMvIrFw)
+![Login/Sign-up](https://i.imgur.com/qMvIrFw.gif)
 - Embedded Google Authentication option
