@@ -29,18 +29,22 @@ View here: http://54.151.84.70:3000/
 - Click to view information
 
 <p align="center"><img src="https://i.imgur.com/CrddZ7n.gif"/><p>
+  
 - View job application progress
 - See statistics overtime
 
 <p align="center"><img src=https://i.imgur.com/y7MSLak.gif"/><p>
+  
 - Fully functional friends list
 - Add users by their email and see their progress
 
 <p align="center"><img src=https://i.imgur.com/gp2aXKP.gif"/><p>
+  
 - Leaderboard dynamically renders weekly applications between friends
 - Compare how you are doing versus other users
 
 <p align="center"><img src=https://i.imgur.com/52iCxvi.gif"/><p>
+  
 - Map component allows user to add and persist home location
 - Plots job locations relative to home and other locations
 - Clicking on markers allows user to view key data points
