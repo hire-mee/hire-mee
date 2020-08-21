@@ -207,6 +207,7 @@ class Offers extends React.Component {
                     required
                     label="Job Location"
                     name="app_location"
+                    placeholder="Ex: 1442 2nd St A Santa Monica CA"
                     onChange={this.changeHandler}
                     value={this.state.app_location}
                     variant="outlined"
@@ -281,6 +282,7 @@ class Offers extends React.Component {
                     onChange={this.changeHandler}
                     value={this.state.submit_date}
                     variant="outlined"
+                    placeholder={"Ex: 01/01/2020"}
                   />
                 </Grid>
 
@@ -292,6 +294,7 @@ class Offers extends React.Component {
                     onChange={this.changeHandler}
                     value={this.state.deadline}
                     variant="outlined"
+                    placeholder={"Ex: 01/01/2020"}
                   />
                 </Grid>
               </Grid>
