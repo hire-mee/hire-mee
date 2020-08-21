@@ -24,6 +24,7 @@ View here: http://54.151.84.70:3000/
 - Embedded Google Authentication option
 
 <p align="center"><img src="https://i.imgur.com/gFNdO6e.gif"/><p>
+  
 - Add, edit, and sort job applications between four piles
 - Click to view information
 
