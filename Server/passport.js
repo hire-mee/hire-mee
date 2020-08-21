@@ -36,21 +36,25 @@ let strategy = new LocalStrategy(customFields, verifyCallback);
 
 passport.use(strategy);
 
-// serialization of sessions
 
-passport.serializeUser((user, done) => {
+
+passport.serializeUser((user, done) => { // serialization of sessions
     console.log('SerializeUser function called.');
     
     done(null, user.rows[0].email)
 })
 
 passport.deserializeUser((email, callback) => {
-    connection.query(`SELECT id, email FROM user_info where email='${email}';`, (err, results) => {
-      if(err) {
-        console.log('Error when selecting user on session deserialize', err)
-        return callback(err)
-      }
-  
-      callback(null, results.rows[0])
-    })
+  if (email) {
+      connection.query(`SELECT id, email FROM user_info where email='${email}';`, (err, results) => {
+        if(err) {
+          console.log('Error when selecting user on session deserialize', err)
+          return callback(err)
+        }
+    
+        callback(null, results.rows[0])
+      })
+    } else {
+        callback("Could not deserialize user with email of " + email, null)
+    }
   })

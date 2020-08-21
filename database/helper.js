@@ -97,8 +97,9 @@ module.exports = {
       }
     })
   },
-  deleteInfo(id, callback) {
-    const queryStr = `DELETE FROM user_info WHERE id=${id};`;
+  deleteUserByEmail(input, callback) {
+    let { email } = input
+    const queryStr = `WITH tmp AS (SELECT email FROM friends WHERE email='${email}'), upd AS (UPDATE friends SET email = NULL WHERE email='${email}') DELETE FROM user_info WHERE email IN (SELECT email FROM tmp);`; // deletes user based on email and setting all emails in friends table to null
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);
