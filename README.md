@@ -21,6 +21,14 @@ View here: http://54.151.84.70:3000/
 
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
 - Embedded Google Authentication option
+  
+![Product Display](https://i.imgur.com/VFtHST0.gif)
+- Renders multiple related images from an extensive library
+- Functional arrow icons browse through items
+- Cursor changes when hovering over image
+
+- Functional arrow icons browse through items
+- Cursor changes when hovering over image
 
 <p align="center"><img src="https://i.imgur.com/gFNdO6e.gif"/><p>
 - Add, edit, and sort job applications between four piles
