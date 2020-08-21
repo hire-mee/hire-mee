@@ -1,4 +1,4 @@
-<p align="center"><img src="demo.jpg" height="40%" width="40%"/></p>
+<p align="center"><img src="demo.jpg"/></p>
 
 # Hire-Mee
 
@@ -19,5 +19,6 @@ View here: http://54.151.84.70:3000/
 
 <h3>Job Menu</h3>
 
-![Login/Sign-up](https://i.imgur.com/qMvIrFw.gif)
+<p align="center">![Login/Sign-up](https://i.imgur.com/qMvIrFw.gif)<p>
 - Embedded Google Authentication option
+
