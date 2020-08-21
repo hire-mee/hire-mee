@@ -98,10 +98,7 @@ class Jobs extends React.Component {
       );
     } else {
       return (
-        <div
-          className="jobs-compnent"
-          style={{ paddingLeft: "3%", paddingRight: "3%" }}
-        >
+        <div className="jobs-component">
           <Grid container spacing={2} style={{ padding: "5px" }}>
             <div style={{ width: "25%" }}>
               <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.currentUser.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} getUpdatedUserData={this.props.getUpdatedUserData} />

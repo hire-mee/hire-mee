@@ -142,8 +142,8 @@ class Offers extends React.Component {
             style={{
               backgroundColor: "white",
               width: "65%",
-              margin: "0 auto",
-              borderRadius: "3px",
+              margin: "0 auto 16px auto",
+              borderRadius: "3px"
             }}
           >
             <h3

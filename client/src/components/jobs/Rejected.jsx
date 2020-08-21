@@ -142,7 +142,7 @@ class Rejected extends React.Component {
             style={{
               backgroundColor: "white",
               width: "65%",
-              margin: "0 auto",
+              margin: "0 auto 16px auto",
               borderRadius: "3px",
             }}
           >

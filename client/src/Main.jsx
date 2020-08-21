@@ -114,6 +114,7 @@ class Main extends React.Component {
         <div className="StartUp">
           <div>
             <div className="grid-container">
+
               <div className="Nav">
                 <NavLink className="company_name" to="/">
                   Hire-Mee
@@ -174,65 +175,75 @@ class Main extends React.Component {
                     </a>
                   </div>
                 </div>
-              </div>
-              <div className="Header">
-                <div className="Header-title">{this.state.page}</div>
-                <div className="Profile-area">
-                  <Profile
-                    userData={this.state.currentUser}
-                    getUpdatedData={this.getUpdatedUserData}
-                  />
+
+              </div> {/* end of Nav element */}
+
+
+              <div className="Main_Display_with_header_container">
+                  
+                <div className="Header">
+                  <div className="Header-title">Welcome!</div>
+                  <div className="Profile-area">
+                    <Profile
+                      userData={this.state.currentUser}
+                      getUpdatedData={this.getUpdatedUserData}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="Display">
-                {
-                  <Switch>
-                    <Route exact path={`${path}`}>
-                      <Jobs
-                        currentUser={this.state.currentUser}
-                        getUpdatedUserData={this.getUpdatedUserData}
-                      />
-                    </Route>
 
-                    <Route path={`${path}/jobs`}>
-                      <Jobs
-                        currentUser={this.state.currentUser}
-                        getUpdatedUserData={this.getUpdatedUserData}
-                      />
-                    </Route>
+                  <div className="Display">
+                    {
+                      <Switch>
+                        <Route exact path={`${path}`}>
+                          <Jobs
+                            currentUser={this.state.currentUser}
+                            getUpdatedUserData={this.getUpdatedUserData}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/statistics`}>
-                      <Statistics
-                        user={this.state.currentUser}
-                        user_app_data={this.state.currentUserApplications}
-                      />
-                    </Route>
+                        <Route path={`${path}/jobs`}>
+                          <Jobs
+                            currentUser={this.state.currentUser}
+                            getUpdatedUserData={this.getUpdatedUserData}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/friends`}>
-                      <Friends currentUser={this.state.currentUser} friends={this.state.friends}/>
-                    </Route>
+                        <Route path={`${path}/statistics`}>
+                          <Statistics
+                            user={this.state.currentUser}
+                            user_app_data={this.state.currentUserApplications}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/leaderboard`}>
-                      <Leaderboard
-                        userData={this.state.currentUser}
-                      />
-                    </Route>
+                        <Route path={`${path}/friends`}>
+                          <Friends currentUser={this.state.currentUser} friends={this.state.friends}/>
+                        </Route>
 
-                    <Route path={`${path}/map`}>
-                      <MapContainer userData={this.state.currentUser} />
-                    </Route>
+                        <Route path={`${path}/leaderboard`}>
+                          <Leaderboard
+                            userData={this.state.currentUser}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/settings`}>
-                      <Settings
-                        user={this.state.currentUser}
-                        getData={this.getData}
-                        loggedIn={this.state.loggedIn}
-                        handleModal={this.handleModal}
-                      />
-                    </Route>
-                  </Switch>
-                }
-              </div>
+                        <Route path={`${path}/map`}>
+                          <MapContainer userData={this.state.currentUser} />
+                        </Route>
+
+                        <Route path={`${path}/settings`}>
+                          <Settings
+                            user={this.state.currentUser}
+                            getData={this.getData}
+                            loggedIn={this.state.loggedIn}
+                            handleModal={this.handleModal}
+                          />
+                        </Route>
+                      </Switch>
+                    }
+                    </div>
+
+                </div> {/*end of main display with header container */}
+
+
             </div>
           </div>
 

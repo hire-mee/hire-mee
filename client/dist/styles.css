@@ -16,10 +16,11 @@ a:hover {
 
 
 .grid-container {
-  display: grid;
-  grid-template-columns: 0.3fr 1.7fr;
+  /* display: grid; */
+  /* grid-template-columns: 0.3fr 1.7fr;
   grid-template-rows: 0.2fr 1.6fr;
-  grid-template-areas: "Nav Header" "Nav Display";
+  grid-template-areas: "Nav Header" "Nav Display"; */
+  display: flex;
   color: #535970;
 }
 
@@ -46,6 +47,11 @@ a:hover {
   grid-area: Account;
 }
 
+.Main_Display_with_header_container {
+  display: block;
+  width: 95%;
+}
+
 .Header {
   display: grid;
   height: 70px;
@@ -68,15 +74,20 @@ a:hover {
 
 .Profile-area {
   grid-area: Profile-area;
-  margin-left: 25px;
+  margin: auto;
 }
 
 .Display {
-  grid-area: Display;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
-  width: 100%;
+  /* grid-area: Display; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* margin-top: 30px; */
+  /* width: 100%; */
+  /* margin-left: -294px; */
+}
+
+.jobs-component {
+  padding: 50px;
 }
 
 /* GRID CONTAINER */
