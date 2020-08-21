@@ -20,12 +20,8 @@ View here: http://54.151.84.70:3000/
 <h3>Job Menu</h3>
 
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
-- Embedded Google Authentication option
   
-
-- Renders multiple related images from an extensive library
-- Functional arrow icons browse through items
-- Cursor changes when hovering over image
+- Embedded Google Authentication option
 
 <p align="center"><img src="https://i.imgur.com/gFNdO6e.gif"/><p>
 - Add, edit, and sort job applications between four piles
