@@ -39,7 +39,7 @@ class Settings extends React.Component {
   resetJobs(id) {
     axios
     .put(`/api/userApp/${id}`, {
-      applied_today: 0,
+      // applied_today: 0,
       applied_month: 0
     })
     .then(() => {

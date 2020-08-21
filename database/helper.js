@@ -87,7 +87,8 @@ module.exports = {
   },
   updateApps(input, id, callback) {
     const { applied_today, applied_month } = input;
-    const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month} WHERE id=${id};`
+    // const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month} WHERE id=${id};`
+    const queryStr = `UPDATE user_info SET applied_month=${applied_month} WHERE id=${id};`
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);
