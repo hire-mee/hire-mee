@@ -1096,6 +1096,33 @@ fieldset {
   display: flex;
 }
 
+
+@media only screen and (max-width: 1280px) {
+  .demo_center_wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+  }
+}
+
+
+@media only screen and (min-width: 1600px) {
+  .demo_center_wrapper {
+    width: 70%;
+    margin: auto;
+    display: flex;
+  }
+}
+
+
+@media only screen and (min-width: 2560px) {
+  .demo_center_wrapper {
+    width: 50%;
+    margin: auto;
+    display: flex;
+  }
+}
+
 .demo_rightside_feature_desc_container {
   display: flex;
 }
@@ -1266,3 +1293,4 @@ fieldset {
   font-weight: 100;
   margin-top: -13px;
 }
+
