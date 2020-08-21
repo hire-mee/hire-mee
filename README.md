@@ -14,3 +14,10 @@ View here: http://54.151.84.70:3000/
 - Run <b>npm run-script build</b> to convert JSX into bundle
 - Run <b>Psql -u postgres < schema.sql</b> to seed database
 - Access <b>localhost:3000</b> on browser to view page
+
+## Usage
+
+<h3>Job Menu</h3>
+
+![Login/Sign-up](https://imgur.com/qMvIrFw)
+- Embedded Google Authentication option
