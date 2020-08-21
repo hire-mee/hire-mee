@@ -22,3 +22,23 @@ View here: http://54.151.84.70:3000/
 <p align="center">![Login/Sign-up](https://i.imgur.com/qMvIrFw.gif)<p>
 - Embedded Google Authentication option
 
+<p align="center">![Job View](https://i.imgur.com/gFNdO6e.gif)<p>
+- Add, edit, and sort job applications between four piles
+- Click to view information
+
+<p align="center">![Statistics](https://i.imgur.com/CrddZ7n.gif)<p>
+- View job application progress
+- See statistics overtime
+
+<p align="center">![Friends](https://i.imgur.com/y7MSLak.gif)<p>
+- Fully functional friends list
+- Add users by their email and see their progress
+
+<p align="center">![Friends](https://i.imgur.com/gp2aXKP.gif)<p>
+- Leaderboard dynamically renders weekly applications between friends
+- Compare how you are doing versus other users
+
+<p align="center">![Map](https://i.imgur.com/52iCxvi.gif)<p>
+- Map component allows user to add and persist home location
+- Plots job locations relative to home and other locations
+- Clicking on markers allows user to view key data points

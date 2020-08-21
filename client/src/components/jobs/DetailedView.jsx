@@ -221,6 +221,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
         onHide={() => {}}
         dialogClassName="detailed-view"
         aria-labelledby="modal-styling-title"
+        style={{ height: "100%" }}
       >
         <Modal.Header closeButton>
           <Modal.Title
