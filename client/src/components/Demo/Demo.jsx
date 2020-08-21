@@ -48,57 +48,69 @@ import {
 
 
             <div className="demo_rightside_feature_container">
-              <div className="demo_rightside_feature_desc_container">
 
-                  <div className="demo_rightside_flower_container">
-                    <img src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/flower1.png" className="demo_rightside_fower"></img>
-                  </div>
+            <div className="demo_center_wrapper">
 
-                  <div className="demo_rightside_feature_subcontainer">
-                    <div className="demo_rightside_feature_heading_text">Minimal, modern UI.</div>
-                    <div className="demo_rightside_feature_heading_subtext">Clean and easy-to-use</div>
-                    <div className="demo_rightside_feature_heading_subtext">dashboard view for all of</div>
-                    <div className="demo_rightside_feature_heading_subtext">your tracked applications.</div>
-                  </div>
+                <div className="demo_rightside_feature_desc_container">
 
-              </div>
+                    <div className="demo_rightside_flower_container">
+                      <img src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/flower1.png" className="demo_rightside_fower"></img>
+                    </div>
 
-              <div className="demo_rightside_feature_static_image_container">
-                <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/job-view.png"></img>
+                    <div className="demo_rightside_feature_subcontainer">
+                      <div className="demo_rightside_feature_heading_text">Minimal, modern UI.</div>
+                      <div className="demo_rightside_feature_heading_subtext">Clean and easy-to-use</div>
+                      <div className="demo_rightside_feature_heading_subtext">dashboard view for all of</div>
+                      <div className="demo_rightside_feature_heading_subtext">your tracked applications.</div>
+                    </div>
+
+                </div>
+
+                <div className="demo_rightside_feature_static_image_container">
+                  <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/job-view.png"></img>
+                </div>
+
               </div>
 
             </div>
 
 
-
             <div className="demo_leftside_feature_container">
+
+            <div className="demo_center_wrapper">
+
+              <div className="demo_leftside_feature_static_image_container">
+                  <img className="demo_leftside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/map-view.png"></img>
+                </div>
+
               <div className="demo_leftside_feature_desc_container">
 
-                  <div className="demo_leftside_feature_static_image_container">
-                    <img className="demo_leftside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/map-view.png"></img>
-                  </div>
+              {/* <div className="demo_leftside_flower_text_container"> */}
 
-              <div className="demo_leftside_flower_text_container">
                   <div className="demo_leftside_flower_container">
                     <img src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/flower2.png" className="demo_rightside_fower"></img>
                   </div>
 
-                  <div className="demo_leftside_feature_subcontainer">
-                    <div className="demo_leftside_feature_heading_text">Made by visual developers,</div>
-                    <div className="demo_leftside_feature_heading_text">for visual users.</div>
-                    <div className="demo_leftside_feature_heading_subtext">Interactive map to display</div>
-                    <div className="demo_leftside_feature_heading_subtext">recorded applications' </div>
-                    <div className="demo_leftside_feature_heading_subtext">locations relative to set </div>
-                    <div className="demo_leftside_feature_heading_subtext">points and other data points. </div>
-                  </div>
-                  </div>
+                    <div className="demo_leftside_feature_subcontainer">
+                      <div className="demo_leftside_feature_heading_text">Made by visual developers,</div>
+                      <div className="demo_leftside_feature_heading_text">for visual users.</div>
+                      <div className="demo_leftside_feature_heading_subtext">Interactive map to display</div>
+                      <div className="demo_leftside_feature_heading_subtext">recorded applications' </div>
+                      <div className="demo_leftside_feature_heading_subtext">locations relative to set </div>
+                      <div className="demo_leftside_feature_heading_subtext">points and other data points. </div>
+                    </div>
+
              
+                </div>
               </div>
 
             </div>
 
 
             <div className="demo_rightside_feature_container">
+
+            <div className="demo_center_wrapper">
+
               <div className="demo_rightside_feature_desc_container">
 
                   <div className="demo_rightside_flower_container">
@@ -118,6 +130,7 @@ import {
                 <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/stats-view.png"></img>
               </div>
 
+              </div>
             </div>
             
 
