@@ -12,4 +12,5 @@ View here: http://54.151.84.70:3000/
 - Run <b>npm install</b> in terminal to download dependencies
 - Run <b>npm start</b> to start server and access database
 - Run <b>npm run-script build</b> to convert JSX into bundle
+- Run <b>Psql -u postgres < schema.sql</b> to seed database
 - Access <b>localhost:3000</b> on browser to view page
