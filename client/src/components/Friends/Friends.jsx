@@ -36,19 +36,32 @@ export class Friends extends Component {
     .then((res) => {
       this.setState({
         friends: res.data,
-      });
+      }, ()=> console.log(this.state.friends));
     })
     .catch((err) => console.log(err));
   }
 
   submitHandler(e) {
     e.preventDefault();
-    axios
+    let inputBar = document.getElementById("friends-add-email-input");
+    if (this.state.newFriend.includes("@") && this.state.newFriend.includes(".")) {
+      axios
       .post(`/api/friends/${this.props.currentUser.id}`, {
         email: this.state.newFriend,
       })
       .then((res) => this.getFriendData())
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        inputBar.style.border = "2px solid #c13737"
+        inputBar.value = ""
+        inputBar.placeholder = "Invalid email, please try again"
+        // console.error(err)
+      });
+    } else {
+      inputBar.style.border = "2px solid #c13737"
+      inputBar.value = ""
+      inputBar.placeholder = "Invalid email, please try again"
+    }
+
   }
 
   render() {
@@ -69,7 +82,7 @@ export class Friends extends Component {
             All friends ({this.state.friends.length})
           </div>
           <div className="add-friend">
-            <input size="18" onChange={this.inputChangeHandler}></input>
+            <input onChange={this.inputChangeHandler} id="friends-add-email-input"></input>
             <Button
               onClick={this.submitHandler}
               style={{

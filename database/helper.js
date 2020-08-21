@@ -183,7 +183,7 @@ module.exports = {
     let { email } = input
     const queryStr = `INSERT INTO friends(user_id, email) VALUES (${id}, '${email}');`;
     db.query(queryStr, (err, results) => {
-      if (err) {
+      if (!results) {
         callback(err);
       } else {
         callback(null, results.rows);

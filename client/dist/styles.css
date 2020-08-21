@@ -879,6 +879,17 @@ fieldset {
   margin-right: 30px;
 }
 
+#friends-add-email-input {
+  size: 18;
+  border-radius: 4px;
+}
+
+#friends-add-email-input::placeholder {
+  font-size: 13px;
+  color: #c13737;
+  margin-left: 10px;
+}
+
 .row {
 }
 
