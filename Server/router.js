@@ -23,6 +23,7 @@ router
 router
     .route('/email/:email') // get data from a user by EMAIL (used in Login.jsx)
     .get(controller.getUserByEmail)
+    .delete(controller.deleteUserByEmail); // route to delete user from database
 
 // SIGNUP ROUTES ==========================================================// 
 router
@@ -37,7 +38,6 @@ router
 router // route for ALL users
     .route('/users/:id')
     .put(controller.updateInfo) // updates user_info streaks/applied quantities fields
-    .delete(controller.deleteInfo); // route to delete user from database
 
 router // route for a single user 
     .route('/user/:id')

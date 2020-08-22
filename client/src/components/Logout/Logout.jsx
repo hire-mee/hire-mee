@@ -13,7 +13,7 @@ function Logout(props){
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={props.handleModal}>Close</Button>
-              <Button onClick={() => {props.handleModal()}}> Log Out</Button>
+              <Button onClick={props.handleLogout}> Log Out</Button>
             </Modal.Footer>
           </Modal>
         </div>

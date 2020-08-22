@@ -45,19 +45,17 @@ class Main extends React.Component {
       friends: [],
       currentUserApplications: [],
       showLogoutModal: false,
+      logoutToggled: false
     };
-    this.getData = this.getData.bind(this);
+    this.componentInitialMountGetData = this.componentInitialMountGetData.bind(this);
     this.storeUserData = this.storeUserData.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   componentDidMount(){
-    this.setState({currentUser: this.props.location.state.userData}, () => {
-      axios.get(`/api/friends/${this.state.currentUser.id}`)
-      .then((results) => this.setState({friends: results.data}))
-      .catch(err => console.error(err))
-    })
+    this.componentInitialMountGetData(); // initial call function to set data into state to be passed to other components
   }
 
   storeUserData(data) {
@@ -66,17 +64,20 @@ class Main extends React.Component {
     });
   }
 
-  getData(id) {
-    // route to get all users from user_info, currently not in use
-    axios
-      .get(`/api/users`)
-      .then((data) => {
+  componentInitialMountGetData() {
+      axios.get(`/api/user/${localStorage.id}`) // first get data from localID and set state with retrieved user info
+      .then((results) => {
         this.setState({
-          users: data.data,
-          currentUser: data.data[0],
-        });
+           currentUser: results.data 
+          }, () => {
+            axios.get(`/api/friends/${localStorage.id}`) // then retrieve friends data
+            .then((results) => this.setState({
+              friends: results.data
+              }))
+            .catch(err => console.error(err))
+        })
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err))
   }
 
   getUpdatedUserData(id) {
@@ -91,13 +92,14 @@ class Main extends React.Component {
   }
 
   handleModal() {
-    // this.setState({ showLogoutModal: !this.state.showLogoutModal});
+    this.setState({ showLogoutModal: !this.state.showLogoutModal});
+  }
 
-    axios.delete('/api/logout') //TODO: Fix logout
-    .then(()=> {
-      console.log("logout success....redirecting to Login")
-    })
-    .catch(err => console.error(err))
+  handleLogout(){
+    localStorage.removeItem("email");
+    localStorage.removeItem("id");
+    console.log(localStorage)
+    this.setState({logoutToggled: true})
   }
 
   render() {
@@ -107,6 +109,12 @@ class Main extends React.Component {
             <CircularProgress /> Loading...
           </div>
         )
+      } else if (this.state.logoutToggled) {
+        return( 
+        <Redirect to={{
+          pathname: "/login"
+        }}/> 
+        )
       } else {
         let { path, url } = this.props.match;
         return (
@@ -114,6 +122,7 @@ class Main extends React.Component {
         <div className="StartUp">
           <div>
             <div className="grid-container">
+
               <div className="Nav">
                 <NavLink className="company_name" to="/">
                   Hire-Mee
@@ -168,71 +177,88 @@ class Main extends React.Component {
                     onClick={this.handleModal}
                   >
                     <BoxArrowRight color="white" />{" "}
-                    <a className="sidebar_nav_link" onClick={this.handleModal}>
-                      {" "}
-                      Logout{" "}
+                    <a className="sidebar_nav_link" onClick={this.handleModal} style={{cursor:"pointer", color:"#6a6e7b"}}>
+                      Logout
                     </a>
                   </div>
                 </div>
-              </div>
-              <div className="Header">
-                <div className="Header-title">{this.state.page}</div>
-                <div className="Profile-area">
-                  <Profile
-                    userData={this.state.currentUser}
-                    getUpdatedData={this.getUpdatedUserData}
-                  />
+
+              </div> {/* end of Nav element */}
+
+
+              <div className="Main_Display_with_header_container">
+                  
+                <div className="Header">
+                  <div className="Header-title">Welcome!</div>
+                  <div className="Profile-area">
+                    <Profile
+                      userData={this.state.currentUser}
+                    
+                      getUpdatedData={this.getUpdatedUserData}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="Display">
-                {
-                  <Switch>
-                    <Route exact path={`${path}`}>
-                      <Jobs
-                        currentUser={this.state.currentUser}
-                        getUpdatedUserData={this.getUpdatedUserData}
-                      />
-                    </Route>
 
-                    <Route path={`${path}/jobs`}>
-                      <Jobs
-                        currentUser={this.state.currentUser}
-                        getUpdatedUserData={this.getUpdatedUserData}
-                      />
-                    </Route>
+                  <div className="Display">
+                    {
+                      <Switch>
+                        <Route exact path={`${path}`}>
+                          <Jobs
+                            currentUser={this.state.currentUser}
+                          
+                            getUpdatedUserData={this.getUpdatedUserData}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/statistics`}>
-                      <Statistics
-                        user={this.state.currentUser}
-                        user_app_data={this.state.currentUserApplications}
-                      />
-                    </Route>
+                        <Route path={`${path}/jobs`}>
+                          <Jobs
+                            currentUser={this.state.currentUser}
+                          
+                            getUpdatedUserData={this.getUpdatedUserData}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/friends`}>
-                      <Friends currentUser={this.state.currentUser} friends={this.state.friends}/>
-                    </Route>
+                        <Route path={`${path}/statistics`}>
+                          <Statistics
+                            user={this.state.currentUser}
+                          
+                            user_app_data={this.state.currentUserApplications}
+                          />
+                        </Route>
 
-                    <Route path={`${path}/leaderboard`}>
-                      <Leaderboard
-                        userData={this.state.currentUser}
-                      />
-                    </Route>
+                        <Route path={`${path}/friends`}>
+                          <Friends friends={this.state.friends}/>
+                        </Route>
 
-                    <Route path={`${path}/map`}>
-                      <MapContainer userData={this.state.currentUser} />
-                    </Route>
+                        <Route path={`${path}/leaderboard`}>
+                          <Leaderboard
+                            userData={this.state.currentUser}
+                          
+                          />
+                        </Route>
 
-                    <Route path={`${path}/settings`}>
-                      <Settings
-                        user={this.state.currentUser}
-                        getData={this.getData}
-                        loggedIn={this.state.loggedIn}
-                        handleModal={this.handleModal}
-                      />
-                    </Route>
-                  </Switch>
-                }
-              </div>
+                        <Route path={`${path}/map`}>
+                          <MapContainer 
+                            userData={this.state.currentUser}
+                          
+                          />
+                        </Route>
+
+                        <Route path={`${path}/settings`}>
+                          <Settings
+                            user={this.state.currentUser}
+                            getData={this.getData}
+                            loggedIn={this.state.loggedIn}
+                            handleModal={this.handleModal}
+                          />
+                        </Route>
+                      </Switch>
+                    }
+                    </div>
+
+                </div> {/*end of main display with header container */}
+
+
             </div>
           </div>
 
@@ -240,6 +266,7 @@ class Main extends React.Component {
             user={this.state.currentUser}
             showLogoutModal={this.state.showLogoutModal}
             handleModal={this.handleModal}
+            handleLogout={this.handleLogout}
           />
         </div>
       </div>

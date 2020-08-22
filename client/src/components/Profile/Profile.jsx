@@ -73,7 +73,7 @@ class Profile extends React.Component {
   profileChangeSubmit() {
     if (this.state.first_name && this.state.last_name && this.state.salary) {
       axios
-      .put(`/api/user/profileUpdate/${this.props.userData.id}`, {
+      .put(`/api/user/profileUpdate/${localStorage.id}`, {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         salary: this.state.salary
@@ -86,7 +86,7 @@ class Profile extends React.Component {
           document.getElementById("first_nameInputBar").value = '';
           document.getElementById("last_nameInputBar").value = '';
           document.getElementById("desiredSalaryInputBar").value = '';
-          this.props.getUpdatedData(this.props.userData.id);
+          this.props.getUpdatedData(localStorage.id);
         })
       })
       .catch((err) => {
@@ -94,7 +94,7 @@ class Profile extends React.Component {
       });
     } else if (this.state.first_name && this.state.last_name) {
         axios
-        .put(`/api/user/${this.props.userData.id}`, {
+        .put(`/api/user/${localStorage.id}`, {
           first_name: this.state.first_name,
           last_name: this.state.last_name
         })
@@ -105,7 +105,7 @@ class Profile extends React.Component {
           }, ()=> {
             document.getElementById("first_nameInputBar").value = '';
             document.getElementById("last_nameInputBar").value = '';
-            this.props.getUpdatedData(this.props.userData.id);
+            this.props.getUpdatedData(localStorage.id);
           })
         })
         .catch((err) => {
@@ -113,7 +113,7 @@ class Profile extends React.Component {
         });
     } else if ((!this.state.first_name && !this.state.last_name) && this.state.salary){
         axios
-        .put(`/api/user/salary/${this.props.userData.id}`, {
+        .put(`/api/user/salary/${localStorage.id}`, {
           salary: this.state.salary
         })
         .then(() => {
@@ -122,7 +122,7 @@ class Profile extends React.Component {
             incomplete: null
           }, ()=> {
             document.getElementById("desiredSalaryInputBar").value = '';
-            this.props.getUpdatedData(this.props.userData.id);
+            this.props.getUpdatedData(localStorage.id);
           })
         })
         .catch((err) => {

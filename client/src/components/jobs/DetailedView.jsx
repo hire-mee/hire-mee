@@ -85,7 +85,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
     );
     if (deletePrompt) {
       axios
-        .delete(`/api/applications/${jobInfo.user_id}`)
+        .delete(`/api/applications/${jobInfo.id}`)
         .then((res) => {
           window.alert("Application Deleted");
           getApplications();
@@ -343,7 +343,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
                   </button>
                   <button
                     className="detailedView_delete_app"
-                    onClick={() => deleteApplication("offers")}
+                    onClick={() => deleteApplication()}
                   >
                     Delete
                   </button>

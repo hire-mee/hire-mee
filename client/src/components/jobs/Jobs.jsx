@@ -72,13 +72,13 @@ class Jobs extends React.Component {
 
   getApplications() {
     axios
-      .get(`/api/applications/${this.props.currentUser.id}`)
+      .get(`/api/applications/${localStorage.id}`)
       .then((data) => {
         this.sortJobInfo(data.data)
           .then((sortedJobs) => {
             this.setState({
               sortedJobInfo: sortedJobs
-            }, () => this.props.getUpdatedUserData(this.props.currentUser.id))
+            }, () => this.props.getUpdatedUserData(localStorage.id))
           })
           .catch((err) => console.error(err));
       })
@@ -98,10 +98,7 @@ class Jobs extends React.Component {
       );
     } else {
       return (
-        <div
-          className="jobs-compnent"
-          style={{ paddingLeft: "3%", paddingRight: "3%" }}
-        >
+        <div className="jobs-component">
           <Grid container spacing={2} style={{ padding: "5px" }}>
             <div style={{ width: "25%" }}>
               <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.currentUser.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} getUpdatedUserData={this.props.getUpdatedUserData} />

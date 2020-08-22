@@ -304,6 +304,7 @@ class Applied extends React.Component {
                     onChange={this.changeHandler}
                     value={this.state.submit_date}
                     variant="outlined"
+                    placeholder={"Ex: 01/01/2020"}
                   />
                 </Grid>
 
@@ -315,6 +316,7 @@ class Applied extends React.Component {
                     onChange={this.changeHandler}
                     value={this.state.deadline}
                     variant="outlined"
+                    placeholder={"Ex: 01/01/2020"}
                   />
                 </Grid>
               </Grid>

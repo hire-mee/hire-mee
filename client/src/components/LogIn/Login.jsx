@@ -32,8 +32,13 @@ export default class Login extends Component {
       .then(() => {
           axios.get(`/api/email/${this.state.email}`)
             .then(userData => {
-              this.setState({userData: userData.data[0]}, ()=> {
-                this.setState({loginSuccess: true})
+              this.setState({
+                userData: userData.data[0],
+                loginSuccess: true
+              }, ()=> {
+                localStorage.setItem("email", this.state.userData.email); // stores browser local storage with user information to be passed down to other components
+                localStorage.setItem("id", this.state.userData.id);
+                console.log(window.localStorage, "from inside Login.jsx")
               })
             })
             .catch(() =>{
