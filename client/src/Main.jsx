@@ -131,19 +131,19 @@ class Main extends React.Component {
                   <div className="category_title">Dashboard</div>
                   <div className="category" data-letter="Jobs">
                     <Briefcase color="white" />{" "}
-                    <Link className="sidebar_nav_link" to={`${url}/jobs`}>
+                    <Link className="sidebar_nav_link" to={`${url}jobs`}>
                       Jobs
                     </Link>
                   </div>
                   <div className="category" data-letter="Statistics">
                     <GraphUp color="white" />{" "}
-                    <Link className="sidebar_nav_link" to={`${url}/statistics`}>
+                    <Link className="sidebar_nav_link" to={`${url}statistics`}>
                       Statistics
                     </Link>
                   </div>
                   <div className="category" data-letter="Friends">
                     <PersonFill color="white" />
-                    <Link className="sidebar_nav_link" to={`${url}/friends`} style={{marginLeft: "5px"}}>
+                    <Link className="sidebar_nav_link" to={`${url}friends`} style={{marginLeft: "5px"}}>
                       Friends
                     </Link>
                   </div>
@@ -158,7 +158,7 @@ class Main extends React.Component {
                   </div>
                   <div className="category" data-letter="Map">
                     <GeoAlt color="white" />{" "}
-                    <Link className="sidebar_nav_link" to={`${url}/map`}>
+                    <Link className="sidebar_nav_link" to={`${url}map`}>
                       Map
                     </Link>
                   </div>
@@ -167,7 +167,7 @@ class Main extends React.Component {
                   <div className="category_title">Account</div>
                   <div className="category" data-letter="Settings">
                     <GearFill color="white" />{" "}
-                    <Link className="sidebar_nav_link" to={`${url}/settings`}>
+                    <Link className="sidebar_nav_link" to={`${url}settings`}>
                       Settings
                     </Link>
                   </div>
@@ -177,9 +177,8 @@ class Main extends React.Component {
                     onClick={this.handleModal}
                   >
                     <BoxArrowRight color="white" />{" "}
-                    <a className="sidebar_nav_link" onClick={this.handleModal}>
-                      {" "}
-                      Logout{" "}
+                    <a className="sidebar_nav_link" onClick={this.handleModal} style={{cursor:"pointer", color:"#6a6e7b"}}>
+                      Logout
                     </a>
                   </div>
                 </div>
