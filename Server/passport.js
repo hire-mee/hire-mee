@@ -13,7 +13,6 @@ let verifyCallback = (email, pass, done) => {
     let queryStr = `SELECT * from user_info WHERE email = '${email}';`
     connection.query(queryStr, function(err, user) {
 
-      console.log("returned user object in passport verifycallback", user.rows)
       if (err) { 
           return done(err); 
       }

@@ -37,7 +37,7 @@ export default class Statistics extends React.Component {
   }
 
   getDataForPieChart() {
-    axios.get(`/api/applications/${this.props.user.id}`)
+    axios.get(`/api/applications/${localStorage.id}`)
       .then((results) => {
         this.setState({
           user_app_data: results.data

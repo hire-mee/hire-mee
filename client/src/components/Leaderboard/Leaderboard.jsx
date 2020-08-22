@@ -35,10 +35,10 @@ export class Leaderboard extends Component {
     var {first_name, last_name, applied_month } = this.props.userData
     var myStats = {first_name, last_name, applied_month }
     this.setState({
-      currentId: this.props.userData.id,
+      currentId: localStorage.id,
     });
     axios
-      .get(`/api/friends/${this.props.userData.id}`)
+      .get(`/api/friends/${localStorage.id}`)
       .then((res) => {
         var unsorted = res.data
         unsorted.push(myStats)

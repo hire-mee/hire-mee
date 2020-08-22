@@ -39,7 +39,7 @@ class Settings extends React.Component {
 
   deleteAcc() {
     axios
-    .delete(`/api/email/${this.props.user.email}`)
+    .delete(`/api/email/${this.props.localStorage.email}`)
     .then(() => {
       this.toggleModal();
       this.redirectBackToSignup();
@@ -76,7 +76,7 @@ class Settings extends React.Component {
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.changeReset} >Close</Button>
-                <Button onClick={() => { this.changeReset(); this.resetJobs(this.props.user.id); }}> Reset</Button>
+                <Button onClick={() => { this.changeReset(); this.resetJobs(this.props.localStorage.id); }}> Reset</Button>
               </Modal.Footer>
             </Modal>
           </div>
@@ -88,7 +88,7 @@ class Settings extends React.Component {
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.toggleModal} >Close</Button>
-                <Button onClick={() => {this.deleteAcc(this.props.user.id)}}>DELETE</Button>
+                <Button onClick={() => {this.deleteAcc(this.props.localStorage.id)}}>DELETE</Button>
               </Modal.Footer>
             </Modal>
           </div>

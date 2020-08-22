@@ -25,7 +25,7 @@ export class MapView extends Component {
   }
   componentDidMount() {
     axios
-      .get(`/api/applications/${this.props.userData.id}`)
+      .get(`/api/applications/${localStorage.id}`)
       .then((data) => {
         this.setState({
           jobData: data.data,
@@ -34,7 +34,7 @@ export class MapView extends Component {
       })
       .catch((err) => console.error("Error Getting Applications data", err));
     axios
-      .get(`/api/user/${this.props.userData.id}`)
+      .get(`/api/user/${localStorage.id}`)
       .then((data) => {
         return data.data;
       })
@@ -110,7 +110,7 @@ export class MapView extends Component {
     // let { homeAddress } = this.state;
     e.preventDefault();
     axios
-      .post(`/api/user/${this.props.userData.id}`, {
+      .post(`/api/user/${localStorage.id}`, {
         homeAddress: this.state.homeAddress,
       })
       .then((res) => {

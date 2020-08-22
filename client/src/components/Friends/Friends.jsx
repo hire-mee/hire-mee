@@ -20,7 +20,7 @@ export class Friends extends Component {
 
   componentDidMount(){
     this.setState({
-        currentId: this.props.currentUser.id,
+        currentId: localStorage.id,
       }, () => this.getFriendData());
   }
 
@@ -32,11 +32,11 @@ export class Friends extends Component {
 
   getFriendData(){
     axios
-    .get(`/api/friends/${this.props.currentUser.id}`)
+    .get(`/api/friends/${localStorage.id}`)
     .then((res) => {
       this.setState({
         friends: res.data,
-      }, ()=> console.log(this.state.friends));
+      });
     })
     .catch((err) => console.log(err));
   }
@@ -46,7 +46,7 @@ export class Friends extends Component {
     let inputBar = document.getElementById("friends-add-email-input");
     if (this.state.newFriend.includes("@") && this.state.newFriend.includes(".")) {
       axios
-      .post(`/api/friends/${this.props.currentUser.id}`, {
+      .post(`/api/friends/${localStorage.id}`, {
         email: this.state.newFriend,
       })
       .then((res) => this.getFriendData())

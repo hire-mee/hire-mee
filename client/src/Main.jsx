@@ -45,19 +45,17 @@ class Main extends React.Component {
       friends: [],
       currentUserApplications: [],
       showLogoutModal: false,
+      logoutToggled: false
     };
-    this.getData = this.getData.bind(this);
+    this.componentInitialMountGetData = this.componentInitialMountGetData.bind(this);
     this.storeUserData = this.storeUserData.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.getUpdatedUserData = this.getUpdatedUserData.bind(this);
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   componentDidMount(){
-    this.setState({currentUser: this.props.location.state.userData}, () => {
-      axios.get(`/api/friends/${this.state.currentUser.id}`)
-      .then((results) => this.setState({friends: results.data}))
-      .catch(err => console.error(err))
-    })
+    this.componentInitialMountGetData(); // initial call function to set data into state to be passed to other components
   }
 
   storeUserData(data) {
@@ -66,17 +64,20 @@ class Main extends React.Component {
     });
   }
 
-  getData(id) {
-    // route to get all users from user_info, currently not in use
-    axios
-      .get(`/api/users`)
-      .then((data) => {
+  componentInitialMountGetData() {
+      axios.get(`/api/user/${localStorage.id}`) // first get data from localID and set state with retrieved user info
+      .then((results) => {
         this.setState({
-          users: data.data,
-          currentUser: data.data[0],
-        });
+           currentUser: results.data 
+          }, () => {
+            axios.get(`/api/friends/${localStorage.id}`) // then retrieve friends data
+            .then((results) => this.setState({
+              friends: results.data
+              }))
+            .catch(err => console.error(err))
+        })
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err))
   }
 
   getUpdatedUserData(id) {
@@ -91,13 +92,14 @@ class Main extends React.Component {
   }
 
   handleModal() {
-    // this.setState({ showLogoutModal: !this.state.showLogoutModal});
+    this.setState({ showLogoutModal: !this.state.showLogoutModal});
+  }
 
-    axios.delete('/api/logout') //TODO: Fix logout
-    .then(()=> {
-      console.log("logout success....redirecting to Login")
-    })
-    .catch(err => console.error(err))
+  handleLogout(){
+    localStorage.removeItem("email");
+    localStorage.removeItem("id");
+    console.log(localStorage)
+    this.setState({logoutToggled: true})
   }
 
   render() {
@@ -106,6 +108,12 @@ class Main extends React.Component {
             <div style={{ textAlign: "center", paddingTop: "25%" }}>
             <CircularProgress /> Loading...
           </div>
+        )
+      } else if (this.state.logoutToggled) {
+        return( 
+        <Redirect to={{
+          pathname: "/login"
+        }}/> 
         )
       } else {
         let { path, url } = this.props.match;
@@ -186,6 +194,7 @@ class Main extends React.Component {
                   <div className="Profile-area">
                     <Profile
                       userData={this.state.currentUser}
+                    
                       getUpdatedData={this.getUpdatedUserData}
                     />
                   </div>
@@ -197,6 +206,7 @@ class Main extends React.Component {
                         <Route exact path={`${path}`}>
                           <Jobs
                             currentUser={this.state.currentUser}
+                          
                             getUpdatedUserData={this.getUpdatedUserData}
                           />
                         </Route>
@@ -204,6 +214,7 @@ class Main extends React.Component {
                         <Route path={`${path}/jobs`}>
                           <Jobs
                             currentUser={this.state.currentUser}
+                          
                             getUpdatedUserData={this.getUpdatedUserData}
                           />
                         </Route>
@@ -211,22 +222,27 @@ class Main extends React.Component {
                         <Route path={`${path}/statistics`}>
                           <Statistics
                             user={this.state.currentUser}
+                          
                             user_app_data={this.state.currentUserApplications}
                           />
                         </Route>
 
                         <Route path={`${path}/friends`}>
-                          <Friends currentUser={this.state.currentUser} friends={this.state.friends}/>
+                          <Friends friends={this.state.friends}/>
                         </Route>
 
                         <Route path={`${path}/leaderboard`}>
                           <Leaderboard
                             userData={this.state.currentUser}
+                          
                           />
                         </Route>
 
                         <Route path={`${path}/map`}>
-                          <MapContainer userData={this.state.currentUser} />
+                          <MapContainer 
+                            userData={this.state.currentUser}
+                          
+                          />
                         </Route>
 
                         <Route path={`${path}/settings`}>
@@ -251,6 +267,7 @@ class Main extends React.Component {
             user={this.state.currentUser}
             showLogoutModal={this.state.showLogoutModal}
             handleModal={this.handleModal}
+            handleLogout={this.handleLogout}
           />
         </div>
       </div>
