@@ -21,6 +21,7 @@ View here: http://54.151.84.70:3000/
 
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
   
+- Full secure authentication process
 - Embedded Google Authentication option
 
 <h3>Job Menu</h3>
