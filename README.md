@@ -17,31 +17,41 @@ View here: http://54.151.84.70:3000/
 
 ## Usage
 
-<h3>Job Menu</h3>
+<h3>Login/Sign-Up</h3>
 
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
   
 - Embedded Google Authentication option
+
+<h3>Job Menu</h3>
 
 <p align="center"><img src="https://i.imgur.com/gFNdO6e.gif"/><p>
   
 - Add, edit, and sort job applications between four piles
 - Click to view information
 
+<h3>Statistics</h3>
+
 <p align="center"><img src="https://i.imgur.com/CrddZ7n.gif"/><p>
   
 - View job application progress
 - See statistics overtime
+
+<h3>Friends List</h3>
 
 <p align="center"><img src=https://i.imgur.com/y7MSLak.gif"/><p>
   
 - Fully functional friends list
 - Add users by their email and see their progress
 
+<h3>Leaderboard</h3>
+
 <p align="center"><img src=https://i.imgur.com/gp2aXKP.gif"/><p>
   
 - Leaderboard dynamically renders weekly applications between friends
 - Compare how you are doing versus other users
+
+<h3>Map</h3>
 
 <p align="center"><img src=https://i.imgur.com/52iCxvi.gif"/><p>
   
