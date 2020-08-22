@@ -576,7 +576,7 @@ a:hover {
   grid-area: Display;
   margin-left: 75px;
   margin-right: auto;
-  width: 70%;
+  width: 771px;
 }
 
 #emptyStatisticsMessage {
@@ -604,6 +604,7 @@ a:hover {
   color: #535970;
   margin-top: 20px;
   margin-bottom: 20px;
+  display: flex;
 }
 
 .stat_pie {
@@ -971,11 +972,11 @@ fieldset {
 }
 
 .setting_reset {
-  margin-left: 150px;
+  margin: auto;
 }
 
 .setting_delete {
-  margin-left: 346px;
+  margin: auto;
 }
 
 

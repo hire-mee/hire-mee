@@ -80,15 +80,16 @@ class Settings extends React.Component {
               </Modal.Footer>
             </Modal>
           </div>
-          <div className='stat_info'>Delete account
-          <span className='setting_delete'><Button onClick={this.toggleModal}>Delete</Button></span>
+          <div className='stat_info'>
+            <div style={{marginRight:"auto"}}>Delete account</div>
+          <span className='setting_delete'><Button onClick={this.toggleModal} style={{ marginLeft:"15px", backgroundColor:"#dc3545", border:"none"}}>Delete</Button></span>
           <Modal show={this.state.showDelete} onHide={() => {}}>
               <Modal.Body>
                 Are you sure really sure you want to delete your account? There is no going back from here.
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.toggleModal} >Close</Button>
-                <Button onClick={() => {this.deleteAcc(this.props.localStorage.id)}}>DELETE</Button>
+                <Button onClick={() => {this.deleteAcc(this.props.localStorage.id)}} style={{ backgroundColor:"#dc3545", border:"none"}}>DELETE</Button>
               </Modal.Footer>
             </Modal>
           </div>
