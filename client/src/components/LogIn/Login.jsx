@@ -38,7 +38,6 @@ export default class Login extends Component {
               }, ()=> {
                 localStorage.setItem("email", this.state.userData.email); // stores browser local storage with user information to be passed down to other components
                 localStorage.setItem("id", this.state.userData.id);
-                console.log(window.localStorage, "from inside Login.jsx")
               })
             })
             .catch(() =>{
