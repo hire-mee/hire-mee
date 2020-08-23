@@ -110,7 +110,7 @@ a:hover {
   border-right: 3px solid rgb(56, 182, 255);
 }
 
-.company_name{
+.company_name {
   font-size: 28px;
   font-weight: 500;
   margin: auto;
@@ -445,6 +445,7 @@ a:hover {
   padding: 2% 10%;
   max-width: 150px;
   margin-top: 10%;
+  margin-left: 15%;
 }
 
 .detailedView_update_interviews {
@@ -453,6 +454,7 @@ a:hover {
   padding: 2% 10%;
   max-width: 150px;
   margin-top: 10%;
+  margin-left: 15%;
 }
 
 .detailedView_update_offers {
@@ -461,6 +463,7 @@ a:hover {
   padding: 2% 10%;
   max-width: 150px;
   margin-top: 10%;
+  margin-left: 15%;
 }
 
 .detailedView_delete_app {
@@ -469,6 +472,7 @@ a:hover {
   padding: 2% 10%;
   max-width: 150px;
   margin-top: 10%;
+  margin-left: 15%;
 }
 
 .detailedView_update_rejected:hover {
@@ -979,7 +983,6 @@ fieldset {
   margin: auto;
 }
 
-
 /*
 ====================================================================
 ==============DEMO PAGE STYLES ==================================
@@ -988,13 +991,12 @@ fieldset {
 
 .demo_body_container {
   overflow-x: hidden;
-  margin:0 0 auto;
+  margin: 0 0 auto;
 }
 
 .demo_top_container {
   background-color: #3e4080;
 }
-
 
 .demo_nav_container {
   display: flex;
@@ -1016,8 +1018,8 @@ fieldset {
 }
 
 .demo_nav_links a {
-  color:white;
-  font-family: 'Open Sans', sans-serif;
+  color: white;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
 }
 
@@ -1025,7 +1027,6 @@ fieldset {
   background-color: #3e4080;
   width: 100%;
 }
-
 
 .demo_header_container_wrapper {
   text-align: center;
@@ -1077,7 +1078,7 @@ fieldset {
   color: white;
   background-color: #d85893;
   border: 2px solid #d85893;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   box-shadow: 7px 5px 13px #d858935e;
 }
 
@@ -1091,7 +1092,7 @@ fieldset {
 .demo_pink_button a {
   color: white;
   background-color: #d85893;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .demo_pink_button a:hover {
@@ -1116,7 +1117,7 @@ fieldset {
   display: flex;
 }
 
-.demo_rightside_feature_container{
+.demo_rightside_feature_container {
   display: flex;
   margin-top: 65px;
   padding: 50px 0;
@@ -1129,25 +1130,25 @@ fieldset {
   max-width: 300px;
 }
 
-.demo_rightside_feature_subcontainer{
+.demo_rightside_feature_subcontainer {
   text-align: initial;
-    margin-left: -248px;
-    margin-top: 90px;
-    max-width: inherit;
+  margin-left: -248px;
+  margin-top: 90px;
+  max-width: inherit;
 }
 
 .demo_rightside_feature_heading_text {
-    color: #29292b;
-    font-family: "Poppins", "sans-serif";
-    font-weight: 500;
-    font-size: 23px;
+  color: #29292b;
+  font-family: "Poppins", "sans-serif";
+  font-weight: 500;
+  font-size: 23px;
 }
 
-.demo_rightside_feature_heading_subtext{
-    color: #29292b;
-    font-family: "Poppins", "sans-serif";
-    font-weight: 300;
-    font-size: 18px;
+.demo_rightside_feature_heading_subtext {
+  color: #29292b;
+  font-family: "Poppins", "sans-serif";
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .demo_rightside_feature_static_image_container {
@@ -1171,13 +1172,13 @@ fieldset {
   margin: auto;
 }
 
-.demo_leftside_feature_container{
+.demo_leftside_feature_container {
   display: flex;
   margin-top: 65px;
   padding: 50px 0;
 }
 
-.demo_leftside_flower_container{
+.demo_leftside_flower_container {
   margin-top: -30px;
 }
 
@@ -1185,22 +1186,22 @@ fieldset {
   max-width: 300px;
 }
 
-.demo_leftside_feature_subcontainer{
+.demo_leftside_feature_subcontainer {
   margin-left: -260px;
 }
 
 .demo_leftside_feature_heading_text {
-    color: #29292b;
-    font-family: "Poppins", "sans-serif";
-    font-weight: 500;
-    font-size: 23px;
+  color: #29292b;
+  font-family: "Poppins", "sans-serif";
+  font-weight: 500;
+  font-size: 23px;
 }
 
-.demo_leftside_feature_heading_subtext{
-    color: #29292b;
-    font-family: "Poppins", "sans-serif";
-    font-weight: 300;
-    font-size: 18px;
+.demo_leftside_feature_heading_subtext {
+  color: #29292b;
+  font-family: "Poppins", "sans-serif";
+  font-weight: 300;
+  font-size: 18px;
 }
 
 
@@ -1237,11 +1238,9 @@ fieldset {
 }
 
 .demo_footer_left_container {
-
 }
 
 .demo_footer_left_text_container {
-
 }
 
 .demo_footer_main_text {
@@ -1258,7 +1257,7 @@ fieldset {
 }
 
 .demo_footer_right_container {
-  margin-left:auto;
+  margin-left: auto;
 }
 
 .demo_footer_hiremee_text {
@@ -1396,3 +1395,4 @@ fieldset {
     width: 50%;
   }
 }
+
