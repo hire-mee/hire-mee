@@ -63,6 +63,10 @@ export default class Login extends Component {
        pathname: "/main",
        state: { userData: this.state.userData}
      }}/> )
+    } else if (localStorage.length) {
+      return( 
+      <Redirect to="/main/jobs"/> 
+      )
     } else {
       return (
         <div className="signup_main_container">

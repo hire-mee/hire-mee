@@ -41,14 +41,16 @@ module.exports = {
 
     const saltHash = genPassword(pass);
     const salt = saltHash.salt;
-    pass = saltHash.hash;
+    let saltedPass = saltHash.hash;
 
-    const queryStr = `INSERT INTO user_info(email, first_name, last_name, salt, pass) VALUES ('${email}', '${first_name}', '${last_name}', '${salt}','${pass}');`;
+    const queryStr = `INSERT INTO user_info(email, first_name, last_name, salt, pass) VALUES ('${email}', '${first_name}', '${last_name}', '${salt}','${saltedPass}');`;
     db.query(queryStr, (err, results) => {
       if (err) {
+        console.log("this is err", err)
         callback(err);
       } else {
-        callback(null, results.rows);
+        // callback(null, results.rows);
+        callback(null, "Successfully Added new user into database");
       }
     })
   },
