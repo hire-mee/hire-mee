@@ -12,7 +12,7 @@ View here: http://54.151.84.70:3000/
 - Run <b>npm install</b> in terminal to download dependencies
 - Run <b>npm start</b> to start server and access database
 - Run <b>npm run-script build</b> to convert JSX into bundle
-- Run <b>Psql -u postgres < schema.sql</b> to seed database
+- Run <b>psql -u postgres < schema.sql</b> to seed database
 - Access <b>localhost:3000</b> on browser to view page
 
 ## Usage
@@ -22,21 +22,23 @@ View here: http://54.151.84.70:3000/
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
   
 - Full secure authentication process
-- Embedded Google Authentication option
+- Serialization of users
+- Encrypted and salted password with Passport.js
+- Google Authentication option (coming soon)
 
 <h3>Job Menu</h3>
 
 <p align="center"><img src="https://i.imgur.com/gFNdO6e.gif"/><p>
   
-- Add, edit, and sort job applications between four piles
-- Click to view information
+- Add, edit, and sort job applications between four columns
+- Click to bring up detailed view of a singular application
 
 <h3>Statistics</h3>
 
 <p align="center"><img src="https://i.imgur.com/CrddZ7n.gif"/><p>
   
 - View job application progress
-- See statistics overtime
+- Displays user's job activity statistics
 
 <h3>Friends List</h3>
 
@@ -50,7 +52,7 @@ View here: http://54.151.84.70:3000/
 <p align="center"><img src=https://i.imgur.com/gp2aXKP.gif"/><p>
   
 - Leaderboard dynamically renders weekly applications between friends
-- Compare how you are doing versus other users
+- Compare users' statistics and ranked from most to least applied users
 
 <h3>Map</h3>
 
