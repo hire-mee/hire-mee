@@ -88,6 +88,24 @@ a:hover {
   padding: 50px;
 }
 
+.jobs_applied_column_container {
+  width: 24%;
+}
+
+.jobs_column_container {
+  margin-left: 1%;
+  width: 24%
+}
+
+.jobs_component_column_subcontainer {
+  background-color: rgb(232, 236, 239);
+  height: 100%;
+}
+
+.jobs_component_column_subcontainer:hover {
+  background-color: rgb(211 221 228 / 1);
+}
+
 /* GRID CONTAINER */
 
 .category_title {
@@ -374,7 +392,6 @@ a:hover {
 }
 
 .applied-component-holder {
-  background-color: rgb(232, 236, 239);
   height: 100%;
   margin-bottom: 40px;
 }

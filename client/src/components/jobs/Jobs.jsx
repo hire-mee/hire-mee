@@ -100,11 +100,11 @@ class Jobs extends React.Component {
       return (
         <div className="jobs-component">
           <Grid container spacing={2} style={{ padding: "5px" }}>
-            <div style={{ width: "25%" }}>
+            <div className="jobs_applied_column_container">
               <Applied applied={this.state.sortedJobInfo.applied} desired={this.props.currentUser.salary} currentUser={this.props.currentUser} getApplications={this.getApplications} getUpdatedUserData={this.props.getUpdatedUserData} />
             </div>
 
-            <div style={{ paddingLeft: "1%", width: "25%" }}>
+            <div className="jobs_column_container">
               <Rejected
                 rejected={this.state.sortedJobInfo.rejected}
                 desired={this.props.currentUser.salary}
@@ -113,10 +113,7 @@ class Jobs extends React.Component {
               />
             </div>
 
-            <div
-              style={{ paddingLeft: "1%", width: "25%" }}
-              className="interviews-container"
-            >
+            <div className="jobs_column_container">
               <Interviews
                 interviews={this.state.sortedJobInfo.interview}
                 desired={this.props.currentUser.salary}
@@ -125,7 +122,7 @@ class Jobs extends React.Component {
               />
             </div>
 
-            <div style={{ paddingLeft: "1%", width: "25%" }}>
+            <div className="jobs_column_container">
               <Offers
                 offers={this.state.sortedJobInfo.offers}
                 desired={this.props.currentUser.salary}

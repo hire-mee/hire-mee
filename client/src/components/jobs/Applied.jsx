@@ -150,7 +150,7 @@ class Applied extends React.Component {
         <Grid
           item
           xs={12}
-          style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+          className="jobs_component_column_subcontainer"
         >
           <div className="applied-holder">
             <p className="applications_columns">Applied</p>
