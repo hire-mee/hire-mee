@@ -30,7 +30,7 @@ a:hover {
   grid-template-areas: "." "Dashboard" "Account";
   grid-area: Nav;
   background-color: #e8ecef;
-  height: auto;
+  height: 100vh;
 }
 
 .Dashboard {
@@ -91,9 +91,10 @@ a:hover {
 /* GRID CONTAINER */
 
 .category_title {
-  color: #535970;
-  font-weight: 300;
-  margin-left: 35px;
+    color: #007bff;
+    font-weight: 500;
+    font-size: 19px;
+    margin-left: 35px;
 }
 
 .category {
@@ -124,13 +125,15 @@ a:hover {
   text-decoration: none;
 }
 
-.sidebar_nav_link {
+.sidebar_nav_link{
   color: #6a6e7b;
   font-weight: 400;
 }
 
 .sidebar_nav_link:hover {
-  color: #007bff !important;
+  color: #007bff !important; 
+  font-weight: 400;
+  cursor: pointer;
 }
 
 /*
@@ -576,6 +579,7 @@ a:hover {
 */
 .stat_color {
   color: #34a853;
+  margin: 0 5px;
 }
 
 .module_component_container {

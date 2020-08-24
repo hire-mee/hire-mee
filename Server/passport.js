@@ -17,30 +17,31 @@ let verifyCallback = (email, pass, done) => {
           return done(err); 
       }
 
-      if (!user || user.rows.length < 1) {
-        return done(null, false);
+      if (!user || user.rows.length < 1) { // case where username doesn't exist
+        // console.log("this is user.rows", user.rows)
+        return done(null, false, { message: 'Incorrect username.' });
       } 
 
-      const isValid = validatePassword(pass, user.rows[0].pass, user.rows[0].salt); // verifies input attempt with hash in DB
 
-      if (isValid) {
-        return done(null, user); // success case based on validPassword
-      } else {
-        return done(null, false); // fail case based on validPassword
-      }
+
+      if (!validatePassword(pass, user.rows[0].pass, user.rows[0].salt) || pass.length < 1) {
+        // console.log("this is validatepassword", validatePassword(pass, user))
+        return done(null, false, { message: 'Incorrect password.'}); // success case based on validPassword
+      } 
+      return done(null, user.rows); // fail case based on validPassword
+      
     });
 }
 
 let strategy = new LocalStrategy(customFields, verifyCallback);
-
+// console.log("this is strategy vairbale: ", strategy)
 passport.use(strategy);
 
 
 
 passport.serializeUser((user, done) => { // serialization of sessions
-    console.log('SerializeUser function called.');
-    
-    done(null, user.rows[0].email)
+  console.log("Serialized user: " + user[0].email)
+    done(null, user[0].email)
 })
 
 passport.deserializeUser((email, callback) => {

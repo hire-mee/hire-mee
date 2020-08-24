@@ -136,10 +136,9 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <div className="userProfileContainer">
+        <div className="userProfileContainer" onClick={this.launchProfileModule}>
           <div className="userAvatar">
             <img
-              onClick={this.launchProfileModule}
               className="userAvatar"
               src="https://www.w3schools.com/howto/img_avatar.png"
             ></img>
@@ -149,7 +148,7 @@ class Profile extends React.Component {
         <div>
           <Modal show={this.state.profileModuleOpen} onHide={this.closeClickHandler}>
             <Modal.Header closeButton>
-              <Modal.Title>Update Name</Modal.Title>
+              <Modal.Title>Update User Info</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <br />

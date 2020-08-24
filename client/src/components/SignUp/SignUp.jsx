@@ -37,7 +37,7 @@ export default class SignUp extends Component {
 
   submitHandler(e) {
     let { first_name, last_name, email, pass } = this.state;
-    // e.preventDefault();
+    e.preventDefault();
     
     if (!email.includes("@")){
       window.alert("Please enter a valid email address");
@@ -46,17 +46,26 @@ export default class SignUp extends Component {
       window.alert("Passwords do not match");
       document.getElementById('signup_input_form').reset();
     } else {
-      axios.post('/api/signup', {first_name, last_name, email, pass})
+      axios.post('/api/signup/', {first_name, last_name, email, pass})
       .then(() => {
         this.setState({
-          redirect: true
+          redirect: true,
         })
       })
+    //   .catch(() => { TODO: FIX ERROR HANDLING FOR SIGNUP EMAILS THAT ALREADY EXIST IN DATABASE! Create another get request before post to confirm for clearance
+    //   this.setState({
+    //     redirect: true,
+    //   });
+    // })
     }
   }
 
   render() {
-    if (this.state.redirect) {
+     if (localStorage.length) {
+      return (
+        <Redirect to="/main/jobs"/>
+      )
+    } else if (this.state.redirect) {
       return (
         <Redirect to="/redirect"/>
       )
