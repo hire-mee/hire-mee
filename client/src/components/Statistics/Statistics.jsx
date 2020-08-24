@@ -57,7 +57,6 @@ export default class Statistics extends React.Component {
   }
 
   render() {
-
     if (!this.state.user_app_data.length) {
       return (
         <div id="emptyStatisticsMessage">

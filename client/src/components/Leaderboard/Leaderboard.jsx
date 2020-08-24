@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled, {keyframes} from "styled-components";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const fillBar = (width) => keyframes`
       0% {
@@ -28,21 +29,22 @@ export class Leaderboard extends Component {
     this.state = {
       userData: [],
       friends: [],
+      doneSorting: false
     };
     this.getUserData = this.getUserData.bind(this)
     this.getUserFriends = this.getUserFriends.bind(this)
   }
 
   componentDidMount() {
-    this.getUserData();
+    this.getUserData(); 
   }
 
-  getUserData(){
+  getUserData(){ // gets userData for total_applied applications
     axios.get(`/api/user/${localStorage.id}`)
     .then( (results) => {
       this.setState({
         userData: results.data[0]
-      }, () => this.getUserFriends())
+      }, () => this.getUserFriends()) // gets friends info
     })
     .catch(err => console.error(err))
   }
@@ -62,21 +64,26 @@ export class Leaderboard extends Component {
 
         this.setState({
           friends: sorted,
-        }, () => console.log("this is sorted friends array: ", this.state.friends));
+          doneSorting: true
+        });
       })
       .catch((err) => console.log(err));
   }
 
   render() {
-
-    if (this.state.friends.length < 2) {
+    if (!this.state.doneSorting) { // loading indication until friends are sorted
+      return (
+        <div style={{ textAlign: "center", paddingTop: "25%" }}>
+        <CircularProgress /> Loading...
+      </div>
+      )
+    } else if (this.state.friends.length < 2) { // warning message if there's no friends added
       return (
         <div className="module_component_container">
           <p className="no-leader">To view leaderboard, add friends first.</p>
         </div>
       );
     } else {
-
       let names = this.state.friends.slice(1).map((friend, i) => {
         return (
           <p className="participant-name" key={i}>
