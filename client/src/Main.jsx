@@ -231,10 +231,7 @@ class Main extends React.Component {
                         </Route>
 
                         <Route path={`${path}/leaderboard`}>
-                          <Leaderboard
-                            userData={this.state.currentUser}
-                          
-                          />
+                          <Leaderboard/>
                         </Route>
 
                         <Route path={`${path}/map`}>
