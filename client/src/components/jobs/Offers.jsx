@@ -27,6 +27,7 @@ class Offers extends React.Component {
     this.toggleNewApplicationModal = this.toggleNewApplicationModal.bind(this);
     this.formChecker = this.formChecker.bind(this);
     this.salaryChecker = this.salaryChecker.bind(this);
+    this.updateStreaks = this.updateStreaks.bind(this);
   }
 
   toggleNewApplicationModal() {
@@ -54,6 +55,27 @@ class Offers extends React.Component {
     });
   }
 
+  updateStreaks() {
+    let {
+      id,
+      applied_today,
+      applied_month,
+      total_applied,
+    } = this.props.currentUser;
+
+    axios
+      .put(`/api/users/${id}`, {
+        applied_today: (applied_today += 1),
+        applied_month: (applied_month += 1),
+        total_applied: (total_applied += 1),
+      })
+      .then(() => {
+        this.props.getApplications();
+        this.props.getUpdatedUserData(id);
+      })
+      .catch((err) => console.error(err));
+  }
+
   salaryChecker(newAppSal) {
     return new Promise((resolve, reject) => {
       if (Number.isNaN(newAppSal)) {
@@ -72,9 +94,7 @@ class Offers extends React.Component {
           submit_date: "",
           deadline: "",
           url_link: "",
-        });
-        this.props.getApplications();
-        alert("Added New Job Application");
+        },  () => this.toggleNewApplicationModal());
       }
     });
   }
@@ -115,7 +135,7 @@ class Offers extends React.Component {
     axios
       .post(`/api/applications/${id}`, newApp)
       .then((data) => {
-        this.props.getApplications();
+        this.updateStreaks();
       })
       .catch((err) => {
         console.error(err);

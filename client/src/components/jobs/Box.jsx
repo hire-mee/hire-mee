@@ -6,15 +6,15 @@ class Box extends React.Component {
     super(props);
 
     this.state = {
-      show: false,
+      modalOpen: false,
       render: false,
     };
-    this.openOrClosePopup = this.openOrClosePopup.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  openOrClosePopup() {
+  toggleModal() {
     this.setState({
-      show: !this.state.show,
+      modalOpen: !this.state.modalOpen,
     });
   }
 
@@ -22,15 +22,16 @@ class Box extends React.Component {
     return (
       <div
         className="applied-box-holder"
-       onClick={() => this.openOrClosePopup()}
+       onClick={() => this.toggleModal()}
       >
     <p className="company_name_text">{this.props.jobInfo.company_name}</p>
    <p className="position_title_text">{this.props.jobInfo.position_title}</p>
         <DetailedView
           jobInfo={this.props.jobInfo}
           desired={this.props.desired}
-          show={this.state.show}
+          modalOpen={this.state.modalOpen}
           getApplications={this.props.getApplications}
+          toggleModal={this.toggleModal}
         />
       </div>
     );

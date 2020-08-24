@@ -30,7 +30,7 @@ a:hover {
   grid-template-areas: "." "Dashboard" "Account";
   grid-area: Nav;
   background-color: #e8ecef;
-  height: 100vh;
+  height: auto;
 }
 
 .Dashboard {
@@ -389,6 +389,7 @@ a:hover {
   width: 65%;
   margin: 0 auto;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .applied-component-holder {
@@ -584,7 +585,7 @@ a:hover {
   color: rgb(56, 182, 255);
   text-decoration: none;
   line-height: 1.4;
-  font-size: 21.2201px;
+  font-size: 18px;
   text-transform: none;
   cursor: pointer;
 }
@@ -645,6 +646,7 @@ a:hover {
 .stat_pieInfo {
   font-size: 16px;
   font-weight: 300;
+  display: flex;
 }
 
 /*
