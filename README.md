@@ -21,10 +21,10 @@ View here: http://54.151.84.70:3000/
 
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
   
-- Full secure authentication process
+- Fully secure authentication process
 - Serialization of users
 - Encrypted and salted password with Passport.js
-- Google Authentication option (coming soon)
+- Google Authentication option
 
 <h3>Job Menu</h3>
 
