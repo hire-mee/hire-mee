@@ -131,6 +131,12 @@ a:hover {
   font-weight: 400;
 }
 
+.sidebar_nav_link:hover {
+  color: #007bff !important; 
+  font-weight: 400;
+  cursor:"pointer"
+}
+
 /*
 ====================================================================
 =======================JOB STATUSES=================================
@@ -574,6 +580,7 @@ a:hover {
 */
 .stat_color {
   color: #34a853;
+  margin: 0 5px;
 }
 
 .module_component_container {

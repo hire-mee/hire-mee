@@ -14,11 +14,7 @@ router
 
 router
     .route('/login')
-    .post(passport.authenticate('local', { failureRedirect: '/login', successRedirect: '/main' })) // not functional, redirect is currently done through react
-
-router
-    .route('/logout')
-    .delete(controller.logout)
+    .post(passport.authenticate('local', { failureRedirect: '/login-failure', successRedirect: '/main' })) // not functional, redirect is currently done through react
 
 router
     .route('/email/:email') // get data from a user by EMAIL (used in Login.jsx)

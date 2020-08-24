@@ -25,30 +25,30 @@ export default class Login extends Component {
 
   handleLogin(e){
     e.preventDefault();
-    axios.post('/api/login', {
-      email: this.state.email,
-      pass: this.state.pass
-    })
-      .then(() => {
-          axios.get(`/api/email/${this.state.email}`)
-            .then(userData => {
-              this.setState({
-                userData: userData.data[0],
-                loginSuccess: true
-              }, ()=> {
-                localStorage.setItem("email", this.state.userData.email); // stores browser local storage with user information to be passed down to other components
-                localStorage.setItem("id", this.state.userData.id);
-              })
-            })
-            .catch(() =>{
-              window.alert("Error with login, please check your email & password");
-              document.getElementById("login_input_form").reset();
-            })
-        })
-      .catch(() => {
-        window.alert("Error with login, please check your email & password");
-        document.getElementById("login_input_form").reset();
+      axios.post('/api/login', {
+        email: this.state.email,
+        pass: this.state.pass
       })
+        .then(() => {
+            axios.get(`/api/email/${this.state.email}`)
+              .then(userData => {
+                this.setState({
+                  userData: userData.data[0],
+                  loginSuccess: true
+                }, ()=> {
+                  localStorage.setItem("email", this.state.userData.email); // stores browser local storage with user information to be passed down to other components
+                  localStorage.setItem("id", this.state.userData.id);
+                })
+              })
+              .catch(() =>{
+                window.alert("Error with login, please check your email & password");
+                document.getElementById("login_input_form").reset();
+              })
+          })
+        .catch(() => {
+          window.alert("Error with login, please check your email & password");
+          document.getElementById("login_input_form").reset();
+        })
   }
 
   inputChangeHandler(e) {
