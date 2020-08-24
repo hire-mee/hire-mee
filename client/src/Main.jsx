@@ -177,7 +177,7 @@ class Main extends React.Component {
                     onClick={this.handleModal}
                   >
                     <BoxArrowRight color="white" />{" "}
-                    <a className="sidebar_nav_link" onClick={this.handleModal}>
+                    <a className="sidebar_nav_link" onClick={this.handleModal} style={{color:"#6a6e7b"}}>
                       Logout
                     </a>
                   </div>

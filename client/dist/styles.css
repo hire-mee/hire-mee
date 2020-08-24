@@ -126,7 +126,7 @@ a:hover {
   text-decoration: none;
 }
 
-.sidebar_nav_link {
+.sidebar_nav_link{
   color: #6a6e7b;
   font-weight: 400;
 }
@@ -134,7 +134,7 @@ a:hover {
 .sidebar_nav_link:hover {
   color: #007bff !important; 
   font-weight: 400;
-  cursor:"pointer"
+  cursor: pointer;
 }
 
 /*
