@@ -52,11 +52,10 @@ export default class SignUp extends Component {
           redirect: true,
         })
       })
-    //   .catch(() => { TODO: FIX ERROR HANDLING FOR SIGNUP EMAILS THAT ALREADY EXIST IN DATABASE! Create another get request before post to confirm for clearance
-    //   this.setState({
-    //     redirect: true,
-    //   });
-    // })
+      .catch(() => { // TODO: FIX ERROR HANDLING FOR SIGNUP EMAILS THAT ALREADY EXIST IN DATABASE! Create another get request before post to confirm for clearance
+        window.alert("Invalid email, please try another email") // current fix: pop up alret and reset form
+        document.getElementById('signup_input_form').reset(); 
+    })
     }
   }
 

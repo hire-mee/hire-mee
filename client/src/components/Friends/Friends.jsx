@@ -38,7 +38,7 @@ export class Friends extends Component {
         friends: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
   }
 
   submitHandler(e) {

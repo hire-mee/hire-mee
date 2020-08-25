@@ -127,7 +127,7 @@ import {
               </div>
 
               <div className="demo_rightside_feature_static_image_container">
-                <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/stats-view.png"></img>
+                <img className="demo_rightside_feature_image" src="https://hire-mee-assets.s3-us-west-1.amazonaws.com/demo-stats-view"></img>
               </div>
 
               </div>

@@ -57,7 +57,7 @@ export class MapView extends Component {
               homeCoords: coord,
             });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.error(err));
       });
   }
 
@@ -93,7 +93,7 @@ export class MapView extends Component {
             geoCodes: [...this.state.geoCodes, coord],
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     });
   }
 
@@ -101,9 +101,7 @@ export class MapView extends Component {
     this.setState(
       {
         homeAddress: e.target.value,
-      },
-      () => console.log(this.state.homeAddress)
-    );
+      });
   }
 
   submitHandler(e) {

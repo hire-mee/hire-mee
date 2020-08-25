@@ -37,16 +37,17 @@ class Settings extends React.Component {
     })
   }
 
-  deleteAcc() {
-    axios
-    .delete(`/api/email/${localStorage.email}`)
-    .then(() => {
-      localStorage.removeItem("email");
-      localStorage.removeItem("id");
-      this.toggleModal();
-      this.redirectBackToSignup();
-    })
-    .catch(err => console.error(err));
+  deleteAcc() { // Main code disabled since Deserialization isn't working after an email has been deleted from DB
+    // axios 
+    // .delete(`/api/email/${localStorage.email}`)
+    // .then(() => {
+    //   localStorage.removeItem("email");
+    //   localStorage.removeItem("id");
+    //   this.toggleModal();
+    //   this.redirectBackToSignup();
+    // })
+    // .catch(err => console.error(err));
+    alert("Delete functionality coming soon")
   }
 
   resetJobs(id) {

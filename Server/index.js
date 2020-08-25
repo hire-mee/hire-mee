@@ -7,11 +7,7 @@ const cors = require('cors');
 const path = require('path');
 const router = require('./router.js')
 const app = express();
-const oldPort = 3000;
 const PORT = process.env.PORT || 3000;
-
-//process.env.PORT
-//process.env.NODE_ENV => production or undefined
 
 require('dotenv').config(); // allows the use of secret keys in rootdirectory/.env file
 
@@ -34,8 +30,6 @@ app.use('/main/map', express.static(path.join(__dirname, '../client/dist')));
 app.use('/main/settings', express.static(path.join(__dirname, '../client/dist')));
 
 
-
-// const db = require('../database/index.js'); // database connection
 
 
 app.use(
@@ -68,10 +62,19 @@ app.use((req, res, next) => { // TODO: create custom err handling page
   })
 })
 
-app.listen(PORT, () => console.log(`app listening at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Hiremee now live at http://54.151.84.70:${PORT}`));
 
-if (process.env.NODE_ENV === "production") {
-  //server static content
+if (process.env.NODE_ENV === "production") {   //server static content
   //npm run build
-  app.use(express.static(path.join(__dirname, '../client/dist/build')))
+  app.use('/', express.static(path.join(__dirname, '../client/dist/build')))
+  app.use('/signup', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/redirect', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/login', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main/jobs', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main/statistics', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main/friends', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main/leaderboard', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main/map', express.static(path.join(__dirname, '../client/dist/build')));
+  app.use('/main/settings', express.static(path.join(__dirname, '../client/dist/build')));
 }

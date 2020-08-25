@@ -46,7 +46,7 @@ module.exports = {
     const queryStr = `INSERT INTO user_info(email, first_name, last_name, salt, pass) VALUES ('${email}', '${first_name}', '${last_name}', '${salt}','${saltedPass}');`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        console.log("this is err", err)
+        console.log("Error when posting with signUpPostInfo", err)
         callback(err);
       } else {
         // callback(null, results.rows);

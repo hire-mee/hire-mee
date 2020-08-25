@@ -4,7 +4,7 @@ import { Button, Modal } from 'react-bootstrap';
 function Logout(props){
       return (
         <div>
-          <Modal show={props.showLogoutModal} onHide={() => console.log('Hide')}>
+          <Modal show={props.showLogoutModal} onHide={props.handleModal}>
             <Modal.Body>
               <br/>
               Hello {props.user.first_name}, are you sure you want to log out?
