@@ -24,25 +24,30 @@ a:hover {
 
 .Nav {
   display: grid;
-  width: 190px;
+  width: 200px;
   grid-template-columns: 1fr;
   grid-template-rows: 0.3fr 1fr 1.5fr;
-  grid-template-areas: "." "Dashboard" "Account";
+  grid-template-areas:
+      "."
+      "Dashboard"
+      "Account";
   grid-area: Nav;
   background-color: #e8ecef;
-  height: 100vh;
+  height: 1000px;
 }
 
 .Dashboard {
   grid-area: Dashboard;
   font-size: 16px;
   height: 200px;
-  width: 100%;
-  margin: auto;
+  position: absolute;
+  top: 120px;
 }
 
 .Account {
   grid-area: Account;
+  position: absolute;
+  top: 350px
 }
 
 .Main_Display_with_header_container {
@@ -85,28 +90,44 @@ a:hover {
 }
 
 .jobs-component {
-  padding: 50px;
+  padding: 25px 50px;
+}
+
+.jobs_applied_column_container {
+  width: 24%;
+}
+
+.jobs_column_container {
+  margin-left: 1%;
+  width: 24%
+}
+
+.jobs_component_column_subcontainer {
+  background-color: rgb(232, 236, 239);
+  height: 100%;
+  border-radius: 5px;
+}
+
+.jobs_component_column_subcontainer:hover {
+  background-color: rgb(211 221 228 / 1);
 }
 
 /* GRID CONTAINER */
 
 .category_title {
-    color: #007bff;
+    color: #4d97e6;
     font-weight: 500;
     font-size: 19px;
-    margin-left: 35px;
+    margin-left: 34px;
 }
 
 .category {
   color: #535970;
   font-weight: 300;
-  margin-left: 37px;
+  margin-left: 33px;
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-.category:hover {
-  border-right: 3px solid rgb(56, 182, 255);
+  width: 156px;
 }
 
 .company_name {
@@ -128,6 +149,10 @@ a:hover {
 .sidebar_nav_link{
   color: #6a6e7b;
   font-weight: 400;
+}
+
+.sidebar_nav_link:hover{
+  border-bottom: 2px solid #007bff;
 }
 
 .sidebar_nav_link:hover {
@@ -371,10 +396,10 @@ a:hover {
   width: 65%;
   margin: 0 auto;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .applied-component-holder {
-  background-color: rgb(232, 236, 239);
   height: 100%;
   margin-bottom: 40px;
 }
@@ -567,7 +592,7 @@ a:hover {
   color: rgb(56, 182, 255);
   text-decoration: none;
   line-height: 1.4;
-  font-size: 21.2201px;
+  font-size: 18px;
   text-transform: none;
   cursor: pointer;
 }
@@ -628,6 +653,7 @@ a:hover {
 .stat_pieInfo {
   font-size: 16px;
   font-weight: 300;
+  display: flex;
 }
 
 /*

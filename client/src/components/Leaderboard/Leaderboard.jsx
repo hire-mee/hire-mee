@@ -67,7 +67,7 @@ export class Leaderboard extends Component {
           doneSorting: true
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }
 
   render() {

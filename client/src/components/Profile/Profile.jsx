@@ -6,6 +6,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userData: [],
       first_name: '',
       last: '',
       salary: '',
@@ -13,6 +14,7 @@ class Profile extends React.Component {
       profileModuleOpen: false,
       incomplete: null,
     };
+    this.getUserData =  this.getUserData.bind(this)
     this.profileChangeSubmit = this.profileChangeSubmit.bind(this);
     this.launchProfileModule = this.launchProfileModule.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -27,8 +29,18 @@ class Profile extends React.Component {
     });
   }
 
+  getUserData(){
+    axios.get(`/api/user/${localStorage.id}`)
+    .then(res => {
+      this.setState({
+        userData: res.data[0]
+      })
+    })
+    .catch(err => console.error(err))
+  }
+
   componentDidMount(){
-   
+   this.getUserData()
   }
 
   onChangeHandler(e) {
@@ -71,12 +83,14 @@ class Profile extends React.Component {
 
 
   profileChangeSubmit() {
-    if (this.state.first_name && this.state.last_name && this.state.salary) {
+    let { first_name, last_name, salary} = this.state.userData
+
+    if (first_name && last_name && salary) {
       axios
       .put(`/api/user/profileUpdate/${localStorage.id}`, {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        salary: this.state.salary
+        first_name: first_name,
+        last_name: last_name,
+        salary: salary
       })
       .then(() => {
         this.setState({
@@ -92,11 +106,11 @@ class Profile extends React.Component {
       .catch((err) => {
         console.error(err);
       });
-    } else if (this.state.first_name && this.state.last_name) {
+    } else if (first_name && last_name) {
         axios
         .put(`/api/user/${localStorage.id}`, {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name
+          first_name: first_name,
+          last_name: last_name
         })
         .then(() => {
           this.setState({
@@ -111,10 +125,10 @@ class Profile extends React.Component {
         .catch((err) => {
           console.error(err);
         });
-    } else if ((!this.state.first_name && !this.state.last_name) && this.state.salary){
+    } else if ((!first_name && !last_name) && salary){
         axios
         .put(`/api/user/salary/${localStorage.id}`, {
-          salary: this.state.salary
+          salary: salary
         })
         .then(() => {
           this.setState({
@@ -143,7 +157,7 @@ class Profile extends React.Component {
               src="https://www.w3schools.com/howto/img_avatar.png"
             ></img>
           </div>
-          <div className="userProfileData">{this.props.userData.first_name}</div>
+          <div className="userProfileData">{this.state.userData.first_name}</div>
         </div>
         <div>
           <Modal show={this.state.profileModuleOpen} onHide={this.closeClickHandler}>

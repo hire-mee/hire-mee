@@ -57,7 +57,7 @@ let moneyTemp = (desiredSalary, jobSalary) => {
   }
 };
 
-let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
+let DetailedView = ({ jobInfo, desired, modalOpen, getApplications, toggleModal}) => {
   let updateApplicationStatus = (status) => {
     axios
       .put(`/api/update/${jobInfo.id}`, {
@@ -87,7 +87,6 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
       axios
         .delete(`/api/applications/${jobInfo.id}`)
         .then((res) => {
-          window.alert("Application Deleted");
           getApplications();
         })
         .catch((err) => {
@@ -217,8 +216,8 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
   return (
     <div>
       <Modal
-        show={show}
-        onHide={() => {}}
+        show={modalOpen}
+        onHide={() => {toggleModal()}}
         dialogClassName="detailed-view"
         aria-labelledby="modal-styling-title"
         style={{ height: "100%" }}
@@ -308,10 +307,9 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
                   <a
                     className="detailedView_link"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    href={`${jobInfo.url_link}`}
+                    href={ jobInfo.url_link.includes('http') ? jobInfo.url_link : `http://${jobInfo.url_link}`}
                   >
-                    Click Me To Go To Job posting
+                    Click to redirect to job posting
                   </a>
                 </div>
               </div>

@@ -9,14 +9,11 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --env.ENVIRONMENT=development --w --mode development",
-    "build-prod": "webpack --env.ENVIRONMENT=development --mode production",
+    "build": "webpack --env.NODE_ENV=development --w --mode development",
+    "start-prod": "node ./Server/index.js",
+    "build-prod": "webpack --env.NODE_ENV=production --mode production",
     "create-schema": "psql -U postgres -d hiremee < schema.sql",
-    "start-database": "psql -U postgres",
-    "docker-build": "npm run build-prod && docker build . -t hiremee",
-    "docker-run": "docker run -p 3000:3000 hiremee",
-    "jobs": "git add client/src/components/jobs/.",
-    "heroku-postbuild": "cd client && npm install && npm build"
+    "start-database": "psql -U postgres"
   },
   "repository": {
     "type": "git",

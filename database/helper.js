@@ -46,7 +46,7 @@ module.exports = {
     const queryStr = `INSERT INTO user_info(email, first_name, last_name, salt, pass) VALUES ('${email}', '${first_name}', '${last_name}', '${salt}','${saltedPass}');`;
     db.query(queryStr, (err, results) => {
       if (err) {
-        console.log("this is err", err)
+        console.log("Error when posting with signUpPostInfo", err)
         callback(err);
       } else {
         // callback(null, results.rows);
@@ -101,7 +101,8 @@ module.exports = {
   },
   deleteUserByEmail(input, callback) {
     let { email } = input
-    const queryStr = `WITH tmp AS (SELECT email FROM friends WHERE email='${email}'), upd AS (UPDATE friends SET email = NULL WHERE email='${email}') DELETE FROM user_info WHERE email IN (SELECT email FROM tmp);`; // deletes user based on email and setting all emails in friends table to null
+    // const queryStr = `WITH tmp AS (SELECT email FROM friends WHERE email='${email}'), upd AS (UPDATE friends SET email = NULL WHERE email='${email}') DELETE FROM user_info WHERE email IN (SELECT email FROM tmp);`; // deletes user based on email and setting all emails in friends table to null
+    let queryStr = `DELETE from user_info where email='${email}';`
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);

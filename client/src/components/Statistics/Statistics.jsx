@@ -76,10 +76,10 @@ export default class Statistics extends React.Component {
       return (
         <div className="module_component_container">
           <div className='stat_header'>Current Application Statistics:</div>
-          <div className='stat_info'>You applied to <span className='stat_color'>{this.state.user_data.applied_today}</span> jobs on a daily average.</div>
-          <div className='stat_info'>You applied to <span className='stat_color'>{Math.floor(this.state.user_data.applied_month / 4)}</span> jobs on a weekly average.</div>
-          <div className='stat_info'>You applied to <span className='stat_color'>{this.state.user_data.applied_month}</span> jobs this month.</div>
-          <div className='stat_info'>You applied to <span className='stat_color'>{this.state.user_data.total_applied}</span> jobs in total.</div>
+          <div className='stat_info'>You applied to <div className='stat_color'>{this.state.user_data.applied_today}</div> jobs on a daily average.</div>
+          <div className='stat_info'>You applied to <div className='stat_color'>{Math.floor(this.state.user_data.applied_month / 4)}</div> jobs on a weekly average.</div>
+          <div className='stat_info'>You applied to <div className='stat_color'>{this.state.user_data.applied_month}</div> jobs this month.</div>
+          <div className='stat_info'>You applied to <div className='stat_color'>{this.state.user_data.total_applied}</div> jobs in total.</div>
           <div id="chart">
   
           </div>
@@ -117,7 +117,7 @@ export default class Statistics extends React.Component {
                 }
               }}
             />
-            <p className='stat_pieInfo'>Status on <span className='stat_color'>{this.state.total_applied}</span> applications.</p>
+            <div className='stat_pieInfo'>Status on <div className='stat_color'>{this.state.total_applied}</div> applications.</div>
           </div>
         </div>
       )

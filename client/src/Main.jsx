@@ -98,7 +98,6 @@ class Main extends React.Component {
   handleLogout(){
     localStorage.removeItem("email");
     localStorage.removeItem("id");
-    console.log(localStorage)
     this.setState({logoutToggled: true})
   }
 

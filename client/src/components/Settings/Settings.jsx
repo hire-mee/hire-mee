@@ -37,14 +37,17 @@ class Settings extends React.Component {
     })
   }
 
-  deleteAcc() {
-    axios
-    .delete(`/api/email/${this.props.localStorage.email}`)
-    .then(() => {
-      this.toggleModal();
-      this.redirectBackToSignup();
-    })
-    .catch(err => console.error(err));
+  deleteAcc() { // Main code disabled since Deserialization isn't working after an email has been deleted from DB
+    // axios 
+    // .delete(`/api/email/${localStorage.email}`)
+    // .then(() => {
+    //   localStorage.removeItem("email");
+    //   localStorage.removeItem("id");
+    //   this.toggleModal();
+    //   this.redirectBackToSignup();
+    // })
+    // .catch(err => console.error(err));
+    alert("Delete functionality coming soon")
   }
 
   resetJobs(id) {
@@ -61,35 +64,33 @@ class Settings extends React.Component {
 
   render() {
     if (this.state.successfulDelete) {
-      return( <Redirect to={{
-        pathname: "/signup"
-      }}/> )
+      return( <Redirect to="/signup"/> )
     } else {
       return (
         <div className="module_component_container">
           <div className='stat_header'>Account Settings:</div>
           <div className='stat_info'>Reset number of applied jobs this month
             <span className='setting_reset'><Button onClick={this.changeReset}>Reset</Button></span>
-            <Modal show={this.state.showReset} onHide={() => console.log('Hide')}>
+            <Modal show={this.state.showReset} onHide={() => this.changeReset()}>
               <Modal.Body>
                 Are you sure you want to reset the number of applied jobs this month?
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.changeReset} >Close</Button>
-                <Button onClick={() => { this.changeReset(); this.resetJobs(this.props.localStorage.id); }}> Reset</Button>
+                <Button onClick={() => { this.changeReset(); this.resetJobs(localStorage.id); }}> Reset</Button>
               </Modal.Footer>
             </Modal>
           </div>
           <div className='stat_info'>
             <div style={{marginRight:"auto"}}>Delete account</div>
           <span className='setting_delete'><Button onClick={this.toggleModal} style={{ marginLeft:"15px", backgroundColor:"#dc3545", border:"none"}}>Delete</Button></span>
-          <Modal show={this.state.showDelete} onHide={() => {}}>
+          <Modal show={this.state.showDelete} onHide={() => this.toggleModal()}>
               <Modal.Body>
                 Are you sure really sure you want to delete your account? There is no going back from here.
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.toggleModal} >Close</Button>
-                <Button onClick={() => {this.deleteAcc(this.props.localStorage.id)}} style={{ backgroundColor:"#dc3545", border:"none"}}>DELETE</Button>
+                <Button onClick={this.deleteAcc} style={{ backgroundColor:"#dc3545", border:"none"}}>DELETE</Button>
               </Modal.Footer>
             </Modal>
           </div>

@@ -2,8 +2,6 @@ const helper = require('../database/helper.js');
 
 module.exports = {
   loginSuccess: (req, res) => {
-    // res.status(200).redirect('/localhost:3000/main');
-    console.log("login sucessful")
     res.status(200).redirect('/');
   },
   loginFailure: (req, res) => {
