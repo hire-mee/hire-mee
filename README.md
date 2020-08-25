@@ -22,7 +22,7 @@ View here: http://54.151.84.70:3000/
 <p align="center"><img src="https://i.imgur.com/qMvIrFw.gif"/><p>
   
 - Fully secure authentication process
-- Serialization of users profiles
+- Serialization of users
 - Encrypted and salted password with Passport.js
 - Google Authentication option
 
