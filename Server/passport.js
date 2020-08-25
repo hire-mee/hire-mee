@@ -47,12 +47,12 @@ passport.serializeUser((user, done) => { // serialization of sessions
 passport.deserializeUser((email, callback) => {
   if (email) {
       connection.query(`SELECT id, email FROM user_info where email='${email}';`, (err, results) => {
-        if(err) {
+        if(results.rows.length < 1) {
           console.log('Error when selecting user on session deserialize', err)
-          return callback(err)
+          return callback("No email was found in database")
         }
-    
-        callback(null, results.rows[0])
+          // console.log("this is results", results.rows)
+        callback(null, results.rows[0].email)
       })
     } else {
         callback("Could not deserialize user with email of " + email, null)

@@ -51,12 +51,23 @@ app.use(
   })
 )
 
+
+
+
 require('./passport.js'); // require 'passport.use(strategy) from passport.js
 app.use(passport.initialize()) // calls passport initialization
 app.use(passport.session()) // calls passport session
 
 
 app.use('/api', router);
+
+app.use((req, res, next) => { // TODO: create custom err handling page
+  res.status(404).send({
+  status: 404,
+  error: 'Not found'
+  })
+})
+
 app.listen(PORT, () => console.log(`app listening at http://localhost:${PORT}`));
 
 if (process.env.NODE_ENV === "production") {
