@@ -13,11 +13,6 @@ const proConfig = {
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
-// const pool = new Pool({
-//   user: 'postgres',
-//   port: 5432,
-//   database: "hiremee"
-// })
 
 pool.connect()
   .then(console.log('Connectd to psql database'))

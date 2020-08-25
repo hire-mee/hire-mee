@@ -8,9 +8,9 @@
     "npm": "6.13.4"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
-    "build": "webpack --env.NODE_ENV=development --w --mode development",
+    "start": "nodemon ./Server/index.js",
     "start-prod": "node ./Server/index.js",
+    "build": "webpack --env.NODE_ENV=development --w --mode development",
     "build-prod": "webpack --env.NODE_ENV=production --mode production",
     "create-schema": "psql -U postgres -d hiremee < schema.sql",
     "start-database": "psql -U postgres"

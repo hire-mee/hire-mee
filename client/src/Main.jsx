@@ -193,7 +193,7 @@ class Main extends React.Component {
                     <Profile
                       userData={this.state.currentUser}
                     
-                      getUpdatedData={this.getUpdatedUserData}
+                      getUpdatedUserData={this.getUpdatedUserData}
                     />
                   </div>
                 </div>

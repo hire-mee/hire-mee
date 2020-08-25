@@ -64,8 +64,7 @@ app.use((req, res, next) => { // TODO: create custom err handling page
 
 app.listen(PORT, () => console.log(`Hiremee now live at http://54.151.84.70:${PORT}`));
 
-if (process.env.NODE_ENV === "production") {   //server static content
-  //npm run build
+if (process.env.NODE_ENV === "production") {   //server static content, npm run build-prod
   app.use('/', express.static(path.join(__dirname, '../client/dist/build')))
   app.use('/signup', express.static(path.join(__dirname, '../client/dist/build')));
   app.use('/redirect', express.static(path.join(__dirname, '../client/dist/build')));
