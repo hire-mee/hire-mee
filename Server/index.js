@@ -46,8 +46,6 @@ app.use(
 )
 
 
-
-
 require('./passport.js'); // require 'passport.use(strategy) from passport.js
 app.use(passport.initialize()) // calls passport initialization
 app.use(passport.session()) // calls passport session
@@ -62,7 +60,7 @@ app.use((req, res, next) => { // TODO: create custom err handling page
   })
 })
 
-app.listen(PORT, () => console.log(`Hiremee now live at http://54.151.84.70:${PORT}`));
+app.listen(PORT, () => console.log(`Hiremee now live at port: ${PORT}`));
 
 if (process.env.NODE_ENV === "production") {   //server static content, npm run build-prod
   app.use('/', express.static(path.join(__dirname, '../client/dist/build')))
