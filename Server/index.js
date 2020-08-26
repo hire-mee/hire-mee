@@ -46,8 +46,6 @@ app.use(
 )
 
 
-
-
 require('./passport.js'); // require 'passport.use(strategy) from passport.js
 app.use(passport.initialize()) // calls passport initialization
 app.use(passport.session()) // calls passport session
@@ -55,17 +53,21 @@ app.use(passport.session()) // calls passport session
 
 app.use('/api', router);
 
-app.use((req, res, next) => { // TODO: create custom err handling page
-  res.status(404).send({
-  status: 404,
-  error: 'Not found'
-  })
+app.use((req, res, next) => {
+  let html = `
+  <div style="margin:50px auto; font-family: Verdana; color:#3e4080; text-align:center;">
+            <div style="font-size:8em; font-weight: 400; background:-webkit-linear-gradient(#3e4080, #d85893); -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">404</div>
+            <div style="font-weight: 400;" >Uh oh, seems like we don't have this page yet. Try going</div>
+            <div style="font-weight: 400;" >back to the previous page or contact the dev team to </div>
+            <div style="font-weight: 400;" >(maybe) turn this page into reality :)</div>
+    </div>
+    `;
+  res.status(404).send(html)
 })
 
-app.listen(PORT, () => console.log(`Hiremee now live at http://54.151.84.70:${PORT}`));
+app.listen(PORT, () => console.log(`Hiremee now live at port: ${PORT}`));
 
-if (process.env.NODE_ENV === "production") {   //server static content
-  //npm run build
+if (process.env.NODE_ENV === "production") {   //server static content, npm run build-prod
   app.use('/', express.static(path.join(__dirname, '../client/dist/build')))
   app.use('/signup', express.static(path.join(__dirname, '../client/dist/build')));
   app.use('/redirect', express.static(path.join(__dirname, '../client/dist/build')));

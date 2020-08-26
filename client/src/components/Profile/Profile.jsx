@@ -8,7 +8,7 @@ class Profile extends React.Component {
     this.state = {
       userData: [],
       first_name: '',
-      last: '',
+      last_name: '',
       salary: '',
       updateSuccess: false,
       profileModuleOpen: false,
@@ -34,7 +34,7 @@ class Profile extends React.Component {
     .then(res => {
       this.setState({
         userData: res.data[0]
-      })
+      }, () => this.props.getUpdatedUserData(localStorage.id)) // method that updates Main.jsx to work with jobs component to immediate reflect changes
     })
     .catch(err => console.error(err))
   }
@@ -83,7 +83,7 @@ class Profile extends React.Component {
 
 
   profileChangeSubmit() {
-    let { first_name, last_name, salary} = this.state.userData
+    let { first_name, last_name, salary} = this.state
 
     if (first_name && last_name && salary) {
       axios
@@ -100,7 +100,7 @@ class Profile extends React.Component {
           document.getElementById("first_nameInputBar").value = '';
           document.getElementById("last_nameInputBar").value = '';
           document.getElementById("desiredSalaryInputBar").value = '';
-          this.props.getUpdatedData(localStorage.id);
+          this.getUserData();
         })
       })
       .catch((err) => {
@@ -119,7 +119,7 @@ class Profile extends React.Component {
           }, ()=> {
             document.getElementById("first_nameInputBar").value = '';
             document.getElementById("last_nameInputBar").value = '';
-            this.props.getUpdatedData(localStorage.id);
+            this.getUserData();
           })
         })
         .catch((err) => {
@@ -136,7 +136,7 @@ class Profile extends React.Component {
             incomplete: null
           }, ()=> {
             document.getElementById("desiredSalaryInputBar").value = '';
-            this.props.getUpdatedData(localStorage.id);
+            this.getUserData();
           })
         })
         .catch((err) => {
