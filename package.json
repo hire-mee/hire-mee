@@ -13,6 +13,7 @@
     "build": "webpack --env.NODE_ENV=development --w --mode development",
     "build-prod": "webpack --env.NODE_ENV=production --mode production",
     "create-schema": "psql -U postgres -d hiremee < schema.sql",
+    "pm2-start": "./node_modules/.bin/pm2 start npm --no-automation --name hiremee -- run start-prod",
     "start-database": "psql -U postgres"
   },
   "repository": {
@@ -49,6 +50,7 @@
     "passport": "0.4.1",
     "passport-local": "1.0.0",
     "pg": "^8.2.1",
+    "pm2": "4.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
