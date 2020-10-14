@@ -7,7 +7,6 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
-// import MAP_API_KEY from "../../../../maps-api-key";
 import WrappedMap from "./WrappedMap.jsx";
 import Button from "@material-ui/core/Button";
 
@@ -105,7 +104,6 @@ export class MapView extends Component {
   }
 
   submitHandler(e) {
-    // let { homeAddress } = this.state;
     e.preventDefault();
     axios
       .post(`/api/user/${localStorage.id}`, {
@@ -217,41 +215,3 @@ export class MapView extends Component {
 }
 
 export default MapView;
-
-// function Map() {
-//   const [selectedJob, setSelectedJob] = useState(null);
-
-//   return (
-// <GoogleMap
-//   defaultZoom={10}
-//   defaultCenter={{ lat: 33.97575, lng: -118.39114 }}
-// >
-//   {/* {console.log(props, "berttttplswork")} */}
-
-//   <Marker
-//     key="testing"
-//     position={{ lat: 33.97575, lng: -118.39114 }}
-//     onClick={() => {
-//       setSelectedJob(true);
-//     }}
-//     icon={{
-//       url: "career.svg",
-//       scaledSize: new window.google.maps.Size(40, 40),
-//     }}
-//   />
-
-//   {selectedJob && (
-//     <InfoWindow
-//       position={{ lat: 33.97575, lng: -118.39114 }}
-//       onCloseClick={() => {
-//         setSelectedJob(null);
-//       }}
-//     >
-//       <div>park details</div>
-//     </InfoWindow>
-//   )}
-// </GoogleMap>
-//   );
-// }
-
-// const WrappedMap = withScriptjs(withGoogleMap(Map));
