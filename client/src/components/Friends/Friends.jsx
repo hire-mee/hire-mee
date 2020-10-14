@@ -3,9 +3,6 @@ import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import axios from "axios";
 
-// import Grid from "@material-ui/core/Grid";
-// import Card from "@material-ui/core/Card";
-
 export class Friends extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +51,6 @@ export class Friends extends Component {
         inputBar.style.border = "2px solid #c13737"
         inputBar.value = ""
         inputBar.placeholder = "Invalid email, please try again"
-        // console.error(err)
       });
     } else {
       inputBar.style.border = "2px solid #c13737"
