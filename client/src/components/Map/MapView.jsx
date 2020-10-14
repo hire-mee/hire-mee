@@ -24,7 +24,7 @@ export class MapView extends Component {
   }
   componentDidMount() {
     axios
-      .get(`/api/applications/${this.props.userData.id}`)
+      .get(`/api/applications/${localStorage.id}`)
       .then((data) => {
         this.setState({
           jobData: data.data,
@@ -33,7 +33,7 @@ export class MapView extends Component {
       })
       .catch((err) => console.error("Error Getting Applications data", err));
     axios
-      .get(`/api/user/${this.props.userData.id}`)
+      .get(`/api/user/${localStorage.id}`)
       .then((data) => {
         return data.data;
       })
@@ -56,7 +56,7 @@ export class MapView extends Component {
               homeCoords: coord,
             });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.error(err));
       });
   }
 
@@ -92,7 +92,7 @@ export class MapView extends Component {
             geoCodes: [...this.state.geoCodes, coord],
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     });
   }
 
@@ -100,16 +100,13 @@ export class MapView extends Component {
     this.setState(
       {
         homeAddress: e.target.value,
-      },
-      () => console.log(this.state.homeAddress)
-    );
+      });
   }
 
   submitHandler(e) {
-    // let { homeAddress } = this.state;
     e.preventDefault();
     axios
-      .post(`/api/user/${this.props.userData.id}`, {
+      .post(`/api/user/${localStorage.id}`, {
         homeAddress: this.state.homeAddress,
       })
       .then((res) => {
@@ -218,41 +215,3 @@ export class MapView extends Component {
 }
 
 export default MapView;
-
-// function Map() {
-//   const [selectedJob, setSelectedJob] = useState(null);
-
-//   return (
-// <GoogleMap
-//   defaultZoom={10}
-//   defaultCenter={{ lat: 33.97575, lng: -118.39114 }}
-// >
-//   {/* {console.log(props, "berttttplswork")} */}
-
-//   <Marker
-//     key="testing"
-//     position={{ lat: 33.97575, lng: -118.39114 }}
-//     onClick={() => {
-//       setSelectedJob(true);
-//     }}
-//     icon={{
-//       url: "career.svg",
-//       scaledSize: new window.google.maps.Size(40, 40),
-//     }}
-//   />
-
-//   {selectedJob && (
-//     <InfoWindow
-//       position={{ lat: 33.97575, lng: -118.39114 }}
-//       onCloseClick={() => {
-//         setSelectedJob(null);
-//       }}
-//     >
-//       <div>park details</div>
-//     </InfoWindow>
-//   )}
-// </GoogleMap>
-//   );
-// }
-
-// const WrappedMap = withScriptjs(withGoogleMap(Map));

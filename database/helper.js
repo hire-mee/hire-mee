@@ -41,14 +41,16 @@ module.exports = {
 
     const saltHash = genPassword(pass);
     const salt = saltHash.salt;
-    pass = saltHash.hash;
+    let saltedPass = saltHash.hash;
 
-    const queryStr = `INSERT INTO user_info(email, first_name, last_name, salt, pass) VALUES ('${email}', '${first_name}', '${last_name}', '${salt}','${pass}');`;
+    const queryStr = `INSERT INTO user_info(email, first_name, last_name, salt, pass) VALUES ('${email}', '${first_name}', '${last_name}', '${salt}','${saltedPass}');`;
     db.query(queryStr, (err, results) => {
       if (err) {
+        console.log("Error when posting with signUpPostInfo", err)
         callback(err);
       } else {
-        callback(null, results.rows);
+        // callback(null, results.rows);
+        callback(null, "Successfully Added new user into database");
       }
     })
   },
@@ -87,7 +89,8 @@ module.exports = {
   },
   updateApps(input, id, callback) {
     const { applied_today, applied_month } = input;
-    const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month} WHERE id=${id};`
+    // const queryStr = `UPDATE user_info SET applied_today=${applied_today}, applied_month=${applied_month} WHERE id=${id};`
+    const queryStr = `UPDATE user_info SET applied_month=${applied_month} WHERE id=${id};`
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);
@@ -96,8 +99,10 @@ module.exports = {
       }
     })
   },
-  deleteInfo(id, callback) {
-    const queryStr = `DELETE FROM user_info WHERE id=${id};`;
+  deleteUserByEmail(input, callback) {
+    let { email } = input
+    // const queryStr = `WITH tmp AS (SELECT email FROM friends WHERE email='${email}'), upd AS (UPDATE friends SET email = NULL WHERE email='${email}') DELETE FROM user_info WHERE email IN (SELECT email FROM tmp);`; // deletes user based on email and setting all emails in friends table to null
+    let queryStr = `DELETE from user_info where email='${email}';`
     db.query(queryStr, (err, results) => {
       if (err) {
         callback(`ERROR: `, err);
@@ -181,7 +186,7 @@ module.exports = {
     let { email } = input
     const queryStr = `INSERT INTO friends(user_id, email) VALUES (${id}, '${email}');`;
     db.query(queryStr, (err, results) => {
-      if (err) {
+      if (!results) {
         callback(err);
       } else {
         callback(null, results.rows);

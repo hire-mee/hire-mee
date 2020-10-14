@@ -12,7 +12,7 @@ class Applied extends React.Component {
     super(props);
 
     this.state = {
-      showNew: false,
+      modalOpen: false,
       company_name: "",
       app_description: "",
       app_location: "",
@@ -26,15 +26,15 @@ class Applied extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
-    this.openOrCloseNewApp = this.openOrCloseNewApp.bind(this);
+    this.toggleNewApplicationModal = this.toggleNewApplicationModal.bind(this);
     this.formChecker = this.formChecker.bind(this);
     this.salaryChecker = this.salaryChecker.bind(this);
     this.updateStreaks = this.updateStreaks.bind(this);
   }
 
-  openOrCloseNewApp() {
+  toggleNewApplicationModal() {
     this.setState({
-      showNew: !this.state.showNew,
+      modalOpen: !this.state.modalOpen,
     });
   }
 
@@ -96,8 +96,7 @@ class Applied extends React.Component {
           submit_date: "",
           deadline: "",
           url_link: "",
-        });
-        alert("Added New Job Application");
+        }, () => this.toggleNewApplicationModal());
       }
     });
   }
@@ -125,6 +124,7 @@ class Applied extends React.Component {
       submit_date: submit_date,
       deadline: deadline,
       url_link: url_link,
+      total_applied: total_applied++,
     };
 
     this.formChecker(newApp).then((res) => {
@@ -150,7 +150,7 @@ class Applied extends React.Component {
         <Grid
           item
           xs={12}
-          style={{ backgroundColor: "rgb(232, 236, 239)", height: "100%" }}
+          className="jobs_component_column_subcontainer"
         >
           <div className="applied-holder">
             <p className="applications_columns">Applied</p>
@@ -170,7 +170,7 @@ class Applied extends React.Component {
           >
             <h3
               style={{ textAlign: "center", cursor: "pointer", marginBottom: "16px" }}
-              onClick={this.openOrCloseNewApp}
+              onClick={this.toggleNewApplicationModal}
             >
               +
             </h3>
@@ -192,8 +192,8 @@ class Applied extends React.Component {
 
         <div className="new-application-holder">
           <Modal
-            show={this.state.showNew}
-            onHide={() => this.openOrCloseNewApp()}
+            show={this.state.modalOpen}
+            onHide={() => this.toggleNewApplicationModal()}
             dialogClassName="detailed-view"
             aria-labelledby="modal-styling-title"
           >
@@ -304,6 +304,7 @@ class Applied extends React.Component {
                     onChange={this.changeHandler}
                     value={this.state.submit_date}
                     variant="outlined"
+                    placeholder={"Ex: 01/01/2020"}
                   />
                 </Grid>
 
@@ -315,6 +316,7 @@ class Applied extends React.Component {
                     onChange={this.changeHandler}
                     value={this.state.deadline}
                     variant="outlined"
+                    placeholder={"Ex: 01/01/2020"}
                   />
                 </Grid>
               </Grid>

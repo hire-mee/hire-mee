@@ -2,15 +2,10 @@ const helper = require('../database/helper.js');
 
 module.exports = {
   loginSuccess: (req, res) => {
-    // res.status(200).redirect('/localhost:3000/main');
     res.status(200).redirect('/');
   },
   loginFailure: (req, res) => {
-    res.status(200).redirect('/');
-  },
-  logout: (req, res) => {
-    req.logOut();
-    res.redirect('/login');
+    res.status(401).redirect('/login');
   },
   getInfo: (req, res) => {
     helper.getInfo((err, result) => {
@@ -42,8 +37,11 @@ module.exports = {
   },
   signUpPostInfo: (req, res) => {
     helper.signUpPostInfo(req.body, (err, result) => {
-      if (err) { res.status(400).send(err) }
-      res.status(200).send(result)
+      if (err) {
+        res.status(400).send(err)
+       } else {
+        res.status(200).send(result)
+       }
     })
   },
   postInfo: (req, res) => {
@@ -86,8 +84,8 @@ module.exports = {
       res.status(200).json(req.body)
     })
   },
-  deleteInfo: (req, res) => {
-    helper.deleteInfo(req.params.id, (err, results) => {
+  deleteUserByEmail: (req, res) => {
+    helper.deleteUserByEmail(req.params, (err, results) => {
       if (err) {
         res.status(400).send(err);
       }

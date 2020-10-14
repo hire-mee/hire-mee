@@ -13,44 +13,42 @@ let verifyCallback = (email, pass, done) => {
     let queryStr = `SELECT * from user_info WHERE email = '${email}';`
     connection.query(queryStr, function(err, user) {
 
-      console.log("returned user object in passport verifycallback", user.rows)
       if (err) { 
           return done(err); 
       }
 
-      if (!user || user.rows.length < 1) {
-        return done(null, false);
+      if (!user || user.rows.length < 1) { // case where username doesn't exist
+        return done(null, false, { message: 'Incorrect username.' });
       } 
 
-      const isValid = validatePassword(pass, user.rows[0].pass, user.rows[0].salt); // verifies input attempt with hash in DB
 
-      if (isValid) {
-        return done(null, user); // success case based on validPassword
-      } else {
-        return done(null, false); // fail case based on validPassword
-      }
+
+      if (!validatePassword(pass, user.rows[0].pass, user.rows[0].salt) || pass.length < 1) {
+        return done(null, false, { message: 'Incorrect password.'}); // success case based on validPassword
+      } 
+      return done(null, user.rows); // fail case based on validPassword
+      
     });
 }
 
 let strategy = new LocalStrategy(customFields, verifyCallback);
-
 passport.use(strategy);
 
-// serialization of sessions
 
-passport.serializeUser((user, done) => {
-    console.log('SerializeUser function called.');
-    
-    done(null, user.rows[0].email)
+
+passport.serializeUser((user, done) => { // serialization of sessions
+    done(null, user[0].email)
 })
 
 passport.deserializeUser((email, callback) => {
-    connection.query(`SELECT id, email FROM user_info where email='${email}';`, (err, results) => {
-      if(err) {
-        console.log('Error when selecting user on session deserialize', err)
-        return callback(err)
-      }
-  
-      callback(null, results.rows[0])
-    })
+  if (email) {
+      connection.query(`SELECT id, email FROM user_info where email='${email}';`, (err, results) => {
+        if(results.rows.length < 1) {
+          return callback("No email was found in database")
+        }
+        callback(null, results.rows[0].email)
+      })
+    } else {
+        callback("Could not deserialize user with email of " + email, null)
+    }
   })

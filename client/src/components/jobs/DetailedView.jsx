@@ -57,8 +57,7 @@ let moneyTemp = (desiredSalary, jobSalary) => {
   }
 };
 
-let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
-
+let DetailedView = ({ jobInfo, desired, modalOpen, getApplications, toggleModal}) => {
   let updateApplicationStatus = (status) => {
     axios
       .put(`/api/update/${jobInfo.id}`, {
@@ -75,7 +74,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
         url_link: jobInfo.url_link,
       })
       .then((data) => {
-        getApplications()
+        getApplications();
       })
       .catch((err) => console.error(err));
   };
@@ -86,10 +85,9 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
     );
     if (deletePrompt) {
       axios
-        .delete(`/api/applications/${jobInfo.user_id}`)
+        .delete(`/api/applications/${jobInfo.id}`)
         .then((res) => {
-          window.alert("Application Deleted");
-          getApplications()
+          getApplications();
         })
         .catch((err) => {
           console.error(err);
@@ -218,17 +216,20 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
   return (
     <div>
       <Modal
-        show={show}
-        onHide={() => { }}
+        show={modalOpen}
+        onHide={() => {toggleModal()}}
         dialogClassName="detailed-view"
         aria-labelledby="modal-styling-title"
+        style={{ height: "100%" }}
       >
         <Modal.Header closeButton>
           <Modal.Title
             id="emodal-styling-title"
             style={{ paddingLeft: "50px" }}
           >
-            <h1 className="detailedView_position_text">{jobInfo.position_title}</h1>
+            <h1 className="detailedView_position_text">
+              {jobInfo.position_title}
+            </h1>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ borderRadius: "50px" }}>
@@ -244,7 +245,9 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
             }}
           >
             <div className="popupholder-left">
-              <h2 className="detailedView_position_company_text">{jobInfo.company_name}</h2>
+              <h2 className="detailedView_position_company_text">
+                {jobInfo.company_name}
+              </h2>
               <br />
 
               <div className="detailedView_position_salary_text">
@@ -263,7 +266,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
                   Submitted: <br />
                 </div>
                 <div className="detailedView_position_submitted_date">
-                  {jobInfo.submitdate} <br />
+                  {jobInfo.submit_date} <br />
                 </div>
               </div>
 
@@ -288,7 +291,9 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
                   Location: <br />
                 </div>
 
-                <div className="detailedView_position_submitted_date">{jobInfo.app_location}</div>
+                <div className="detailedView_position_submitted_date">
+                  {jobInfo.app_location}
+                </div>
               </div>
             </div>
 
@@ -302,18 +307,19 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
                   <a
                     className="detailedView_link"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    href={`${jobInfo.url_link}`}
+                    href={ jobInfo.url_link.includes('http') ? jobInfo.url_link : `http://${jobInfo.url_link}`}
                   >
-                    Click Me To Go To Job posting
+                    Click to redirect to job posting
                   </a>
                 </div>
               </div>
               <div>
-                <div  className="detailedView_position_submitted_text">
+                <div className="detailedView_position_submitted_text">
                   Description: <br />
                 </div>
-                <div className="detailedView_position_submitted_date">{jobInfo.app_description}</div>
+                <div className="detailedView_position_submitted_date">
+                  {jobInfo.app_description}
+                </div>
                 <ul className="detailedView_update_button_container">
                   <button
                     className="detailedView_update_rejected"
@@ -335,7 +341,7 @@ let DetailedView = ({ jobInfo, desired, show, getApplications }) => {
                   </button>
                   <button
                     className="detailedView_delete_app"
-                    onClick={() => deleteApplication("offers")}
+                    onClick={() => deleteApplication()}
                   >
                     Delete
                   </button>

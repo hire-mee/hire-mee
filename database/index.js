@@ -4,23 +4,21 @@ require('dotenv').config();
 const devConfig = {
   user: process.env.PG_USER,
   port: process.env.PG_PORT,
-  // database: process.env.PG_DATABASE
-  database: 'hiremee'
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD
 }
 
-const proConfig = {
-  connectionString: process.env.DATABASE_URL
+const proConfig = { // uncomment for default production credentials!
+  // user: "postgres",
+  // database: "hiremee",
+  // password: "",
+  // port: 5432
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
-// const pool = new Pool({
-//   user: 'postgres',
-//   port: 5432,
-//   database: "hiremee"
-// })
 
 pool.connect()
-  .then(console.log('Connectd to psql!'))
+  .then(console.log('Connectd to psql database'))
   .catch((err) => console.log(err));
 
 module.exports = pool;
