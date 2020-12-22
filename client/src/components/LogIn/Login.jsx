@@ -95,7 +95,7 @@ export default class Login extends Component {
                       <Envelope className="signup_bootstrap_icon"/>
                       <input
                         onChange={this.inputChangeHandler}
-                        type="text"
+                        type="email"
                         name="email"
                         placeholder="Email"
                         required

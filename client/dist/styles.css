@@ -304,6 +304,11 @@ a:hover {
   font-size: 0.9em;
   border-radius: 3px;
 }
+
+.red-placeholder::placeholder {
+  color: #c13737;
+}
+
 .signup_input_field:focus {
   border: none;
 }

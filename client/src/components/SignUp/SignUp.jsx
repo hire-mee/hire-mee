@@ -20,6 +20,7 @@ export default class SignUp extends Component {
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.validateEmail = this.validateEmail.bind(this);
   }
 
   inputChangeHandler(e) {
@@ -35,17 +36,64 @@ export default class SignUp extends Component {
     })
   }
 
+  validateEmail() {
+    const regex = RegExp(/^[^@ ]+@[^@ ]+\.[^@ \.]{2,}$/)
+    const email = this.state.email;
+
+
+    if(!regex.test(email)) {
+      let emailInput = document.getElementById("email_input_field")
+      emailInput.classList.add('red-placeholder')
+      emailInput.style.border = "2px solid #c13737"
+      emailInput.value = ""
+      emailInput.placeholder = "Invalid Email"
+      return false
+    }
+    return true
+   }
+
+   validateName(){
+     let first_name, last_name = this.state;
+   }
+
   submitHandler(e) {
-    let { first_name, last_name, email, pass } = this.state;
+    let { first_name, last_name, email, pass, passVerify } = this.state;
     e.preventDefault();
-    
-    if (!email.includes("@")){
-      window.alert("Please enter a valid email address");
-      document.getElementById('signup_input_form').reset();
-    } else if (this.state.pass !== this.state.passVerify) {
-      window.alert("Passwords do not match");
-      document.getElementById('signup_input_form').reset();
-    } else {
+
+   if (!first_name) {
+      let firstNameInput = document.getElementById("firstName_input_field")
+      firstNameInput.classList.add('red-placeholder')
+      firstNameInput.style.border = "2px solid #c13737"
+      firstNameInput.placeholder = "Required"
+   }
+   if (!last_name) {
+      let lastNameInput = document.getElementById("lastName_input_field")
+      lastNameInput.classList.add('red-placeholder')
+      lastNameInput.style.border = "2px solid #c13737"
+      lastNameInput.placeholder = "Required"
+
+   }
+   if (!this.validateEmail()){  //email must pass validation
+      let emailInput = document.getElementById("email_input_field")
+      emailInput.classList.add('red-placeholder')
+      emailInput.style.border = "2px solid #c13737"
+      emailInput.value = ""
+      emailInput.placeholder = "Invalid Email"
+    } 
+
+     if (!first_name || !last_name || this.state.pass !== this.state.passVerify) { // password and passferify must pass validation
+      let passInput = document.getElementById('password_input_field')
+      passInput.style.border = "2px solid #c13737"
+      passInput.classList.add('red-placeholder')
+      passInput.placeholder = "Required"
+
+      let passVerifyInput = document.getElementById('passVerify_input_field')
+      passVerifyInput.style.border = "2px solid #c13737"
+      passVerifyInput.placeholder = "Passwords do not match!"
+      passVerifyInput.classList.add('red-placeholder')
+    } 
+
+    if (first_name && last_name && this.validateEmail && pass === passVerify) {
       axios.post('/api/signup/', {first_name, last_name, email, pass})
       .then(() => {
         this.setState({
@@ -53,7 +101,7 @@ export default class SignUp extends Component {
         })
       })
       .catch(() => { // TODO: FIX ERROR HANDLING FOR SIGNUP EMAILS THAT ALREADY EXIST IN DATABASE! Create another get request before post to confirm for clearance
-        window.alert("Invalid email, please try another email") // current fix: pop up alret and reset form
+        window.alert("Invalid email, please try another email")
         document.getElementById('signup_input_form').reset(); 
     })
     }
@@ -96,6 +144,7 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
+                        id="firstName_input_field"
                         type="text"
                         name="first_name"
                         placeholder="First Name"
@@ -107,6 +156,7 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
+                        id="lastName_input_field"
                         type="text"
                         name="last_name"
                         placeholder="Last Name"
@@ -118,7 +168,8 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
-                        type="text"
+                        id="email_input_field"
+                        type="email"
                         name="email"
                         placeholder="Email"
                         required
@@ -129,6 +180,7 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
+                        id="password_input_field"
                         type="password"
                         name="pass"
                         placeholder="Password"
@@ -140,6 +192,7 @@ export default class SignUp extends Component {
                       <input
                         onChange={this.inputChangeHandler}
                         className="signup_input_field"
+                        id="passVerify_input_field"
                         type="password"
                         name="passVerify"
                         placeholder="Re-enter Password"
@@ -148,7 +201,6 @@ export default class SignUp extends Component {
                     </div>
                     <div className="signup_button_container">
                       <button id="signup_signup_button" onClick={(e) => this.submitHandler(e)}>Sign up</button>
-                      {/* <button id="signup_signup_button" onClick={(e) => this.submitHandler(e)}>Sign up</button> */}
                     </div>
                   </form>
                 </div>
