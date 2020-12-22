@@ -9,10 +9,10 @@ const devConfig = {
 }
 
 const proConfig = { // uncomment for default production credentials!
-  // user: "postgres",
-  // database: "hiremee",
-  // password: "",
-  // port: 5432
+  user: "postgres",
+  database: "hiremee",
+  password: "hiremee",
+  port: 5432
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);

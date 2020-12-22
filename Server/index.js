@@ -7,7 +7,8 @@ const cors = require('cors');
 const path = require('path');
 const router = require('./router.js')
 const app = express();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+const PORT = 3000; // port 3000 by default
 
 require('dotenv').config(); // allows the use of secret keys in rootdirectory/.env file
 
