@@ -30,7 +30,7 @@ module.exports = {
   getUserByEmail: (req, res) => {
     helper.getUserByEmail(req.params, (err, result) => {
       if (result == null) {
-         return res.status(400).send("error getting things from postgres")
+         return res.status(400).send(`User email ${req.params} not found from the DB`)
         }
       return res.status(200).send(result)
     })

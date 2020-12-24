@@ -31,7 +31,7 @@ export default class SignUp extends Component {
       [e.target.name]: e.target.value,
     }, ()=>{
       // invoked immediately after each change in input
-      this.passVerifyInputGreenWhenValid("passVerify_input_field", "Passwords Must Match!")
+      this.passVerifyInputGreenWhenValid("passVerify_input_field", "Passwords must match!")
     }); 
     }
 
@@ -104,39 +104,38 @@ export default class SignUp extends Component {
   submitHandler(e) {
     let { first_name, last_name, email, pass, passVerify } = this.state;
     e.preventDefault();
-
+  
     // ON SUBMIT validations:
     // first name validation
     if (!first_name) {
       this.turnNamesInputGreenWhenValid("firstName_input_field", "Required");
-      document.getElementById("signup-input_error_message").style.visibility = "visible";
+      document.getElementById("signup-input_error_message").innerText = "Please fix one or more fields above."
     }
       // last name validation
     if (!last_name) {
       this.turnNamesInputGreenWhenValid("lastName_input_field", "Required");
-      document.getElementById("signup-input_error_message").style.visibility = "visible";
+      document.getElementById("signup-input_error_message").innerText = "Please fix one or more fields above."
     }
       // email validation
     if (!this.turnEmailInputGreenWhenValid()) {  //email must pass validation, function returns a boolean
-      document.getElementById("signup-input_error_message").style.visibility = "visible";
+      document.getElementById("signup-input_error_message").innerText = "Please fix one or more fields above."
     }
-
+  
     // password and password verify validation
     if(!pass){// empty password 
       this.turnPasswordInputGreenWhenValid("password_input_field", "Required");
-      document.getElementById("signup-input_error_message").style.visibility = "visible";
+      document.getElementById("signup-input_error_message").innerText = "Please fix one or more fields above."
     }
     if (!passVerify){ // empty passVerify
-      this.turnPasswordInputGreenWhenValid("passVerify_input_field", "Passwords do not match!");
-      document.getElementById("signup-input_error_message").style.visibility = "visible";
+      this.turnPasswordInputGreenWhenValid("passVerify_input_field", "Passwords must match!");
+      document.getElementById("signup-input_error_message").innerText = "Please fix one or more fields above."
     } 
     if (pass !== passVerify){ // password mismatch
       this.turnPasswordInputGreenWhenValid("password_input_field", "Required");
-      this.turnPasswordInputGreenWhenValid("passVerify_input_field", "Passwords do not match!");
-      document.getElementById("signup-input_error_message").style.visibility = "visible";
+      this.turnPasswordInputGreenWhenValid("passVerify_input_field", "Passwords must match!");
+      document.getElementById("signup-input_error_message").innerText = "Please fix one or more fields above."
     }
-    
-
+  
     if (
       first_name &&
       last_name &&
@@ -144,18 +143,26 @@ export default class SignUp extends Component {
       pass && passVerify &&
       pass === passVerify
     ) {
-      axios
-        .post("/api/signup/", { first_name, last_name, email, pass })
-        .then(() => {
-          this.setState({
-            redirect: true,
-          });
-        })
-        .catch(() => {
-          // TODO: FIX ERROR HANDLING FOR SIGNUP EMAILS THAT ALREADY EXIST IN DATABASE! Create another get request before post to confirm for clearance
-          window.alert("Invalid email, please try another email");
-          document.getElementById("signup_input_form").reset();
-        });
+      axios.get(`/api/email/${email}`) // get request to DB for existing email
+      .then((data)=> {
+          document.getElementById("signup-input_error_message").innerText = "Email is already in use!"
+
+          let emailInput = document.getElementById("email_input_field");
+          emailInput.style.border = "2px solid #c13737";
+      })
+      .catch((err)=>{ // if nothing returns back, continue with post req
+          axios.post("/api/signup/", { first_name, last_name, email, pass })
+            .then(() => {
+              this.setState({
+                redirect: true,
+              });
+            })
+            .catch(() => { // redundant catch block, may not need
+              window.alert("Internal error, please refresh page and try again.");
+              document.getElementById("signup_input_form").reset();
+            });
+      })
+     
     }
   }
 
@@ -271,7 +278,7 @@ export default class SignUp extends Component {
                   ></input>
                 </div>
 
-                <p id="signup-input_error_message">Please fix one or more fields above</p>
+                <p id="signup-input_error_message"></p>
 
                 <div className="signup_button_container">
                   <button

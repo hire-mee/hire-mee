@@ -365,11 +365,10 @@ a:hover {
 #signup-input_error_message {
   color: rgb(208, 65, 65);
   font-size: 11px;
-  visibility: hidden;
 }
 
 .signup_input_icon_div input {
-  border: 2px solid #e8ecef;
+  border: 2px solid white;
 }
 
 #signup_already_signedup_button:hover {
