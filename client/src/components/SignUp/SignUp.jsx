@@ -20,7 +20,6 @@ export default class SignUp extends Component {
     };
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
-    this.validateChangeInputColor = this.validateChangeInputColor.bind(this);
     this.turnEmailInputGreenWhenValid = this.turnEmailInputGreenWhenValid.bind(this);
     this.turnNamesInputGreenWhenValid = this.turnNamesInputGreenWhenValid.bind(this);
     this.turnPasswordInputGreenWhenValid = this.turnPasswordInputGreenWhenValid.bind(this);
@@ -30,8 +29,11 @@ export default class SignUp extends Component {
   inputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value,
-    }, ()=>{this.passVerifyInputGreenWhenValid("passVerify_input_field", "Passwords Must Match!")});
-  }
+    }, ()=>{
+      // invoked immediately after each change in input
+      this.passVerifyInputGreenWhenValid("passVerify_input_field", "Passwords Must Match!")
+    }); 
+    }
 
   componentDidMount() {
     this.setState({
@@ -40,7 +42,7 @@ export default class SignUp extends Component {
     });
   }
 
-  turnEmailInputGreenWhenValid(){ 
+  turnEmailInputGreenWhenValid(){
     // green border when email is validated, red border when invalid
     // used on onChange event
     const regex = RegExp(/^[^@ ]+@[^@ ]+\.[^@ \.]{2,}$/);
@@ -99,33 +101,41 @@ export default class SignUp extends Component {
     }
   }
 
-  validateChangeInputColor(id, placeholderText) {
-    let input = document.getElementById(id);
-    input.classList.add("red-placeholder");
-    input.style.border = "2px solid #c13737";
-    input.placeholder = placeholderText;
-  }
-
   submitHandler(e) {
     let { first_name, last_name, email, pass, passVerify } = this.state;
     e.preventDefault();
+
+    // ON SUBMIT validations:
+    // first name validation
     if (!first_name) {
       this.turnNamesInputGreenWhenValid("firstName_input_field", "Required");
       document.getElementById("signup-input_error_message").style.visibility = "visible";
     }
+      // last name validation
     if (!last_name) {
       this.turnNamesInputGreenWhenValid("lastName_input_field", "Required");
       document.getElementById("signup-input_error_message").style.visibility = "visible";
     }
+      // email validation
     if (!this.turnEmailInputGreenWhenValid()) {  //email must pass validation, function returns a boolean
       document.getElementById("signup-input_error_message").style.visibility = "visible";
     }
 
-    if (!pass || !passVerify || pass !== passVerify) { // password and passVerify must pass validation
+    // password and password verify validation
+    if(!pass){// empty password 
+      this.turnPasswordInputGreenWhenValid("password_input_field", "Required");
+      document.getElementById("signup-input_error_message").style.visibility = "visible";
+    }
+    if (!passVerify){ // empty passVerify
+      this.turnPasswordInputGreenWhenValid("passVerify_input_field", "Passwords do not match!");
+      document.getElementById("signup-input_error_message").style.visibility = "visible";
+    } 
+    if (pass !== passVerify){ // password mismatch
       this.turnPasswordInputGreenWhenValid("password_input_field", "Required");
       this.turnPasswordInputGreenWhenValid("passVerify_input_field", "Passwords do not match!");
-      
+      document.getElementById("signup-input_error_message").style.visibility = "visible";
     }
+    
 
     if (
       first_name &&
